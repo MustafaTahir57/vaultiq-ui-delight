@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import StatusBadge from "./StatusBadge";
 
 const subscriptions = [
-  { id: 1, branch: "Alpha Branch", plan: "Premium", status: "active" as const, weeklyReward: "4.2%", accrued: "$1,240", expiry: "2025-08-15" },
-  { id: 2, branch: "Beta Branch", plan: "Standard", status: "active" as const, weeklyReward: "3.1%", accrued: "$680", expiry: "2025-09-22" },
-  { id: 3, branch: "Gamma Branch", plan: "Premium", status: "pending" as const, weeklyReward: "—", accrued: "$0", expiry: "—" },
-  { id: 4, branch: "Delta Branch", plan: "Basic", status: "expired" as const, weeklyReward: "2.5%", accrued: "$320", expiry: "2025-01-10" },
+  { id: 1, branch: "Alpha Branch", plan: "Premium", status: "active", weeklyReward: "4.2%", accrued: "$1,240", expiry: "2025-08-15" },
+  { id: 2, branch: "Beta Branch", plan: "Standard", status: "active", weeklyReward: "3.1%", accrued: "$680", expiry: "2025-09-22" },
+  { id: 3, branch: "Gamma Branch", plan: "Premium", status: "pending", weeklyReward: "—", accrued: "$0", expiry: "—" },
+  { id: 4, branch: "Delta Branch", plan: "Basic", status: "expired", weeklyReward: "2.5%", accrued: "$320", expiry: "2025-01-10" },
 ];
 
 const SubscriptionsSection = () => (

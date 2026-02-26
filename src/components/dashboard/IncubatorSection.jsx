@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import StatusBadge from "./StatusBadge";
 
 const rounds = [
-  { id: "#R-007", token: "VIQX", status: "open" as const, allocation: "500,000", deposited: "$12,400", userDeposit: "$500", claimable: "—" },
-  { id: "#R-006", token: "ORBX", status: "claimable" as const, allocation: "1,000,000", deposited: "$28,000", userDeposit: "$1,200", claimable: "8,420 ORBX" },
-  { id: "#R-005", token: "NOVA", status: "closed" as const, allocation: "750,000", deposited: "$18,500", userDeposit: "$800", claimable: "—" },
-  { id: "#R-004", token: "FLUX", status: "canceled" as const, allocation: "300,000", deposited: "$4,200", userDeposit: "$200", claimable: "—" },
+  { id: "#R-007", token: "VIQX", status: "open", allocation: "500,000", deposited: "$12,400", userDeposit: "$500", claimable: "—" },
+  { id: "#R-006", token: "ORBX", status: "claimable", allocation: "1,000,000", deposited: "$28,000", userDeposit: "$1,200", claimable: "8,420 ORBX" },
+  { id: "#R-005", token: "NOVA", status: "closed", allocation: "750,000", deposited: "$18,500", userDeposit: "$800", claimable: "—" },
+  { id: "#R-004", token: "FLUX", status: "canceled", allocation: "300,000", deposited: "$4,200", userDeposit: "$200", claimable: "—" },
 ];
 
 const IncubatorSection = () => (

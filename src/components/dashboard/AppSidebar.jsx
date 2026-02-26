@@ -1,6 +1,12 @@
 import {
-  LayoutDashboard, CreditCard, GitBranch, TrendingUp,
-  Layers, Rocket, Settings, ChevronLeft
+  LayoutDashboard,
+  CreditCard,
+  GitBranch,
+  TrendingUp,
+  Layers,
+  Rocket,
+  Settings,
+  ChevronLeft,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
@@ -15,23 +21,44 @@ const navItems = [
   { title: "Account", url: "/app/account", icon: Settings },
 ];
 
-const AppSidebar = ({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => void }) => {
+const AppSidebar = ({ collapsed, onToggle }) => {
   const location = useLocation();
 
   return (
-    <aside className={`${collapsed ? "w-16" : "w-64"} shrink-0 h-screen sticky top-0 bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300`}>
+    <aside
+      className={`${
+        collapsed ? "w-16" : "w-64"
+      } shrink-0 h-screen sticky top-0 bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300`}
+    >
       {/* Logo */}
       <div className="flex items-center justify-between px-4 h-16 border-b border-sidebar-border">
-        {!collapsed && <Link to="/" className="font-display text-lg font-bold gradient-text hover:opacity-80 transition-opacity">VaultIQ</Link>}
-        <button onClick={onToggle} className="p-1.5 rounded-md hover:bg-sidebar-accent text-sidebar-foreground transition-colors">
-          <ChevronLeft className={`h-4 w-4 transition-transform ${collapsed ? "rotate-180" : ""}`} />
+        {!collapsed && (
+          <Link
+            to="/"
+            className="font-display text-lg font-bold gradient-text hover:opacity-80 transition-opacity"
+          >
+            VaultIQ
+          </Link>
+        )}
+        <button
+          onClick={onToggle}
+          className="p-1.5 rounded-md hover:bg-sidebar-accent text-sidebar-foreground transition-colors"
+        >
+          <ChevronLeft
+            className={`h-4 w-4 transition-transform ${
+              collapsed ? "rotate-180" : ""
+            }`}
+          />
         </button>
       </div>
 
       {/* Nav */}
       <nav className="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.url || (item.url !== "/app" && location.pathname.startsWith(item.url));
+          const isActive =
+            location.pathname === item.url ||
+            (item.url !== "/app" && location.pathname.startsWith(item.url));
+
           return (
             <NavLink
               key={item.url}
@@ -42,7 +69,6 @@ const AppSidebar = ({ collapsed, onToggle }: { collapsed: boolean; onToggle: () 
                   ? "bg-primary/10 text-primary font-medium"
                   : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               }`}
-              activeClassName=""
             >
               <item.icon className="h-4 w-4 shrink-0" />
               {!collapsed && <span>{item.title}</span>}
@@ -56,7 +82,9 @@ const AppSidebar = ({ collapsed, onToggle }: { collapsed: boolean; onToggle: () 
         <div className="p-4 border-t border-sidebar-border">
           <div className="glass-card p-3 text-center">
             <p className="text-xs text-muted-foreground">Connected</p>
-            <p className="text-xs text-primary font-mono mt-1">0x1a2b...9f3e</p>
+            <p className="text-xs text-primary font-mono mt-1">
+              0x1a2b...9f3e
+            </p>
           </div>
         </div>
       )}

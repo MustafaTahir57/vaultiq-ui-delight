@@ -14,10 +14,10 @@ const passiveData = [
 ];
 
 const recentActivity = [
-  { action: "Subscription renewed", branch: "Alpha Branch", status: "active" as const, time: "2h ago" },
-  { action: "Pool 2 reward claimed", branch: "VaultIQ Main", status: "claimable" as const, time: "5h ago" },
-  { action: "Incubator deposit", branch: "Round #4", status: "pending" as const, time: "1d ago" },
-  { action: "Passive income distributed", branch: "Beta Branch", status: "active" as const, time: "2d ago" },
+  { action: "Subscription renewed", branch: "Alpha Branch", status: "active", time: "2h ago" },
+  { action: "Pool 2 reward claimed", branch: "VaultIQ Main", status: "claimable", time: "5h ago" },
+  { action: "Incubator deposit", branch: "Round #4", status: "pending", time: "1d ago" },
+  { action: "Passive income distributed", branch: "Beta Branch", status: "active", time: "2d ago" },
 ];
 
 const OverviewSection = () => {
@@ -59,7 +59,7 @@ const OverviewSection = () => {
               <YAxis axisLine={false} tickLine={false} tick={{ fill: "hsl(215 20% 55%)", fontSize: 12 }} tickFormatter={(v) => `$${v}`} />
               <Tooltip
                 contentStyle={{ background: "hsl(222 41% 10%)", border: "1px solid hsl(222 30% 18%)", borderRadius: 8, color: "hsl(210 40% 96%)" }}
-                formatter={(value: number) => [`$${value}`, ""]}
+                formatter={(value) => [`$${value}`, ""]}
               />
               <Bar dataKey="projected" radius={[4, 4, 0, 0]} fill="hsl(174 72% 52% / 0.25)" />
               <Bar dataKey="actual" radius={[4, 4, 0, 0]}>
