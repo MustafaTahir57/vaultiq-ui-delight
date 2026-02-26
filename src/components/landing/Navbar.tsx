@@ -22,12 +22,16 @@ const Navbar = () => {
     >
       <div className="bg-background/70 backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-          <Link to="/" className="flex items-center gap-2">
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="flex items-center gap-2 cursor-pointer"
+          >
             <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
               <span className="font-display text-sm font-bold text-primary">V</span>
             </div>
             <span className="font-display text-xl font-bold gradient-text">VaultIQ</span>
-          </Link>
+          </a>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
