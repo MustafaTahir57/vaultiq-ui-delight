@@ -3,7 +3,7 @@ import {
   Layers, Rocket, Settings, ChevronLeft
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const navItems = [
   { title: "Overview", url: "/app", icon: LayoutDashboard },
@@ -22,7 +22,7 @@ const AppSidebar = ({ collapsed, onToggle }: { collapsed: boolean; onToggle: () 
     <aside className={`${collapsed ? "w-16" : "w-64"} shrink-0 h-screen sticky top-0 bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300`}>
       {/* Logo */}
       <div className="flex items-center justify-between px-4 h-16 border-b border-sidebar-border">
-        {!collapsed && <span className="font-display text-lg font-bold gradient-text">VaultIQ</span>}
+        {!collapsed && <Link to="/" className="font-display text-lg font-bold gradient-text hover:opacity-80 transition-opacity">VaultIQ</Link>}
         <button onClick={onToggle} className="p-1.5 rounded-md hover:bg-sidebar-accent text-sidebar-foreground transition-colors">
           <ChevronLeft className={`h-4 w-4 transition-transform ${collapsed ? "rotate-180" : ""}`} />
         </button>
