@@ -24,7 +24,7 @@ const navItems = [
   { title: "Account", url: "/app/account", icon: Settings },
 ];
 
-const AppSidebar = ({ collapsed, onToggle }) => {
+const AppSidebar = ({ collapsed, onToggle, isMobile }) => {
   const location = useLocation();
   const { shortAddress, disconnect } = useWallet();
 
@@ -35,7 +35,7 @@ const AppSidebar = ({ collapsed, onToggle }) => {
       } shrink-0 h-screen sticky top-0 bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300`}
     >
       {/* Logo */}
-      <div className="flex items-center justify-between px-4 h-16 border-b border-sidebar-border">
+      <div className={`flex items-center ${collapsed ? "justify-center" : "justify-between"} px-4 h-16 border-b border-sidebar-border`}>
         {!collapsed && (
           <Link
             to="/"
@@ -44,16 +44,19 @@ const AppSidebar = ({ collapsed, onToggle }) => {
             VaultIQ
           </Link>
         )}
-        <button
-          onClick={onToggle}
-          className="p-1.5 rounded-md hover:bg-sidebar-accent text-sidebar-foreground transition-colors"
-        >
-          <ChevronLeft
-            className={`h-4 w-4 transition-transform ${
-              collapsed ? "rotate-180" : ""
-            }`}
-          />
-        </button>
+        {/* Hide toggle on mobile — always collapsed */}
+        {!isMobile && (
+          <button
+            onClick={onToggle}
+            className="p-1.5 rounded-md hover:bg-sidebar-accent text-sidebar-foreground transition-colors"
+          >
+            <ChevronLeft
+              className={`h-4 w-4 transition-transform ${
+                collapsed ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+        )}
       </div>
 
       {/* Nav */}
@@ -68,11 +71,12 @@ const AppSidebar = ({ collapsed, onToggle }) => {
               key={item.url}
               to={item.url}
               end={item.url === "/app"}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
+              className={`flex items-center ${collapsed ? "justify-center" : "gap-3"} px-3 py-2.5 rounded-lg text-sm transition-all ${
                 isActive
                   ? "bg-primary/10 text-primary font-medium"
                   : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               }`}
+              title={collapsed ? item.title : undefined}
             >
               <item.icon className="h-4 w-4 shrink-0" />
               {!collapsed && <span>{item.title}</span>}
@@ -94,6 +98,19 @@ const AppSidebar = ({ collapsed, onToggle }) => {
           >
             <LogOut className="h-3.5 w-3.5" />
             Disconnect
+          </button>
+        </div>
+      )}
+
+      {/* Collapsed footer — just disconnect icon */}
+      {collapsed && (
+        <div className="p-2 border-t border-sidebar-border flex justify-center">
+          <button
+            onClick={disconnect}
+            className="p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+            title="Disconnect"
+          >
+            <LogOut className="h-4 w-4" />
           </button>
         </div>
       )}
