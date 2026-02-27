@@ -26,6 +26,7 @@ const navItems = [
 
 const AppSidebar = ({ collapsed, onToggle }) => {
   const location = useLocation();
+  const { shortAddress, disconnect } = useWallet();
 
   return (
     <aside
