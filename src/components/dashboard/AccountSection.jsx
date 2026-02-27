@@ -17,7 +17,7 @@ const AccountSection = () => (
       <p className="text-muted-foreground text-sm mt-1">Your wallet, referrals, and transaction history</p>
     </div>
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div>
       {/* Profile */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6">
         <div className="flex items-center gap-4 mb-6">
