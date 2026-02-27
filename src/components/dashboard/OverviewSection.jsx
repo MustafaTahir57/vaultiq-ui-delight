@@ -1,23 +1,21 @@
-import { Wallet, Users, TrendingUp, DollarSign, BarChart3, PieChart } from "lucide-react";
+import { Wallet, Users, TrendingUp, DollarSign, PieChart, Layers, Lock, Unlock } from "lucide-react";
 import { motion } from "framer-motion";
 import StatCard from "./StatCard";
 import StatusBadge from "./StatusBadge";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
-
-const passiveData = [
-  { month: "Jan", projected: 1200, actual: 980 },
-  { month: "Feb", projected: 1400, actual: 1350 },
-  { month: "Mar", projected: 1600, actual: 1520 },
-  { month: "Apr", projected: 1500, actual: 1480 },
-  { month: "May", projected: 1800, actual: 1700 },
-  { month: "Jun", projected: 2000, actual: 0 },
-];
+import { Progress } from "@/components/ui/progress";
 
 const recentActivity = [
   { action: "Subscription renewed", branch: "Alpha Branch", status: "active", time: "2h ago" },
   { action: "Pool 2 reward claimed", branch: "VaultIQ Main", status: "claimable", time: "5h ago" },
   { action: "Incubator deposit", branch: "Round #4", status: "pending", time: "1d ago" },
   { action: "Passive income distributed", branch: "Beta Branch", status: "active", time: "2d ago" },
+];
+
+const pools = [
+  { name: "Pool 1", distribution: "$2,400", members: 45, threshold: "$500", unlocked: true, fill: 82 },
+  { name: "Pool 2", distribution: "$4,800", members: 32, threshold: "$1,000", unlocked: true, fill: 64 },
+  { name: "Pool 3", distribution: "$8,200", members: 18, threshold: "$2,500", unlocked: false, fill: 38 },
+  { name: "Pool 4", distribution: "$15,000", members: 8, threshold: "$5,000", unlocked: false, fill: 15 },
 ];
 
 const OverviewSection = () => {
@@ -36,40 +34,54 @@ const OverviewSection = () => {
         <StatCard title="Passive Income" value="$3,250" subtitle="Confirmed pool" icon={TrendingUp} trend={{ value: "+8.2%", positive: true }} />
       </div>
 
-      {/* Charts + Activity */}
+      {/* Pools + Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Chart */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="lg:col-span-2 glass-card p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
-                <BarChart3 className="h-4 w-4 text-primary" />
-                Passive Income
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">Projected vs Actual</p>
-            </div>
-            <div className="flex gap-4 text-xs">
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-primary/40" /> Projected</span>
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-primary" /> Actual</span>
-            </div>
+        {/* Pools */}
+        <div className="lg:col-span-2 space-y-4">
+          <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
+            <Layers className="h-4 w-4 text-primary" />
+            Pools
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {pools.map((pool, i) => (
+              <motion.div
+                key={pool.name}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-card-hover p-5"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${pool.unlocked ? "bg-primary/10" : "bg-secondary"}`}>
+                      {pool.unlocked ? <Unlock className="h-4 w-4 text-primary" /> : <Lock className="h-4 w-4 text-muted-foreground" />}
+                    </div>
+                    <div>
+                      <h4 className="font-display font-semibold text-foreground text-sm">{pool.name}</h4>
+                      <span className={`text-xs ${pool.unlocked ? "text-success" : "text-muted-foreground"}`}>
+                        {pool.unlocked ? "Unlocked" : "Locked"}
+                      </span>
+                    </div>
+                  </div>
+                  <span className="text-base font-display font-bold text-foreground">{pool.distribution}</span>
+                </div>
+                <div className="space-y-2">
+                  <div>
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                      <span>Qualification</span>
+                      <span>{pool.fill}%</span>
+                    </div>
+                    <Progress value={pool.fill} className="h-2 bg-secondary [&>div]:bg-primary" />
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted-foreground flex items-center gap-1"><Users className="h-3 w-3" /> {pool.members}</span>
+                    <span className="text-muted-foreground">Threshold: {pool.threshold}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <ResponsiveContainer width="100%" height={240}>
-            <BarChart data={passiveData} barGap={4}>
-              <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill: "hsl(215 20% 55%)", fontSize: 12 }} />
-              <YAxis axisLine={false} tickLine={false} tick={{ fill: "hsl(215 20% 55%)", fontSize: 12 }} tickFormatter={(v) => `$${v}`} />
-              <Tooltip
-                contentStyle={{ background: "hsl(222 41% 10%)", border: "1px solid hsl(222 30% 18%)", borderRadius: 8, color: "hsl(210 40% 96%)" }}
-                formatter={(value) => [`$${value}`, ""]}
-              />
-              <Bar dataKey="projected" radius={[4, 4, 0, 0]} fill="hsl(174 72% 52% / 0.25)" />
-              <Bar dataKey="actual" radius={[4, 4, 0, 0]}>
-                {passiveData.map((_, i) => (
-                  <Cell key={i} fill={passiveData[i].actual > 0 ? "hsl(174, 72%, 52%)" : "hsl(174 72% 52% / 0.1)"} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </motion.div>
+        </div>
 
         {/* Recent Activity */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="glass-card p-6">

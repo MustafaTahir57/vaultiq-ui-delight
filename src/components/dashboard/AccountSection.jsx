@@ -17,7 +17,7 @@ const AccountSection = () => (
       <p className="text-muted-foreground text-sm mt-1">Your wallet, referrals, and transaction history</p>
     </div>
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div>
       {/* Profile */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6">
         <div className="flex items-center gap-4 mb-6">
@@ -45,27 +45,6 @@ const AccountSection = () => (
             <span className="text-sm text-muted-foreground">Referrals</span>
             <span className="text-sm text-foreground">14 users</span>
           </div>
-        </div>
-      </motion.div>
-
-      {/* Transactions */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="glass-card p-6">
-        <h3 className="font-display font-semibold text-foreground mb-4">Recent Transactions</h3>
-        <div className="space-y-3">
-          {transactions.map((tx, i) => (
-            <div key={i} className="flex items-center justify-between py-2.5 border-b border-border/30 last:border-0">
-              <div>
-                <p className="text-sm text-foreground">{tx.type}</p>
-                <p className="text-xs text-muted-foreground">{tx.date}</p>
-              </div>
-              <div className="text-right">
-                <p className={`text-sm font-medium ${tx.amount.startsWith("+") ? "text-success" : "text-destructive"}`}>{tx.amount}</p>
-                <a href="#" className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1 justify-end">
-                  {tx.hash} <ExternalLink className="h-3 w-3" />
-                </a>
-              </div>
-            </div>
-          ))}
         </div>
       </motion.div>
     </div>
