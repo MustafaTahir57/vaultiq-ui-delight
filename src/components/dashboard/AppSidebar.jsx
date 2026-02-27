@@ -8,9 +8,11 @@ import {
   Settings,
   ChevronLeft,
   Users,
+  LogOut,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
+import { useWallet } from "@/contexts/WalletContext";
 
 const navItems = [
   { title: "Overview", url: "/app", icon: LayoutDashboard },
