@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import AppSidebar from "@/components/dashboard/AppSidebar";
+import ConnectWalletScreen from "@/components/dashboard/ConnectWalletScreen";
 import OverviewSection from "@/components/dashboard/OverviewSection";
 import SubscriptionsSection from "@/components/dashboard/SubscriptionsSection";
 import BranchSection from "@/components/dashboard/BranchSection";
@@ -8,9 +9,19 @@ import PassiveIncomeSection from "@/components/dashboard/PassiveIncomeSection";
 import IncubatorSection from "@/components/dashboard/IncubatorSection";
 import ReferralSystemSection from "@/components/dashboard/ReferralSystemSection";
 import AccountSection from "@/components/dashboard/AccountSection";
+import { useWallet } from "@/contexts/WalletContext";
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const { isConnected } = useWallet();
+
+  if (!isConnected) {
+    return (
+      <div className="min-h-screen w-full bg-background flex">
+        <ConnectWalletScreen />
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen w-full bg-background">
