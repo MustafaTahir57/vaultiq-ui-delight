@@ -5,8 +5,8 @@ import OverviewSection from "@/components/dashboard/OverviewSection";
 import SubscriptionsSection from "@/components/dashboard/SubscriptionsSection";
 import BranchSection from "@/components/dashboard/BranchSection";
 import PassiveIncomeSection from "@/components/dashboard/PassiveIncomeSection";
-
 import IncubatorSection from "@/components/dashboard/IncubatorSection";
+import ReferralSystemSection from "@/components/dashboard/ReferralSystemSection";
 import AccountSection from "@/components/dashboard/AccountSection";
 
 const Dashboard = () => {
@@ -21,8 +21,8 @@ const Dashboard = () => {
           <Route path="subscriptions" element={<SubscriptionsSection />} />
           <Route path="branch" element={<BranchSection />} />
           <Route path="passive" element={<PassiveIncomeSection />} />
-          
           <Route path="incubator" element={<IncubatorSection />} />
+          <Route path="referrals" element={<ReferralSystemSection />} />
           <Route path="account" element={<AccountSection />} />
         </Routes>
       </main>

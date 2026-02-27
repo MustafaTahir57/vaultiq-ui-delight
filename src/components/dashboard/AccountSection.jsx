@@ -38,8 +38,8 @@ const AccountSection = () => (
             <span className="text-sm font-medium text-foreground flex items-center gap-1.5"><Shield className="h-3.5 w-3.5 text-primary" /> Branch Manager</span>
           </div>
           <div className="flex justify-between py-2 border-b border-border/30">
-            <span className="text-sm text-muted-foreground">Referral code</span>
-            <span className="text-sm font-mono text-primary">VIQ-8X4K2</span>
+            <span className="text-sm text-muted-foreground">Referral address</span>
+            <span className="text-sm font-mono text-primary">0x7f2c...4a8b</span>
           </div>
           <div className="flex justify-between py-2">
             <span className="text-sm text-muted-foreground">Referrals</span>

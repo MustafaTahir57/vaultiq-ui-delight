@@ -7,6 +7,7 @@ import {
   Rocket,
   Settings,
   ChevronLeft,
+  Users,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
@@ -16,8 +17,8 @@ const navItems = [
   { title: "My Subscriptions", url: "/app/subscriptions", icon: CreditCard },
   { title: "Branch Dashboard", url: "/app/branch", icon: GitBranch },
   { title: "Passive Income", url: "/app/passive", icon: TrendingUp },
-  
   { title: "Incubator", url: "/app/incubator", icon: Rocket },
+  { title: "Referral System", url: "/app/referrals", icon: Users },
   { title: "Account", url: "/app/account", icon: Settings },
 ];
 

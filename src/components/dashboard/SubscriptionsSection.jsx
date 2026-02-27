@@ -49,9 +49,14 @@ const SubscriptionsSection = () => (
                 <td className="px-5 py-4 text-sm text-muted-foreground">{sub.expiry}</td>
                 <td className="px-5 py-4">
                   {sub.status === "active" && (
-                    <Button variant="outline" size="sm" className="text-xs border-primary/30 text-primary hover:bg-primary/10">
-                      Claim
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="sm" className="text-xs border-primary/30 text-primary hover:bg-primary/10">
+                        Claim
+                      </Button>
+                      <Button variant="outline" size="sm" className="text-xs border-destructive/30 text-destructive hover:bg-destructive/10">
+                        Cancel
+                      </Button>
+                    </div>
                   )}
                 </td>
               </motion.tr>
