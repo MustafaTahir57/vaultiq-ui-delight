@@ -83,13 +83,18 @@ const AppSidebar = ({ collapsed, onToggle }) => {
 
       {/* Footer */}
       {!collapsed && (
-        <div className="p-4 border-t border-sidebar-border">
+        <div className="p-4 border-t border-sidebar-border space-y-2">
           <div className="glass-card p-3 text-center">
             <p className="text-xs text-muted-foreground">Connected</p>
-            <p className="text-xs text-primary font-mono mt-1">
-              0x1a2b...9f3e
-            </p>
+            <p className="text-xs text-primary font-mono mt-1">{shortAddress}</p>
           </div>
+          <button
+            onClick={disconnect}
+            className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+          >
+            <LogOut className="h-3.5 w-3.5" />
+            Disconnect
+          </button>
         </div>
       )}
     </aside>
