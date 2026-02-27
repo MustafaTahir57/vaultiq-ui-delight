@@ -16,7 +16,7 @@ const navItems = [
   { title: "My Subscriptions", url: "/app/subscriptions", icon: CreditCard },
   { title: "Branch Dashboard", url: "/app/branch", icon: GitBranch },
   { title: "Passive Income", url: "/app/passive", icon: TrendingUp },
-  { title: "Pools", url: "/app/pools", icon: Layers },
+  
   { title: "Incubator", url: "/app/incubator", icon: Rocket },
   { title: "Account", url: "/app/account", icon: Settings },
 ];

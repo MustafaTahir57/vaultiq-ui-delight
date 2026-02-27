@@ -5,7 +5,7 @@ import OverviewSection from "@/components/dashboard/OverviewSection";
 import SubscriptionsSection from "@/components/dashboard/SubscriptionsSection";
 import BranchSection from "@/components/dashboard/BranchSection";
 import PassiveIncomeSection from "@/components/dashboard/PassiveIncomeSection";
-import PoolsSection from "@/components/dashboard/PoolsSection";
+
 import IncubatorSection from "@/components/dashboard/IncubatorSection";
 import AccountSection from "@/components/dashboard/AccountSection";
 
@@ -21,7 +21,7 @@ const Dashboard = () => {
           <Route path="subscriptions" element={<SubscriptionsSection />} />
           <Route path="branch" element={<BranchSection />} />
           <Route path="passive" element={<PassiveIncomeSection />} />
-          <Route path="pools" element={<PoolsSection />} />
+          
           <Route path="incubator" element={<IncubatorSection />} />
           <Route path="account" element={<AccountSection />} />
         </Routes>
