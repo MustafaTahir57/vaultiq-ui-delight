@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const features = [
-  { icon: Shield, label: "Governance", desc: "UUPS upgradeable, multi-sig secured" },
-  { icon: GitBranch, label: "Branches", desc: "Independent subscription engines" },
-  { icon: Coins, label: "Incubator", desc: "Token rounds for active members" },
-  { icon: TrendingUp, label: "Passive Income", desc: "Real yield from ecosystem fees" },
+  { icon: Shield, label: "DAO Governance", desc: "Upgradeable Protocol Architecture secured by Multi-Signature Consensus." },
+  { icon: GitBranch, label: "Branch Infrastructure", desc: "Independent Economic Engines operating within a Unified Protocol Framework." },
+  { icon: Coins, label: "Incubator", desc: "Governance-Based Token Allocation for Qualified Active Members." },
+  { icon: TrendingUp, label: "Passive Income", desc: "From Structured Protocol." },
 ];
 
 const HeroSection = () => {
@@ -36,12 +36,11 @@ const HeroSection = () => {
         <h1 className="text-5xl md:text-7xl font-bold font-display tracking-tight mb-6">
           <span className="gradient-text">VaultIQ</span>
           <br />
-          <span className="text-foreground/90">Ecosystem Dashboard</span>
+          <span className="text-foreground/90">Governed Protocol Dashboard</span>
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          Multi-branch subscription & incubator ecosystem. 
-          Transparent passive income, governed pools, and token rounds — all in one place.
+          A multi-branch participation and incubator protocol delivering structured rewards, governed pools, and strategic token allocations — all within one unified ecosystem.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">

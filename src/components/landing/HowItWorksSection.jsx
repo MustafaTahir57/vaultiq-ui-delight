@@ -5,26 +5,26 @@ import { UserPlus, GitBranch, Coins, TrendingUp } from "lucide-react";
 const steps = [
   {
     icon: UserPlus,
-    title: "Connect & Subscribe",
-    desc: "Link your wallet and choose a branch subscription plan that fits your goals.",
+    title: "Connect & Activate",
+    desc: "Connect your wallet and activate your selected Participation Tier.",
     step: "01",
   },
   {
     icon: GitBranch,
     title: "Branch Earns Yield",
-    desc: "Your branch manager deploys capital across DeFi strategies, generating weekly returns.",
+    desc: "Your branch deploys capital across structured DeFi strategies designed to generate consistent weekly performance.",
     step: "02",
   },
   {
     icon: Coins,
-    title: "Rewards Accumulate",
-    desc: "Track your rewards in real-time. Passive income pools fill based on qualified members.",
+    title: "Earn Weekly Residual",
+    desc: "Track Protocol-Based Rewards in real time. Distribution pools grow based on Qualified Branch Participation.",
     step: "03",
   },
   {
     icon: TrendingUp,
-    title: "Claim & Compound",
-    desc: "Pull your confirmed rewards anytime. Participate in incubator rounds for bonus token allocations.",
+    title: "Algorithmic Protocol",
+    desc: "At Expiry: Claim Confirmation Protocol Withdraw.",
     step: "04",
   },
 ];

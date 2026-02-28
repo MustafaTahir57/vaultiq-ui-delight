@@ -3,10 +3,10 @@ import { useRef } from "react";
 import { ShieldCheck, KeyRound, FileCode2, Eye } from "lucide-react";
 
 const features = [
-  { icon: ShieldCheck, title: "UUPS Upgradeable", desc: "Safe proxy upgrades with governance approval" },
-  { icon: KeyRound, title: "Multi-Sig Secured", desc: "Critical operations require multi-signature consensus" },
-  { icon: FileCode2, title: "Audited Contracts", desc: "Smart contracts verified and audited on-chain" },
-  { icon: Eye, title: "Full Transparency", desc: "All fund flows visible on BNB Smart Chain explorer" },
+  { icon: ShieldCheck, title: "Upgradeable Governance", desc: "Upgradeable Protocol Architecture." },
+  { icon: KeyRound, title: "Multi-Signature Authorization", desc: "Critical Protocol Operations Require Multi-Signature Authorization." },
+  { icon: FileCode2, title: "Audited Smart Contracts", desc: "Verified, Audited, and Transparently Executed On-Chain." },
+  { icon: Eye, title: "Full Transparency", desc: "All Protocol Activity Publicly Verifiable on BNB Smart Chain Explorer." },
 ];
 
 const SecuritySection = () => {
@@ -26,10 +26,10 @@ const SecuritySection = () => {
             Security
           </span>
           <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">
-            Secure by <span className="gradient-text">Design</span>
+            Institutional-Grade Protocol <span className="gradient-text">Architecture</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Enterprise-grade security patterns adapted for DeFi.
+            Designed for structured Web3 participation.
           </p>
         </motion.div>
 

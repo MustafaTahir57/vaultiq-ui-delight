@@ -3,10 +3,10 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 const stats = [
-  { value: "$2.4M+", label: "Total Value Locked" },
+  { value: "$2.4M+", label: "TVL" },
   { value: "12", label: "Active Branches" },
   { value: "3,200+", label: "Active Members" },
-  { value: "98.7%", label: "Uptime" },
+  { value: "98.7%", label: "Protocol Performance" },
 ];
 
 const StatsSection = () => {
