@@ -6,23 +6,23 @@ const pillars = [
   {
     icon: Shield,
     title: "VaultIQ Main",
-    desc: "The governance layer managing global fee wallets, branch approvals, and protocol upgrades via UUPS proxy.",
+    desc: "The core governance layer managing Global Protocol Structures, Branch Authorizations, and Upgradeable Protocol Architecture.",
     highlight: true,
   },
   {
     icon: Layers,
     title: "Branch Network",
-    desc: "Each branch operates independently with its own subscription engine, trading wallets, reward pools, and passive income distributions.",
+    desc: "Each branch operates independently with its own Participation Engine, Infrastructure, Structured Reward Pools, and Performance-Based Distributions.",
   },
   {
     icon: Zap,
     title: "Incubator Rounds",
-    desc: "Active members can participate in token rounds with transparent allocation, deposit tracking, and pull-based claiming.",
+    desc: "Qualified members participate in governance-selected token allocations with transparent tracking, structured contribution flow, and secure claim execution.",
   },
   {
     icon: Lock,
     title: "Passive Income Pools",
-    desc: "Qualified members earn from ecosystem fees distributed across Pool 1–4 based on subscription tier and activity.",
+    desc: "Qualified members participate in Protocol-Based Distributions.",
   },
 ];
 
@@ -46,7 +46,7 @@ const EcosystemSection = () => {
             Built for <span className="gradient-text">Transparency</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Every layer of VaultIQ is designed for clear separation of funds, governed upgrades, and verifiable on-chain activity.
+            Every layer of VaultIQ is structured with clear Protocol Separation, governed upgrades, and verifiable on-chain execution.
           </p>
         </motion.div>
 

@@ -18,10 +18,10 @@ const CTASection = () => {
         className="relative z-10 max-w-2xl mx-auto text-center"
       >
         <h2 className="text-3xl md:text-5xl font-bold font-display mb-6">
-          Ready to <span className="gradient-text">Earn</span>?
+          Ready to <span className="gradient-text">Learn & Earn</span>?
         </h2>
         <p className="text-muted-foreground mb-10 text-lg">
-          Join thousands of members already earning transparent passive income through the VaultIQ ecosystem.
+          Enter a Governed Ecosystem built for Structured Participation, Transparent Protocol Performance, and Scalable Growth.
         </p>
         <Link to="/app">
           <Button
