@@ -10,13 +10,19 @@ export const WalletProvider = ({ children }) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [isActivated, setIsActivated] = useState(false);
   const [address, setAddress] = useState(null);
+  const [justConnected, setJustConnected] = useState(false);
 
   const connect = useCallback(async () => {
     setIsConnecting(true);
     await new Promise((r) => setTimeout(r, 1500));
     setAddress(mockAddress);
     setIsConnected(true);
+    setJustConnected(true);
     setIsConnecting(false);
+  }, []);
+
+  const clearJustConnected = useCallback(() => {
+    setJustConnected(false);
   }, []);
 
   const activate = useCallback(() => {
@@ -39,6 +45,7 @@ export const WalletProvider = ({ children }) => {
 
   return (
     <WalletContext.Provider value={{ isConnected, isConnecting, isActivated, isBranchManager, address, shortAddress, connect, activate, disconnect }}>
+    <WalletContext.Provider value={{ isConnected, isConnecting, isActivated, isBranchManager, address, shortAddress, justConnected, connect, activate, disconnect, clearJustConnected }}>
       {children}
     </WalletContext.Provider>
   );
