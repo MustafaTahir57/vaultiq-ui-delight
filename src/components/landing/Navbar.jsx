@@ -13,8 +13,8 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { isConnected, isBranchManager } = useWallet();
-
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -49,6 +49,18 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
+            {isConnected && isBranchManager && (
+              <Link to="/branch-manager">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="font-semibold border-primary/40 text-primary hover:bg-primary/10"
+                >
+                  <Shield className="h-4 w-4 mr-1" />
+                  Branch Manager
+                </Button>
+              </Link>
+            )}
             <Link to="/app">
               <Button
                 size="sm"
