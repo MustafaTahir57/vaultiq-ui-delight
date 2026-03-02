@@ -13,7 +13,7 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const { isConnected, isBranchManager } = useWallet();
 
   return (
     <motion.nav

@@ -38,7 +38,7 @@ export const WalletProvider = ({ children }) => {
     : false;
 
   return (
-    <WalletContext.Provider value={{ isConnected, isConnecting, isActivated, address, shortAddress, connect, activate, disconnect }}>
+    <WalletContext.Provider value={{ isConnected, isConnecting, isActivated, isBranchManager, address, shortAddress, connect, activate, disconnect }}>
       {children}
     </WalletContext.Provider>
   );
