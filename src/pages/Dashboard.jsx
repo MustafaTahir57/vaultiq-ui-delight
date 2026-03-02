@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import AppSidebar from "@/components/dashboard/AppSidebar";
 import ConnectWalletScreen from "@/components/dashboard/ConnectWalletScreen";
+import ActivationFeeScreen from "@/components/dashboard/ActivationFeeScreen";
 import OverviewSection from "@/components/dashboard/OverviewSection";
 import SubscriptionsSection from "@/components/dashboard/SubscriptionsSection";
 import BranchSection from "@/components/dashboard/BranchSection";
