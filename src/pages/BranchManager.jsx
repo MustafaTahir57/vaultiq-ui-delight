@@ -1,8 +1,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Shield, Layers, Settings, Send, ArrowRight, Terminal, Lock } from "lucide-react";
+import { Shield, Layers, Settings, Send, ArrowRight, Terminal, Lock, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useWallet } from "@/contexts/WalletContext";
 
 const functions = [
   {

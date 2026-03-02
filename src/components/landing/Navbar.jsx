@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Wallet, Menu, X } from "lucide-react";
+import { Wallet, Menu, X, Shield } from "lucide-react";
 import { useState } from "react";
 
 import { useWallet } from "@/contexts/WalletContext";
@@ -98,6 +98,14 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            {isConnected && isBranchManager && (
+              <Link to="/branch-manager" onClick={() => setMobileOpen(false)}>
+                <Button size="sm" variant="outline" className="w-full font-semibold border-primary/40 text-primary hover:bg-primary/10">
+                  <Shield className="h-4 w-4 mr-1" />
+                  Branch Manager
+                </Button>
+              </Link>
+            )}
             <Link to="/app" onClick={() => setMobileOpen(false)}>
               <Button size="sm" className="w-full font-semibold bg-primary text-primary-foreground">
                 <Wallet className="h-4 w-4 mr-1" />
