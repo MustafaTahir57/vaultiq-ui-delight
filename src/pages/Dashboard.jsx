@@ -40,12 +40,7 @@ const Dashboard = () => {
     );
   }
 
-  // Redirect branch managers to their portal
-  if (isBranchManager) {
-    return <Navigate to="/branch-manager" replace />;
-  }
-
-  if (!isActivated) {
+  if (!isActivated && !isBranchManager) {
     return (
       <div className="min-h-screen w-full bg-background flex">
         <ActivationFeeScreen />
