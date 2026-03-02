@@ -25,7 +25,7 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected } = useWallet();
+  const { isConnected, isActivated } = useWallet();
 
   // Auto-collapse on mobile
   useEffect(() => {
@@ -36,6 +36,14 @@ const Dashboard = () => {
     return (
       <div className="min-h-screen w-full bg-background flex">
         <ConnectWalletScreen />
+      </div>
+    );
+  }
+
+  if (!isActivated) {
+    return (
+      <div className="min-h-screen w-full bg-background flex">
+        <ActivationFeeScreen />
       </div>
     );
   }
