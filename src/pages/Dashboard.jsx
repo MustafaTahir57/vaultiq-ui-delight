@@ -25,7 +25,7 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected, isActivated } = useWallet();
+  const { isConnected, isActivated, isBranchManager } = useWallet();
 
   // Auto-collapse on mobile
   useEffect(() => {
@@ -38,6 +38,11 @@ const Dashboard = () => {
         <ConnectWalletScreen />
       </div>
     );
+  }
+
+  // Redirect branch managers to their portal
+  if (isBranchManager) {
+    return <Navigate to="/branch-manager" replace />;
   }
 
   if (!isActivated) {
