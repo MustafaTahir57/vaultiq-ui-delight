@@ -7,20 +7,25 @@ const mockAddress = "0x1a2b3c4d5e6f7890abcdef1234567890abcdef12";
 export const WalletProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
+  const [isActivated, setIsActivated] = useState(false);
   const [address, setAddress] = useState(null);
 
   const connect = useCallback(async () => {
     setIsConnecting(true);
-    // Simulate connection delay
     await new Promise((r) => setTimeout(r, 1500));
     setAddress(mockAddress);
     setIsConnected(true);
     setIsConnecting(false);
   }, []);
 
+  const activate = useCallback(() => {
+    setIsActivated(true);
+  }, []);
+
   const disconnect = useCallback(() => {
     setAddress(null);
     setIsConnected(false);
+    setIsActivated(false);
   }, []);
 
   const shortAddress = address
@@ -28,7 +33,7 @@ export const WalletProvider = ({ children }) => {
     : null;
 
   return (
-    <WalletContext.Provider value={{ isConnected, isConnecting, address, shortAddress, connect, disconnect }}>
+    <WalletContext.Provider value={{ isConnected, isConnecting, isActivated, address, shortAddress, connect, activate, disconnect }}>
       {children}
     </WalletContext.Provider>
   );

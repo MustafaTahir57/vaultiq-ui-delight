@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import AppSidebar from "@/components/dashboard/AppSidebar";
 import ConnectWalletScreen from "@/components/dashboard/ConnectWalletScreen";
+import ActivationFeeScreen from "@/components/dashboard/ActivationFeeScreen";
 import OverviewSection from "@/components/dashboard/OverviewSection";
 import SubscriptionsSection from "@/components/dashboard/SubscriptionsSection";
 import BranchSection from "@/components/dashboard/BranchSection";
@@ -24,7 +25,7 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected } = useWallet();
+  const { isConnected, isActivated } = useWallet();
 
   // Auto-collapse on mobile
   useEffect(() => {
@@ -35,6 +36,14 @@ const Dashboard = () => {
     return (
       <div className="min-h-screen w-full bg-background flex">
         <ConnectWalletScreen />
+      </div>
+    );
+  }
+
+  if (!isActivated) {
+    return (
+      <div className="min-h-screen w-full bg-background flex">
+        <ActivationFeeScreen />
       </div>
     );
   }
