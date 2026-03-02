@@ -1,8 +1,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Shield, Layers, Settings, Send, ArrowRight, Terminal, Lock } from "lucide-react";
+import { Shield, Layers, Settings, Send, ArrowRight, Terminal, Lock, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useWallet } from "@/contexts/WalletContext";
 
 const functions = [
   {
@@ -34,7 +35,28 @@ const functions = [
 const BranchManager = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const { isConnected, isBranchManager } = useWallet();
 
+  // Redirect non-managers
+  if (!isConnected || !isBranchManager) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 text-center">
+        <div className="w-16 h-16 rounded-2xl bg-destructive/10 border border-destructive/30 flex items-center justify-center mb-6">
+          <AlertTriangle className="h-8 w-8 text-destructive" />
+        </div>
+        <h1 className="text-2xl md:text-3xl font-bold font-display mb-3">Access Denied</h1>
+        <p className="text-muted-foreground mb-8 max-w-md">
+          This portal is restricted to authorized Branch Managers. Please connect a qualifying wallet to proceed.
+        </p>
+        <Link to="/">
+          <Button variant="outline" size="lg">
+            <ArrowRight className="mr-2 h-5 w-5" />
+            Back to Home
+          </Button>
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
