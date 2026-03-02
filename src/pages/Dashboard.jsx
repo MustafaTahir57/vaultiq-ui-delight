@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AppSidebar from "@/components/dashboard/AppSidebar";
 import ConnectWalletScreen from "@/components/dashboard/ConnectWalletScreen";
 import ActivationFeeScreen from "@/components/dashboard/ActivationFeeScreen";
