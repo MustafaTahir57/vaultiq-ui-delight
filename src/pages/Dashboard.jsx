@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AppSidebar from "@/components/dashboard/AppSidebar";
 import ConnectWalletScreen from "@/components/dashboard/ConnectWalletScreen";
 import ActivationFeeScreen from "@/components/dashboard/ActivationFeeScreen";
@@ -25,7 +25,7 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected, isActivated } = useWallet();
+  const { isConnected, isActivated, isBranchManager } = useWallet();
 
   // Auto-collapse on mobile
   useEffect(() => {
@@ -38,6 +38,11 @@ const Dashboard = () => {
         <ConnectWalletScreen />
       </div>
     );
+  }
+
+  // Redirect branch managers to their portal
+  if (isBranchManager) {
+    return <Navigate to="/branch-manager" replace />;
   }
 
   if (!isActivated) {
