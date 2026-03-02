@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Wallet, Menu, X } from "lucide-react";
 import { useState } from "react";
 
+import { useWallet } from "@/contexts/WalletContext";
+
 const navLinks = [
   { label: "Ecosystem", href: "#ecosystem" },
   { label: "How It Works", href: "#how-it-works" },

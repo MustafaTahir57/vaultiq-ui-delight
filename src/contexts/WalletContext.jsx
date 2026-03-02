@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useCallback } from "react";
 const WalletContext = createContext(null);
 
 const mockAddress = "0x1a2b3c4d5e6f7890abcdef1234567890abcdef12";
+const BRANCH_MANAGER_ADDRESSES = [mockAddress.toLowerCase()];
 
 export const WalletProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -31,6 +32,10 @@ export const WalletProvider = ({ children }) => {
   const shortAddress = address
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
     : null;
+
+  const isBranchManager = address
+    ? BRANCH_MANAGER_ADDRESSES.includes(address.toLowerCase())
+    : false;
 
   return (
     <WalletContext.Provider value={{ isConnected, isConnecting, isActivated, address, shortAddress, connect, activate, disconnect }}>
