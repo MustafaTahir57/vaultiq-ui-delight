@@ -43,24 +43,6 @@ const BranchSection = () => (
         ))}
       </div>
     </motion.div>
-
-    {/* Weekly Submission */}
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="glass-card p-6">
-      <h3 className="font-display font-semibold text-foreground mb-4">Submit Weekly Performance</h3>
-      <div className="flex gap-4 items-end">
-        <div className="flex-1">
-          <label className="text-xs text-muted-foreground block mb-2">Reward Percentage (%)</label>
-          <input
-            type="number"
-            placeholder="e.g. 4.5"
-            className="w-full bg-secondary border border-border rounded-lg px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-          />
-        </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-6">
-          <Send className="h-4 w-4 mr-2" /> Submit
-        </Button>
-      </div>
-    </motion.div>
   </div>
 );
 
