@@ -90,10 +90,10 @@ const BranchManager = () => {
             Authorized Protocol Operations for Qualified Branch Operators. Execute governed on-chain functions within the VaultIQ ecosystem.
           </p>
 
-          <Link to="/app">
+          <Link to="/">
             <Button variant="outline" size="lg" className="text-base px-8 py-6 border-border/60 text-foreground hover:bg-secondary">
               <ArrowRight className="mr-2 h-5 w-5" />
-              Back to Dashboard
+              Back to Home
             </Button>
           </Link>
         </motion.div>

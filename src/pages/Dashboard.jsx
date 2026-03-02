@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import AppSidebar from "@/components/dashboard/AppSidebar";
 import ConnectWalletScreen from "@/components/dashboard/ConnectWalletScreen";
 import ActivationFeeScreen from "@/components/dashboard/ActivationFeeScreen";
@@ -25,12 +25,23 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected, isActivated, isBranchManager } = useWallet();
+  const { isConnected, isActivated, isBranchManager, justConnected, clearJustConnected } = useWallet();
+  const navigate = useNavigate();
 
   // Auto-collapse on mobile
   useEffect(() => {
     if (isMobile) setCollapsed(true);
   }, [isMobile]);
+
+  // Redirect branch managers on first connection
+  useEffect(() => {
+    if (justConnected && isConnected && isBranchManager) {
+      clearJustConnected();
+      navigate("/branch-manager", { replace: true });
+    } else if (justConnected) {
+      clearJustConnected();
+    }
+  }, [justConnected, isConnected, isBranchManager, navigate, clearJustConnected]);
 
   if (!isConnected) {
     return (
