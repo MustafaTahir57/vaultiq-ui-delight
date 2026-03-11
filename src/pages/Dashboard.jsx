@@ -27,7 +27,7 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected, isBranchManager, justConnected, clearJustConnected, address } = useWallet();
+  const { isConnected, isWrongChain, isBranchManager, justConnected, clearJustConnected, address } = useWallet();
   const { isRegistered, isLoading: registrationLoading, refetch: refetchRegistration } = useRegistrationStatus(address);
   const navigate = useNavigate();
 
