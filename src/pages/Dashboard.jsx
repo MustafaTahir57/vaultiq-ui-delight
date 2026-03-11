@@ -11,6 +11,8 @@ import IncubatorSection from "@/components/dashboard/IncubatorSection";
 import ReferralSystemSection from "@/components/dashboard/ReferralSystemSection";
 import AccountSection from "@/components/dashboard/AccountSection";
 import { useWallet } from "@/contexts/WalletContext";
+import useRegistrationStatus from "@/hooks/dataFetcher/useRegistrationStatus";
+import { Loader2 } from "lucide-react";
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -25,7 +27,8 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected, isActivated, isBranchManager, justConnected, clearJustConnected } = useWallet();
+  const { isConnected, isBranchManager, justConnected, clearJustConnected, address } = useWallet();
+  const { isRegistered, isLoading: registrationLoading, refetch: refetchRegistration } = useRegistrationStatus(address);
   const navigate = useNavigate();
 
   // Auto-collapse on mobile
@@ -51,10 +54,22 @@ const Dashboard = () => {
     );
   }
 
-  if (!isActivated && !isBranchManager) {
+  // Loading registration status
+  if (registrationLoading) {
+    return (
+      <div className="min-h-screen w-full bg-background flex items-center justify-center">
+        <div className="flex items-center gap-3 text-muted-foreground">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <span className="text-sm">Checking registration status...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isRegistered && !isBranchManager) {
     return (
       <div className="min-h-screen w-full bg-background flex">
-        <ActivationFeeScreen />
+        <ActivationFeeScreen onRegistered={() => refetchRegistration()} />
       </div>
     );
   }
