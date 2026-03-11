@@ -71,6 +71,8 @@ export const WalletProvider = ({ children }) => {
         isConnecting,
         isWrongChain,
         isBranchManager,
+        branchesLoading,
+        userBranches,
         address,
         chain,
         shortAddress,
