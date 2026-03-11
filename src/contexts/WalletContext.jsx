@@ -36,10 +36,6 @@ export const WalletProvider = ({ children }) => {
     setJustConnected(false);
   }, []);
 
-  const activate = useCallback(() => {
-    setIsActivated(true);
-  }, []);
-
   const disconnect = useCallback(() => {
     wagmiDisconnect();
     setIsActivated(false);
