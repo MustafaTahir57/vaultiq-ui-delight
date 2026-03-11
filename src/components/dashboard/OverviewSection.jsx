@@ -3,6 +3,16 @@ import { motion } from "framer-motion";
 import StatCard from "./StatCard";
 import StatusBadge from "./StatusBadge";
 import { Progress } from "@/components/ui/progress";
+import { useWallet } from "@/contexts/WalletContext";
+import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
+import useFeeTreasuryBalances from "@/hooks/dataFetcher/useFeeTreasuryBalances";
+import useUserPassiveIncome from "@/hooks/dataFetcher/useUserPassiveIncome";
+import { formatUnits } from "viem";
+
+const formatUSD = (bigintValue, decimals = 18) => {
+  const num = Number(formatUnits(bigintValue, decimals));
+  return `$${num.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
+};
 
 const recentActivity = [
   { action: "Subscription renewed", branch: "Alpha Branch", status: "active", time: "2h ago" },
@@ -19,6 +29,11 @@ const pools = [
 ];
 
 const OverviewSection = () => {
+  const { address } = useWallet();
+  const { activeCount, totalRewards, isLoading: subsLoading } = useUserSubscriptions(address);
+  const { usdcBalance, isLoading: treasuryLoading } = useFeeTreasuryBalances();
+  const { totalPassiveQualifiedSales, isQualifiedAny, isLoading: passiveLoading } = useUserPassiveIncome(address);
+
   return (
     <div className="space-y-6">
       <div>
@@ -28,10 +43,30 @@ const OverviewSection = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard title="Active Subscriptions" value="12" icon={Users} trend={{ value: "+3 this month", positive: true }} />
-        <StatCard title="Total Rewards" value="$8,420" icon={DollarSign} trend={{ value: "+12.5%", positive: true }} />
-        <StatCard title="Fee Wallet" value="$24,180" subtitle="Platform revenue" icon={Wallet} />
-        <StatCard title="Passive Income" value="$3,250" subtitle="Confirmed pool" icon={TrendingUp} trend={{ value: "+8.2%", positive: true }} />
+        <StatCard
+          title="Active Subscriptions"
+          value={subsLoading ? "..." : String(activeCount)}
+          icon={Users}
+          trend={activeCount > 0 ? { value: `${activeCount} active`, positive: true } : undefined}
+        />
+        <StatCard
+          title="Total Rewards"
+          value={subsLoading ? "..." : formatUSD(totalRewards)}
+          icon={DollarSign}
+          subtitle="Accumulated across branches"
+        />
+        <StatCard
+          title="Fee Wallet"
+          value={treasuryLoading ? "..." : formatUSD(usdcBalance)}
+          subtitle="Protocol treasury (USDC)"
+          icon={Wallet}
+        />
+        <StatCard
+          title="Passive Income"
+          value={passiveLoading ? "..." : formatUSD(totalPassiveQualifiedSales)}
+          subtitle={isQualifiedAny ? "Qualified" : "Not yet qualified"}
+          icon={TrendingUp}
+        />
       </div>
 
       {/* Pools + Activity */}
