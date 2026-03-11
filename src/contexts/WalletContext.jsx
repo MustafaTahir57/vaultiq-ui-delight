@@ -1,25 +1,37 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
 
 const WalletContext = createContext(null);
 
-const mockAddress = "0x1a2b3c4d5e6f7890abcdef1234567890abcdef12";
-const BRANCH_MANAGER_ADDRESSES = "0x1a2b3c4d5e6f7890abcdef1234567890abcdef1";
+// Add branch manager addresses here (lowercase)
+const BRANCH_MANAGER_ADDRESSES = [];
 
 export const WalletProvider = ({ children }) => {
-  const [isConnected, setIsConnected] = useState(false);
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [isActivated, setIsActivated] = useState(false);
-  const [address, setAddress] = useState(null);
-  const [justConnected, setJustConnected] = useState(false);
+  const { address, isConnected } = useAccount();
+  const { connect, connectors, isPending: isConnecting } = useConnect();
+  const { disconnect: wagmiDisconnect } = useDisconnect();
 
-  const connect = useCallback(async () => {
-    setIsConnecting(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setAddress(mockAddress);
-    setIsConnected(true);
-    setJustConnected(true);
-    setIsConnecting(false);
-  }, []);
+  const [isActivated, setIsActivated] = useState(false);
+  const [justConnected, setJustConnected] = useState(false);
+  const [wasConnected, setWasConnected] = useState(false);
+
+  // Detect fresh connection
+  useEffect(() => {
+    if (isConnected && !wasConnected) {
+      setJustConnected(true);
+    }
+    setWasConnected(isConnected);
+  }, [isConnected, wasConnected]);
+
+  const connectWallet = useCallback((connectorId) => {
+    const connector = connectors.find((c) =>
+      c.id.toLowerCase().includes(connectorId.toLowerCase()) ||
+      c.name.toLowerCase().includes(connectorId.toLowerCase())
+    ) || connectors[0];
+    if (connector) {
+      connect({ connector });
+    }
+  }, [connect, connectors]);
 
   const clearJustConnected = useCallback(() => {
     setJustConnected(false);
@@ -30,10 +42,11 @@ export const WalletProvider = ({ children }) => {
   }, []);
 
   const disconnect = useCallback(() => {
-    setAddress(null);
-    setIsConnected(false);
+    wagmiDisconnect();
     setIsActivated(false);
-  }, []);
+    setJustConnected(false);
+    setWasConnected(false);
+  }, [wagmiDisconnect]);
 
   const shortAddress = address
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
@@ -53,7 +66,8 @@ export const WalletProvider = ({ children }) => {
         address,
         shortAddress,
         justConnected,
-        connect,
+        connectors,
+        connect: connectWallet,
         activate,
         disconnect,
         clearJustConnected,
