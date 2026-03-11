@@ -27,7 +27,7 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected, isWrongChain, isBranchManager, justConnected, clearJustConnected, address } = useWallet();
+  const { isConnected, isWrongChain, isBranchManager, branchesLoading, justConnected, clearJustConnected, address } = useWallet();
   const { isRegistered, isLoading: registrationLoading, refetch: refetchRegistration } = useRegistrationStatus(address);
   const navigate = useNavigate();
 
@@ -38,13 +38,13 @@ const Dashboard = () => {
 
   // Redirect branch managers on first connection
   useEffect(() => {
-    if (justConnected && isConnected && isBranchManager) {
+    if (justConnected && isConnected && !branchesLoading && isBranchManager) {
       clearJustConnected();
       navigate("/branch-manager", { replace: true });
-    } else if (justConnected) {
+    } else if (justConnected && !branchesLoading) {
       clearJustConnected();
     }
-  }, [justConnected, isConnected, isBranchManager, navigate, clearJustConnected]);
+  }, [justConnected, isConnected, isBranchManager, branchesLoading, navigate, clearJustConnected]);
 
   if (!isConnected) {
     return (

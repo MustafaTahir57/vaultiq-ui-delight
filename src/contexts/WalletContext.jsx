@@ -2,17 +2,16 @@ import { createContext, useContext, useState, useCallback, useEffect } from "rea
 import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
 import { ACTIVE_CHAIN_ID } from "@/constants/contracts";
 import { toast } from "sonner";
+import useUserBranches from "@/hooks/dataFetcher/useUserBranches";
 
 const WalletContext = createContext(null);
-
-// Add branch manager addresses here (lowercase)
-const BRANCH_MANAGER_ADDRESSES = [];
 
 export const WalletProvider = ({ children }) => {
   const { address, isConnected, chain } = useAccount();
   const { connect, connectors, isPending: isConnecting } = useConnect();
   const { disconnect: wagmiDisconnect } = useDisconnect();
   const { switchChain } = useSwitchChain();
+  const { userBranches, isBranchManager, isLoading: branchesLoading } = useUserBranches(address);
 
   const [justConnected, setJustConnected] = useState(false);
   const [wasConnected, setWasConnected] = useState(false);
@@ -65,10 +64,6 @@ export const WalletProvider = ({ children }) => {
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
     : null;
 
-  const isBranchManager = address
-    ? BRANCH_MANAGER_ADDRESSES.includes(address.toLowerCase())
-    : false;
-
   return (
     <WalletContext.Provider
       value={{
@@ -76,6 +71,8 @@ export const WalletProvider = ({ children }) => {
         isConnecting,
         isWrongChain,
         isBranchManager,
+        branchesLoading,
+        userBranches,
         address,
         chain,
         shortAddress,
