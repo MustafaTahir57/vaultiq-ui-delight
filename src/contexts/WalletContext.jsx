@@ -64,10 +64,6 @@ export const WalletProvider = ({ children }) => {
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
     : null;
 
-  const isBranchManager = address
-    ? BRANCH_MANAGER_ADDRESSES.includes(address.toLowerCase())
-    : false;
-
   return (
     <WalletContext.Provider
       value={{
