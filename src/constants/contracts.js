@@ -1,11 +1,5 @@
-// ============================================================
-// ACTIVE CHAIN CONFIGURATION
-// Change this value to switch between testnet (97) and mainnet (56)
-// ============================================================
+export const ACTIVE_CHAIN_ID = Number(import.meta.env.VITE_ACTIVE_CHAIN_ID || 97);
 
-export const ACTIVE_CHAIN_ID = Number(import.meta.env.VITE_ACTIVE_CHAIN_ID || 97); // 56 = BSC Mainnet, 97 = BSC Testnet
-
-// Address maps per chain
 const contractAddresses = {
   // BSC Testnet (97)
   97: {

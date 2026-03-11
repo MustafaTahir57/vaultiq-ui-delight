@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useCallback } from "react";
 const WalletContext = createContext(null);
 
 const mockAddress = "0x1a2b3c4d5e6f7890abcdef1234567890abcdef12";
-const BRANCH_MANAGER_ADDRESSES = [mockAddress.toLowerCase()];
+const BRANCH_MANAGER_ADDRESSES = "0x1a2b3c4d5e6f7890abcdef1234567890abcdef1";
 
 export const WalletProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false);
