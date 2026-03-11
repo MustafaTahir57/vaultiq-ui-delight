@@ -11,7 +11,6 @@ export const WalletProvider = ({ children }) => {
   const { connect, connectors, isPending: isConnecting } = useConnect();
   const { disconnect: wagmiDisconnect } = useDisconnect();
 
-  const [isActivated, setIsActivated] = useState(false);
   const [justConnected, setJustConnected] = useState(false);
   const [wasConnected, setWasConnected] = useState(false);
 
