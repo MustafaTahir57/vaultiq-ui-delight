@@ -2,11 +2,9 @@ import { createContext, useContext, useState, useCallback, useEffect } from "rea
 import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
 import { ACTIVE_CHAIN_ID } from "@/constants/contracts";
 import { toast } from "sonner";
+import useUserBranches from "@/hooks/dataFetcher/useUserBranches";
 
 const WalletContext = createContext(null);
-
-// Add branch manager addresses here (lowercase)
-const BRANCH_MANAGER_ADDRESSES = [];
 
 export const WalletProvider = ({ children }) => {
   const { address, isConnected, chain } = useAccount();
