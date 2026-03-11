@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, useCallback, useEffect } from "react";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
+import { ACTIVE_CHAIN_ID } from "@/constants/contracts";
+import { toast } from "sonner";
 
 const WalletContext = createContext(null);
 
@@ -7,12 +9,29 @@ const WalletContext = createContext(null);
 const BRANCH_MANAGER_ADDRESSES = [];
 
 export const WalletProvider = ({ children }) => {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, chain } = useAccount();
   const { connect, connectors, isPending: isConnecting } = useConnect();
   const { disconnect: wagmiDisconnect } = useDisconnect();
+  const { switchChain } = useSwitchChain();
 
   const [justConnected, setJustConnected] = useState(false);
   const [wasConnected, setWasConnected] = useState(false);
+
+  const isWrongChain = isConnected && chain?.id !== ACTIVE_CHAIN_ID;
+
+  // Auto-switch chain when on wrong network
+  useEffect(() => {
+    if (isWrongChain && switchChain) {
+      toast.info("Switching to the correct network...");
+      switchChain(
+        { chainId: ACTIVE_CHAIN_ID },
+        {
+          onSuccess: () => toast.success("Switched to the correct network!"),
+          onError: (err) => toast.error(`Failed to switch network: ${err.shortMessage || err.message}`),
+        }
+      );
+    }
+  }, [isWrongChain, switchChain]);
 
   // Detect fresh connection
   useEffect(() => {
@@ -55,8 +74,10 @@ export const WalletProvider = ({ children }) => {
       value={{
         isConnected,
         isConnecting,
+        isWrongChain,
         isBranchManager,
         address,
+        chain,
         shortAddress,
         justConnected,
         connectors,

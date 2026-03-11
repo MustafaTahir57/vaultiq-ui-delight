@@ -27,7 +27,7 @@ const useIsMobile = () => {
 const Dashboard = () => {
   const isMobile = useIsMobile();
   const [collapsed, setCollapsed] = useState(isMobile);
-  const { isConnected, isBranchManager, justConnected, clearJustConnected, address } = useWallet();
+  const { isConnected, isWrongChain, isBranchManager, justConnected, clearJustConnected, address } = useWallet();
   const { isRegistered, isLoading: registrationLoading, refetch: refetchRegistration } = useRegistrationStatus(address);
   const navigate = useNavigate();
 
@@ -50,6 +50,17 @@ const Dashboard = () => {
     return (
       <div className="min-h-screen w-full bg-background flex">
         <ConnectWalletScreen />
+      </div>
+    );
+  }
+
+  if (isWrongChain) {
+    return (
+      <div className="min-h-screen w-full bg-background flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-muted-foreground">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <span className="text-sm">Switching to the correct network...</span>
+        </div>
       </div>
     );
   }
