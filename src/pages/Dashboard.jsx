@@ -54,6 +54,17 @@ const Dashboard = () => {
     );
   }
 
+  if (isWrongChain) {
+    return (
+      <div className="min-h-screen w-full bg-background flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-muted-foreground">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <span className="text-sm">Switching to the correct network...</span>
+        </div>
+      </div>
+    );
+  }
+
   // Loading registration status
   if (registrationLoading) {
     return (
