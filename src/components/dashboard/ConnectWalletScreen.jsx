@@ -49,7 +49,7 @@ const ConnectWalletScreen = () => {
 
   const handleConnect = (walletId) => {
     setConnectingId(walletId);
-    connect();
+    connect(walletId);
   };
 
   return (
