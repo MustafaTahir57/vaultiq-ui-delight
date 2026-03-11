@@ -1,7 +1,7 @@
 import { createConfig, http, fallback } from 'wagmi'
 import { bsc, bscTestnet } from 'wagmi/chains'
 import { metaMask, walletConnect } from 'wagmi/connectors'
-import { ACTIVE_CHAIN_ID } from '../constants/contractAddresses'
+import {ACTIVE_CHAIN_ID} from "@/constants/contracts.js"
 
 const chains = {
   56: bsc,
