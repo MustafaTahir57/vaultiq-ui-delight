@@ -11,7 +11,6 @@ export const WalletProvider = ({ children }) => {
   const { connect, connectors, isPending: isConnecting } = useConnect();
   const { disconnect: wagmiDisconnect } = useDisconnect();
 
-  const [isActivated, setIsActivated] = useState(false);
   const [justConnected, setJustConnected] = useState(false);
   const [wasConnected, setWasConnected] = useState(false);
 
@@ -37,13 +36,8 @@ export const WalletProvider = ({ children }) => {
     setJustConnected(false);
   }, []);
 
-  const activate = useCallback(() => {
-    setIsActivated(true);
-  }, []);
-
   const disconnect = useCallback(() => {
     wagmiDisconnect();
-    setIsActivated(false);
     setJustConnected(false);
     setWasConnected(false);
   }, [wagmiDisconnect]);
@@ -61,14 +55,12 @@ export const WalletProvider = ({ children }) => {
       value={{
         isConnected,
         isConnecting,
-        isActivated,
         isBranchManager,
         address,
         shortAddress,
         justConnected,
         connectors,
         connect: connectWallet,
-        activate,
         disconnect,
         clearJustConnected,
       }}
