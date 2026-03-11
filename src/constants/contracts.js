@@ -1,7 +1,13 @@
-// Contract addresses per chain ID
-// 97 = BSC Testnet, 56 = BSC Mainnet
+// ============================================================
+// ACTIVE CHAIN CONFIGURATION
+// Change this value to switch between testnet (97) and mainnet (56)
+// ============================================================
 
-const contracts = {
+export const ACTIVE_CHAIN_ID = Number(import.meta.env.VITE_ACTIVE_CHAIN_ID || 97); // 56 = BSC Mainnet, 97 = BSC Testnet
+
+// Address maps per chain
+const contractAddresses = {
+  // BSC Testnet (97)
   97: {
     VaultIQMain: "0x83B0EfB04df358460f4Ff96D3EbF661adA104d77",
     Branch: "0x39A636eA908636Bc39Ae4122730B1b30005A0994",
@@ -14,6 +20,7 @@ const contracts = {
     USDT: "0x3f34F38c202A73fEFeDef2C202F36D5a28dA271C",
     MockBTCB: "0x89e96c66eF584Da6194DF78bf34Cbf39d367570f",
   },
+  // BSC Mainnet (56)
   56: {
     VaultIQMain: "0x0000000000000000000000000000000000000000",
     Branch: "0x0000000000000000000000000000000000000000",
@@ -28,8 +35,20 @@ const contracts = {
   },
 };
 
-export const getContracts = (chainId = 97) => {
-  return contracts[chainId] || contracts[97];
-};
+const active = contractAddresses[ACTIVE_CHAIN_ID];
 
-export default contracts;
+// Token Contracts
+export const USDT_Address = active.USDT;
+export const MockBTCB_Address = active.MockBTCB;
+
+// Core System Contracts
+export const VaultIQMain_Address = active.VaultIQMain;
+export const Branch_Address = active.Branch;
+export const BranchFactory_Address = active.BranchFactory;
+export const IncubatorPool_Address = active.IncubatorPool;
+export const FeeTreasury_Address = active.FeeTreasury;
+export const LeadershipPool_Address = active.LeadershipPool;
+export const MiningRevenueDistributor_Address = active.MiningRevenueDistributor;
+export const HashTreasury_Address = active.HashTreasury;
+
+export default contractAddresses;
