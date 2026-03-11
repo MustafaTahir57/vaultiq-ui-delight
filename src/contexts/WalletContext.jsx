@@ -38,7 +38,6 @@ export const WalletProvider = ({ children }) => {
 
   const disconnect = useCallback(() => {
     wagmiDisconnect();
-    setIsActivated(false);
     setJustConnected(false);
     setWasConnected(false);
   }, [wagmiDisconnect]);
