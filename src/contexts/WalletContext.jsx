@@ -55,14 +55,12 @@ export const WalletProvider = ({ children }) => {
       value={{
         isConnected,
         isConnecting,
-        isActivated,
         isBranchManager,
         address,
         shortAddress,
         justConnected,
         connectors,
         connect: connectWallet,
-        activate,
         disconnect,
         clearJustConnected,
       }}
