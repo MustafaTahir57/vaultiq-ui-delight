@@ -30,6 +30,7 @@ const OverviewSection = () => {
   const { activeCount, totalRewards, isLoading: subsLoading } = useUserSubscriptions(address);
   const { usdcBalance, isLoading: treasuryLoading } = useFeeTreasuryBalances();
   const { totalPassiveQualifiedSales, isQualifiedAny, isLoading: passiveLoading } = useUserPassiveIncome(address);
+  const branchAddress = Branch_Address; // TODO: replace with user's actual branch
 
   return (
     <div className="space-y-6">
