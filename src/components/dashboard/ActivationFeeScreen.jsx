@@ -174,23 +174,32 @@ const ActivationFeeScreen = ({ onRegistered }) => {
               {/* Branch Selection */}
               <div className="text-left space-y-2">
                 <label className="text-sm text-muted-foreground">Select Branch</label>
-                <select
-                  value={selectedBranch}
-                  onChange={(e) => setSelectedBranch(e.target.value)}
-                  disabled={isProcessing}
-                  className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
-                >
-                  <option value="">Choose a branch...</option>
-                  {branchesLoading ? (
-                    <option disabled>Loading branches...</option>
-                  ) : (
-                    branches.map((branch) => (
-                      <option key={branch} value={branch}>
-                        {branch.slice(0, 6)}...{branch.slice(-4)}
-                      </option>
-                    ))
-                  )}
-                </select>
+                {referralAddress ? (
+                  <input
+                    type="text"
+                    value={selectedBranch}
+                    readOnly
+                    className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground font-mono opacity-80 cursor-not-allowed"
+                  />
+                ) : (
+                  <select
+                    value={selectedBranch}
+                    onChange={(e) => setSelectedBranch(e.target.value)}
+                    disabled={isProcessing}
+                    className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
+                  >
+                    <option value="">Choose a branch...</option>
+                    {branchesLoading ? (
+                      <option disabled>Loading branches...</option>
+                    ) : (
+                      branches.map((branch) => (
+                        <option key={branch} value={branch}>
+                          {branch.slice(0, 6)}...{branch.slice(-4)}
+                        </option>
+                      ))
+                    )}
+                  </select>
+                )}
               </div>
 
               <div className="h-px bg-border/30" />
