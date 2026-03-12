@@ -61,11 +61,17 @@ const DeployBranchTab = () => {
 
   const handleNameBlur = useCallback(async () => {
     if (!branchName.trim()) { setNameError(""); return; }
-    setNameChecking(true);
-    const taken = await checkBranchName(branchName.trim());
-    setNameError(taken ? "This branch name is already taken" : "");
-    setNameChecking(false);
+    await checkBranchName(branchName.trim());
   }, [branchName, checkBranchName]);
+
+  // React to name check result
+  useEffect(() => {
+    if (nameUsedResult === true && branchName.trim()) {
+      setNameError("This branch name is already taken");
+    } else if (nameUsedResult === false && branchName.trim()) {
+      setNameError("");
+    }
+  }, [nameUsedResult, branchName]);
 
   const isValidAddress = (addr) => /^0x[a-fA-F0-9]{40}$/.test(addr);
 
