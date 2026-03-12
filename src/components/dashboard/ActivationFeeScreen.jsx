@@ -7,6 +7,7 @@ import { VaultIQMain_Address } from "@/constants/contracts";
 import useRegistrationFee from "@/hooks/dataFetcher/useRegistrationFee";
 import useRegistrationToken from "@/hooks/dataFetcher/useRegistrationToken";
 import useRegisteredBranches from "@/hooks/dataFetcher/useRegisteredBranches";
+import useBranchInfo from "@/hooks/dataFetcher/useBranchInfo";
 import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
 import useUSDTApproval from "@/hooks/dataSender/useUSDTApproval";
 import useUserRegistration from "@/hooks/dataSender/useUserRegistration";
