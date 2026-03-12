@@ -177,12 +177,30 @@ const ActivationFeeScreen = ({ onRegistered }) => {
               <div className="text-left space-y-2">
                 <label className="text-sm text-muted-foreground">Select Branch</label>
                 {referralAddress ? (
-                  <input
-                    type="text"
-                    value={selectedBranch}
-                    readOnly
-                    className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground font-mono opacity-80 cursor-not-allowed"
-                  />
+                  <>
+                    <input
+                      type="text"
+                      value={selectedBranch}
+                      readOnly
+                      className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground font-mono opacity-80 cursor-not-allowed"
+                    />
+                    {branchInfoLoading ? (
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" />
+                        Verifying branch status...
+                      </div>
+                    ) : branchApproved ? (
+                      <div className="flex items-center gap-2 text-xs text-[hsl(var(--success))]">
+                        <CheckCircle className="h-3.5 w-3.5 shrink-0" />
+                        {branchName ? `${branchName} — Approved` : "Branch approved"}
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-xs text-destructive">
+                        <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                        This branch is not active. Registration is unavailable.
+                      </div>
+                    )}
+                  </>
                 ) : (
                   <select
                     value={selectedBranch}
