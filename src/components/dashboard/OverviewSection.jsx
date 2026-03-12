@@ -23,12 +23,7 @@ const recentActivity = [
   { action: "Passive income distributed", branch: "Beta Branch", status: "active", time: "2d ago" },
 ];
 
-const pools = [
-  { name: "Pool 1", distribution: "$2,400", members: 45, threshold: "$500", unlocked: true, fill: 82 },
-  { name: "Pool 2", distribution: "$4,800", members: 32, threshold: "$1,000", unlocked: true, fill: 64 },
-  { name: "Pool 3", distribution: "$8,200", members: 18, threshold: "$2,500", unlocked: false, fill: 38 },
-  { name: "Pool 4", distribution: "$15,000", members: 8, threshold: "$5,000", unlocked: false, fill: 15 },
-];
+const POOL_IDS = [1, 2, 3, 4];
 
 const OverviewSection = () => {
   const { address } = useWallet();
