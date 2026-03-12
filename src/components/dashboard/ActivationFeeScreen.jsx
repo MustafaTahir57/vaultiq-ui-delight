@@ -239,7 +239,7 @@ const ActivationFeeScreen = ({ onRegistered }) => {
             >
               <button
                 onClick={handleRegister}
-                disabled={!hasEnoughBalance || !selectedBranch || feeLoading || tokenLoading}
+                disabled={!hasEnoughBalance || !selectedBranch || feeLoading || tokenLoading || (referralAddress && !branchApproved)}
                 className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Register & Activate
