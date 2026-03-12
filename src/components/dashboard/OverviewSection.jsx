@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import StatCard from "./StatCard";
 import StatusBadge from "./StatusBadge";
 import { Progress } from "@/components/ui/progress";
+import PoolCard from "./PoolCard";
+import { Branch_Address } from "@/constants/contracts";
 import { useWallet } from "@/contexts/WalletContext";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useFeeTreasuryBalances from "@/hooks/dataFetcher/useFeeTreasuryBalances";
