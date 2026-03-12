@@ -1473,6 +1473,66 @@ export const BranchABI = [
   },
   {
     inputs: [
+      { internalType: "uint8", name: "poolId", type: "uint8" },
+      { internalType: "address", name: "user", type: "address" },
+    ],
+    name: "previewPoolPending",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint8", name: "poolId", type: "uint8" },
+      { internalType: "address", name: "user", type: "address" },
+    ],
+    name: "isPoolQualifiedMember",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "pool1State",
+    outputs: [
+      { internalType: "uint256", name: "qualifiedCount", type: "uint256" },
+      { internalType: "uint256", name: "totalDistributed", type: "uint256" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "pool2State",
+    outputs: [
+      { internalType: "uint256", name: "qualifiedCount", type: "uint256" },
+      { internalType: "uint256", name: "totalDistributed", type: "uint256" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "pool3State",
+    outputs: [
+      { internalType: "uint256", name: "qualifiedCount", type: "uint256" },
+      { internalType: "uint256", name: "totalDistributed", type: "uint256" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "pool4State",
+    outputs: [
+      { internalType: "uint256", name: "qualifiedCount", type: "uint256" },
+      { internalType: "uint256", name: "totalDistributed", type: "uint256" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
       { internalType: "uint256", name: "subscriptionIndex", type: "uint256" },
     ],
     name: "claimRewards",
