@@ -168,7 +168,7 @@ const DeployBranchTab = () => {
               placeholder="e.g. Alpha Branch"
               className="w-full bg-secondary/50 border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 font-mono focus:outline-none focus:ring-2 focus:ring-ring"
             />
-            {nameChecking && <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1"><Loader2 className="h-3 w-3 animate-spin" />Checking availability...</p>}
+            {nameCheckFetching && <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1"><Loader2 className="h-3 w-3 animate-spin" />Checking availability...</p>}
             {nameError && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{nameError}</p>}
           </div>
 
