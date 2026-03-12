@@ -79,7 +79,7 @@ const DeployBranchTab = () => {
     isOpenDeployment &&
     branchName.trim() &&
     !nameError &&
-    !nameChecking &&
+    !nameCheckFetching &&
     isValidAddress(branchWallet) &&
     isValidAddress(foundersWallet) &&
     coreTotal === 10000 &&
