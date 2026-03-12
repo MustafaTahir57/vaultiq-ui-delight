@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Rocket, Percent, Loader2, CheckCircle2, Copy, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,14 +32,13 @@ const DeployBranchTab = () => {
   const { address } = useWallet();
   const {
     isOpenDeployment, checkingOpen, deployBranch, isDeploying,
-    deployedBranchAddress, checkBranchName, resetDeploy,
+    deployedBranchAddress, checkBranchName, nameUsedResult, nameCheckFetching, resetDeploy,
   } = useDeployBranch(address);
 
   const [branchName, setBranchName] = useState("");
   const [branchWallet, setBranchWallet] = useState("");
   const [foundersWallet, setFoundersWallet] = useState("");
   const [nameError, setNameError] = useState("");
-  const [nameChecking, setNameChecking] = useState(false);
   const [coreConfig, setCoreConfig] = useState(defaultCore);
   const [expiryConfig, setExpiryConfig] = useState(defaultExpiry);
 
@@ -62,11 +61,17 @@ const DeployBranchTab = () => {
 
   const handleNameBlur = useCallback(async () => {
     if (!branchName.trim()) { setNameError(""); return; }
-    setNameChecking(true);
-    const taken = await checkBranchName(branchName.trim());
-    setNameError(taken ? "This branch name is already taken" : "");
-    setNameChecking(false);
+    await checkBranchName(branchName.trim());
   }, [branchName, checkBranchName]);
+
+  // React to name check result
+  useEffect(() => {
+    if (nameUsedResult === true && branchName.trim()) {
+      setNameError("This branch name is already taken");
+    } else if (nameUsedResult === false && branchName.trim()) {
+      setNameError("");
+    }
+  }, [nameUsedResult, branchName]);
 
   const isValidAddress = (addr) => /^0x[a-fA-F0-9]{40}$/.test(addr);
 
@@ -74,7 +79,7 @@ const DeployBranchTab = () => {
     isOpenDeployment &&
     branchName.trim() &&
     !nameError &&
-    !nameChecking &&
+    !nameCheckFetching &&
     isValidAddress(branchWallet) &&
     isValidAddress(foundersWallet) &&
     coreTotal === 10000 &&
@@ -163,7 +168,7 @@ const DeployBranchTab = () => {
               placeholder="e.g. Alpha Branch"
               className="w-full bg-secondary/50 border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 font-mono focus:outline-none focus:ring-2 focus:ring-ring"
             />
-            {nameChecking && <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1"><Loader2 className="h-3 w-3 animate-spin" />Checking availability...</p>}
+            {nameCheckFetching && <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1"><Loader2 className="h-3 w-3 animate-spin" />Checking availability...</p>}
             {nameError && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{nameError}</p>}
           </div>
 
