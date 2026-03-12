@@ -76,42 +76,14 @@ const OverviewSection = () => {
             Pools
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {pools.map((pool, i) => (
-              <motion.div
-                key={pool.name}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card-hover p-5"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${pool.unlocked ? "bg-primary/10" : "bg-secondary"}`}>
-                      {pool.unlocked ? <Unlock className="h-4 w-4 text-primary" /> : <Lock className="h-4 w-4 text-muted-foreground" />}
-                    </div>
-                    <div>
-                      <h4 className="font-display font-semibold text-foreground text-sm">{pool.name}</h4>
-                      <span className={`text-xs ${pool.unlocked ? "text-success" : "text-muted-foreground"}`}>
-                        {pool.unlocked ? "Unlocked" : "Locked"}
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-base font-display font-bold text-foreground">{pool.distribution}</span>
-                </div>
-                <div className="space-y-2">
-                  <div>
-                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                      <span>Qualification</span>
-                      <span>{pool.fill}%</span>
-                    </div>
-                    <Progress value={pool.fill} className="h-2 bg-secondary [&>div]:bg-primary" />
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground flex items-center gap-1"><Users className="h-3 w-3" /> {pool.members}</span>
-                    <span className="text-muted-foreground">Threshold: {pool.threshold}</span>
-                  </div>
-                </div>
-              </motion.div>
+            {POOL_IDS.map((poolId, i) => (
+              <PoolCard
+                key={poolId}
+                poolId={poolId}
+                userAddress={address}
+                branchAddress={branchAddress}
+                index={i}
+              />
             ))}
           </div>
         </div>
