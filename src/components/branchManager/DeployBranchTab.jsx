@@ -32,14 +32,13 @@ const DeployBranchTab = () => {
   const { address } = useWallet();
   const {
     isOpenDeployment, checkingOpen, deployBranch, isDeploying,
-    deployedBranchAddress, checkBranchName, resetDeploy,
+    deployedBranchAddress, checkBranchName, nameUsedResult, nameCheckFetching, resetDeploy,
   } = useDeployBranch(address);
 
   const [branchName, setBranchName] = useState("");
   const [branchWallet, setBranchWallet] = useState("");
   const [foundersWallet, setFoundersWallet] = useState("");
   const [nameError, setNameError] = useState("");
-  const [nameChecking, setNameChecking] = useState(false);
   const [coreConfig, setCoreConfig] = useState(defaultCore);
   const [expiryConfig, setExpiryConfig] = useState(defaultExpiry);
 
