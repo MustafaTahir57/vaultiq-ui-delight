@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Shield, CheckCircle, Loader2, Zap, Lock, Wallet, AlertCircle } from "lucide-react";
 import { useWallet } from "@/contexts/WalletContext";
