@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Shield, CheckCircle, Loader2, Zap, Lock, Wallet, AlertCircle } from "lucide-react";
 import { useWallet } from "@/contexts/WalletContext";
@@ -14,7 +15,9 @@ import { formatUnits } from "viem";
 
 const ActivationFeeScreen = ({ onRegistered }) => {
   const { shortAddress, address, disconnect } = useWallet();
-  const [selectedBranch, setSelectedBranch] = useState("");
+  const [searchParams] = useSearchParams();
+  const referralAddress = searchParams.get("address") || "";
+  const [selectedBranch, setSelectedBranch] = useState(referralAddress);
   const [step, setStep] = useState("form"); // form | approving | registering | success
 
   // Data fetchers
@@ -171,23 +174,32 @@ const ActivationFeeScreen = ({ onRegistered }) => {
               {/* Branch Selection */}
               <div className="text-left space-y-2">
                 <label className="text-sm text-muted-foreground">Select Branch</label>
-                <select
-                  value={selectedBranch}
-                  onChange={(e) => setSelectedBranch(e.target.value)}
-                  disabled={isProcessing}
-                  className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
-                >
-                  <option value="">Choose a branch...</option>
-                  {branchesLoading ? (
-                    <option disabled>Loading branches...</option>
-                  ) : (
-                    branches.map((branch) => (
-                      <option key={branch} value={branch}>
-                        {branch.slice(0, 6)}...{branch.slice(-4)}
-                      </option>
-                    ))
-                  )}
-                </select>
+                {referralAddress ? (
+                  <input
+                    type="text"
+                    value={selectedBranch}
+                    readOnly
+                    className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground font-mono opacity-80 cursor-not-allowed"
+                  />
+                ) : (
+                  <select
+                    value={selectedBranch}
+                    onChange={(e) => setSelectedBranch(e.target.value)}
+                    disabled={isProcessing}
+                    className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
+                  >
+                    <option value="">Choose a branch...</option>
+                    {branchesLoading ? (
+                      <option disabled>Loading branches...</option>
+                    ) : (
+                      branches.map((branch) => (
+                        <option key={branch} value={branch}>
+                          {branch.slice(0, 6)}...{branch.slice(-4)}
+                        </option>
+                      ))
+                    )}
+                  </select>
+                )}
               </div>
 
               <div className="h-px bg-border/30" />
