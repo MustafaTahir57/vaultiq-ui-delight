@@ -1,37 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { BranchFactoryABI, VaultIQMainABI } from "@/constants/abis";
-import { BranchFactory_Address, VaultIQMain_Address, USDT_Address } from "@/constants/contracts";
-import { keccak256, toBytes } from "viem";
+import { BranchFactoryABI } from "@/constants/abis";
+import { BranchFactory_Address, USDT_Address } from "@/constants/contracts";
 import { toast } from "sonner";
+import useOpenDeployment from "@/hooks/dataFetcher/useOpenDeployment";
+import useBranchNameUsed from "@/hooks/dataFetcher/useBranchNameUsed";
 
 const useDeployBranch = (userAddress) => {
   const [deployedBranchAddress, setDeployedBranchAddress] = useState(null);
-  const [nameToCheck, setNameToCheck] = useState(null);
 
-  // Pre-check: is open deployment enabled?
-  const { data: isOpenDeployment, isLoading: checkingOpen } = useReadContract({
-    address: BranchFactory_Address,
-    abi: BranchFactoryABI,
-    functionName: "openDeployment",
-  });
-
-  // Branch name uniqueness check (on-demand via state)
-  const { data: nameUsedResult, isFetching: nameCheckFetching } = useReadContract({
-    address: VaultIQMain_Address,
-    abi: VaultIQMainABI,
-    functionName: "branchNameUsed",
-    args: nameToCheck ? [keccak256(toBytes(nameToCheck))] : undefined,
-    query: { enabled: !!nameToCheck },
-  });
-
-  const checkBranchName = useCallback(async (name) => {
-    if (!name) return false;
-    setNameToCheck(name);
-    // This is a fire-and-forget trigger; the result is read reactively
-    // For imperative checks in deployBranch, we do a one-off read below
-    return false;
-  }, []);
+  const { isOpenDeployment, checkingOpen } = useOpenDeployment();
+  const { nameUsedResult, nameCheckFetching, checkBranchName, nameToCheck } = useBranchNameUsed();
 
   const { writeContract, data: txHash, isPending: isDeploying, error: writeError, reset: resetWrite } = useWriteContract();
 
