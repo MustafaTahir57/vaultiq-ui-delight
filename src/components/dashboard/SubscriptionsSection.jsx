@@ -154,9 +154,6 @@ const SubscriptionsSection = () => {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10" onClick={() => setAddPlanOpen(true)}>
-            <Plus className="h-4 w-4 mr-2" /> Add Plan
-          </Button>
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleOpenModal}>
             <CreditCard className="h-4 w-4 mr-2" /> New Subscription
           </Button>
