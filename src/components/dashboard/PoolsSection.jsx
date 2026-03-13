@@ -1,6 +1,5 @@
 import { Layers } from "lucide-react";
 import { useWallet } from "@/contexts/WalletContext";
-import { Branch_Address } from "@/constants/contracts";
 import PoolCard from "./PoolCard";
 
 const POOL_IDS = [1, 2, 3, 4];
