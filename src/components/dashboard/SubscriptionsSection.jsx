@@ -30,6 +30,7 @@ import usePurchaseSubscriptionWithPlan from "@/hooks/dataSender/usePurchaseSubsc
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
 import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
+import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
 
@@ -43,16 +44,12 @@ const durationOptions = [
   { label: "365 Days", value: 365 * 24 * 60 * 60 },
 ];
 
-const planOptions = [
-  { label: "Plan 1", value: 1 },
-  { label: "Plan 2", value: 2 },
-  { label: "Plan 3", value: 3 },
-];
 
 const SubscriptionsSection = () => {
   const { address, userBranchAddress } = useWallet();
   const { subscriptions, activeCount, totalRewards, isLoading } = useUserSubscriptions(address);
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
+  const { plans, isLoading: plansLoading } = useBranchPlans();
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(USDT_Address, address, userBranchAddress);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -304,11 +301,13 @@ const SubscriptionsSection = () => {
                   <Label className="text-foreground text-sm">Mining Plan</Label>
                   <Select value={planId} onValueChange={setPlanId}>
                     <SelectTrigger className="bg-secondary/50 border-border">
-                      <SelectValue />
+                      <SelectValue placeholder={plansLoading ? "Loading plans..." : "Select plan"} />
                     </SelectTrigger>
                     <SelectContent>
-                      {planOptions.map((p) => (
-                        <SelectItem key={p.value} value={String(p.value)}>{p.label}</SelectItem>
+                      {plans.map((p) => (
+                        <SelectItem key={p.id} value={String(p.id)}>
+                          {p.name || `Plan ${p.id}`}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
