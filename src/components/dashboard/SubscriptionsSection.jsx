@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CreditCard, ExternalLink, Zap, Bitcoin } from "lucide-react";
+import { CreditCard, ExternalLink, Zap, Bitcoin, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -33,6 +33,7 @@ import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
+import AddPlanModal from "./AddPlanModal";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
@@ -53,6 +54,7 @@ const SubscriptionsSection = () => {
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(USDT_Address, address, userBranchAddress);
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [addPlanOpen, setAddPlanOpen] = useState(false);
   const [model, setModel] = useState("A");
   const [principal, setPrincipal] = useState("");
   const [duration, setDuration] = useState(String(durationOptions[0].value));
@@ -151,9 +153,14 @@ const SubscriptionsSection = () => {
             )}
           </p>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleOpenModal}>
-          <CreditCard className="h-4 w-4 mr-2" /> New Subscription
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10" onClick={() => setAddPlanOpen(true)}>
+            <Plus className="h-4 w-4 mr-2" /> Add Plan
+          </Button>
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleOpenModal}>
+            <CreditCard className="h-4 w-4 mr-2" /> New Subscription
+          </Button>
+        </div>
       </div>
 
       {/* Subscriptions Table */}
@@ -350,6 +357,9 @@ const SubscriptionsSection = () => {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Add Plan Modal */}
+      <AddPlanModal open={addPlanOpen} onOpenChange={setAddPlanOpen} />
     </div>
   );
 };
