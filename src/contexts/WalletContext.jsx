@@ -13,6 +13,7 @@ export const WalletProvider = ({ children }) => {
   const { disconnect: wagmiDisconnect } = useDisconnect();
   const { switchChain } = useSwitchChain();
   const { userBranches, isBranchManager, isLoading: branchesLoading } = useUserBranches(address);
+  const { branchAddress: userBranchAddress, isLoading: branchLoading } = useUserBranch(address);
 
   const [justConnected, setJustConnected] = useState(false);
   const [wasConnected, setWasConnected] = useState(false);
