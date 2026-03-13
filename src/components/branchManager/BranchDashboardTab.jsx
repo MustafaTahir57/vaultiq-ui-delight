@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import StatCard from "@/components/dashboard/StatCard";
 import { wallets } from "./constants";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
-import { Branch_Address } from "@/constants/contracts";
+import { useWallet } from "@/contexts/WalletContext";
 
 const configFieldMap = [
   { label: "Branch Name", key: "branchName" },
