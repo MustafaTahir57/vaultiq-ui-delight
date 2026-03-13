@@ -54,6 +54,7 @@ const SubscriptionsSection = () => {
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(USDT_Address, address, userBranchAddress);
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [addPlanOpen, setAddPlanOpen] = useState(false);
   const [model, setModel] = useState("A");
   const [principal, setPrincipal] = useState("");
   const [duration, setDuration] = useState(String(durationOptions[0].value));
