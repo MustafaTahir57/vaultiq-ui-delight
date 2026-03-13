@@ -44,11 +44,6 @@ const durationOptions = [
   { label: "365 Days", value: 365 * 24 * 60 * 60 },
 ];
 
-const planOptions = [
-  { label: "Plan 1", value: 1 },
-  { label: "Plan 2", value: 2 },
-  { label: "Plan 3", value: 3 },
-];
 
 const SubscriptionsSection = () => {
   const { address, userBranchAddress } = useWallet();
