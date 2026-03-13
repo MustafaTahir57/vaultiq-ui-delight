@@ -3,6 +3,7 @@ import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
 import { ACTIVE_CHAIN_ID } from "@/constants/contracts";
 import { toast } from "sonner";
 import useUserBranches from "@/hooks/dataFetcher/useUserBranches";
+import useUserBranch from "@/hooks/dataFetcher/useUserBranch";
 
 const WalletContext = createContext(null);
 
