@@ -24,8 +24,8 @@ const truncateAddress = (addr) => {
 };
 
 const BranchDashboardTab = () => {
-  // TODO: Replace with user's actual branch address once the lookup function is available
-  const branchAddress = Branch_Address;
+  const { userBranchAddress } = useWallet();
+  const branchAddress = userBranchAddress;
   const config = useBranchConfig(branchAddress);
 
   return (

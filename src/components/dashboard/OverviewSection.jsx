@@ -25,11 +25,11 @@ const recentActivity = [
 const POOL_IDS = [1, 2, 3, 4];
 
 const OverviewSection = () => {
-  const { address } = useWallet();
+  const { address, userBranchAddress } = useWallet();
   const { activeCount, totalRewards, isLoading: subsLoading } = useUserSubscriptions(address);
   const { usdcBalance, isLoading: treasuryLoading } = useFeeTreasuryBalances();
   const { totalPassiveQualifiedSales, isQualifiedAny, isLoading: passiveLoading } = useUserPassiveIncome(address);
-  const branchAddress = Branch_Address; // TODO: replace with user's actual branch
+  const branchAddress = userBranchAddress;
 
   return (
     <div className="space-y-6">

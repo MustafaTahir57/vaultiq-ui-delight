@@ -5,9 +5,8 @@ import PoolCard from "./PoolCard";
 const POOL_IDS = [1, 2, 3, 4];
 
 const PoolsSection = () => {
-  const { address } = useWallet();
-  // TODO: replace Branch_Address with user's actual branch once the contract function is available
-  const branchAddress = Branch_Address;
+  const { address, userBranchAddress } = useWallet();
+  const branchAddress = userBranchAddress;
 
   return (
     <div className="space-y-6">
