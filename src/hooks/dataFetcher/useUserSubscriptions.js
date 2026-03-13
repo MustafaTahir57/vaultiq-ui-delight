@@ -1,25 +1,21 @@
 import { useMemo } from "react";
 import { useReadContracts } from "wagmi";
-import { BranchABI } from "@/constants/abis";
+import { BranchExtensionABI } from "@/constants/abis";
+import { BranchExtension_Address } from "@/constants/contracts";
 import useRegisteredBranches from "./useRegisteredBranches";
 
 const MAX_SUBS_PER_BRANCH = 20;
 
-/**
- * Fetches all user subscriptions across approved branches.
- * Returns active subscription count, total accumulated rewards, and raw subscription data.
- */
 const useUserSubscriptions = (userAddress) => {
   const { branches, isLoading: branchesLoading } = useRegisteredBranches();
 
-  // Build multicall contracts: for each branch, read userSubscriptions at indices 0..MAX-1
   const contracts = useMemo(() => {
     if (!userAddress || !branches?.length) return [];
 
     return branches.flatMap((branchAddress) =>
       Array.from({ length: MAX_SUBS_PER_BRANCH }, (_, i) => ({
-        address: branchAddress,
-        abi: BranchABI,
+        address: BranchExtension_Address,
+        abi: BranchExtensionABI,
         functionName: "userSubscriptions",
         args: [userAddress, BigInt(i)],
       }))
@@ -28,9 +24,7 @@ const useUserSubscriptions = (userAddress) => {
 
   const { data, isLoading, isError, refetch } = useReadContracts({
     contracts,
-    query: {
-      enabled: contracts.length > 0,
-    },
+    query: { enabled: contracts.length > 0 },
   });
 
   const stats = useMemo(() => {
@@ -55,7 +49,6 @@ const useUserSubscriptions = (userAddress) => {
         const expired = sub[7];
         const matured = sub[14];
 
-        // Skip empty/zero-principal entries
         if (principal === BigInt(0)) continue;
 
         const isActive = !cancelled && !expired && !matured;
@@ -64,13 +57,22 @@ const useUserSubscriptions = (userAddress) => {
           branch: branchAddress,
           index: i,
           principal,
+          startTime: sub[1],
+          activationTime: sub[2],
+          duration: sub[3],
           accumulatedRewards,
+          lastProcessedWeek: sub[5],
           cancelled,
           expired,
-          matured,
-          isActive,
+          planId: sub[8],
+          miningCapital: sub[9],
+          rewardDebt: sub[10],
           withdrawableBTC: sub[11],
           reinvestReserveBTC: sub[12],
+          autoRoll: sub[13],
+          matured,
+          miningActive: sub[15],
+          isActive,
         });
 
         if (isActive) activeCount++;
