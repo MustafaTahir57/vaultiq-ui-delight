@@ -133,7 +133,6 @@ export const coreConfigFields = [
   { label: "Pool 3", field: "pool3Percent", default: "150 (1.5%)" },
   { label: "Pool 4", field: "pool4Percent", default: "150 (1.5%)" },
   { label: "Passive Income", field: "passiveIncomePercent", default: "200 (2%)" },
-  { label: "Cancellation", field: "cancellationPercent", default: "200 (2%)" },
 ];
 
 export const expiryConfigFields = [

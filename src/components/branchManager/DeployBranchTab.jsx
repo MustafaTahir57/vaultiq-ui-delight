@@ -9,7 +9,7 @@ import { coreConfigFields, expiryConfigFields } from "./constants";
 import { toast } from "sonner";
 
 const defaultCore = {
-  liquidityAllocation: 7200,
+  liquidityAllocation: 7400,
   directBonusPercent: 500,
   branchCommissionPercent: 300,
   feePercent: 800,
@@ -19,7 +19,6 @@ const defaultCore = {
   pool3Percent: 150,
   pool4Percent: 150,
   passiveIncomePercent: 200,
-  cancellationPercent: 200,
 };
 
 const defaultExpiry = {
