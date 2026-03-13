@@ -29,6 +29,7 @@ import usePurchaseSubscription from "@/hooks/dataSender/usePurchaseSubscription"
 import usePurchaseSubscriptionWithPlan from "@/hooks/dataSender/usePurchaseSubscriptionWithPlan";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
+import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
 
