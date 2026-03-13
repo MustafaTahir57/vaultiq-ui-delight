@@ -30,13 +30,22 @@ const BranchDashboardTab = () => {
   const { userBranchAddress } = useWallet();
   const branchAddress = userBranchAddress;
   const config = useBranchConfig(branchAddress);
+  const [addPlanOpen, setAddPlanOpen] = useState(false);
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatCard title="Total Members" value="—" icon={Users} />
-        <StatCard title="Weekly Performance" value="—" icon={BarChart3} />
-        <StatCard title="Total Distributed" value="—" icon={Wallet} />
+      <div className="flex items-center justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 flex-1">
+          <StatCard title="Total Members" value="—" icon={Users} />
+          <StatCard title="Weekly Performance" value="—" icon={BarChart3} />
+          <StatCard title="Total Distributed" value="—" icon={Wallet} />
+        </div>
+      </div>
+
+      <div className="flex justify-end">
+        <Button onClick={() => setAddPlanOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Plus className="h-4 w-4 mr-2" /> Add Subscription Plan
+        </Button>
       </div>
 
       <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-card p-6">
