@@ -39,6 +39,7 @@ const DeployBranchTab = () => {
   const [foundersWallet, setFoundersWallet] = useState("");
   const [nameError, setNameError] = useState("");
   const [coreConfig, setCoreConfig] = useState(defaultCore);
+  const [cancellationPercent, setCancellationPercent] = useState(200);
   const [expiryConfig, setExpiryConfig] = useState(defaultExpiry);
 
   const coreTotal = useMemo(
