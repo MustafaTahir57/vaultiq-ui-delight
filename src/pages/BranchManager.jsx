@@ -8,7 +8,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import { useWallet } from "@/contexts/WalletContext";
 import BranchDashboardTab from "@/components/branchManager/BranchDashboardTab";
-import DeployBranchTab from "@/components/branchManager/DeployBranchTab";
 import ProtocolOpsTab from "@/components/branchManager/ProtocolOpsTab";
 
 const BranchManager = () => {
