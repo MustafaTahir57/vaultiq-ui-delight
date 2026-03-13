@@ -17,6 +17,7 @@ import { useWallet } from "@/contexts/WalletContext";
 const navItems = [
   { title: "Overview", url: "/app", icon: LayoutDashboard },
   { title: "My Subscriptions", url: "/app/subscriptions", icon: CreditCard },
+  { title: "Deploy Branch", url: "/app/deploy", icon: Rocket },
   { title: "Branch Dashboard", url: "/app/branch", icon: GitBranch },
   { title: "Passive Income", url: "/app/passive", icon: TrendingUp },
   { title: "Incubator", url: "/app/incubator", icon: Rocket },
