@@ -1,71 +1,358 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CreditCard, ExternalLink } from "lucide-react";
+import { CreditCard, ExternalLink, Zap, Bitcoin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Switch } from "@/components/ui/switch";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import StatusBadge from "./StatusBadge";
+import { useWallet } from "@/contexts/WalletContext";
+import { USDT_Address } from "@/constants/contracts";
+import useUSDTApproval from "@/hooks/dataSender/useUSDTApproval";
+import usePurchaseSubscription from "@/hooks/dataSender/usePurchaseSubscription";
+import usePurchaseSubscriptionWithPlan from "@/hooks/dataSender/usePurchaseSubscriptionWithPlan";
+import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
+import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
+import { parseUnits, formatUnits } from "viem";
+import { toast } from "sonner";
 
-const subscriptions = [
-  { id: 1, branch: "Alpha Branch", plan: "Premium", status: "active", weeklyReward: "4.2%", accrued: "$1,240", expiry: "2025-08-15" },
-  { id: 2, branch: "Beta Branch", plan: "Standard", status: "active", weeklyReward: "3.1%", accrued: "$680", expiry: "2025-09-22" },
-  { id: 3, branch: "Gamma Branch", plan: "Premium", status: "pending", weeklyReward: "—", accrued: "$0", expiry: "—" },
-  { id: 4, branch: "Delta Branch", plan: "Basic", status: "expired", weeklyReward: "2.5%", accrued: "$320", expiry: "2025-01-10" },
+const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
+
+const durationOptions = [
+  { label: "30 Days", value: 30 * 24 * 60 * 60 },
+  { label: "60 Days", value: 60 * 24 * 60 * 60 },
+  { label: "90 Days", value: 90 * 24 * 60 * 60 },
+  { label: "180 Days", value: 180 * 24 * 60 * 60 },
+  { label: "365 Days", value: 365 * 24 * 60 * 60 },
 ];
 
-const SubscriptionsSection = () => (
-  <div className="space-y-6">
-    <div className="flex items-center justify-between">
-      <div>
-        <h1 className="text-2xl font-display font-bold text-foreground">My Subscriptions</h1>
-        <p className="text-muted-foreground text-sm mt-1">Manage your branch subscriptions & rewards</p>
-      </div>
-      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-        <CreditCard className="h-4 w-4 mr-2" /> New Subscription
-      </Button>
-    </div>
+const planOptions = [
+  { label: "Plan 1", value: 1 },
+  { label: "Plan 2", value: 2 },
+  { label: "Plan 3", value: 3 },
+];
 
-    <div className="glass-card overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-border/50">
-              {["Branch", "Plan", "Status", "Weekly Reward", "Accrued", "Expiry", ""].map((h) => (
-                <th key={h} className="text-left text-xs font-medium text-muted-foreground px-5 py-3">{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {subscriptions.map((sub, i) => (
-              <motion.tr
-                key={sub.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: i * 0.05 }}
-                className="border-b border-border/30 last:border-0 hover:bg-secondary/30 transition-colors"
-              >
-                <td className="px-5 py-4 text-sm font-medium text-foreground">{sub.branch}</td>
-                <td className="px-5 py-4 text-sm text-muted-foreground">{sub.plan}</td>
-                <td className="px-5 py-4"><StatusBadge status={sub.status} /></td>
-                <td className="px-5 py-4 text-sm text-primary font-medium">{sub.weeklyReward}</td>
-                <td className="px-5 py-4 text-sm text-foreground">{sub.accrued}</td>
-                <td className="px-5 py-4 text-sm text-muted-foreground">{sub.expiry}</td>
-                <td className="px-5 py-4">
-                  {sub.status === "active" && (
-                    <div className="flex items-center gap-2">
-                      <Button variant="outline" size="sm" className="text-xs border-primary/30 text-primary hover:bg-primary/10">
-                        Claim
-                      </Button>
-                      <Button variant="outline" size="sm" className="text-xs border-destructive/30 text-destructive hover:bg-destructive/10">
-                        Cancel
-                      </Button>
-                    </div>
-                  )}
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
+const SubscriptionsSection = () => {
+  const { address, userBranchAddress } = useWallet();
+  const { subscriptions, activeCount, totalRewards, isLoading } = useUserSubscriptions(address);
+  const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [model, setModel] = useState("A");
+  const [principal, setPrincipal] = useState("");
+  const [duration, setDuration] = useState(String(durationOptions[0].value));
+  const [referral, setReferral] = useState("");
+  const [planId, setPlanId] = useState("1");
+  const [autoRoll, setAutoRoll] = useState(false);
+  const [step, setStep] = useState("form"); // form | approve | purchase
+
+  // Hooks
+  const approval = useUSDTApproval();
+  const modelA = usePurchaseSubscription();
+  const modelB = usePurchaseSubscriptionWithPlan();
+
+  const activePurchase = model === "A" ? modelA : modelB;
+
+  // After approval confirmed, move to purchase step
+  useEffect(() => {
+    if (approval.isConfirmed && step === "approve") {
+      setStep("purchase");
+      toast.success("Approval confirmed! You can now purchase.");
+    }
+  }, [approval.isConfirmed, step]);
+
+  // After purchase confirmed, close modal
+  useEffect(() => {
+    if (activePurchase.isConfirmed) {
+      toast.success("Subscription purchased successfully!");
+      setModalOpen(false);
+      resetForm();
+    }
+  }, [activePurchase.isConfirmed]);
+
+  const resetForm = () => {
+    setPrincipal("");
+    setDuration(String(durationOptions[0].value));
+    setReferral("");
+    setPlanId("1");
+    setAutoRoll(false);
+    setStep("form");
+    setModel("A");
+    approval.reset();
+    modelA.reset();
+    modelB.reset();
+  };
+
+  const handleOpenModal = () => {
+    resetForm();
+    setModalOpen(true);
+  };
+
+  const handleApprove = () => {
+    if (!principal || Number(principal) <= 0) {
+      toast.error("Enter a valid amount");
+      return;
+    }
+    if (!userBranchAddress) {
+      toast.error("No branch found for your account");
+      return;
+    }
+    const amount = parseUnits(principal, 18);
+    approval.approve(USDT_Address, userBranchAddress, amount);
+    setStep("approve");
+  };
+
+  const handlePurchase = () => {
+    const amount = parseUnits(principal, 18);
+    const dur = BigInt(duration);
+    const ref = referral && referral.startsWith("0x") ? referral : ZERO_ADDRESS;
+
+    if (model === "A") {
+      modelA.purchase(userBranchAddress, amount, dur, ref);
+    } else {
+      modelB.purchase(userBranchAddress, amount, dur, ref, Number(planId), autoRoll);
+    }
+  };
+
+  const formattedBalance = usdtBalance ? formatUnits(usdtBalance, 18) : "0";
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-display font-bold text-foreground">My Subscriptions</h1>
+          <p className="text-muted-foreground text-sm mt-1">
+            Manage your branch subscriptions & rewards
+            {activeCount > 0 && (
+              <span className="ml-2 text-primary font-medium">({activeCount} active)</span>
+            )}
+          </p>
+        </div>
+        <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleOpenModal}>
+          <CreditCard className="h-4 w-4 mr-2" /> New Subscription
+        </Button>
       </div>
+
+      {/* Subscriptions Table */}
+      <div className="glass-card overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-border/50">
+                {["Branch", "Principal", "Status", "Rewards", "Withdrawable BTC", ""].map((h) => (
+                  <th key={h} className="text-left text-xs font-medium text-muted-foreground px-5 py-3">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {isLoading ? (
+                <tr>
+                  <td colSpan={6} className="px-5 py-8 text-center text-muted-foreground text-sm">Loading subscriptions...</td>
+                </tr>
+              ) : subscriptions.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-5 py-8 text-center text-muted-foreground text-sm">No subscriptions found. Click "New Subscription" to get started.</td>
+                </tr>
+              ) : (
+                subscriptions.map((sub, i) => (
+                  <motion.tr
+                    key={`${sub.branch}-${sub.index}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.05 }}
+                    className="border-b border-border/30 last:border-0 hover:bg-secondary/30 transition-colors"
+                  >
+                    <td className="px-5 py-4 text-sm font-medium text-foreground font-mono">
+                      {sub.branch.slice(0, 6)}...{sub.branch.slice(-4)}
+                    </td>
+                    <td className="px-5 py-4 text-sm text-foreground">
+                      {formatUnits(sub.principal, 18)} USDC
+                    </td>
+                    <td className="px-5 py-4">
+                      <StatusBadge status={sub.isActive ? "active" : sub.cancelled ? "cancelled" : sub.expired ? "expired" : "matured"} />
+                    </td>
+                    <td className="px-5 py-4 text-sm text-primary font-medium">
+                      {formatUnits(sub.accumulatedRewards, 18)} USDC
+                    </td>
+                    <td className="px-5 py-4 text-sm text-foreground">
+                      {formatUnits(sub.withdrawableBTC, 18)}
+                    </td>
+                    <td className="px-5 py-4">
+                      {sub.isActive && (
+                        <Button variant="outline" size="sm" className="text-xs border-primary/30 text-primary hover:bg-primary/10">
+                          Claim
+                        </Button>
+                      )}
+                    </td>
+                  </motion.tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* New Subscription Modal */}
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="sm:max-w-md bg-card border-border">
+          <DialogHeader>
+            <DialogTitle className="text-foreground">New Subscription</DialogTitle>
+            <DialogDescription>Choose a model and configure your subscription.</DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-5 py-2">
+            {/* Model Selection */}
+            <div className="space-y-2">
+              <Label className="text-foreground text-sm font-medium">Select Model</Label>
+              <RadioGroup value={model} onValueChange={(v) => { setModel(v); setStep("form"); }} className="grid grid-cols-2 gap-3">
+                <Label
+                  htmlFor="model-a"
+                  className={`flex flex-col items-center gap-2 rounded-lg border-2 p-4 cursor-pointer transition-colors ${
+                    model === "A" ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                  }`}
+                >
+                  <RadioGroupItem value="A" id="model-a" className="sr-only" />
+                  <Zap className="h-6 w-6 text-primary" />
+                  <span className="text-sm font-semibold text-foreground">Model A</span>
+                  <span className="text-xs text-muted-foreground text-center">USDC Compounding</span>
+                </Label>
+                <Label
+                  htmlFor="model-b"
+                  className={`flex flex-col items-center gap-2 rounded-lg border-2 p-4 cursor-pointer transition-colors ${
+                    model === "B" ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                  }`}
+                >
+                  <RadioGroupItem value="B" id="model-b" className="sr-only" />
+                  <Bitcoin className="h-6 w-6 text-primary" />
+                  <span className="text-sm font-semibold text-foreground">Model B</span>
+                  <span className="text-xs text-muted-foreground text-center">BTC Mining</span>
+                </Label>
+              </RadioGroup>
+            </div>
+
+            {/* Principal */}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <Label className="text-foreground text-sm">Amount (USDC)</Label>
+                <span className="text-xs text-muted-foreground">Balance: {Number(formattedBalance).toLocaleString()}</span>
+              </div>
+              <Input
+                type="number"
+                placeholder="Enter amount"
+                value={principal}
+                onChange={(e) => setPrincipal(e.target.value)}
+                className="bg-secondary/50 border-border"
+              />
+            </div>
+
+            {/* Duration */}
+            <div className="space-y-1.5">
+              <Label className="text-foreground text-sm">Duration</Label>
+              <Select value={duration} onValueChange={setDuration}>
+                <SelectTrigger className="bg-secondary/50 border-border">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {durationOptions.map((d) => (
+                    <SelectItem key={d.value} value={String(d.value)}>{d.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Referral */}
+            <div className="space-y-1.5">
+              <Label className="text-foreground text-sm">Referral Address (optional)</Label>
+              <Input
+                placeholder="0x..."
+                value={referral}
+                onChange={(e) => setReferral(e.target.value)}
+                className="bg-secondary/50 border-border"
+              />
+            </div>
+
+            {/* Model B extras */}
+            {model === "B" && (
+              <div className="space-y-4 rounded-lg border border-border p-3 bg-secondary/20">
+                <div className="space-y-1.5">
+                  <Label className="text-foreground text-sm">Mining Plan</Label>
+                  <Select value={planId} onValueChange={setPlanId}>
+                    <SelectTrigger className="bg-secondary/50 border-border">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {planOptions.map((p) => (
+                        <SelectItem key={p.value} value={String(p.value)}>{p.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <Label className="text-foreground text-sm">Auto-Roll</Label>
+                    <p className="text-xs text-muted-foreground">Re-invest automatically at maturity</p>
+                  </div>
+                  <Switch checked={autoRoll} onCheckedChange={setAutoRoll} />
+                </div>
+              </div>
+            )}
+          </div>
+
+          <DialogFooter className="gap-2 sm:gap-0">
+            {step === "form" && (
+              <Button
+                onClick={handleApprove}
+                disabled={approval.isPending}
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                {approval.isPending ? "Approving..." : "Approve USDC"}
+              </Button>
+            )}
+            {step === "approve" && (
+              <Button disabled className="w-full bg-primary/60 text-primary-foreground">
+                {approval.isConfirming ? "Confirming approval..." : "Waiting for approval..."}
+              </Button>
+            )}
+            {step === "purchase" && (
+              <Button
+                onClick={handlePurchase}
+                disabled={activePurchase.isPending || activePurchase.isConfirming}
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                {activePurchase.isPending
+                  ? "Purchasing..."
+                  : activePurchase.isConfirming
+                  ? "Confirming..."
+                  : `Purchase ${model === "A" ? "USDC Compounding" : "BTC Mining"}`}
+              </Button>
+            )}
+          </DialogFooter>
+
+          {(approval.isError || activePurchase.isError) && (
+            <p className="text-xs text-destructive text-center mt-1">
+              {approval.error?.shortMessage || activePurchase.error?.shortMessage || "Transaction failed"}
+            </p>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
-  </div>
-);
+  );
+};
 
 export default SubscriptionsSection;
