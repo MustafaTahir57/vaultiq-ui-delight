@@ -301,11 +301,13 @@ const SubscriptionsSection = () => {
                   <Label className="text-foreground text-sm">Mining Plan</Label>
                   <Select value={planId} onValueChange={setPlanId}>
                     <SelectTrigger className="bg-secondary/50 border-border">
-                      <SelectValue />
+                      <SelectValue placeholder={plansLoading ? "Loading plans..." : "Select plan"} />
                     </SelectTrigger>
                     <SelectContent>
-                      {planOptions.map((p) => (
-                        <SelectItem key={p.value} value={String(p.value)}>{p.label}</SelectItem>
+                      {plans.map((p) => (
+                        <SelectItem key={p.id} value={String(p.id)}>
+                          {p.name || `Plan ${p.id}`}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
