@@ -1,14 +1,13 @@
 import { motion } from "framer-motion";
 import {
   Shield, ArrowRight, Lock, AlertTriangle,
-  LayoutDashboard, Rocket, Terminal
+  LayoutDashboard, Terminal
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import { useWallet } from "@/contexts/WalletContext";
 import BranchDashboardTab from "@/components/branchManager/BranchDashboardTab";
-import DeployBranchTab from "@/components/branchManager/DeployBranchTab";
 import ProtocolOpsTab from "@/components/branchManager/ProtocolOpsTab";
 
 const BranchManager = () => {
@@ -83,10 +82,6 @@ const BranchManager = () => {
                 <LayoutDashboard className="h-4 w-4" />
                 Branch Dashboard
               </TabsTrigger>
-              <TabsTrigger value="deploy" className="gap-2 data-[state=active]:bg-primary/15 data-[state=active]:text-primary">
-                <Rocket className="h-4 w-4" />
-                Deploy Branch
-              </TabsTrigger>
               <TabsTrigger value="operations" className="gap-2 data-[state=active]:bg-primary/15 data-[state=active]:text-primary">
                 <Terminal className="h-4 w-4" />
                 Protocol Ops
@@ -94,7 +89,6 @@ const BranchManager = () => {
             </TabsList>
 
             <TabsContent value="dashboard"><BranchDashboardTab /></TabsContent>
-            <TabsContent value="deploy"><DeployBranchTab /></TabsContent>
             <TabsContent value="operations"><ProtocolOpsTab /></TabsContent>
           </Tabs>
         </div>

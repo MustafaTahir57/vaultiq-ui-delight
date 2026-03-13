@@ -10,6 +10,7 @@ import PassiveIncomeSection from "@/components/dashboard/PassiveIncomeSection";
 import IncubatorSection from "@/components/dashboard/IncubatorSection";
 import ReferralSystemSection from "@/components/dashboard/ReferralSystemSection";
 import AccountSection from "@/components/dashboard/AccountSection";
+import DeployBranchTab from "@/components/branchManager/DeployBranchTab";
 import { useWallet } from "@/contexts/WalletContext";
 import useRegistrationStatus from "@/hooks/dataFetcher/useRegistrationStatus";
 import { Loader2 } from "lucide-react";
@@ -92,6 +93,7 @@ const Dashboard = () => {
         <Routes>
           <Route index element={<OverviewSection />} />
           <Route path="subscriptions" element={<SubscriptionsSection />} />
+          <Route path="deploy" element={<DeployBranchTab />} />
           <Route path="branch" element={<BranchSection />} />
           <Route path="passive" element={<PassiveIncomeSection />} />
           <Route path="incubator" element={<IncubatorSection />} />
