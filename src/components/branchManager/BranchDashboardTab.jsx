@@ -86,6 +86,7 @@ const BranchDashboardTab = () => {
           ))}
         </div>
       </motion.div>
+      <AddPlanModal open={addPlanOpen} onOpenChange={setAddPlanOpen} />
     </div>
   );
 };

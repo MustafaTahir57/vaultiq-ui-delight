@@ -355,8 +355,6 @@ const SubscriptionsSection = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Add Plan Modal */}
-      <AddPlanModal open={addPlanOpen} onOpenChange={setAddPlanOpen} />
     </div>
   );
 };
