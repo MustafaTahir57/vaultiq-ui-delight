@@ -324,34 +324,24 @@ const SubscriptionsSection = () => {
             )}
           </div>
 
-          <DialogFooter className="gap-2 sm:gap-0">
-            {step === "form" && (
-              <Button
-                onClick={handleApprove}
-                disabled={approval.isPending}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                {approval.isPending ? "Approving..." : "Approve USDC"}
-              </Button>
-            )}
-            {step === "approve" && (
-              <Button disabled className="w-full bg-primary/60 text-primary-foreground">
-                {approval.isConfirming ? "Confirming approval..." : "Waiting for approval..."}
-              </Button>
-            )}
-            {step === "purchase" && (
-              <Button
-                onClick={handlePurchase}
-                disabled={activePurchase.isPending || activePurchase.isConfirming}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                {activePurchase.isPending
-                  ? "Purchasing..."
-                  : activePurchase.isConfirming
-                  ? "Confirming..."
-                  : `Purchase ${model === "A" ? "USDC Compounding" : "BTC Mining"}`}
-              </Button>
-            )}
+          <DialogFooter>
+            <Button
+              onClick={handleSubmit}
+              disabled={approval.isPending || approval.isConfirming || activePurchase.isPending || activePurchase.isConfirming}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              {approval.isPending
+                ? "Approving..."
+                : approval.isConfirming
+                ? "Confirming Approval..."
+                : activePurchase.isPending
+                ? "Purchasing..."
+                : activePurchase.isConfirming
+                ? "Confirming Purchase..."
+                : hasEnoughAllowance
+                ? `Purchase ${model === "A" ? "USDC Compounding" : "BTC Mining"}`
+                : "Approve & Purchase"}
+            </Button>
           </DialogFooter>
 
           {(approval.isError || activePurchase.isError) && (
