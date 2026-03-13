@@ -93,6 +93,7 @@ const Dashboard = () => {
         <Routes>
           <Route index element={<OverviewSection />} />
           <Route path="subscriptions" element={<SubscriptionsSection />} />
+          <Route path="deploy" element={<DeployBranchTab />} />
           <Route path="branch" element={<BranchSection />} />
           <Route path="passive" element={<PassiveIncomeSection />} />
           <Route path="incubator" element={<IncubatorSection />} />
