@@ -33,6 +33,7 @@ import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
+import AddPlanModal from "./AddPlanModal";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
