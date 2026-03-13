@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Wallet, BarChart3, Settings2, Users, Loader2 } from "lucide-react";
+import { Wallet, BarChart3, Settings2, Users, Loader2, Plus } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 import StatCard from "@/components/dashboard/StatCard";
+import AddPlanModal from "@/components/dashboard/AddPlanModal";
 import { wallets } from "./constants";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
 import { useWallet } from "@/contexts/WalletContext";
