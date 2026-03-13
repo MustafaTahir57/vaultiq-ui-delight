@@ -264,6 +264,7 @@ const DeployBranchTab = () => {
             />
           </div>
         </div>
+        </motion.div>
 
       {/* Section 3: ExpiryConfig */}
       <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card p-6">
