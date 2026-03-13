@@ -9,7 +9,7 @@ import { coreConfigFields, expiryConfigFields } from "./constants";
 import { toast } from "sonner";
 
 const defaultCore = {
-  liquidityAllocation: 7200,
+  liquidityAllocation: 7400,
   directBonusPercent: 500,
   branchCommissionPercent: 300,
   feePercent: 800,
@@ -19,7 +19,6 @@ const defaultCore = {
   pool3Percent: 150,
   pool4Percent: 150,
   passiveIncomePercent: 200,
-  cancellationPercent: 200,
 };
 
 const defaultExpiry = {
@@ -40,6 +39,7 @@ const DeployBranchTab = () => {
   const [foundersWallet, setFoundersWallet] = useState("");
   const [nameError, setNameError] = useState("");
   const [coreConfig, setCoreConfig] = useState(defaultCore);
+  const [cancellationPercent, setCancellationPercent] = useState(200);
   const [expiryConfig, setExpiryConfig] = useState(defaultExpiry);
 
   const coreTotal = useMemo(
@@ -91,7 +91,7 @@ const DeployBranchTab = () => {
       branchName: branchName.trim(),
       branchWallet,
       foundersWallet,
-      coreConfig,
+      coreConfig: { ...coreConfig, cancellationPercent },
       expiryConfig,
     });
   };
@@ -247,6 +247,23 @@ const DeployBranchTab = () => {
           ))}
         </div>
       </motion.div>
+
+      {/* Cancellation Percent (separate from CoreConfig) */}
+      <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="glass-card p-6">
+        <h3 className="font-display font-semibold text-foreground mb-1">Cancellation Fee</h3>
+        <p className="text-xs text-muted-foreground mb-4">Separate from CoreConfig. Deducted on early cancellation.</p>
+        <div className="max-w-xs">
+          <div className="bg-secondary/50 border border-border rounded-lg p-3">
+            <label className="text-xs text-muted-foreground mb-1 block">Cancellation %</label>
+            <input
+              type="number"
+              value={cancellationPercent}
+              onChange={(e) => setCancellationPercent(e.target.value === "" ? "" : Number(e.target.value) || 0)}
+              placeholder="200 (2%)"
+              className="w-full bg-transparent text-sm text-foreground font-mono placeholder:text-muted-foreground/60 outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            />
+          </div>
+        </div>
 
       {/* Section 3: ExpiryConfig */}
       <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card p-6">
