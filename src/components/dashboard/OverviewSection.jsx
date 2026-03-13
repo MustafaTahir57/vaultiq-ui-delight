@@ -4,7 +4,6 @@ import StatCard from "./StatCard";
 import StatusBadge from "./StatusBadge";
 import { Progress } from "@/components/ui/progress";
 import PoolCard from "./PoolCard";
-import { Branch_Address } from "@/constants/contracts";
 import { useWallet } from "@/contexts/WalletContext";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useFeeTreasuryBalances from "@/hooks/dataFetcher/useFeeTreasuryBalances";
@@ -26,11 +25,11 @@ const recentActivity = [
 const POOL_IDS = [1, 2, 3, 4];
 
 const OverviewSection = () => {
-  const { address } = useWallet();
+  const { address, userBranchAddress } = useWallet();
   const { activeCount, totalRewards, isLoading: subsLoading } = useUserSubscriptions(address);
   const { usdcBalance, isLoading: treasuryLoading } = useFeeTreasuryBalances();
   const { totalPassiveQualifiedSales, isQualifiedAny, isLoading: passiveLoading } = useUserPassiveIncome(address);
-  const branchAddress = Branch_Address; // TODO: replace with user's actual branch
+  const branchAddress = userBranchAddress;
 
   return (
     <div className="space-y-6">

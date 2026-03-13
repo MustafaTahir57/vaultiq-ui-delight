@@ -3,6 +3,7 @@ import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
 import { ACTIVE_CHAIN_ID } from "@/constants/contracts";
 import { toast } from "sonner";
 import useUserBranches from "@/hooks/dataFetcher/useUserBranches";
+import useUserBranch from "@/hooks/dataFetcher/useUserBranch";
 
 const WalletContext = createContext(null);
 
@@ -12,6 +13,7 @@ export const WalletProvider = ({ children }) => {
   const { disconnect: wagmiDisconnect } = useDisconnect();
   const { switchChain } = useSwitchChain();
   const { userBranches, isBranchManager, isLoading: branchesLoading } = useUserBranches(address);
+  const { branchAddress: userBranchAddress, isLoading: branchLoading } = useUserBranch(address);
 
   const [justConnected, setJustConnected] = useState(false);
   const [wasConnected, setWasConnected] = useState(false);
@@ -73,6 +75,8 @@ export const WalletProvider = ({ children }) => {
         isBranchManager,
         branchesLoading,
         userBranches,
+        userBranchAddress,
+        branchLoading,
         address,
         chain,
         shortAddress,

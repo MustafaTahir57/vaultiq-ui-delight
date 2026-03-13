@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import StatCard from "@/components/dashboard/StatCard";
 import { wallets } from "./constants";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
-import { Branch_Address } from "@/constants/contracts";
+import { useWallet } from "@/contexts/WalletContext";
 
 const configFieldMap = [
   { label: "Branch Name", key: "branchName" },
@@ -24,8 +24,8 @@ const truncateAddress = (addr) => {
 };
 
 const BranchDashboardTab = () => {
-  // TODO: Replace with user's actual branch address once the lookup function is available
-  const branchAddress = Branch_Address;
+  const { userBranchAddress } = useWallet();
+  const branchAddress = userBranchAddress;
   const config = useBranchConfig(branchAddress);
 
   return (
