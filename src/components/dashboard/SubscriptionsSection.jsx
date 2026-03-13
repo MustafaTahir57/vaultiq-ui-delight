@@ -49,6 +49,7 @@ const SubscriptionsSection = () => {
   const { address, userBranchAddress } = useWallet();
   const { subscriptions, activeCount, totalRewards, isLoading } = useUserSubscriptions(address);
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
+  const { plans, isLoading: plansLoading } = useBranchPlans();
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(USDT_Address, address, userBranchAddress);
 
   const [modalOpen, setModalOpen] = useState(false);
