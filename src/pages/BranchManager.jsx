@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {
   Shield, ArrowRight, Lock, AlertTriangle,
-  LayoutDashboard, Rocket, Terminal
+  LayoutDashboard, Terminal
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
