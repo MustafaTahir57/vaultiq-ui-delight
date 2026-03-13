@@ -29,6 +29,7 @@ import usePurchaseSubscription from "@/hooks/dataSender/usePurchaseSubscription"
 import usePurchaseSubscriptionWithPlan from "@/hooks/dataSender/usePurchaseSubscriptionWithPlan";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
+import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
 
@@ -52,6 +53,7 @@ const SubscriptionsSection = () => {
   const { address, userBranchAddress } = useWallet();
   const { subscriptions, activeCount, totalRewards, isLoading } = useUserSubscriptions(address);
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
+  const { allowance, refetch: refetchAllowance } = useTokenAllowance(USDT_Address, address, userBranchAddress);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [model, setModel] = useState("A");
@@ -60,7 +62,6 @@ const SubscriptionsSection = () => {
   const [referral, setReferral] = useState("");
   const [planId, setPlanId] = useState("1");
   const [autoRoll, setAutoRoll] = useState(false);
-  const [step, setStep] = useState("form"); // form | approve | purchase
 
   // Hooks
   const approval = useUSDTApproval();
@@ -69,13 +70,17 @@ const SubscriptionsSection = () => {
 
   const activePurchase = model === "A" ? modelA : modelB;
 
-  // After approval confirmed, move to purchase step
+  const parsedAmount = principal && Number(principal) > 0 ? parseUnits(principal, 18) : BigInt(0);
+  const hasEnoughAllowance = allowance !== undefined && parsedAmount > 0 && allowance >= parsedAmount;
+
+  // After approval confirmed, automatically trigger purchase
   useEffect(() => {
-    if (approval.isConfirmed && step === "approve") {
-      setStep("purchase");
-      toast.success("Approval confirmed! You can now purchase.");
+    if (approval.isConfirmed) {
+      toast.success("Approval confirmed! Purchasing...");
+      refetchAllowance();
+      executePurchase();
     }
-  }, [approval.isConfirmed, step]);
+  }, [approval.isConfirmed]);
 
   // After purchase confirmed, close modal
   useEffect(() => {
@@ -92,7 +97,6 @@ const SubscriptionsSection = () => {
     setReferral("");
     setPlanId("1");
     setAutoRoll(false);
-    setStep("form");
     setModel("A");
     approval.reset();
     modelA.reset();
@@ -104,21 +108,7 @@ const SubscriptionsSection = () => {
     setModalOpen(true);
   };
 
-  const handleApprove = () => {
-    if (!principal || Number(principal) <= 0) {
-      toast.error("Enter a valid amount");
-      return;
-    }
-    if (!userBranchAddress) {
-      toast.error("No branch found for your account");
-      return;
-    }
-    const amount = parseUnits(principal, 18);
-    approval.approve(USDT_Address, userBranchAddress, amount);
-    setStep("approve");
-  };
-
-  const handlePurchase = () => {
+  const executePurchase = () => {
     const amount = parseUnits(principal, 18);
     const dur = BigInt(duration);
     const ref = referral && referral.startsWith("0x") ? referral : ZERO_ADDRESS;
@@ -127,6 +117,26 @@ const SubscriptionsSection = () => {
       modelA.purchase(userBranchAddress, amount, dur, ref);
     } else {
       modelB.purchase(userBranchAddress, amount, dur, ref, Number(planId), autoRoll);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (!principal || Number(principal) <= 0) {
+      toast.error("Enter a valid amount");
+      return;
+    }
+    if (!userBranchAddress) {
+      toast.error("No branch found for your account");
+      return;
+    }
+
+    if (hasEnoughAllowance) {
+      // Already approved, purchase directly
+      executePurchase();
+    } else {
+      // Need approval first, purchase will auto-trigger via useEffect
+      const amount = parseUnits(principal, 18);
+      approval.approve(USDT_Address, userBranchAddress, amount);
     }
   };
 
@@ -314,34 +324,24 @@ const SubscriptionsSection = () => {
             )}
           </div>
 
-          <DialogFooter className="gap-2 sm:gap-0">
-            {step === "form" && (
-              <Button
-                onClick={handleApprove}
-                disabled={approval.isPending}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                {approval.isPending ? "Approving..." : "Approve USDC"}
-              </Button>
-            )}
-            {step === "approve" && (
-              <Button disabled className="w-full bg-primary/60 text-primary-foreground">
-                {approval.isConfirming ? "Confirming approval..." : "Waiting for approval..."}
-              </Button>
-            )}
-            {step === "purchase" && (
-              <Button
-                onClick={handlePurchase}
-                disabled={activePurchase.isPending || activePurchase.isConfirming}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                {activePurchase.isPending
-                  ? "Purchasing..."
-                  : activePurchase.isConfirming
-                  ? "Confirming..."
-                  : `Purchase ${model === "A" ? "USDC Compounding" : "BTC Mining"}`}
-              </Button>
-            )}
+          <DialogFooter>
+            <Button
+              onClick={handleSubmit}
+              disabled={approval.isPending || approval.isConfirming || activePurchase.isPending || activePurchase.isConfirming}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              {approval.isPending
+                ? "Approving..."
+                : approval.isConfirming
+                ? "Confirming Approval..."
+                : activePurchase.isPending
+                ? "Purchasing..."
+                : activePurchase.isConfirming
+                ? "Confirming Purchase..."
+                : hasEnoughAllowance
+                ? `Purchase ${model === "A" ? "USDC Compounding" : "BTC Mining"}`
+                : "Approve & Purchase"}
+            </Button>
           </DialogFooter>
 
           {(approval.isError || activePurchase.isError) && (
