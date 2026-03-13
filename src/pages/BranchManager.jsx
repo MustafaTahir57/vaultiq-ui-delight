@@ -82,10 +82,6 @@ const BranchManager = () => {
                 <LayoutDashboard className="h-4 w-4" />
                 Branch Dashboard
               </TabsTrigger>
-              <TabsTrigger value="deploy" className="gap-2 data-[state=active]:bg-primary/15 data-[state=active]:text-primary">
-                <Rocket className="h-4 w-4" />
-                Deploy Branch
-              </TabsTrigger>
               <TabsTrigger value="operations" className="gap-2 data-[state=active]:bg-primary/15 data-[state=active]:text-primary">
                 <Terminal className="h-4 w-4" />
                 Protocol Ops
@@ -93,7 +89,6 @@ const BranchManager = () => {
             </TabsList>
 
             <TabsContent value="dashboard"><BranchDashboardTab /></TabsContent>
-            <TabsContent value="deploy"><DeployBranchTab /></TabsContent>
             <TabsContent value="operations"><ProtocolOpsTab /></TabsContent>
           </Tabs>
         </div>
