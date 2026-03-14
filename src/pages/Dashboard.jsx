@@ -30,7 +30,7 @@ const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(isMobile);
   const { isConnected, isWrongChain, isBranchManager, branchesLoading, justConnected, clearJustConnected, address } = useWallet();
   const { isRegistered, isLoading: registrationLoading, refetch: refetchRegistration } = useRegistrationStatus(address);
-  const navigate = useNavigate();
+  
 
   // Auto-collapse on mobile
   useEffect(() => {
