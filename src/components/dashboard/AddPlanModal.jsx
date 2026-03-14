@@ -20,7 +20,9 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import useAddSubscriptionPlan from "@/hooks/dataSender/useAddSubscriptionPlan";
+import useUserBranches from "@/hooks/dataFetcher/useUserBranches";
 import { HashTreasury_Address, FeeTreasury_Address, LeadershipPool_Address } from "@/constants/contracts";
+import { useAccount } from "wagmi";
 import { toast } from "sonner";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -46,11 +48,13 @@ const defaultExpiry = {
 };
 
 const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
+  const { address } = useAccount();
+  const { userBranches, isLoading: branchesLoading } = useUserBranches(address);
   const { addPlan, isPending, isConfirming, isConfirmed, isError, error, reset } =
     useAddSubscriptionPlan();
 
   const [name, setName] = useState("");
-  const [modelType, setModelType] = useState("1"); // 1 = ModelB
+  const [selectedBranch, setSelectedBranch] = useState("");
   const [core, setCore] = useState(defaultCore);
   const [expiry, setExpiry] = useState(defaultExpiry);
   const [hashTreasury, setHashTreasury] = useState(HashTreasury_Address || ZERO_ADDRESS);
@@ -75,7 +79,7 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
 
   const resetForm = () => {
     setName("");
-    setModelType("1");
+    setSelectedBranch("");
     setCore(defaultCore);
     setExpiry(defaultExpiry);
     setHashTreasury(HashTreasury_Address || ZERO_ADDRESS);
@@ -93,10 +97,14 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
       toast.error("Plan name is required");
       return;
     }
+    if (!selectedBranch) {
+      toast.error("Please select a branch");
+      return;
+    }
 
     const plan = {
       name,
-      modelType: Number(modelType),
+      modelType: 1, // Model B (BTC Mining)
       core: {
         liquidityAllocation: BigInt(core.liquidityAllocation || 0),
         directBonusPercent: BigInt(core.directBonusPercent || 0),
@@ -121,7 +129,7 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
       active,
     };
 
-    addPlan(plan);
+    addPlan(plan, selectedBranch);
   };
 
   const coreFields = [
@@ -155,29 +163,32 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
         </DialogHeader>
 
         <div className="space-y-5 py-2">
-          {/* Name & Model Type */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1.5">
-              <Label className="text-foreground text-sm">Plan Name</Label>
-              <Input
-                placeholder="e.g. BTC Mining Pro"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="bg-secondary/50 border-border"
-              />
-            </div>
-            <div className="space-y-1.5">
-              <Label className="text-foreground text-sm">Model Type</Label>
-              <Select value={modelType} onValueChange={setModelType}>
-                <SelectTrigger className="bg-secondary/50 border-border">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="0">Model A (USDC)</SelectItem>
-                  <SelectItem value="1">Model B (BTC Mining)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+          {/* Branch Selection */}
+          <div className="space-y-1.5">
+            <Label className="text-foreground text-sm">Select Branch</Label>
+            <Select value={selectedBranch} onValueChange={setSelectedBranch} disabled={branchesLoading}>
+              <SelectTrigger className="bg-secondary/50 border-border">
+                <SelectValue placeholder={branchesLoading ? "Loading branches..." : "Select a branch"} />
+              </SelectTrigger>
+              <SelectContent>
+                {userBranches.map((addr, idx) => (
+                  <SelectItem key={addr} value={addr}>
+                    Branch {idx + 1} — {addr.slice(0, 6)}...{addr.slice(-4)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Plan Name */}
+          <div className="space-y-1.5">
+            <Label className="text-foreground text-sm">Plan Name</Label>
+            <Input
+              placeholder="e.g. BTC Mining Pro"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="bg-secondary/50 border-border"
+            />
           </div>
 
           {/* Core Config */}
