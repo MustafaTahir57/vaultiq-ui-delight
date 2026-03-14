@@ -79,7 +79,7 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
 
   const resetForm = () => {
     setName("");
-    setModelType("1");
+    setSelectedBranch("");
     setCore(defaultCore);
     setExpiry(defaultExpiry);
     setHashTreasury(HashTreasury_Address || ZERO_ADDRESS);
