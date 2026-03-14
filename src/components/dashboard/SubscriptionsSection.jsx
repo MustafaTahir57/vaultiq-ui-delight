@@ -184,7 +184,7 @@ const SubscriptionsSection = () => {
                 </tr>
               ) : subscriptions.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-5 py-8 text-center text-muted-foreground text-sm">No subscriptions found. Click "New Subscription" to get started.</td>
+                  <td colSpan={7} className="px-5 py-8 text-center text-muted-foreground text-sm">No subscriptions found. Click "New Subscription" to get started.</td>
                 </tr>
               ) : (
                 subscriptions.map((sub, i) => (
