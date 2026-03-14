@@ -3,6 +3,7 @@ import { GitBranch, Wallet, Settings2, BarChart3, Users, Calendar, Loader2 } fro
 import StatCard from "./StatCard";
 import { Progress } from "@/components/ui/progress";
 import useBranchStats from "@/hooks/dataFetcher/useBranchStats";
+import useTotalDistributed from "@/hooks/dataFetcher/useTotalDistributed";
 import { useWallet } from "@/contexts/WalletContext";
 
 const BranchSection = () => {

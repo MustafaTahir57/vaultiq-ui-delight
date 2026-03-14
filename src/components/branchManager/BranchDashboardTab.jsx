@@ -10,6 +10,7 @@ import { useAccount } from "wagmi";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
 import useUserBranches from "../../hooks/dataFetcher/useUserBranches";
 import useBranchStats from "@/hooks/dataFetcher/useBranchStats";
+import useTotalDistributed from "@/hooks/dataFetcher/useTotalDistributed";
 
 const configFieldMap = [
   { label: "Branch Name", key: "branchName" },
