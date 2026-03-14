@@ -61,7 +61,7 @@ const BranchDashboardTab = () => {
     {
       label: "Passive Income Pool",
       desc: "Passive income allocation",
-      value: "$0",
+      value: stats.passivePoolBalance,
       pct: 0,
     },
   ];
