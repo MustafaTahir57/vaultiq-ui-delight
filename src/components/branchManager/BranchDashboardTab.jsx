@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Wallet, BarChart3, Settings2, Users, Loader2, Plus } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import StatCard from "@/components/dashboard/StatCard";
 import AddPlanModal from "@/components/dashboard/AddPlanModal";
 import { wallets } from "./constants";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
-import { useWallet } from "@/contexts/WalletContext";
 import useUserBranches from "../../hooks/dataFetcher/useUserBranches";
 import { useAccount } from "wagmi";
 
@@ -29,11 +29,19 @@ const truncateAddress = (addr) => {
 };
 
 const BranchDashboardTab = () => {
-  const {address} = useAccount();
+  const { address } = useAccount();
   const { userBranches: userBranchAddresses } = useUserBranches(address);
-  console.log("useBranchAddresse", userBranchAddresses)
-  const config = useBranchConfig(userBranchAddresses[0]);
+  const [selectedBranch, setSelectedBranch] = useState("");
   const [addPlanOpen, setAddPlanOpen] = useState(false);
+
+  // Auto-select first branch when loaded
+  useEffect(() => {
+    if (userBranchAddresses?.length > 0 && !selectedBranch) {
+      setSelectedBranch(userBranchAddresses[0]);
+    }
+  }, [userBranchAddresses, selectedBranch]);
+
+  const config = useBranchConfig(selectedBranch || undefined);
 
   return (
     <div className="space-y-6">
