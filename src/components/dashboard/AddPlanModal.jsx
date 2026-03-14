@@ -163,29 +163,32 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
         </DialogHeader>
 
         <div className="space-y-5 py-2">
-          {/* Name & Model Type */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1.5">
-              <Label className="text-foreground text-sm">Plan Name</Label>
-              <Input
-                placeholder="e.g. BTC Mining Pro"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="bg-secondary/50 border-border"
-              />
-            </div>
-            <div className="space-y-1.5">
-              <Label className="text-foreground text-sm">Model Type</Label>
-              <Select value={modelType} onValueChange={setModelType}>
-                <SelectTrigger className="bg-secondary/50 border-border">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="0">Model A (USDC)</SelectItem>
-                  <SelectItem value="1">Model B (BTC Mining)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+          {/* Branch Selection */}
+          <div className="space-y-1.5">
+            <Label className="text-foreground text-sm">Select Branch</Label>
+            <Select value={selectedBranch} onValueChange={setSelectedBranch} disabled={branchesLoading}>
+              <SelectTrigger className="bg-secondary/50 border-border">
+                <SelectValue placeholder={branchesLoading ? "Loading branches..." : "Select a branch"} />
+              </SelectTrigger>
+              <SelectContent>
+                {userBranches.map((addr, idx) => (
+                  <SelectItem key={addr} value={addr}>
+                    Branch {idx + 1} — {addr.slice(0, 6)}...{addr.slice(-4)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Plan Name */}
+          <div className="space-y-1.5">
+            <Label className="text-foreground text-sm">Plan Name</Label>
+            <Input
+              placeholder="e.g. BTC Mining Pro"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="bg-secondary/50 border-border"
+            />
           </div>
 
           {/* Core Config */}
