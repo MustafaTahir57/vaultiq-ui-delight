@@ -48,11 +48,13 @@ const defaultExpiry = {
 };
 
 const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
+  const { address } = useAccount();
+  const { userBranches, isLoading: branchesLoading } = useUserBranches(address);
   const { addPlan, isPending, isConfirming, isConfirmed, isError, error, reset } =
     useAddSubscriptionPlan();
 
   const [name, setName] = useState("");
-  const [modelType, setModelType] = useState("1"); // 1 = ModelB
+  const [selectedBranch, setSelectedBranch] = useState("");
   const [core, setCore] = useState(defaultCore);
   const [expiry, setExpiry] = useState(defaultExpiry);
   const [hashTreasury, setHashTreasury] = useState(HashTreasury_Address || ZERO_ADDRESS);
