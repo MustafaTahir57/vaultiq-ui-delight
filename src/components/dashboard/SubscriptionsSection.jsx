@@ -198,6 +198,10 @@ const SubscriptionsSection = () => {
                     <td className="px-5 py-4 text-sm font-medium text-foreground font-mono">
                       {sub.branch.slice(0, 6)}...{sub.branch.slice(-4)}
                     </td>
+                    <td className="px-5 py-4">
+                      <StatusBadge status={Number(sub.planId) === 0 ? "Model A" : "Model B"} />
+                    </td>
+                    </td>
                     <td className="px-5 py-4 text-sm text-foreground">
                       {formatUnits(sub.principal, 18)} USDC
                     </td>
