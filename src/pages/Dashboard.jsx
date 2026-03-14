@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AppSidebar from "@/components/dashboard/AppSidebar";
 import ConnectWalletScreen from "@/components/dashboard/ConnectWalletScreen";
 import ActivationFeeScreen from "@/components/dashboard/ActivationFeeScreen";
@@ -30,22 +30,19 @@ const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(isMobile);
   const { isConnected, isWrongChain, isBranchManager, branchesLoading, justConnected, clearJustConnected, address } = useWallet();
   const { isRegistered, isLoading: registrationLoading, refetch: refetchRegistration } = useRegistrationStatus(address);
-  const navigate = useNavigate();
+  
 
   // Auto-collapse on mobile
   useEffect(() => {
     if (isMobile) setCollapsed(true);
   }, [isMobile]);
 
-  // Redirect branch managers on first connection
+  // Clear justConnected flag
   useEffect(() => {
-    if (justConnected && isConnected && !branchesLoading && isBranchManager) {
-      clearJustConnected();
-      navigate("/branch-manager", { replace: true });
-    } else if (justConnected && !branchesLoading) {
+    if (justConnected && !branchesLoading) {
       clearJustConnected();
     }
-  }, [justConnected, isConnected, isBranchManager, branchesLoading, navigate, clearJustConnected]);
+  }, [justConnected, branchesLoading, clearJustConnected]);
 
   if (!isConnected) {
     return (

@@ -9,6 +9,7 @@ import {
   ChevronLeft,
   Users,
   LogOut,
+  Shield,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
@@ -27,7 +28,7 @@ const navItems = [
 
 const AppSidebar = ({ collapsed, onToggle, isMobile }) => {
   const location = useLocation();
-  const { shortAddress, disconnect } = useWallet();
+  const { shortAddress, disconnect, isBranchManager } = useWallet();
 
   return (
     <aside
@@ -85,6 +86,30 @@ const AppSidebar = ({ collapsed, onToggle, isMobile }) => {
           );
         })}
       </nav>
+
+      {/* Branch Manager Button */}
+      {isBranchManager && !collapsed && (
+        <div className="px-2 pb-2">
+          <Link
+            to="/branch-manager"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-all"
+          >
+            <Shield className="h-4 w-4 shrink-0" />
+            <span>Branch Manager</span>
+          </Link>
+        </div>
+      )}
+      {isBranchManager && collapsed && (
+        <div className="px-2 pb-2 flex justify-center">
+          <Link
+            to="/branch-manager"
+            className="p-2 rounded-lg text-primary bg-primary/10 hover:bg-primary/20 transition-colors"
+            title="Branch Manager"
+          >
+            <Shield className="h-4 w-4" />
+          </Link>
+        </div>
+      )}
 
       {/* Footer */}
       {!collapsed && (
