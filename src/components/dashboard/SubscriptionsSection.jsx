@@ -211,11 +211,36 @@ const SubscriptionsSection = () => {
                       {formatUnits(sub.withdrawableBTC, 18)}
                     </td>
                     <td className="px-5 py-4">
-                      {sub.isActive && (
-                        <Button variant="outline" size="sm" className="text-xs border-primary/30 text-primary hover:bg-primary/10">
-                          Claim
-                        </Button>
-                      )}
+                      <div className="flex gap-2">
+                        {sub.isActive && (
+                          <>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs border-primary/30 text-primary hover:bg-primary/10"
+                              disabled={claimRewards.isPending || claimRewards.isConfirming || claimBTC.isPending || claimBTC.isConfirming}
+                              onClick={() => {
+                                if (Number(sub.planId) === 0) {
+                                  claimRewards.claim(sub.branch, sub.index);
+                                } else {
+                                  claimBTC.claim(sub.branch, sub.index);
+                                }
+                              }}
+                            >
+                              {Number(sub.planId) === 0 ? "Claim USDC" : "Claim BTC"}
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs border-destructive/30 text-destructive hover:bg-destructive/10"
+                              disabled={cancelSub.isPending || cancelSub.isConfirming}
+                              onClick={() => cancelSub.cancel(sub.branch, sub.index)}
+                            >
+                              {cancelSub.isPending || cancelSub.isConfirming ? "Cancelling..." : "Cancel"}
+                            </Button>
+                          </>
+                        )}
+                      </div>
                     </td>
                   </motion.tr>
                 ))
