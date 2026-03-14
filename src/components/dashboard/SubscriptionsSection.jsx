@@ -69,6 +69,9 @@ const SubscriptionsSection = () => {
   const approval = useUSDTApproval();
   const modelA = usePurchaseSubscription();
   const modelB = usePurchaseSubscriptionWithPlan();
+  const claimRewards = useClaimRewards();
+  const claimBTC = useClaimBTC();
+  const cancelSub = useCancelSubscription();
 
   const activePurchase = model === "A" ? modelA : modelB;
 
