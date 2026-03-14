@@ -9,6 +9,7 @@ import { useWallet } from "@/contexts/WalletContext";
 const BranchSection = () => {
   const { userBranchAddress } = useWallet();
   const stats = useBranchStats(userBranchAddress || undefined);
+  const { totalDistributed } = useTotalDistributed(userBranchAddress || undefined);
 
   const wallets = [
     { label: "Trading Wallet", desc: "USDT held by branch contract", value: stats.tradingWalletBalance, pct: 0 },
