@@ -27,9 +27,9 @@ const useAddSubscriptionPlan = () => {
     hash,
   });
 
-  const addPlan = (plan) => {
+  const addPlan = (plan, branchAddress) => {
     writeContract({
-      address: BranchExtension_Address,
+      address: branchAddress || BranchExtension_Address,
       abi: BranchExtensionABI,
       functionName: "addSubscriptionPlan",
       args: [plan],
