@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useReadContracts, useReadContract } from "wagmi";
 import { BranchExtensionABI } from "@/constants/abis";
 import { ERC20ABI } from "@/constants/erc20Abi";
@@ -48,6 +49,31 @@ const useBranchStats = (branchAddress) => {
     query: { enabled: !!branchWallet },
   });
 
+  // Passive pool: sum passiveQueuedByMonth(1..currentMonth)
+  const monthCount = currentMonth !== undefined ? Number(currentMonth) : 0;
+  const passiveContracts = useMemo(() => {
+    if (!branchAddress || monthCount <= 0) return [];
+    return Array.from({ length: monthCount }, (_, i) => ({
+      address: branchAddress,
+      abi: BranchExtensionABI,
+      functionName: "passiveQueuedByMonth",
+      args: [i + 1],
+    }));
+  }, [branchAddress, monthCount]);
+
+  const { data: passiveData, isLoading: passiveLoading } = useReadContracts({
+    contracts: passiveContracts,
+    query: { enabled: passiveContracts.length > 0 },
+  });
+
+  const passivePoolTotal = useMemo(() => {
+    if (!passiveData) return 0n;
+    return passiveData.reduce((sum, item) => {
+      if (item?.status === "success" && item.result) return sum + BigInt(item.result);
+      return sum;
+    }, 0n);
+  }, [passiveData]);
+
   const formatUSDT = (val) => {
     if (val === undefined || val === null) return "—";
     return `$${parseFloat(formatUnits(val, 18)).toLocaleString()}`;
@@ -60,9 +86,11 @@ const useBranchStats = (branchAddress) => {
     weeklyPerformance: weeklyPerfData !== undefined ? `${weeklyPerfData.toString()}%` : "—",
     tradingWalletBalance: formatUSDT(tradingBalance),
     branchWalletBalance: formatUSDT(branchWalletBalance),
+    passivePoolBalance: formatUSDT(passivePoolTotal),
     tradingWalletRaw: tradingBalance,
     branchWalletRaw: branchWalletBalance,
-    isLoading: batchLoading || perfLoading || tradingLoading || walletLoading,
+    passivePoolRaw: passivePoolTotal,
+    isLoading: batchLoading || perfLoading || tradingLoading || walletLoading || passiveLoading,
   };
 };
 

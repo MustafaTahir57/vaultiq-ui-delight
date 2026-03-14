@@ -14,7 +14,7 @@ const BranchSection = () => {
   const wallets = [
     { label: "Trading Wallet", desc: "USDT held by branch contract", value: stats.tradingWalletBalance, pct: 0 },
     { label: "Branch Wallet", desc: "USDT held by branch wallet", value: stats.branchWalletBalance, pct: 0 },
-    { label: "Passive Income Pool", desc: "Passive income allocation", value: "$0", pct: 0 },
+    { label: "Passive Income Pool", desc: "Passive income allocation", value: stats.passivePoolBalance, pct: 0 },
   ];
 
   return (
