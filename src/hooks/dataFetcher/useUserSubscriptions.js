@@ -1,21 +1,21 @@
 import { useMemo } from "react";
 import { useReadContracts } from "wagmi";
 import { BranchABI } from "@/constants/abis";
-import useUserBranch from "./useUserBranch";
+import useUserSubscriptionCount from "./useUserSubscriptionCount";
 
-const useUserSubscriptions = (userAddress, maxCount = 20) => {
-  const { branchAddress, isLoading: branchLoading } = useUserBranch(userAddress);
+const useUserSubscriptions = (userAddress) => {
+  const { count: subCount, branchAddress, isLoading: countLoading } = useUserSubscriptionCount(userAddress);
 
   const contracts = useMemo(() => {
-    if (!userAddress || !branchAddress) return [];
+    if (!userAddress || !branchAddress || subCount === 0) return [];
 
-    return Array.from({ length: maxCount }, (_, i) => ({
+    return Array.from({ length: subCount }, (_, i) => ({
       address: branchAddress,
       abi: BranchABI,
       functionName: "userSubscriptions",
       args: [userAddress, BigInt(i)],
     }));
-  }, [userAddress, branchAddress, maxCount]);
+  }, [userAddress, branchAddress, subCount]);
 
   const { data, isLoading, isError, refetch } = useReadContracts({
     contracts,
@@ -31,7 +31,7 @@ const useUserSubscriptions = (userAddress, maxCount = 20) => {
     let activeCount = 0;
     let totalRewards = BigInt(0);
 
-    for (let i = 0; i < maxCount; i++) {
+    for (let i = 0; i < subCount; i++) {
       const result = data[i];
       if (result?.status !== "success" || !result.result) continue;
 
@@ -72,11 +72,11 @@ const useUserSubscriptions = (userAddress, maxCount = 20) => {
     }
 
     return { activeCount, totalRewards, subscriptions: allSubs };
-  }, [data, branchAddress, maxCount]);
+  }, [data, branchAddress, subCount]);
 
   return {
     ...stats,
-    isLoading: branchLoading || isLoading,
+    isLoading: countLoading || isLoading,
     isError,
     refetch,
   };
