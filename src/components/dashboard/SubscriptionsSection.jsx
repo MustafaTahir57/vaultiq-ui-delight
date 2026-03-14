@@ -31,6 +31,9 @@ import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
 import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
+import useClaimRewards from "@/hooks/dataSender/useClaimRewards";
+import useClaimBTC from "@/hooks/dataSender/useClaimBTC";
+import useCancelSubscription from "@/hooks/dataSender/useCancelSubscription";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
 
