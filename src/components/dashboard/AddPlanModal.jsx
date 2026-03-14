@@ -28,23 +28,23 @@ import { toast } from "sonner";
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const defaultCore = {
-  liquidityAllocation: "",
-  directBonusPercent: "",
-  branchCommissionPercent: "",
-  feePercent: "",
-  foundersPercent: "",
-  pool1Percent: "",
-  pool2Percent: "",
-  pool3Percent: "",
-  pool4Percent: "",
-  passiveIncomePercent: "",
-  cancellationPercent: "",
+  liquidityAllocation: "7200",
+  directBonusPercent: "500",
+  branchCommissionPercent: "300",
+  feePercent: "800",
+  foundersPercent: "200",
+  pool1Percent: "150",
+  pool2Percent: "150",
+  pool3Percent: "150",
+  pool4Percent: "150",
+  passiveIncomePercent: "200",
+  cancellationPercent: "200",
 };
 
 const defaultExpiry = {
-  feePercent: "",
-  branchPercent: "",
-  passiveIncomePercent: "",
+  feePercent: "4000",
+  branchPercent: "4000",
+  passiveIncomePercent: "2000",
 };
 
 const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
