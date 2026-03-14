@@ -53,6 +53,24 @@ const BranchDashboardTab = () => {
         </div>
       </div>
 
+      {userBranchAddresses?.length > 1 && (
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-muted-foreground whitespace-nowrap">Active Branch:</span>
+          <Select value={selectedBranch} onValueChange={setSelectedBranch}>
+            <SelectTrigger className="w-full sm:w-[280px] bg-secondary/50 border-border">
+              <SelectValue placeholder="Select a branch" />
+            </SelectTrigger>
+            <SelectContent>
+              {userBranchAddresses.map((addr, i) => (
+                <SelectItem key={addr} value={addr}>
+                  Branch {i + 1} — {truncateAddress(addr)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+
       <div className="flex justify-end">
         <Button onClick={() => setAddPlanOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90">
           <Plus className="h-4 w-4 mr-2" /> Add Subscription Plan
