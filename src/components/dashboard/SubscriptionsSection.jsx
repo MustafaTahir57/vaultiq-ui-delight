@@ -31,6 +31,9 @@ import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
 import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
+import useClaimRewards from "@/hooks/dataSender/useClaimRewards";
+import useClaimBTC from "@/hooks/dataSender/useClaimBTC";
+import useCancelSubscription from "@/hooks/dataSender/useCancelSubscription";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
 
@@ -66,6 +69,9 @@ const SubscriptionsSection = () => {
   const approval = useUSDTApproval();
   const modelA = usePurchaseSubscription();
   const modelB = usePurchaseSubscriptionWithPlan();
+  const claimRewards = useClaimRewards();
+  const claimBTC = useClaimBTC();
+  const cancelSub = useCancelSubscription();
 
   const activePurchase = model === "A" ? modelA : modelB;
 
@@ -166,7 +172,7 @@ const SubscriptionsSection = () => {
           <table className="w-full">
             <thead>
               <tr className="border-b border-border/50">
-                {["Branch", "Principal", "Status", "Rewards", "Withdrawable BTC", ""].map((h) => (
+                {["Branch", "Model", "Principal", "Status", "Rewards", "Withdrawable BTC", ""].map((h) => (
                   <th key={h} className="text-left text-xs font-medium text-muted-foreground px-5 py-3">{h}</th>
                 ))}
               </tr>
@@ -174,11 +180,11 @@ const SubscriptionsSection = () => {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan={6} className="px-5 py-8 text-center text-muted-foreground text-sm">Loading subscriptions...</td>
+                   <td colSpan={7} className="px-5 py-8 text-center text-muted-foreground text-sm">Loading subscriptions...</td>
                 </tr>
               ) : subscriptions.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-5 py-8 text-center text-muted-foreground text-sm">No subscriptions found. Click "New Subscription" to get started.</td>
+                  <td colSpan={7} className="px-5 py-8 text-center text-muted-foreground text-sm">No subscriptions found. Click "New Subscription" to get started.</td>
                 </tr>
               ) : (
                 subscriptions.map((sub, i) => (
@@ -191,6 +197,10 @@ const SubscriptionsSection = () => {
                   >
                     <td className="px-5 py-4 text-sm font-medium text-foreground font-mono">
                       {sub.branch.slice(0, 6)}...{sub.branch.slice(-4)}
+                    </td>
+                    <td className="px-5 py-4">
+                      <StatusBadge status={Number(sub.planId) === 0 ? "Model A" : "Model B"} />
+                    </td>
                     </td>
                     <td className="px-5 py-4 text-sm text-foreground">
                       {formatUnits(sub.principal, 18)} USDC
@@ -205,11 +215,36 @@ const SubscriptionsSection = () => {
                       {formatUnits(sub.withdrawableBTC, 18)}
                     </td>
                     <td className="px-5 py-4">
-                      {sub.isActive && (
-                        <Button variant="outline" size="sm" className="text-xs border-primary/30 text-primary hover:bg-primary/10">
-                          Claim
-                        </Button>
-                      )}
+                      <div className="flex gap-2">
+                        {sub.isActive && (
+                          <>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs border-primary/30 text-primary hover:bg-primary/10"
+                              disabled={claimRewards.isPending || claimRewards.isConfirming || claimBTC.isPending || claimBTC.isConfirming}
+                              onClick={() => {
+                                if (Number(sub.planId) === 0) {
+                                  claimRewards.claim(sub.branch, sub.index);
+                                } else {
+                                  claimBTC.claim(sub.branch, sub.index);
+                                }
+                              }}
+                            >
+                              {Number(sub.planId) === 0 ? "Claim USDC" : "Claim BTC"}
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-xs border-destructive/30 text-destructive hover:bg-destructive/10"
+                              disabled={cancelSub.isPending || cancelSub.isConfirming}
+                              onClick={() => cancelSub.cancel(sub.branch, sub.index)}
+                            >
+                              {cancelSub.isPending || cancelSub.isConfirming ? "Cancelling..." : "Cancel"}
+                            </Button>
+                          </>
+                        )}
+                      </div>
                     </td>
                   </motion.tr>
                 ))
