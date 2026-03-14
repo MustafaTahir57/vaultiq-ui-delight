@@ -37,7 +37,6 @@ import useCancelSubscription from "@/hooks/dataSender/useCancelSubscription";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
 
-
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const durationOptions = [
@@ -48,16 +47,25 @@ const durationOptions = [
   { label: "365 Days", value: 365 * 24 * 60 * 60 },
 ];
 
-
 const SubscriptionsSection = () => {
   const { address, userBranchAddress } = useWallet();
-  const { subscriptions, activeCount, totalRewards, isLoading } = useUserSubscriptions(address);
+  const {
+    subscriptions,
+    activeCount,
+    totalRewards,
+    isLoading,
+    refetch: refetchSubscriptions,
+  } = useUserSubscriptions(address);
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
   const { plans, isLoading: plansLoading } = useBranchPlans(userBranchAddress);
-  const { allowance, refetch: refetchAllowance } = useTokenAllowance(USDT_Address, address, userBranchAddress);
+  const { allowance, refetch: refetchAllowance } = useTokenAllowance(
+    USDT_Address,
+    address,
+    userBranchAddress,
+  );
 
   const [modalOpen, setModalOpen] = useState(false);
-  
+
   const [model, setModel] = useState("A");
   const [principal, setPrincipal] = useState("");
   const [duration, setDuration] = useState(String(durationOptions[0].value));
@@ -75,8 +83,10 @@ const SubscriptionsSection = () => {
 
   const activePurchase = model === "A" ? modelA : modelB;
 
-  const parsedAmount = principal && Number(principal) > 0 ? parseUnits(principal, 18) : BigInt(0);
-  const hasEnoughAllowance = allowance !== undefined && parsedAmount > 0 && allowance >= parsedAmount;
+  const parsedAmount =
+    principal && Number(principal) > 0 ? parseUnits(principal, 18) : BigInt(0);
+  const hasEnoughAllowance =
+    allowance !== undefined && parsedAmount > 0 && allowance >= parsedAmount;
 
   // After approval confirmed, automatically trigger purchase
   useEffect(() => {
@@ -121,9 +131,25 @@ const SubscriptionsSection = () => {
     if (model === "A") {
       modelA.purchase(userBranchAddress, amount, dur, ref);
     } else {
-      modelB.purchase(userBranchAddress, amount, dur, ref, Number(planId), autoRoll);
+      modelB.purchase(
+        userBranchAddress,
+        amount,
+        dur,
+        ref,
+        Number(planId),
+        autoRoll,
+      );
     }
   };
+
+  useEffect(() => {
+    if (cancelSub.isConfirmed) {
+      toast.success("Subscription cancelled successfully!");
+      refetchSubscriptions();
+    }
+    if (cancelSub.isError)
+      toast.error(error?.shortMessage || "Cancellation failed");
+  }, [cancelSub.isConfirmed, cancelSub.isError, cancelSub.error]);
 
   const handleSubmit = () => {
     if (!principal || Number(principal) <= 0) {
@@ -151,16 +177,23 @@ const SubscriptionsSection = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-display font-bold text-foreground">My Subscriptions</h1>
+          <h1 className="text-2xl font-display font-bold text-foreground">
+            My Subscriptions
+          </h1>
           <p className="text-muted-foreground text-sm mt-1">
             Manage your branch subscriptions & rewards
             {activeCount > 0 && (
-              <span className="ml-2 text-primary font-medium">({activeCount} active)</span>
+              <span className="ml-2 text-primary font-medium">
+                ({activeCount} active)
+              </span>
             )}
           </p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleOpenModal}>
+          <Button
+            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            onClick={handleOpenModal}
+          >
             <CreditCard className="h-4 w-4 mr-2" /> New Subscription
           </Button>
         </div>
@@ -172,19 +205,43 @@ const SubscriptionsSection = () => {
           <table className="w-full">
             <thead>
               <tr className="border-b border-border/50">
-                {["Branch", "Model", "Principal", "Status", "Rewards", "Withdrawable BTC", ""].map((h) => (
-                  <th key={h} className="text-left text-xs font-medium text-muted-foreground px-5 py-3">{h}</th>
+                {[
+                  "Branch",
+                  "Model",
+                  "Principal",
+                  "Status",
+                  "Rewards",
+                  "Withdrawable BTC",
+                  "",
+                ].map((h) => (
+                  <th
+                    key={h}
+                    className="text-left text-xs font-medium text-muted-foreground px-5 py-3"
+                  >
+                    {h}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {isLoading ? (
                 <tr>
-                   <td colSpan={7} className="px-5 py-8 text-center text-muted-foreground text-sm">Loading subscriptions...</td>
+                  <td
+                    colSpan={7}
+                    className="px-5 py-8 text-center text-muted-foreground text-sm"
+                  >
+                    Loading subscriptions...
+                  </td>
                 </tr>
               ) : subscriptions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-8 text-center text-muted-foreground text-sm">No subscriptions found. Click "New Subscription" to get started.</td>
+                  <td
+                    colSpan={7}
+                    className="px-5 py-8 text-center text-muted-foreground text-sm"
+                  >
+                    No subscriptions found. Click "New Subscription" to get
+                    started.
+                  </td>
                 </tr>
               ) : (
                 subscriptions.map((sub, i) => (
@@ -199,14 +256,27 @@ const SubscriptionsSection = () => {
                       {sub.branch.slice(0, 6)}...{sub.branch.slice(-4)}
                     </td>
                     <td className="px-5 py-4">
-                      <StatusBadge status={Number(sub.planId) === 0 ? "Model A" : "Model B"} />
-                    </td>
+                      <StatusBadge
+                        status={
+                          Number(sub.planId) === 0 ? "Model A" : "Model B"
+                        }
+                      />
                     </td>
                     <td className="px-5 py-4 text-sm text-foreground">
                       {formatUnits(sub.principal, 18)} USDC
                     </td>
                     <td className="px-5 py-4">
-                      <StatusBadge status={sub.isActive ? "active" : sub.cancelled ? "cancelled" : sub.expired ? "expired" : "matured"} />
+                      <StatusBadge
+                        status={
+                          sub.isActive
+                            ? "active"
+                            : sub.cancelled
+                              ? "cancelled"
+                              : sub.expired
+                                ? "expired"
+                                : "matured"
+                        }
+                      />
                     </td>
                     <td className="px-5 py-4 text-sm text-primary font-medium">
                       {formatUnits(sub.accumulatedRewards, 18)} USDC
@@ -222,7 +292,12 @@ const SubscriptionsSection = () => {
                               variant="outline"
                               size="sm"
                               className="text-xs border-primary/30 text-primary hover:bg-primary/10"
-                              disabled={claimRewards.isPending || claimRewards.isConfirming || claimBTC.isPending || claimBTC.isConfirming}
+                              disabled={
+                                claimRewards.isPending ||
+                                claimRewards.isConfirming ||
+                                claimBTC.isPending ||
+                                claimBTC.isConfirming
+                              }
                               onClick={() => {
                                 if (Number(sub.planId) === 0) {
                                   claimRewards.claim(sub.branch, sub.index);
@@ -231,17 +306,27 @@ const SubscriptionsSection = () => {
                                 }
                               }}
                             >
-                              {Number(sub.planId) === 0 ? "Claim USDC" : "Claim BTC"}
+                              {Number(sub.planId) === 0
+                                ? "Claim USDC"
+                                : "Claim BTC"}
                             </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-xs border-destructive/30 text-destructive hover:bg-destructive/10"
-                              disabled={cancelSub.isPending || cancelSub.isConfirming}
-                              onClick={() => cancelSub.cancel(sub.branch, sub.index)}
-                            >
-                              {cancelSub.isPending || cancelSub.isConfirming ? "Cancelling..." : "Cancel"}
-                            </Button>
+                            {Number(sub.planId) === 0 && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs border-destructive/30 text-destructive hover:bg-destructive/10"
+                                disabled={
+                                  cancelSub.isPending || cancelSub.isConfirming
+                                }
+                                onClick={() =>
+                                  cancelSub.cancel(sub.branch, sub.index)
+                                }
+                              >
+                                {cancelSub.isPending || cancelSub.isConfirming
+                                  ? "Cancelling..."
+                                  : "Cancel"}
+                              </Button>
+                            )}
                           </>
                         )}
                       </div>
@@ -258,36 +343,61 @@ const SubscriptionsSection = () => {
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent className="sm:max-w-md bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="text-foreground">New Subscription</DialogTitle>
-            <DialogDescription>Choose a model and configure your subscription.</DialogDescription>
+            <DialogTitle className="text-foreground">
+              New Subscription
+            </DialogTitle>
+            <DialogDescription>
+              Choose a model and configure your subscription.
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-5 py-2">
             {/* Model Selection */}
             <div className="space-y-2">
-              <Label className="text-foreground text-sm font-medium">Select Model</Label>
-              <RadioGroup value={model} onValueChange={(v) => { setModel(v); setStep("form"); }} className="grid grid-cols-2 gap-3">
+              <Label className="text-foreground text-sm font-medium">
+                Select Model
+              </Label>
+              <RadioGroup
+                value={model}
+                onValueChange={(v) => {
+                  setModel(v);
+                  setStep("form");
+                }}
+                className="grid grid-cols-2 gap-3"
+              >
                 <Label
                   htmlFor="model-a"
                   className={`flex flex-col items-center gap-2 rounded-lg border-2 p-4 cursor-pointer transition-colors ${
-                    model === "A" ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                    model === "A"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/40"
                   }`}
                 >
                   <RadioGroupItem value="A" id="model-a" className="sr-only" />
                   <Zap className="h-6 w-6 text-primary" />
-                  <span className="text-sm font-semibold text-foreground">Model A</span>
-                  <span className="text-xs text-muted-foreground text-center">USDC Compounding</span>
+                  <span className="text-sm font-semibold text-foreground">
+                    Model A
+                  </span>
+                  <span className="text-xs text-muted-foreground text-center">
+                    USDC Compounding
+                  </span>
                 </Label>
                 <Label
                   htmlFor="model-b"
                   className={`flex flex-col items-center gap-2 rounded-lg border-2 p-4 cursor-pointer transition-colors ${
-                    model === "B" ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                    model === "B"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/40"
                   }`}
                 >
                   <RadioGroupItem value="B" id="model-b" className="sr-only" />
                   <Bitcoin className="h-6 w-6 text-primary" />
-                  <span className="text-sm font-semibold text-foreground">Model B</span>
-                  <span className="text-xs text-muted-foreground text-center">BTC Mining</span>
+                  <span className="text-sm font-semibold text-foreground">
+                    Model B
+                  </span>
+                  <span className="text-xs text-muted-foreground text-center">
+                    BTC Mining
+                  </span>
                 </Label>
               </RadioGroup>
             </div>
@@ -296,7 +406,9 @@ const SubscriptionsSection = () => {
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <Label className="text-foreground text-sm">Amount (USDC)</Label>
-                <span className="text-xs text-muted-foreground">Balance: {Number(formattedBalance).toLocaleString()}</span>
+                <span className="text-xs text-muted-foreground">
+                  Balance: {Number(formattedBalance).toLocaleString()}
+                </span>
               </div>
               <Input
                 type="number"
@@ -316,7 +428,9 @@ const SubscriptionsSection = () => {
                 </SelectTrigger>
                 <SelectContent>
                   {durationOptions.map((d) => (
-                    <SelectItem key={d.value} value={String(d.value)}>{d.label}</SelectItem>
+                    <SelectItem key={d.value} value={String(d.value)}>
+                      {d.label}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -324,7 +438,9 @@ const SubscriptionsSection = () => {
 
             {/* Referral */}
             <div className="space-y-1.5">
-              <Label className="text-foreground text-sm">Referral Address (optional)</Label>
+              <Label className="text-foreground text-sm">
+                Referral Address (optional)
+              </Label>
               <Input
                 placeholder="0x..."
                 value={referral}
@@ -340,7 +456,11 @@ const SubscriptionsSection = () => {
                   <Label className="text-foreground text-sm">Mining Plan</Label>
                   <Select value={planId} onValueChange={setPlanId}>
                     <SelectTrigger className="bg-secondary/50 border-border">
-                      <SelectValue placeholder={plansLoading ? "Loading plans..." : "Select plan"} />
+                      <SelectValue
+                        placeholder={
+                          plansLoading ? "Loading plans..." : "Select plan"
+                        }
+                      />
                     </SelectTrigger>
                     <SelectContent>
                       {plans.map((p) => (
@@ -354,7 +474,9 @@ const SubscriptionsSection = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-foreground text-sm">Auto-Roll</Label>
-                    <p className="text-xs text-muted-foreground">Re-invest automatically at maturity</p>
+                    <p className="text-xs text-muted-foreground">
+                      Re-invest automatically at maturity
+                    </p>
                   </div>
                   <Switch checked={autoRoll} onCheckedChange={setAutoRoll} />
                 </div>
@@ -365,31 +487,37 @@ const SubscriptionsSection = () => {
           <DialogFooter>
             <Button
               onClick={handleSubmit}
-              disabled={approval.isPending || approval.isConfirming || activePurchase.isPending || activePurchase.isConfirming}
+              disabled={
+                approval.isPending ||
+                approval.isConfirming ||
+                activePurchase.isPending ||
+                activePurchase.isConfirming
+              }
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
             >
               {approval.isPending
                 ? "Approving..."
                 : approval.isConfirming
-                ? "Confirming Approval..."
-                : activePurchase.isPending
-                ? "Purchasing..."
-                : activePurchase.isConfirming
-                ? "Confirming Purchase..."
-                : hasEnoughAllowance
-                ? `Purchase ${model === "A" ? "USDC Compounding" : "BTC Mining"}`
-                : "Approve & Purchase"}
+                  ? "Confirming Approval..."
+                  : activePurchase.isPending
+                    ? "Purchasing..."
+                    : activePurchase.isConfirming
+                      ? "Confirming Purchase..."
+                      : hasEnoughAllowance
+                        ? `Purchase ${model === "A" ? "USDC Compounding" : "BTC Mining"}`
+                        : "Approve & Purchase"}
             </Button>
           </DialogFooter>
 
           {(approval.isError || activePurchase.isError) && (
             <p className="text-xs text-destructive text-center mt-1">
-              {approval.error?.shortMessage || activePurchase.error?.shortMessage || "Transaction failed"}
+              {approval.error?.shortMessage ||
+                activePurchase.error?.shortMessage ||
+                "Transaction failed"}
             </p>
           )}
         </DialogContent>
       </Dialog>
-
     </div>
   );
 };

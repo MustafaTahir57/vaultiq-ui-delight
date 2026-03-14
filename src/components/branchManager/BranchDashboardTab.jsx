@@ -8,6 +8,8 @@ import AddPlanModal from "@/components/dashboard/AddPlanModal";
 import { wallets } from "./constants";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
 import { useWallet } from "@/contexts/WalletContext";
+import useUserBranches from "../../hooks/dataFetcher/useUserBranches";
+import { useAccount } from "wagmi";
 
 const configFieldMap = [
   { label: "Branch Name", key: "branchName" },
@@ -27,9 +29,10 @@ const truncateAddress = (addr) => {
 };
 
 const BranchDashboardTab = () => {
-  const { userBranchAddress } = useWallet();
-  const branchAddress = userBranchAddress;
-  const config = useBranchConfig(branchAddress);
+  const {address} = useAccount();
+  const { userBranches: userBranchAddresses } = useUserBranches(address);
+  console.log("useBranchAddresse", userBranchAddresses)
+  const config = useBranchConfig(userBranchAddresses[0]);
   const [addPlanOpen, setAddPlanOpen] = useState(false);
 
   return (
