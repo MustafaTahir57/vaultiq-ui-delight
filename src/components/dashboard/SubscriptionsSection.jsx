@@ -172,7 +172,7 @@ const SubscriptionsSection = () => {
           <table className="w-full">
             <thead>
               <tr className="border-b border-border/50">
-                {["Branch", "Principal", "Status", "Rewards", "Withdrawable BTC", ""].map((h) => (
+                {["Branch", "Model", "Principal", "Status", "Rewards", "Withdrawable BTC", ""].map((h) => (
                   <th key={h} className="text-left text-xs font-medium text-muted-foreground px-5 py-3">{h}</th>
                 ))}
               </tr>
