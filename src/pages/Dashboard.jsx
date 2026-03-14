@@ -37,15 +37,12 @@ const Dashboard = () => {
     if (isMobile) setCollapsed(true);
   }, [isMobile]);
 
-  // Redirect branch managers on first connection
+  // Clear justConnected flag
   useEffect(() => {
-    if (justConnected && isConnected && !branchesLoading && isBranchManager) {
-      clearJustConnected();
-      navigate("/branch-manager", { replace: true });
-    } else if (justConnected && !branchesLoading) {
+    if (justConnected && !branchesLoading) {
       clearJustConnected();
     }
-  }, [justConnected, isConnected, isBranchManager, branchesLoading, navigate, clearJustConnected]);
+  }, [justConnected, branchesLoading, clearJustConnected]);
 
   if (!isConnected) {
     return (
