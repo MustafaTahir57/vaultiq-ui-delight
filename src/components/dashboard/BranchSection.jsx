@@ -1,49 +1,59 @@
 import { motion } from "framer-motion";
-import { GitBranch, Wallet, Settings2, BarChart3, Send } from "lucide-react";
+import { GitBranch, Wallet, Settings2, BarChart3, Users, Calendar, Loader2 } from "lucide-react";
 import StatCard from "./StatCard";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import useBranchStats from "@/hooks/dataFetcher/useBranchStats";
+import { useWallet } from "@/contexts/WalletContext";
 
-const wallets = [
-  { label: "Trading Wallet", value: "$18,400", pct: 72 },
-  { label: "Branch Wallet", value: "$6,200", pct: 45 },
-  { label: "Passive Income Pool", value: "$3,800", pct: 28 },
-];
+const BranchSection = () => {
+  const { userBranchAddress } = useWallet();
+  const stats = useBranchStats(userBranchAddress || undefined);
 
-const BranchSection = () => (
-  <div className="space-y-6">
-    <div className="flex items-center justify-between">
-      <div>
-        <h1 className="text-2xl font-display font-bold text-foreground">Branch Dashboard</h1>
-        <p className="text-muted-foreground text-sm mt-1">Manage your branch configuration & performance</p>
+  const wallets = [
+    { label: "Trading Wallet", desc: "USDT held by branch contract", value: stats.tradingWalletBalance, pct: 0 },
+    { label: "Branch Wallet", desc: "USDT held by branch wallet", value: stats.branchWalletBalance, pct: 0 },
+    { label: "Passive Income Pool", desc: "Passive income allocation", value: "$0", pct: 0 },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-display font-bold text-foreground">Branch Dashboard</h1>
+          <p className="text-muted-foreground text-sm mt-1">Manage your branch configuration & performance</p>
+        </div>
       </div>
-      <Button variant="outline" className="border-border text-foreground hover:bg-secondary">
-        <Settings2 className="h-4 w-4 mr-2" /> Configure
-      </Button>
-    </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <StatCard title="Total Members" value="148" icon={GitBranch} trend={{ value: "+12 this week", positive: true }} />
-      <StatCard title="Weekly Performance" value="4.2%" icon={BarChart3} trend={{ value: "+0.3%", positive: true }} />
-      <StatCard title="Total Distributed" value="$42,800" icon={Wallet} />
-    </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard title="Total Members" value={stats.totalMembers} icon={Users} />
+        <StatCard title="Weekly Performance" value={stats.weeklyPerformance} icon={BarChart3} />
+        <StatCard title="Total Distributed" value="$0" icon={Wallet} />
+        <StatCard title="Current Week" value={stats.currentWeek} icon={Calendar} />
+      </div>
 
-    {/* Wallets */}
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="glass-card p-6">
-      <h3 className="font-display font-semibold text-foreground mb-4">Wallet Balances</h3>
-      <div className="space-y-5">
-        {wallets.map((w) => (
-          <div key={w.label}>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-muted-foreground">{w.label}</span>
-              <span className="text-sm font-medium text-foreground">{w.value}</span>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="glass-card p-6">
+        <h3 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2">
+          <Wallet className="h-5 w-5 text-primary" />
+          Wallet Balances
+          {stats.isLoading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
+        </h3>
+        <div className="space-y-5">
+          {wallets.map((w) => (
+            <div key={w.label}>
+              <div className="flex items-center justify-between mb-1">
+                <div>
+                  <span className="text-sm text-foreground">{w.label}</span>
+                  <p className="text-xs text-muted-foreground">{w.desc}</p>
+                </div>
+                <span className="text-sm font-medium text-foreground font-mono">{w.value}</span>
+              </div>
+              <Progress value={w.pct} className="h-2 bg-secondary [&>div]:bg-primary" />
             </div>
-            <Progress value={w.pct} className="h-2 bg-secondary [&>div]:bg-primary" />
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  </div>
-);
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 export default BranchSection;
