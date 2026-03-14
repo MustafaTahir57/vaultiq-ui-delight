@@ -129,7 +129,7 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
       active,
     };
 
-    addPlan(plan);
+    addPlan(plan, selectedBranch);
   };
 
   const coreFields = [
