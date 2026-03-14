@@ -97,10 +97,14 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
       toast.error("Plan name is required");
       return;
     }
+    if (!selectedBranch) {
+      toast.error("Please select a branch");
+      return;
+    }
 
     const plan = {
       name,
-      modelType: Number(modelType),
+      modelType: 1, // Model B (BTC Mining)
       core: {
         liquidityAllocation: BigInt(core.liquidityAllocation || 0),
         directBonusPercent: BigInt(core.directBonusPercent || 0),
