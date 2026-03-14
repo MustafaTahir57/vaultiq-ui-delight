@@ -29,7 +29,7 @@ const BranchSection = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard title="Total Members" value={stats.totalMembers} icon={Users} />
         <StatCard title="Weekly Performance" value={stats.weeklyPerformance} icon={BarChart3} />
-        <StatCard title="Total Distributed" value="$0" icon={Wallet} />
+        <StatCard title="Total Distributed" value={totalDistributed} icon={Wallet} />
         <StatCard title="Current Week" value={stats.currentWeek} icon={Calendar} />
       </div>
 
