@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Wallet, BarChart3, Settings2, Users, Loader2, Plus } from "lucide-react";
+import { Wallet, BarChart3, Settings2, Users, Loader2, Plus, Calendar, CalendarDays } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import StatCard from "@/components/dashboard/StatCard";
 import AddPlanModal from "@/components/dashboard/AddPlanModal";
-import { wallets } from "./constants";
+import { useAccount } from "wagmi";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
 import useUserBranches from "../../hooks/dataFetcher/useUserBranches";
-import { useAccount } from "wagmi";
+import useBranchStats from "@/hooks/dataFetcher/useBranchStats";
 
 const configFieldMap = [
   { label: "Branch Name", key: "branchName" },
@@ -34,7 +34,6 @@ const BranchDashboardTab = () => {
   const [selectedBranch, setSelectedBranch] = useState("");
   const [addPlanOpen, setAddPlanOpen] = useState(false);
 
-  // Auto-select first branch when loaded
   useEffect(() => {
     if (userBranchAddresses?.length > 0 && !selectedBranch) {
       setSelectedBranch(userBranchAddresses[0]);
@@ -42,15 +41,36 @@ const BranchDashboardTab = () => {
   }, [userBranchAddresses, selectedBranch]);
 
   const config = useBranchConfig(selectedBranch || undefined);
+  const stats = useBranchStats(selectedBranch || undefined);
+
+  const wallets = [
+    {
+      label: "Trading Wallet",
+      desc: "USDT held by branch contract",
+      value: stats.tradingWalletBalance,
+      pct: 0,
+    },
+    {
+      label: "Branch Wallet",
+      desc: "USDT held by branch wallet",
+      value: stats.branchWalletBalance,
+      pct: 0,
+    },
+    {
+      label: "Passive Income Pool",
+      desc: "Passive income allocation",
+      value: "$0",
+      pct: 0,
+    },
+  ];
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 flex-1">
-          <StatCard title="Total Members" value="—" icon={Users} />
-          <StatCard title="Weekly Performance" value="—" icon={BarChart3} />
-          <StatCard title="Total Distributed" value="—" icon={Wallet} />
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard title="Total Members" value={stats.totalMembers} icon={Users} />
+        <StatCard title="Weekly Performance" value={stats.weeklyPerformance} icon={BarChart3} />
+        <StatCard title="Total Distributed" value="$0" icon={Wallet} />
+        <StatCard title="Current Week" value={stats.currentWeek} icon={Calendar} />
       </div>
 
       {userBranchAddresses?.length > 1 && (
@@ -81,6 +101,7 @@ const BranchDashboardTab = () => {
         <h3 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2">
           <Wallet className="h-5 w-5 text-primary" />
           Wallet Balances
+          {stats.isLoading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
         </h3>
         <div className="space-y-5">
           {wallets.map((w) => (
