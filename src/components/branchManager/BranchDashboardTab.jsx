@@ -43,6 +43,7 @@ const BranchDashboardTab = () => {
 
   const config = useBranchConfig(selectedBranch || undefined);
   const stats = useBranchStats(selectedBranch || undefined);
+  const { totalDistributed } = useTotalDistributed(selectedBranch || undefined);
 
   const wallets = [
     {
