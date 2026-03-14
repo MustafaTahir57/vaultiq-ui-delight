@@ -12,9 +12,9 @@ const BranchSection = () => {
   const { totalDistributed } = useTotalDistributed(userBranchAddress || undefined);
 
   const wallets = [
-    { label: "Trading Wallet", desc: "USDT held by branch contract", value: stats.tradingWalletBalance, pct: 0 },
-    { label: "Branch Wallet", desc: "USDT held by branch wallet", value: stats.branchWalletBalance, pct: 0 },
-    { label: "Passive Income Pool", desc: "Passive income allocation", value: stats.passivePoolBalance, pct: 0 },
+    { label: "Trading Wallet", desc: "USDT held by branch contract", value: stats.tradingWalletBalance, pct: stats.tradingWalletRaw > 0n ? 100 : 0 },
+    { label: "Branch Wallet", desc: "USDT held by branch wallet", value: stats.branchWalletBalance, pct: stats.branchWalletRaw > 0n ? 100 : 0 },
+    { label: "Passive Income Pool", desc: "Passive income allocation", value: stats.passivePoolBalance, pct: stats.passivePoolRaw > 0n ? 100 : 0 },
   ];
 
   return (
