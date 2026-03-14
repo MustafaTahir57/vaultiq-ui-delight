@@ -14,7 +14,7 @@ const useBranchPlans = (branchAddress) => {
 
   // Build contract calls for planId 1..count
   const planCalls = Array.from({ length: count }, (_, i) => ({
-    address: BranchExtension_Address,
+    address: branchAddress || BranchExtension_Address,
     abi: BranchExtensionABI,
     functionName: "getPlan",
     args: [i + 1],
