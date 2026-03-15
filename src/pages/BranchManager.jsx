@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Shield, ArrowRight, Lock, AlertTriangle,
@@ -7,11 +8,22 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import { useWallet } from "@/contexts/WalletContext";
+import { useAccount } from "wagmi";
+import useUserBranches from "@/hooks/dataFetcher/useUserBranches";
 import BranchDashboardTab from "@/components/branchManager/BranchDashboardTab";
 import ProtocolOpsTab from "@/components/branchManager/ProtocolOpsTab";
 
 const BranchManager = () => {
   const { isConnected, isBranchManager } = useWallet();
+  const { address } = useAccount();
+  const { userBranches: userBranchAddresses } = useUserBranches(address);
+  const [selectedBranch, setSelectedBranch] = useState("");
+
+  useEffect(() => {
+    if (userBranchAddresses?.length > 0 && !selectedBranch) {
+      setSelectedBranch(userBranchAddresses[0]);
+    }
+  }, [userBranchAddresses, selectedBranch]);
 
   if (!isConnected || !isBranchManager) {
     return (
@@ -88,8 +100,16 @@ const BranchManager = () => {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="dashboard"><BranchDashboardTab /></TabsContent>
-            <TabsContent value="operations"><ProtocolOpsTab /></TabsContent>
+            <TabsContent value="dashboard">
+              <BranchDashboardTab
+                selectedBranch={selectedBranch}
+                setSelectedBranch={setSelectedBranch}
+                userBranchAddresses={userBranchAddresses}
+              />
+            </TabsContent>
+            <TabsContent value="operations">
+              <ProtocolOpsTab selectedBranch={selectedBranch} />
+            </TabsContent>
           </Tabs>
         </div>
       </section>
