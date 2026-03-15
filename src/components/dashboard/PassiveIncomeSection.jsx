@@ -12,10 +12,11 @@ import { useWallet } from "@/contexts/WalletContext";
 import useConfirmedPool from "@/hooks/dataFetcher/useConfirmedPool";
 import useProjectedIncome from "@/hooks/dataFetcher/useProjectedIncome";
 import useNextDistribution from "@/hooks/dataFetcher/useNextDistribution";
+import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
 import { formatUnits } from "viem";
 
 const PassiveIncomeSection = () => {
-  const { address } = useWallet();
+  const { address, userBranchAddress } = useWallet();
   const {
     confirmedPool,
     confirmedPoolRaw,
@@ -29,8 +30,10 @@ const PassiveIncomeSection = () => {
   } = useProjectedIncome(address);
   const { display: nextDist, isLoading: distLoading } =
     useNextDistribution(address);
+  const { lastWithdrawal, totalWithdrawn, isLoading: passiveDataLoading } =
+    usePassiveData(userBranchAddress, address);
 
-  const isLoading = confirmedLoading || projectedLoading || distLoading;
+  const isLoading = confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
 
   return (
     <div className="space-y-6">
@@ -94,7 +97,7 @@ const PassiveIncomeSection = () => {
                 Last withdrawal
               </span>
               <span className="text-sm text-muted-foreground">
-                Feb 15, 2025
+                {lastWithdrawal}
               </span>
             </div>
             <div className="flex justify-between py-3">
@@ -102,7 +105,7 @@ const PassiveIncomeSection = () => {
                 Total withdrawn
               </span>
               <span className="text-sm font-medium text-foreground">
-                $12,480.00
+                {totalWithdrawn}
               </span>
             </div>
           </div>
