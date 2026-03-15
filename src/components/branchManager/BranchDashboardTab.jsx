@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Wallet, BarChart3, Settings2, Users, Loader2, Plus, Calendar, CalendarDays } from "lucide-react";
+import { Wallet, BarChart3, Settings2, Users, Loader2, Plus, Calendar } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import StatCard from "@/components/dashboard/StatCard";
 import AddPlanModal from "@/components/dashboard/AddPlanModal";
-import { useAccount } from "wagmi";
 import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
-import useUserBranches from "../../hooks/dataFetcher/useUserBranches";
 import useBranchStats from "@/hooks/dataFetcher/useBranchStats";
 import useTotalDistributed from "@/hooks/dataFetcher/useTotalDistributed";
 
@@ -29,17 +27,8 @@ const truncateAddress = (addr) => {
   return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
 };
 
-const BranchDashboardTab = () => {
-  const { address } = useAccount();
-  const { userBranches: userBranchAddresses } = useUserBranches(address);
-  const [selectedBranch, setSelectedBranch] = useState("");
+const BranchDashboardTab = ({ selectedBranch, setSelectedBranch, userBranchAddresses }) => {
   const [addPlanOpen, setAddPlanOpen] = useState(false);
-
-  useEffect(() => {
-    if (userBranchAddresses?.length > 0 && !selectedBranch) {
-      setSelectedBranch(userBranchAddresses[0]);
-    }
-  }, [userBranchAddresses, selectedBranch]);
 
   const config = useBranchConfig(selectedBranch || undefined);
   const stats = useBranchStats(selectedBranch || undefined);
