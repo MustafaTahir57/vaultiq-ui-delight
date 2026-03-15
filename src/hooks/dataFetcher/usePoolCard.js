@@ -1,5 +1,5 @@
 import { useReadContract } from "wagmi";
-import { BranchABI } from "@/constants/abis";
+import { BranchABI , BranchExtensionABI } from "@/constants/abis";
 import { Branch_Address } from "@/constants/contracts";
 
 const POOL_STATE_NAMES = {
@@ -22,7 +22,7 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
   // Pool pending balance
   const { data: pendingBalance, isLoading: pendingLoading } = useReadContract({
     address: contractAddress,
-    abi: BranchABI,
+    abi: BranchExtensionABI,
     functionName: "previewPoolPending",
     args: [poolId, userAddress],
     query: { enabled: !!userAddress && !!poolId },
@@ -31,7 +31,7 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
   // Qualification status
   const { data: isQualified, isLoading: qualifiedLoading } = useReadContract({
     address: contractAddress,
-    abi: BranchABI,
+    abi: BranchExtensionABI,
     functionName: "isPoolQualifiedMember",
     args: [poolId, userAddress],
     query: { enabled: !!userAddress && !!poolId },
@@ -40,7 +40,7 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
   // Pool state (qualifiedCount)
   const { data: poolState, isLoading: stateLoading } = useReadContract({
     address: contractAddress,
-    abi: BranchABI,
+    abi: BranchExtensionABI,
     functionName: POOL_STATE_NAMES[poolId],
     query: { enabled: !!poolId },
   });
@@ -48,7 +48,7 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
   // Pool rule (salesRequirement / threshold)
   const { data: poolRule, isLoading: ruleLoading } = useReadContract({
     address: contractAddress,
-    abi: BranchABI,
+    abi: BranchExtensionABI,
     functionName: POOL_RULE_NAMES[poolId],
     query: { enabled: !!poolId },
   });

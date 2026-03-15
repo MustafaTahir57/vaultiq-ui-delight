@@ -270,12 +270,12 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                   <fn.icon className="h-6 w-6 text-primary" />
                 </div>
-                {fn.selector !== "—" && (
+                {/* {fn.selector !== "—" && (
                   <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-secondary border border-border">
                     <Terminal className="h-3 w-3 text-muted-foreground" />
                     <code className="text-xs font-mono text-primary">{fn.selector}</code>
                   </div>
-                )}
+                )} */}
               </div>
 
               <h3 className="font-display font-semibold text-lg text-foreground mb-1">

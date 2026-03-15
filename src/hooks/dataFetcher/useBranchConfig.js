@@ -15,7 +15,6 @@ const branchFunctions = [
 ];
 
 const useBranchConfig = (branchAddress) => {
-  console.log("branchAddress", branchAddress)
   const contracts = branchFunctions.map((functionName) => ({
     address: branchAddress,
     abi: BranchABI,
@@ -26,8 +25,6 @@ const useBranchConfig = (branchAddress) => {
     contracts,
     query: { enabled: !!branchAddress },
   });
-
-  console.log("branch Data", data)
 
   const get = (index) => data?.[index]?.result;
 

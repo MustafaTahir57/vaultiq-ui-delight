@@ -79,11 +79,12 @@ const useBranchStats = (branchAddress) => {
     return `$${parseFloat(formatUnits(val, 18)).toLocaleString()}`;
   };
 
+
   return {
     totalMembers: totalMembers?.toString() ?? "—",
     currentWeek: currentWeek?.toString() ?? "—",
     currentMonth: currentMonth?.toString() ?? "—",
-    weeklyPerformance: weeklyPerfData !== undefined ? `${weeklyPerfData.toString()}%` : "—",
+    weeklyPerformance: weeklyPerfData !== undefined ? `${weeklyPerfData.toString()/100}%` : "—",
     tradingWalletBalance: formatUSDT(tradingBalance),
     branchWalletBalance: formatUSDT(branchWalletBalance),
     passivePoolBalance: formatUSDT(passivePoolTotal),

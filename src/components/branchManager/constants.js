@@ -7,7 +7,7 @@ export const protocolFunctions = [
   {
     icon: Send,
     name: "submitWeeklyPerformance",
-    selector: "0x2ceb41f9",
+    selector: "-",
     desc: "Submit weekly compounding rate. Distributes previous week's pool queues. Once per week.",
     params: "liquidityPercent (BPS, e.g. 420 = 4.2%)",
   },

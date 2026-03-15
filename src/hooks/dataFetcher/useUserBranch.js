@@ -13,8 +13,6 @@ const useUserBranch = (userAddress) => {
     },
   });
 
-  console.log("useUserBranch", branchAddress)
-
   return { branchAddress: branchAddress || null, isLoading, isError };
 };
 

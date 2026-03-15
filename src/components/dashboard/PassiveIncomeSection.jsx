@@ -30,8 +30,6 @@ const PassiveIncomeSection = () => {
   const { display: nextDist, isLoading: distLoading } =
     useNextDistribution(address);
 
-  console.log("active SUbs", activeSubs);
-
   const isLoading = confirmedLoading || projectedLoading || distLoading;
 
   return (
