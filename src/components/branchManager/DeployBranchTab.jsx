@@ -98,11 +98,12 @@ const DeployBranchTab = () => {
 
   const copyAddress = (addr) => {
     navigator.clipboard.writeText(addr);
-    toast.success("Address copied to clipboard");
+    toast.success("Referral Link copied to clipboard");
   };
 
   // Success state
   if (deployedBranchAddress) {
+    const referralLink = `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${deployedBranchAddress}`;
     return (
       <div className="space-y-6">
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="glass-card p-8 border-primary/30 text-center">
@@ -113,10 +114,10 @@ const DeployBranchTab = () => {
           <p className="text-sm text-muted-foreground mb-6">Your new branch proxy is live on-chain.</p>
 
           <div className="bg-secondary/50 border border-border rounded-lg p-4 mb-4">
-            <label className="text-xs text-muted-foreground block mb-1.5">Branch Proxy Address</label>
+            <label className="text-xs text-muted-foreground block mb-1.5">Branch Proxy Link</label>
             <div className="flex items-center gap-2">
-              <code className="text-sm font-mono text-primary flex-1 break-all">{deployedBranchAddress}</code>
-              <Button variant="ghost" size="icon" className="shrink-0 h-8 w-8" onClick={() => copyAddress(deployedBranchAddress)}>
+              <code className="text-sm font-mono text-primary flex-1 break-all">{referralLink}</code>
+              <Button variant="ghost" size="icon" className="shrink-0 h-8 w-8" onClick={() => copyAddress(referralLink)}>
                 <Copy className="h-4 w-4" />
               </Button>
             </div>
