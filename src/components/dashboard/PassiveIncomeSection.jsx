@@ -30,8 +30,10 @@ const PassiveIncomeSection = () => {
   } = useProjectedIncome(address);
   const { display: nextDist, isLoading: distLoading } =
     useNextDistribution(address);
+  const { lastWithdrawal, totalWithdrawn, isLoading: passiveDataLoading } =
+    usePassiveData(userBranchAddress, address);
 
-  const isLoading = confirmedLoading || projectedLoading || distLoading;
+  const isLoading = confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
 
   return (
     <div className="space-y-6">
