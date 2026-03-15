@@ -1,43 +1,15 @@
 import {
-  Layers, Settings, Send, Plus, Clock, DollarSign, Pickaxe, RefreshCw,
-  FileText, ToggleLeft, Database, Percent, TrendingUp, Zap
+  Send, DollarSign, Pickaxe, RefreshCw,
+  ToggleLeft, Database
 } from "lucide-react";
 
 export const protocolFunctions = [
-  {
-    icon: Layers,
-    name: "setPoolRule",
-    selector: "0x31609f0f",
-    desc: "Configure distribution rules and allocation parameters for branch reward pools.",
-    params: "poolId (1-4), salesRequirement (USDT), maintenanceThreshold",
-  },
-  {
-    icon: Settings,
-    name: "setPrincipalTier",
-    selector: "0x9a919f94",
-    desc: "Allow or disallow specific principal amounts when tier validation is enabled.",
-    params: "principal (e.g. 500 USDT), allowed (true/false)",
-  },
-  {
-    icon: Clock,
-    name: "setTestingTimeConfig",
-    selector: "0xed5712cf",
-    desc: "Override time constants for testing environments (week, month, delay).",
-    params: "weekSec, monthSec, activationDelay",
-  },
   {
     icon: Send,
     name: "submitWeeklyPerformance",
     selector: "0x2ceb41f9",
     desc: "Submit weekly compounding rate. Distributes previous week's pool queues. Once per week.",
     params: "liquidityPercent (BPS, e.g. 420 = 4.2%)",
-  },
-  {
-    icon: Plus,
-    name: "addSubscriptionPlan",
-    selector: "—",
-    desc: "Add a new Model A or Model B subscription plan. Returns new planId.",
-    params: "SubscriptionPlan struct",
   },
   {
     icon: ToggleLeft,
@@ -54,20 +26,6 @@ export const protocolFunctions = [
     params: "type: 0 = BRANCH, 1 = TREASURY",
   },
   {
-    icon: Percent,
-    name: "updateCoreConfig",
-    selector: "—",
-    desc: "Update all distribution percentages at once. All values must sum to 10,000 BPS.",
-    params: "CoreConfig struct (11 fields)",
-  },
-  {
-    icon: FileText,
-    name: "updateExpiryConfig",
-    selector: "—",
-    desc: "Update expiry principal split percentages. Must sum to 10,000 BPS.",
-    params: "ExpiryConfig struct (3 fields)",
-  },
-  {
     icon: Pickaxe,
     name: "setMiningRevenueDistributor",
     selector: "—",
@@ -82,25 +40,11 @@ export const protocolFunctions = [
     params: "BTCB token address",
   },
   {
-    icon: TrendingUp,
-    name: "setPassiveSalesThreshold",
-    selector: "—",
-    desc: "Minimum team sales needed for passive pool qualification.",
-    params: "amount (USDT)",
-  },
-  {
     icon: RefreshCw,
     name: "processPassiveMonth",
     selector: "—",
     desc: "Process passive pool deposit for a completed month. Required before users can claim.",
     params: "monthIndex",
-  },
-  {
-    icon: Zap,
-    name: "requestLiquidityAllocationChange",
-    selector: "—",
-    desc: "Request governance approval for liquidity BPS change via VaultIQMain.",
-    params: "newBps",
   },
 ];
 
