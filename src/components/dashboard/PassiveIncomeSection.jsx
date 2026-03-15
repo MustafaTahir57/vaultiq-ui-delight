@@ -12,6 +12,7 @@ import { useWallet } from "@/contexts/WalletContext";
 import useConfirmedPool from "@/hooks/dataFetcher/useConfirmedPool";
 import useProjectedIncome from "@/hooks/dataFetcher/useProjectedIncome";
 import useNextDistribution from "@/hooks/dataFetcher/useNextDistribution";
+import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
 import { formatUnits } from "viem";
 
 const PassiveIncomeSection = () => {
