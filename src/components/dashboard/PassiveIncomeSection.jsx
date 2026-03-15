@@ -105,7 +105,7 @@ const PassiveIncomeSection = () => {
                 Total withdrawn
               </span>
               <span className="text-sm font-medium text-foreground">
-                $12,480.00
+                {totalWithdrawn}
               </span>
             </div>
           </div>
