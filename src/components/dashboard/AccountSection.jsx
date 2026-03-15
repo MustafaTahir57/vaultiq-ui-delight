@@ -4,7 +4,8 @@ import { useWallet } from "@/contexts/WalletContext";
 import { toast } from "sonner";
 
 const AccountSection = () => {
-  const { address, shortAddress, isBranchManager, userBranchAddress } = useWallet();
+  const { address, shortAddress, isBranchManager, userBranchAddress } =
+    useWallet();
 
   const referralLink = userBranchAddress
     ? `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${userBranchAddress}&ref=${address}`
@@ -18,22 +19,37 @@ const AccountSection = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-display font-bold text-foreground">Account</h1>
-        <p className="text-muted-foreground text-sm mt-1">Your wallet, role, and referral link</p>
+        <h1 className="text-2xl font-display font-bold text-foreground">
+          Account
+        </h1>
+        <p className="text-muted-foreground text-sm mt-1">
+          Your wallet, role, and referral link
+        </p>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="glass-card p-6"
+      >
         {/* Wallet */}
         <div className="flex items-center gap-4 mb-6">
           <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
             <User className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <p className="font-display font-semibold text-foreground">Connected Wallet</p>
+            <p className="font-display font-semibold text-foreground">
+              Connected Wallet
+            </p>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-sm text-muted-foreground font-mono">{shortAddress || "—"}</span>
+              <span className="text-sm text-muted-foreground font-mono">
+                {shortAddress || "—"}
+              </span>
               {address && (
-                <button onClick={() => copyToClipboard(address, "Address copied!")} className="text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => copyToClipboard(address, "Address copied!")}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   <Copy className="h-3.5 w-3.5" />
                 </button>
               )}
@@ -47,9 +63,13 @@ const AccountSection = () => {
             <span className="text-sm text-muted-foreground">Role</span>
             <span className="text-sm font-medium text-foreground flex items-center gap-1.5">
               {isBranchManager ? (
-                <><Shield className="h-3.5 w-3.5 text-primary" /> Branch Manager</>
+                <>
+                  <Shield className="h-3.5 w-3.5 text-primary" /> Branch Manager
+                </>
               ) : (
-                <><UserCheck className="h-3.5 w-3.5 text-primary" /> User</>
+                <>
+                  <UserCheck className="h-3.5 w-3.5 text-primary" /> User
+                </>
               )}
             </span>
           </div>
@@ -61,14 +81,27 @@ const AccountSection = () => {
             </span>
             {referralLink ? (
               <div className="flex items-center gap-2 bg-secondary/50 rounded-lg px-3 py-2">
-                <span className="text-xs font-mono text-muted-foreground truncate flex-1">{referralLink}</span>
-                <button onClick={() => copyToClipboard(referralLink, "Referral link copied!")} className="text-muted-foreground hover:text-primary transition-colors shrink-0">
+                <span className="text-xs font-mono text-muted-foreground truncate flex-1">
+                  {referralLink}
+                </span>
+                <button
+                  onClick={() =>
+                    copyToClipboard(referralLink, "Referral link copied!")
+                  }
+                  className="text-muted-foreground hover:text-primary transition-colors shrink-0"
+                >
                   <Copy className="h-3.5 w-3.5" />
                 </button>
               </div>
             ) : (
-              <span className="text-xs text-muted-foreground">No branch assigned yet</span>
+              <span className="text-xs text-muted-foreground">
+                No branch assigned yet
+              </span>
             )}
+            <div className="flex justify-between py-2">
+              <span className="text-sm text-muted-foreground">Referrals</span>
+              <span className="text-sm text-foreground">14 users</span>
+            </div>
           </div>
         </div>
       </motion.div>
