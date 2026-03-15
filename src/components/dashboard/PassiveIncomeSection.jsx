@@ -16,7 +16,7 @@ import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
 import { formatUnits } from "viem";
 
 const PassiveIncomeSection = () => {
-  const { address } = useWallet();
+  const { address, userBranchAddress } = useWallet();
   const {
     confirmedPool,
     confirmedPoolRaw,
