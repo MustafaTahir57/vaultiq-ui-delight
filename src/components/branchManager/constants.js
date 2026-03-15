@@ -1,6 +1,6 @@
 import {
-  Layers, Settings, Send, Plus, Clock, DollarSign, Pickaxe, RefreshCw,
-  FileText, ToggleLeft, Database, Percent, TrendingUp, Zap
+  Send, DollarSign, Pickaxe, RefreshCw,
+  ToggleLeft, Database
 } from "lucide-react";
 
 export const protocolFunctions = [
