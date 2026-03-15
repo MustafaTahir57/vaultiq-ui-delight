@@ -97,7 +97,7 @@ const PassiveIncomeSection = () => {
                 Last withdrawal
               </span>
               <span className="text-sm text-muted-foreground">
-                Feb 15, 2025
+                {lastWithdrawal}
               </span>
             </div>
             <div className="flex justify-between py-3">
