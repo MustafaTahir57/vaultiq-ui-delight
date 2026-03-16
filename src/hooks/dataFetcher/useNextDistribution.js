@@ -32,10 +32,15 @@ const useNextDistribution = (userAddress) => {
 
     const days = Math.floor(secondsLeft / 86400);
     const hours = Math.floor((secondsLeft % 86400) / 3600);
-    const secs = secondsLeft % 3600;
+    const minutes = Math.floor((secondsLeft % 3600) / 60);
+    const secs = secondsLeft % 60;
 
     return {
-      display: `${days}d ${hours}h ${secs}s`,
+      days,
+      hours,
+      minutes,
+      seconds: secs,
+      display: `${days}d ${hours}h ${minutes}m ${secs}s`,
       secondsLeft,
     };
   }, [data]);
