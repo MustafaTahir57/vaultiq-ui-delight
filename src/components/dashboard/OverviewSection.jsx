@@ -1,4 +1,4 @@
-import { Wallet, Users, TrendingUp, DollarSign, PieChart, Layers } from "lucide-react";
+import { Wallet, Users, TrendingUp, DollarSign, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 import StatCard from "./StatCard";
 import StatusBadge from "./StatusBadge";
