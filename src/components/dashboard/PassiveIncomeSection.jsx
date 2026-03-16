@@ -28,7 +28,7 @@ const PassiveIncomeSection = () => {
     liquidityPercent,
     isLoading: projectedLoading,
   } = useProjectedIncome(address);
-  const { display: nextDist, isLoading: distLoading } =
+  const { days, hours, minutes, seconds, display: nextDist, isLoading: distLoading } =
     useNextDistribution(address);
   const {
     lastWithdrawal,
