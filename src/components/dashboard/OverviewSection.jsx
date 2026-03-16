@@ -1,8 +1,8 @@
-import { Wallet, Users, TrendingUp, DollarSign, PieChart, Layers } from "lucide-react";
+import { Wallet, Users, TrendingUp, DollarSign, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 import StatCard from "./StatCard";
 import StatusBadge from "./StatusBadge";
-import { Progress } from "@/components/ui/progress";
+
 import PoolCard from "./PoolCard";
 import { useWallet } from "@/contexts/WalletContext";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
@@ -15,12 +15,6 @@ const formatUSD = (bigintValue, decimals = 18) => {
   return `$${num.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
 };
 
-const recentActivity = [
-  { action: "Subscription renewed", branch: "Alpha Branch", status: "active", time: "2h ago" },
-  { action: "Pool 2 reward claimed", branch: "VaultIQ Main", status: "claimable", time: "5h ago" },
-  { action: "Incubator deposit", branch: "Round #4", status: "pending", time: "1d ago" },
-  { action: "Passive income distributed", branch: "Beta Branch", status: "active", time: "2d ago" },
-];
 
 const POOL_IDS = [1, 2, 3, 4];
 
@@ -66,49 +60,23 @@ const OverviewSection = () => {
         />
       </div>
 
-      {/* Pools + Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Pools */}
-        <div className="lg:col-span-2 space-y-4">
-          <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
-            <Layers className="h-4 w-4 text-primary" />
-            Pools
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {POOL_IDS.map((poolId, i) => (
-              <PoolCard
-                key={poolId}
-                poolId={poolId}
-                userAddress={address}
-                branchAddress={branchAddress}
-                index={i}
-              />
-            ))}
-          </div>
+      {/* Pools */}
+      <div className="space-y-4">
+        <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
+          <Layers className="h-4 w-4 text-primary" />
+          Pools
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {POOL_IDS.map((poolId, i) => (
+            <PoolCard
+              key={poolId}
+              poolId={poolId}
+              userAddress={address}
+              branchAddress={branchAddress}
+              index={i}
+            />
+          ))}
         </div>
-
-        {/* Recent Activity */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="glass-card p-6">
-          <h3 className="font-display font-semibold text-foreground flex items-center gap-2 mb-4">
-            <PieChart className="h-4 w-4 text-primary" />
-            Recent Activity
-          </h3>
-          <div className="space-y-4">
-            {recentActivity.map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-foreground">{item.action}</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs text-muted-foreground">{item.branch}</span>
-                    <StatusBadge status={item.status} />
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-0.5">{item.time}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </div>
   );
