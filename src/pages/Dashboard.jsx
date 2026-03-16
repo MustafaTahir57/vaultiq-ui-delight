@@ -7,6 +7,7 @@ import OverviewSection from "@/components/dashboard/OverviewSection";
 import SubscriptionsSection from "@/components/dashboard/SubscriptionsSection";
 import BranchSection from "@/components/dashboard/BranchSection";
 import PassiveIncomeSection from "@/components/dashboard/PassiveIncomeSection";
+import CalculatorSection from "@/components/dashboard/CalculatorSection";
 import IncubatorSection from "@/components/dashboard/IncubatorSection";
 import ReferralSystemSection from "@/components/dashboard/ReferralSystemSection";
 import AccountSection from "@/components/dashboard/AccountSection";
