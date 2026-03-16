@@ -8,6 +8,8 @@ import { toast } from "sonner";
 const AccountSection = () => {
   const { address, shortAddress, isBranchManager, userBranchAddress } =
     useWallet();
+  const { address: userAddress } = useAccount();
+  const { directReferrals, isLoading: referralsLoading } = useReferralCounts(userBranchAddress, userAddress);
 
   const referralLink = userBranchAddress
     ? `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${userBranchAddress}&ref=${address}`
