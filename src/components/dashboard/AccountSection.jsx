@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
 import { User, Copy, Shield, UserCheck, Link2, Wallet, ExternalLink } from "lucide-react";
 import { useWallet } from "@/contexts/WalletContext";
+import { useAccount } from "wagmi";
+import useReferralCounts from "@/hooks/dataFetcher/useReferralCounts";
 import { toast } from "sonner";
 
 const AccountSection = () => {
   const { address, shortAddress, isBranchManager, userBranchAddress } =
     useWallet();
+  const { address: userAddress } = useAccount();
+  const { directReferrals, isLoading: referralsLoading } = useReferralCounts(userBranchAddress, userAddress);
 
   const referralLink = userBranchAddress
     ? `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${userBranchAddress}&ref=${address}`
@@ -107,10 +111,10 @@ const AccountSection = () => {
             <span className="text-sm text-muted-foreground">Referrals</span>
           </div>
           <span className="text-lg font-display font-bold text-foreground">
-            14 users
+            {referralsLoading ? "..." : `${directReferrals} users`}
           </span>
           <span className="text-xs text-muted-foreground">
-            Total referred participants
+            Direct referrals (Level 1)
           </span>
         </motion.div>
       </div>
