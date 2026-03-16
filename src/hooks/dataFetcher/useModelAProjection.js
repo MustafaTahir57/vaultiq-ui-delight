@@ -4,7 +4,8 @@ import { BranchExtensionABI } from "@/constants/abis";
 import useUserBranch from "./useUserBranch";
 
 const useModelAProjection = (userAddress, subIndex) => {
-  const { branchAddress, isLoading: branchLoading } = useUserBranch(userAddress);
+  const { branchAddress, isLoading: branchLoading } =
+    useUserBranch(userAddress);
 
   // Batch read: previewSubscription, getCurrentWeek, weekSeconds
   const { data, isLoading, isError } = useReadContracts({
@@ -66,12 +67,12 @@ const useModelAProjection = (userAddress, subIndex) => {
 
     if (!snapshot) return null;
 
-    const principal = Number(snapshot[0]) / 1e18;
-    const activationTime = Number(snapshot[2]);
-    const duration = Number(snapshot[3]);
-    const accRewards = Number(snapshot[4]) / 1e18;
-    const planId = Number(snapshot[8]);
-
+    const principal = Number(snapshot["principal"]) / 1e18;
+    const activationTime = Number(snapshot["activationTime"]);
+    const duration = Number(snapshot["duration"]);
+    const accRewards = Number(snapshot["accumulatedRewards"]) / 1e18;
+    const planId = Number(snapshot["planId"]);
+    
     // Only Model A (planId === 0)
     if (planId !== 0) return null;
 
@@ -92,7 +93,7 @@ const useModelAProjection = (userAddress, subIndex) => {
     const totalWeeks = Math.ceil(duration / weekSec);
     const elapsedWeeks = Math.max(
       0,
-      Math.floor((now - activationTime) / weekSec)
+      Math.floor((now - activationTime) / weekSec),
     );
     const remainingWeeks = Math.max(0, totalWeeks - elapsedWeeks);
 
@@ -105,6 +106,7 @@ const useModelAProjection = (userAddress, subIndex) => {
 
     const PTR = projected - principal;
     const PTG = principal > 0 ? ((projected - principal) / principal) * 100 : 0;
+
 
     return {
       principal,
