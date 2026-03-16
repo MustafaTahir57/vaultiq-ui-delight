@@ -111,10 +111,10 @@ const AccountSection = () => {
             <span className="text-sm text-muted-foreground">Referrals</span>
           </div>
           <span className="text-lg font-display font-bold text-foreground">
-            14 users
+            {referralsLoading ? "..." : `${directReferrals} users`}
           </span>
           <span className="text-xs text-muted-foreground">
-            Total referred participants
+            Direct referrals (Level 1)
           </span>
         </motion.div>
       </div>
