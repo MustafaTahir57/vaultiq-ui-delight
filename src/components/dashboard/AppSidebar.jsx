@@ -5,6 +5,7 @@ import {
   TrendingUp,
   Layers,
   Rocket,
+  Calculator,
   Settings,
   ChevronLeft,
   Users,
