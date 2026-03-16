@@ -296,7 +296,10 @@ const SubscriptionsSection = () => {
                                 claimRewards.isPending ||
                                 claimRewards.isConfirming ||
                                 claimBTC.isPending ||
-                                claimBTC.isConfirming
+                                claimBTC.isConfirming ||
+                                (Number(sub.planId) === 0
+                                  ? Number(sub.accumulatedRewards) === 0
+                                  : Number(sub.withdrawableBTC) === 0)
                               }
                               onClick={() => {
                                 if (Number(sub.planId) === 0) {

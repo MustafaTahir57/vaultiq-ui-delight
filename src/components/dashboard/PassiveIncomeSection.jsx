@@ -30,10 +30,15 @@ const PassiveIncomeSection = () => {
   } = useProjectedIncome(address);
   const { display: nextDist, isLoading: distLoading } =
     useNextDistribution(address);
-  const { lastWithdrawal, totalWithdrawn, isLoading: passiveDataLoading } =
-    usePassiveData(userBranchAddress, address);
+  const {
+    lastWithdrawal,
+    totalWithdrawn,
+    isQualified,
+    isLoading: passiveDataLoading,
+  } = usePassiveData(userBranchAddress, address);
 
-  const isLoading = confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
+  const isLoading =
+    confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
 
   return (
     <div className="space-y-6">
@@ -68,7 +73,11 @@ const PassiveIncomeSection = () => {
           subtitle="Countdown"
           icon={Clock}
         />
-        <StatCard title="Qualified Members" value={"2"} icon={Users} />
+        <StatCard
+          title="Qualification Status"
+          value={isQualified ? "Qualified" : "Not Qualified"}
+          icon={Users}
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

@@ -29,7 +29,9 @@ const usePassiveData = (branchAddress, userAddress) => {
     ? `$${parseFloat(formatUnits(data.totalWithdrawn, 18)).toLocaleString()}`
     : "$0.00";
 
-  return { lastWithdrawal, totalWithdrawn, isLoading, isError };
+  const isQualified = data?.isQualified ?? false;
+
+  return { lastWithdrawal, totalWithdrawn, isLoading, isError , isQualified };
 };
 
 export default usePassiveData;
