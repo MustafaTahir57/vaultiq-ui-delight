@@ -94,6 +94,7 @@ const Dashboard = () => {
           <Route path="deploy" element={<DeployBranchTab />} />
           <Route path="branch" element={<BranchSection />} />
           <Route path="passive" element={<PassiveIncomeSection />} />
+          <Route path="calculator" element={<CalculatorSection />} />
           <Route path="incubator" element={<IncubatorSection />} />
           <Route path="referrals" element={<ReferralSystemSection />} />
           <Route path="account" element={<AccountSection />} />
