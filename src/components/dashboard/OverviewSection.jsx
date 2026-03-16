@@ -15,12 +15,6 @@ const formatUSD = (bigintValue, decimals = 18) => {
   return `$${num.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
 };
 
-const recentActivity = [
-  { action: "Subscription renewed", branch: "Alpha Branch", status: "active", time: "2h ago" },
-  { action: "Pool 2 reward claimed", branch: "VaultIQ Main", status: "claimable", time: "5h ago" },
-  { action: "Incubator deposit", branch: "Round #4", status: "pending", time: "1d ago" },
-  { action: "Passive income distributed", branch: "Beta Branch", status: "active", time: "2d ago" },
-];
 
 const POOL_IDS = [1, 2, 3, 4];
 
