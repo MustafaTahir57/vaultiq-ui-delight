@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { User, Copy, Shield, UserCheck, Link2, Wallet, ExternalLink } from "lucide-react";
 import { useWallet } from "@/contexts/WalletContext";
+import { useAccount } from "wagmi";
+import useReferralCounts from "@/hooks/dataFetcher/useReferralCounts";
 import { toast } from "sonner";
 
 const AccountSection = () => {
