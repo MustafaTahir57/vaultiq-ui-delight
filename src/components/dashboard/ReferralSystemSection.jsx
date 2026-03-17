@@ -12,6 +12,14 @@ const formatSales = (val) => {
   return `$${num.toFixed(0)}`;
 };
 
+const POOL_LABEL_NAMES = {
+  "Pool 1": "Emerald",
+  "Pool 2": "Diamond",
+  "Pool 3": "Blue Diamond",
+  "Pool 4": "Black Diamond",
+  "Passive": "Crown Diamond",
+};
+
 const QualBadge = ({ qualified, label }) => (
   <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary/50">
     {qualified ? (
@@ -20,6 +28,7 @@ const QualBadge = ({ qualified, label }) => (
       <XCircle className="h-4 w-4 text-muted-foreground" />
     )}
     <span className="text-xs font-medium text-foreground">{label}</span>
+    <span className="text-xs font-bold text-primary">{POOL_LABEL_NAMES[label]}</span>
   </div>
 );
 
