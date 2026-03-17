@@ -70,7 +70,7 @@ const SubscriptionsSection = () => {
   const [model, setModel] = useState("A");
   const [selectedPlan, setSelectedPlan] = useState("");
   const [principalInput, setPrincipalInput] = useState("");
-  const [durationInput, setDurationInput] = useState(String(90 * 24 * 60 * 60));
+  const [durationInput, setDurationInput] = useState(String(16 * 30 * 24 * 60 * 60));
   const [referral, setReferral] = useState("");
   const [planId, setPlanId] = useState("1");
   const [autoRoll, setAutoRoll] = useState(false);
