@@ -6,7 +6,7 @@ import StatusBadge from "./StatusBadge";
 import PoolCard from "./PoolCard";
 import { useWallet } from "@/contexts/WalletContext";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
-import useFeeTreasuryBalances from "@/hooks/dataFetcher/useFeeTreasuryBalances";
+
 import useUserPassiveIncome from "@/hooks/dataFetcher/useUserPassiveIncome";
 import { formatUnits } from "viem";
 
@@ -21,7 +21,7 @@ const POOL_IDS = [1, 2, 3, 4];
 const OverviewSection = () => {
   const { address, userBranchAddress } = useWallet();
   const { activeCount, totalRewards, isLoading: subsLoading } = useUserSubscriptions(address);
-  const { usdcBalance, isLoading: treasuryLoading } = useFeeTreasuryBalances();
+  
   const { totalPassiveQualifiedSales, isQualifiedAny, isLoading: passiveLoading } = useUserPassiveIncome(address);
   const branchAddress = userBranchAddress;
 
@@ -33,7 +33,7 @@ const OverviewSection = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatCard
           title="Active Subscriptions"
           value={subsLoading ? "..." : String(activeCount)}
@@ -45,12 +45,6 @@ const OverviewSection = () => {
           value={subsLoading ? "..." : formatUSD(totalRewards)}
           icon={DollarSign}
           subtitle="Accumulated across branches"
-        />
-        <StatCard
-          title="Fee Wallet"
-          value={treasuryLoading ? "..." : formatUSD(usdcBalance)}
-          subtitle="Protocol treasury (USDC)"
-          icon={Wallet}
         />
         <StatCard
           title="Passive Income"
