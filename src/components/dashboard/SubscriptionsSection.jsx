@@ -155,8 +155,8 @@ const SubscriptionsSection = () => {
   }, [cancelSub.isConfirmed, cancelSub.isError, cancelSub.error]);
 
   const handleSubmit = () => {
-    if (!principal || Number(principal) <= 0) {
-      toast.error("Enter a valid amount");
+    if (!selectedPlan || !currentPreset) {
+      toast.error("Please select a plan");
       return;
     }
     if (!userBranchAddress) {
