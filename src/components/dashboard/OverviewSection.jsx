@@ -21,7 +21,7 @@ const POOL_IDS = [1, 2, 3, 4];
 const OverviewSection = () => {
   const { address, userBranchAddress } = useWallet();
   const { activeCount, totalRewards, isLoading: subsLoading } = useUserSubscriptions(address);
-  const { usdcBalance, isLoading: treasuryLoading } = useFeeTreasuryBalances();
+  
   const { totalPassiveQualifiedSales, isQualifiedAny, isLoading: passiveLoading } = useUserPassiveIncome(address);
   const branchAddress = userBranchAddress;
 
