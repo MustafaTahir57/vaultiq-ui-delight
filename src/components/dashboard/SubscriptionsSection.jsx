@@ -70,17 +70,14 @@ const SubscriptionsSection = () => {
   const [model, setModel] = useState("A");
   const [selectedPlan, setSelectedPlan] = useState("");
   const [principalInput, setPrincipalInput] = useState("");
-  const [durationInput, setDurationInput] = useState(String(90 * 24 * 60 * 60));
+  const [durationInput, setDurationInput] = useState(String(16 * 30 * 24 * 60 * 60));
   const [referral, setReferral] = useState("");
   const [planId, setPlanId] = useState("1");
   const [autoRoll, setAutoRoll] = useState(false);
 
   const durationOptions = [
-    { label: "30 Days", value: 30 * 24 * 60 * 60 },
-    { label: "60 Days", value: 60 * 24 * 60 * 60 },
-    { label: "90 Days", value: 90 * 24 * 60 * 60 },
-    { label: "180 Days", value: 180 * 24 * 60 * 60 },
-    { label: "365 Days", value: 365 * 24 * 60 * 60 },
+    { label: "16 Months", value: 16 * 30 * 24 * 60 * 60 },
+    { label: "18 Months", value: 18 * 30 * 24 * 60 * 60 },
   ];
 
   const currentPreset = PRESET_PLANS.find((p) => p.id === selectedPlan);
@@ -123,7 +120,7 @@ const SubscriptionsSection = () => {
   const resetForm = () => {
     setSelectedPlan("");
     setPrincipalInput("");
-    setDurationInput(String(90 * 24 * 60 * 60));
+    setDurationInput(String(16 * 30 * 24 * 60 * 60));
     setReferral("");
     setPlanId("1");
     setAutoRoll(false);
