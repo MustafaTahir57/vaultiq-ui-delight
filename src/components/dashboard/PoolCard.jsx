@@ -11,6 +11,13 @@ const formatUSDT = (value, decimals = 18) => {
   return `$${num.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
 };
 
+const POOL_NAMES = {
+  1: "Emerald",
+  2: "Diamond",
+  3: "Blue Diamond",
+  4: "Black Diamond",
+};
+
 const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
   const { pendingBalance, isQualified, qualifiedCount, threshold, isLoading } = usePoolCard(poolId, userAddress, branchAddress);
   const { claim, isPending, isConfirming } = useClaimPool(branchAddress);
