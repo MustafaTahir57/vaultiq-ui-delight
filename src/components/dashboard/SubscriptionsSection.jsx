@@ -167,9 +167,16 @@ const SubscriptionsSection = () => {
   }, [cancelSub.isConfirmed, cancelSub.isError, cancelSub.error]);
 
   const handleSubmit = () => {
-    if (!selectedPlan || !currentPreset) {
-      toast.error("Please select a plan");
-      return;
+    if (model === "A") {
+      if (!principalInput || Number(principalInput) <= 0) {
+        toast.error("Enter a valid amount");
+        return;
+      }
+    } else {
+      if (!selectedPlan || !currentPreset) {
+        toast.error("Please select a plan");
+        return;
+      }
     }
     if (!userBranchAddress) {
       toast.error("No branch found for your account");
