@@ -120,7 +120,7 @@ const SubscriptionsSection = () => {
   const resetForm = () => {
     setSelectedPlan("");
     setPrincipalInput("");
-    setDurationInput(String(90 * 24 * 60 * 60));
+    setDurationInput(String(16 * 30 * 24 * 60 * 60));
     setReferral("");
     setPlanId("1");
     setAutoRoll(false);
