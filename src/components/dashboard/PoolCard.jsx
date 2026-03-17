@@ -37,6 +37,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
             {isQualified ? <Unlock className="h-4 w-4 text-primary" /> : <Lock className="h-4 w-4 text-muted-foreground" />}
           </div>
           <div>
+            <p className="text-xs font-bold text-primary">{POOL_NAMES[poolId]}</p>
             <h3 className="font-display font-semibold text-foreground">Pool {poolId}</h3>
             <span className={`text-xs font-medium ${isQualified ? "text-success" : "text-destructive"}`}>
               {isLoading ? "..." : isQualified ? "Unlocked" : "Locked"}
