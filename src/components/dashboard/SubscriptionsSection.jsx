@@ -39,12 +39,13 @@ import { toast } from "sonner";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-const durationOptions = [
-  { label: "30 Days", value: 30 * 24 * 60 * 60 },
-  { label: "60 Days", value: 60 * 24 * 60 * 60 },
-  { label: "90 Days", value: 90 * 24 * 60 * 60 },
-  { label: "180 Days", value: 180 * 24 * 60 * 60 },
-  { label: "365 Days", value: 365 * 24 * 60 * 60 },
+const PRESET_PLANS = [
+  { id: "premium",       label: "1x100th Premium",       days: 90,  price: "500" },
+  { id: "platinum",      label: "3x100th Platinum",      days: 90,  price: "1500" },
+  { id: "titanium",      label: "6x100th Titanium",      days: 90,  price: "3000" },
+  { id: "premiumPlus",   label: "1x100th PremiumPlus",   days: 180, price: "1000" },
+  { id: "platinumPlus",  label: "3x100th PlatinumPlus",  days: 180, price: "3000" },
+  { id: "titaniumPlus",  label: "6x100th TitaniumPlus",  days: 180, price: "6000" },
 ];
 
 const SubscriptionsSection = () => {
