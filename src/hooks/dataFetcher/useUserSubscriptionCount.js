@@ -5,7 +5,7 @@ import useUserBranch from "./useUserBranch";
 const useUserSubscriptionCount = (userAddress) => {
   const { branchAddress, isLoading: branchLoading } = useUserBranch(userAddress);
 
-  const { data: count, isLoading, isError } = useReadContract({
+  const { data: count, isLoading, isError , refetch } = useReadContract({
     address: branchAddress,
     abi: BranchExtensionABI,
     functionName: "getSubscriptionCount",
@@ -20,6 +20,7 @@ const useUserSubscriptionCount = (userAddress) => {
     branchAddress,
     isLoading: branchLoading || isLoading,
     isError,
+    refetch
   };
 };
 

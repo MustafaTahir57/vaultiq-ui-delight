@@ -56,6 +56,7 @@ const SubscriptionsSection = () => {
     totalRewards,
     isLoading,
     refetch: refetchSubscriptions,
+    refetchSubscriptionsCount
   } = useUserSubscriptions(address);
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
   const { plans, isLoading: plansLoading } = useBranchPlans(userBranchAddress);
@@ -113,7 +114,10 @@ const SubscriptionsSection = () => {
     if (activePurchase.isConfirmed) {
       toast.success("Subscription purchased successfully!");
       setModalOpen(false);
+      refetchSubscriptionsCount();
+      refetchSubscriptions();
       resetForm();
+      
     }
   }, [activePurchase.isConfirmed]);
 
@@ -157,7 +161,9 @@ const SubscriptionsSection = () => {
   useEffect(() => {
     if (cancelSub.isConfirmed) {
       toast.success("Subscription cancelled successfully!");
+      refetchSubscriptionsCount();
       refetchSubscriptions();
+      
     }
     if (cancelSub.isError)
       toast.error(error?.shortMessage || "Cancellation failed");
