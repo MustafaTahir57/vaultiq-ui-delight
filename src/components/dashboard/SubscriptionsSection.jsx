@@ -111,8 +111,7 @@ const SubscriptionsSection = () => {
   }, [activePurchase.isConfirmed]);
 
   const resetForm = () => {
-    setPrincipal("");
-    setDuration(String(durationOptions[0].value));
+    setSelectedPlan("");
     setReferral("");
     setPlanId("1");
     setAutoRoll(false);
