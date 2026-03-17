@@ -68,11 +68,14 @@ const SubscriptionsSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [model, setModel] = useState("A");
-  const [principal, setPrincipal] = useState("");
-  const [duration, setDuration] = useState(String(durationOptions[0].value));
+  const [selectedPlan, setSelectedPlan] = useState("");
   const [referral, setReferral] = useState("");
   const [planId, setPlanId] = useState("1");
   const [autoRoll, setAutoRoll] = useState(false);
+
+  const currentPreset = PRESET_PLANS.find((p) => p.id === selectedPlan);
+  const principal = currentPreset ? currentPreset.price : "";
+  const duration = currentPreset ? String(currentPreset.days * 24 * 60 * 60) : "0";
 
   // Hooks
   const approval = useUSDTApproval();
