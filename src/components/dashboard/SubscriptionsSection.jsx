@@ -39,12 +39,13 @@ import { toast } from "sonner";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-const durationOptions = [
-  { label: "30 Days", value: 30 * 24 * 60 * 60 },
-  { label: "60 Days", value: 60 * 24 * 60 * 60 },
-  { label: "90 Days", value: 90 * 24 * 60 * 60 },
-  { label: "180 Days", value: 180 * 24 * 60 * 60 },
-  { label: "365 Days", value: 365 * 24 * 60 * 60 },
+const PRESET_PLANS = [
+  { id: "premium",       label: "1x100th Premium",       days: 90,  price: "500" },
+  { id: "platinum",      label: "3x100th Platinum",      days: 90,  price: "1500" },
+  { id: "titanium",      label: "6x100th Titanium",      days: 90,  price: "3000" },
+  { id: "premiumPlus",   label: "1x100th PremiumPlus",   days: 180, price: "1000" },
+  { id: "platinumPlus",  label: "3x100th PlatinumPlus",  days: 180, price: "3000" },
+  { id: "titaniumPlus",  label: "6x100th TitaniumPlus",  days: 180, price: "6000" },
 ];
 
 const SubscriptionsSection = () => {
@@ -67,11 +68,14 @@ const SubscriptionsSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [model, setModel] = useState("A");
-  const [principal, setPrincipal] = useState("");
-  const [duration, setDuration] = useState(String(durationOptions[0].value));
+  const [selectedPlan, setSelectedPlan] = useState("");
   const [referral, setReferral] = useState("");
   const [planId, setPlanId] = useState("1");
   const [autoRoll, setAutoRoll] = useState(false);
+
+  const currentPreset = PRESET_PLANS.find((p) => p.id === selectedPlan);
+  const principal = currentPreset ? currentPreset.price : "";
+  const duration = currentPreset ? String(currentPreset.days * 24 * 60 * 60) : "0";
 
   // Hooks
   const approval = useUSDTApproval();
@@ -107,8 +111,7 @@ const SubscriptionsSection = () => {
   }, [activePurchase.isConfirmed]);
 
   const resetForm = () => {
-    setPrincipal("");
-    setDuration(String(durationOptions[0].value));
+    setSelectedPlan("");
     setReferral("");
     setPlanId("1");
     setAutoRoll(false);
@@ -152,8 +155,8 @@ const SubscriptionsSection = () => {
   }, [cancelSub.isConfirmed, cancelSub.isError, cancelSub.error]);
 
   const handleSubmit = () => {
-    if (!principal || Number(principal) <= 0) {
-      toast.error("Enter a valid amount");
+    if (!selectedPlan || !currentPreset) {
+      toast.error("Please select a plan");
       return;
     }
     if (!userBranchAddress) {
@@ -405,39 +408,46 @@ const SubscriptionsSection = () => {
               </RadioGroup>
             </div>
 
-            {/* Principal */}
+            {/* Plan Selection */}
             <div className="space-y-1.5">
-              <div className="flex items-center justify-between">
-                <Label className="text-foreground text-sm">Amount (USDC)</Label>
-                <span className="text-xs text-muted-foreground">
-                  Balance: {Number(formattedBalance).toLocaleString()}
-                </span>
-              </div>
-              <Input
-                type="number"
-                placeholder="Enter amount"
-                value={principal}
-                onChange={(e) => setPrincipal(e.target.value)}
-                className="bg-secondary/50 border-border"
-              />
-            </div>
-
-            {/* Duration */}
-            <div className="space-y-1.5">
-              <Label className="text-foreground text-sm">Duration</Label>
-              <Select value={duration} onValueChange={setDuration}>
+              <Label className="text-foreground text-sm">Select Plan</Label>
+              <Select value={selectedPlan} onValueChange={setSelectedPlan}>
                 <SelectTrigger className="bg-secondary/50 border-border">
-                  <SelectValue />
+                  <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {durationOptions.map((d) => (
-                    <SelectItem key={d.value} value={String(d.value)}>
-                      {d.label}
+                  {PRESET_PLANS.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>
+                      {p.label} — ${Number(p.price).toLocaleString()} / {p.days} days
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Auto-filled Amount & Duration (read-only) */}
+            {currentPreset && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label className="text-foreground text-sm">Amount (USDC)</Label>
+                  <Input
+                    value={`$${Number(currentPreset.price).toLocaleString()}`}
+                    readOnly
+                    disabled
+                    className="bg-secondary/50 border-border opacity-70"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-foreground text-sm">Duration</Label>
+                  <Input
+                    value={`${currentPreset.days} Days`}
+                    readOnly
+                    disabled
+                    className="bg-secondary/50 border-border opacity-70"
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Referral */}
             <div className="space-y-1.5">
