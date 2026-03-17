@@ -6,7 +6,7 @@ import StatusBadge from "./StatusBadge";
 import PoolCard from "./PoolCard";
 import { useWallet } from "@/contexts/WalletContext";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
-import useFeeTreasuryBalances from "@/hooks/dataFetcher/useFeeTreasuryBalances";
+
 import useUserPassiveIncome from "@/hooks/dataFetcher/useUserPassiveIncome";
 import { formatUnits } from "viem";
 
