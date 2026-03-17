@@ -408,39 +408,46 @@ const SubscriptionsSection = () => {
               </RadioGroup>
             </div>
 
-            {/* Principal */}
+            {/* Plan Selection */}
             <div className="space-y-1.5">
-              <div className="flex items-center justify-between">
-                <Label className="text-foreground text-sm">Amount (USDC)</Label>
-                <span className="text-xs text-muted-foreground">
-                  Balance: {Number(formattedBalance).toLocaleString()}
-                </span>
-              </div>
-              <Input
-                type="number"
-                placeholder="Enter amount"
-                value={principal}
-                onChange={(e) => setPrincipal(e.target.value)}
-                className="bg-secondary/50 border-border"
-              />
-            </div>
-
-            {/* Duration */}
-            <div className="space-y-1.5">
-              <Label className="text-foreground text-sm">Duration</Label>
-              <Select value={duration} onValueChange={setDuration}>
+              <Label className="text-foreground text-sm">Select Plan</Label>
+              <Select value={selectedPlan} onValueChange={setSelectedPlan}>
                 <SelectTrigger className="bg-secondary/50 border-border">
-                  <SelectValue />
+                  <SelectValue placeholder="Choose a plan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {durationOptions.map((d) => (
-                    <SelectItem key={d.value} value={String(d.value)}>
-                      {d.label}
+                  {PRESET_PLANS.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>
+                      {p.label} — ${Number(p.price).toLocaleString()} / {p.days} days
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Auto-filled Amount & Duration (read-only) */}
+            {currentPreset && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label className="text-foreground text-sm">Amount (USDC)</Label>
+                  <Input
+                    value={`$${Number(currentPreset.price).toLocaleString()}`}
+                    readOnly
+                    disabled
+                    className="bg-secondary/50 border-border opacity-70"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-foreground text-sm">Duration</Label>
+                  <Input
+                    value={`${currentPreset.days} Days`}
+                    readOnly
+                    disabled
+                    className="bg-secondary/50 border-border opacity-70"
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Referral */}
             <div className="space-y-1.5">
