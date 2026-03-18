@@ -267,7 +267,7 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
           <div className="flex items-center justify-between rounded-lg border border-border p-3 bg-secondary/20">
             <div>
               <Label className="text-foreground text-sm">Active</Label>
-              <p className="text-xs text-muted-foreground">Enable this plan immediately</p>
+              <p className="text-xs text-muted-foreground">Enable Auto Investment</p>
             </div>
             <Switch checked={active} onCheckedChange={setActive} />
           </div>
