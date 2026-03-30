@@ -43,7 +43,9 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const setMiningDist = useSetMiningRevenueDistributor();
   const setBtcb = useSetBTCBToken();
   const processMonth = useProcessPassiveMonth();
+  const grantRoleHook = useGrantRole();
 
+  const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
 
   const hookMap = {
