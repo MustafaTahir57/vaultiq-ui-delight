@@ -36,6 +36,7 @@ import useClaimBTC from "@/hooks/dataSender/useClaimBTC";
 import useCancelSubscription from "@/hooks/dataSender/useCancelSubscription";
 import { parseUnits, formatUnits } from "viem";
 import { toast } from "sonner";
+import useUserReferrer from "@/hooks/dataFetcher/useUserReferrer";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
@@ -59,6 +60,7 @@ const SubscriptionsSection = () => {
     refetchSubscriptionsCount
   } = useUserSubscriptions(address);
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
+  const { referrerAddress } = useUserReferrer(address)
   const { plans, isLoading: plansLoading } = useBranchPlans(userBranchAddress);
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(
     USDT_Address,
@@ -437,7 +439,7 @@ const SubscriptionsSection = () => {
                   <div className="flex items-center justify-between">
                     <Label className="text-foreground text-sm">Amount (USDC)</Label>
                     <span className="text-xs text-muted-foreground">
-                      Balance: {Number(formattedBalance).toLocaleString()}
+                      Balanceeeee: {Number(formattedBalance).toLocaleString()}
                     </span>
                   </div>
                   <Input
@@ -512,13 +514,13 @@ const SubscriptionsSection = () => {
             {/* Referral */}
             <div className="space-y-1.5">
               <Label className="text-foreground text-sm">
-                Referral Address (optional)
+                Referral Address
               </Label>
               <Input
                 placeholder="0x..."
-                value={referral}
-                onChange={(e) => setReferral(e.target.value)}
+                value={referrerAddress || ""}
                 className="bg-secondary/50 border-border"
+                readOnly
               />
             </div>
 
