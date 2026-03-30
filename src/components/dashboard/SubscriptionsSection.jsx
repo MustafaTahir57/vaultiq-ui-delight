@@ -80,6 +80,13 @@ const SubscriptionsSection = () => {
   const principal = model === "B" && currentPreset ? currentPreset.price : principalInput;
   const duration = model === "B" && currentPreset ? String(currentPreset.duration) : durationInput;
 
+  // Auto-sync planId when a Model B plan is selected
+  useEffect(() => {
+    if (model === "B" && selectedPlan) {
+      setPlanId(selectedPlan);
+    }
+  }, [model, selectedPlan]);
+
   // Hooks
   const approval = useUSDTApproval();
   const modelA = usePurchaseSubscription();
