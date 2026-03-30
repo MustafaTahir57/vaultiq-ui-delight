@@ -180,7 +180,7 @@ const ActivationFeeScreen = ({ onRegistered }) => {
               {/* Branch Selection */}
               <div className="text-left space-y-2">
                 <label className="text-sm text-muted-foreground">Select Branch</label>
-                {referralAddress ? (
+                {branchFromUrl ? (
                   <>
                     <input
                       type="text"
