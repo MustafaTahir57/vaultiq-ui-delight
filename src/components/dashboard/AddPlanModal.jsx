@@ -28,7 +28,7 @@ import { toast } from "sonner";
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const defaultCore = {
-  liquidityAllocation: "7200",
+  liquidityAllocation: "7600",
   directBonusPercent: "500",
   branchCommissionPercent: "300",
   feePercent: "800",
@@ -37,7 +37,6 @@ const defaultCore = {
   pool2Percent: "150",
   pool3Percent: "150",
   pool4Percent: "150",
-  passiveIncomePercent: "200",
   cancellationPercent: "200",
 };
 
