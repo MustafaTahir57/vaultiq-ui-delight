@@ -197,11 +197,18 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
 
           {/* Core Config */}
           <div className="space-y-2">
-            <Label className="text-foreground text-sm font-medium">Core Config (BPS)</Label>
+            <div className="flex items-center justify-between">
+              <Label className="text-foreground text-sm font-medium">Core Config (BPS)</Label>
+              <span className={`text-xs font-mono font-semibold ${coreSum === 10000 ? "text-green-500" : "text-destructive"}`}>
+                {coreSum} / 10,000
+              </span>
+            </div>
             <div className="grid grid-cols-2 gap-2 rounded-lg border border-border p-3 bg-secondary/20">
-              {coreFields.map(({ key, label }) => (
+              {coreFields.map(({ key, label, excluded }) => (
                 <div key={key} className="space-y-1">
-                  <Label className="text-xs text-muted-foreground">{label}</Label>
+                  <Label className="text-xs text-muted-foreground">
+                    {label}{excluded ? " (not counted)" : ""}
+                  </Label>
                   <Input
                     type="number"
                     placeholder="0"
