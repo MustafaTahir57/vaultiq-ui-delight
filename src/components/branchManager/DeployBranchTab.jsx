@@ -9,7 +9,7 @@ import { coreConfigFields, expiryConfigFields } from "./constants";
 import { toast } from "sonner";
 
 const defaultCore = {
-  liquidityAllocation: 7400,
+  liquidityAllocation: 7600,
   directBonusPercent: 500,
   branchCommissionPercent: 300,
   feePercent: 800,
@@ -18,7 +18,6 @@ const defaultCore = {
   pool2Percent: 150,
   pool3Percent: 150,
   pool4Percent: 150,
-  passiveIncomePercent: 200,
 };
 
 const defaultExpiry = {
@@ -76,7 +75,6 @@ const DeployBranchTab = () => {
   const isValidAddress = (addr) => /^0x[a-fA-F0-9]{40}$/.test(addr);
 
   const canDeploy =
-    isOpenDeployment &&
     branchName.trim() &&
     !nameError &&
     !nameCheckFetching &&

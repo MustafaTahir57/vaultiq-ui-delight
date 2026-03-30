@@ -2,7 +2,7 @@ import { useReadContracts } from "wagmi";
 import { BranchABI } from "@/constants/abis";
 import { formatUnits } from "viem";
 
-const PLAN_IDS = [1, 2, 3, 4, 5, 6];
+const PLAN_IDS = [0,1,2,3,4,5];
 
 const useBranchPlansData = (branchAddress) => {
   const contracts = PLAN_IDS.map((id) => ({
@@ -16,7 +16,7 @@ const useBranchPlansData = (branchAddress) => {
     contracts,
     query: { enabled: !!branchAddress },
   });
-
+  
   const plans = data
     ? data
         .map((r, i) => {

@@ -67,7 +67,7 @@ export const configFields = [
 ];
 
 export const coreConfigFields = [
-  { label: "Liquidity Allocation", field: "liquidityAllocation", default: "7200 (72%)" },
+  { label: "Liquidity Allocation", field: "liquidityAllocation", default: "7600 (76%)" },
   { label: "Direct Bonus", field: "directBonusPercent", default: "500 (5%)" },
   { label: "Branch Commission", field: "branchCommissionPercent", default: "300 (3%)" },
   { label: "Protocol Fee", field: "feePercent", default: "800 (8%)" },
@@ -76,7 +76,6 @@ export const coreConfigFields = [
   { label: "Pool 2", field: "pool2Percent", default: "150 (1.5%)" },
   { label: "Pool 3", field: "pool3Percent", default: "150 (1.5%)" },
   { label: "Pool 4", field: "pool4Percent", default: "150 (1.5%)" },
-  { label: "Passive Income", field: "passiveIncomePercent", default: "200 (2%)" },
 ];
 
 export const expiryConfigFields = [

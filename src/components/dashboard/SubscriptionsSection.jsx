@@ -49,12 +49,12 @@ const SubscriptionsSection = () => {
     totalRewards,
     isLoading,
     refetch: refetchSubscriptions,
-    refetchSubscriptionsCount
+    refetchSubscriptionsCount,
   } = useUserSubscriptions(address);
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
-  const { referrerAddress } = useUserReferrer(address)
-  const { plans, isLoading: plansLoading } = useBranchPlans(userBranchAddress);
-  const { plans: branchPlans, isLoading: branchPlansLoading } = useBranchPlansData(userBranchAddress);
+  const { referrerAddress } = useUserReferrer(address);
+  const { plans: branchPlans, isLoading: branchPlansLoading } =
+    useBranchPlansData(userBranchAddress);
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(
     USDT_Address,
     address,
@@ -66,8 +66,9 @@ const SubscriptionsSection = () => {
   const [model, setModel] = useState("A");
   const [selectedPlan, setSelectedPlan] = useState("");
   const [principalInput, setPrincipalInput] = useState("");
-  const [durationInput, setDurationInput] = useState(String(16 * 30 * 24 * 60 * 60));
-  const [referral, setReferral] = useState("");
+  const [durationInput, setDurationInput] = useState(
+    String(16 * 30 * 24 * 60 * 60),
+  );
   const [planId, setPlanId] = useState("1");
   const [autoRoll, setAutoRoll] = useState(false);
 
@@ -77,8 +78,12 @@ const SubscriptionsSection = () => {
   ];
 
   const currentPreset = branchPlans.find((p) => String(p.id) === selectedPlan);
-  const principal = model === "B" && currentPreset ? currentPreset.price : principalInput;
-  const duration = model === "B" && currentPreset ? String(currentPreset.duration) : durationInput;
+  const principal =
+    model === "B" && currentPreset ? currentPreset.price : principalInput;
+  const duration =
+    model === "B" && currentPreset
+      ? String(currentPreset.duration)
+      : durationInput;
 
   // Auto-sync planId when a Model B plan is selected
   useEffect(() => {
@@ -119,7 +124,6 @@ const SubscriptionsSection = () => {
       refetchSubscriptionsCount();
       refetchSubscriptions();
       resetForm();
-      
     }
   }, [activePurchase.isConfirmed]);
 
@@ -127,7 +131,6 @@ const SubscriptionsSection = () => {
     setSelectedPlan("");
     setPrincipalInput("");
     setDurationInput(String(16 * 30 * 24 * 60 * 60));
-    setReferral("");
     setPlanId("1");
     setAutoRoll(false);
     setModel("A");
@@ -144,7 +147,10 @@ const SubscriptionsSection = () => {
   const executePurchase = () => {
     const amount = parseUnits(principal, 18);
     const dur = BigInt(duration);
-    const ref = referral && referral.startsWith("0x") ? referral : ZERO_ADDRESS;
+    const ref =
+      referrerAddress && referrerAddress.startsWith("0x")
+        ? referrerAddress
+        : ZERO_ADDRESS;
 
     if (model === "A") {
       modelA.purchase(userBranchAddress, amount, dur, ref);
@@ -165,10 +171,10 @@ const SubscriptionsSection = () => {
       toast.success("Subscription cancelled successfully!");
       refetchSubscriptionsCount();
       refetchSubscriptions();
-      
     }
-    if (cancelSub.isError)
-      toast.error(error?.shortMessage || "Cancellation failed");
+    if (cancelSub.isError) {
+      toast.error(cancelSub?.error?.shortMessage || "Cancellation failed");
+    }
   }, [cancelSub.isConfirmed, cancelSub.isError, cancelSub.error]);
 
   const handleSubmit = () => {
@@ -260,7 +266,7 @@ const SubscriptionsSection = () => {
                     Loading subscriptions...
                   </td>
                 </tr>
-              ) : subscriptions.length === 0 ? (
+              ) : subscriptions?.length === 0 ? (
                 <tr>
                   <td
                     colSpan={7}
@@ -271,7 +277,7 @@ const SubscriptionsSection = () => {
                   </td>
                 </tr>
               ) : (
-                subscriptions.map((sub, i) => (
+                subscriptions?.map((sub, i) => (
                   <motion.tr
                     key={`${sub.branch}-${sub.index}`}
                     initial={{ opacity: 0 }}
@@ -391,7 +397,6 @@ const SubscriptionsSection = () => {
                 value={model}
                 onValueChange={(v) => {
                   setModel(v);
-                  setStep("form");
                 }}
                 className="grid grid-cols-2 gap-3"
               >
@@ -437,7 +442,9 @@ const SubscriptionsSection = () => {
               <>
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <Label className="text-foreground text-sm">Amount (USDC)</Label>
+                    <Label className="text-foreground text-sm">
+                      Amount (USDC)
+                    </Label>
                     <span className="text-xs text-muted-foreground">
                       Balanceeeee: {Number(formattedBalance).toLocaleString()}
                     </span>
@@ -452,7 +459,10 @@ const SubscriptionsSection = () => {
                 </div>
                 <div className="space-y-1.5">
                   <Label className="text-foreground text-sm">Duration</Label>
-                  <Select value={durationInput} onValueChange={setDurationInput}>
+                  <Select
+                    value={durationInput}
+                    onValueChange={setDurationInput}
+                  >
                     <SelectTrigger className="bg-secondary/50 border-border">
                       <SelectValue />
                     </SelectTrigger>
@@ -475,21 +485,33 @@ const SubscriptionsSection = () => {
                   <Label className="text-foreground text-sm">Select Plan</Label>
                   <Select value={selectedPlan} onValueChange={setSelectedPlan}>
                     <SelectTrigger className="bg-secondary/50 border-border">
-                      <SelectValue placeholder={branchPlansLoading ? "Loading plans..." : "Choose a plan"} />
+                      <SelectValue
+                        placeholder={
+                          branchPlansLoading
+                            ? "Loading plans..."
+                            : "Choose a plan"
+                        }
+                      />
                     </SelectTrigger>
                     <SelectContent>
-                      {branchPlans.filter((p) => p.active).map((p) => (
-                        <SelectItem key={p.id} value={String(p.id)}>
-                          {p.name || `Plan ${p.id}`} — ${Number(p.price).toLocaleString()} / {p.durationDays} days
-                        </SelectItem>
-                      ))}
+                      {branchPlans
+                        .filter((p) => p.active)
+                        .map((p) => (
+                          <SelectItem key={p.id} value={String(p.id)}>
+                            {p.name || `Plan ${p.id}`} — $
+                            {Number(p.price).toLocaleString()} /{" "}
+                            {p.durationDays} days
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                 </div>
                 {currentPreset && (
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1.5">
-                      <Label className="text-foreground text-sm">Amount (USDC)</Label>
+                      <Label className="text-foreground text-sm">
+                        Amount (USDC)
+                      </Label>
                       <Input
                         value={`$${Number(currentPreset.price).toLocaleString()}`}
                         readOnly
@@ -498,7 +520,9 @@ const SubscriptionsSection = () => {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label className="text-foreground text-sm">Duration</Label>
+                      <Label className="text-foreground text-sm">
+                        Duration
+                      </Label>
                       <Input
                         value={`${currentPreset.durationDays} Days`}
                         readOnly
@@ -530,7 +554,11 @@ const SubscriptionsSection = () => {
                 <div className="space-y-1.5">
                   <Label className="text-foreground text-sm">Mining Plan</Label>
                   <Input
-                    value={currentPreset ? (currentPreset.name || `Plan ${currentPreset.id}`) : "Select a plan above"}
+                    value={
+                      currentPreset
+                        ? currentPreset.name || `Plan ${currentPreset.id}`
+                        : "Select a plan above"
+                    }
                     readOnly
                     disabled
                     className="bg-secondary/50 border-border opacity-70"

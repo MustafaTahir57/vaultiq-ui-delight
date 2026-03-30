@@ -37,6 +37,10 @@ const ReferralSystemSection = () => {
   const { userBranchAddress } = useWallet();
   const { referralData, treeCounts, isLoading, isError } = useReferralData(userBranchAddress, address);
 
+    const referralLink = userBranchAddress
+    ? `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${userBranchAddress}&ref=${address}`
+    : null;
+
   const handleCopy = () => {
     if (address) {
       navigator.clipboard.writeText(address);
@@ -121,7 +125,7 @@ const ReferralSystemSection = () => {
           </div>
         </div>
         <div className="flex items-center gap-2 bg-secondary/50 rounded-lg px-4 py-2.5">
-          <span className="text-xs font-mono text-muted-foreground truncate flex-1">{address}</span>
+          <span className="text-xs font-mono text-muted-foreground truncate flex-1">{referralLink}</span>
           <button onClick={handleCopy} className="text-muted-foreground hover:text-primary transition-colors shrink-0">
             <Copy className="h-4 w-4" />
           </button>

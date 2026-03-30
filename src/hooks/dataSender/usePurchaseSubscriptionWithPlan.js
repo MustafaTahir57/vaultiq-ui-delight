@@ -6,22 +6,47 @@ import { BranchABI } from "@/constants/abis";
  * Calls branch.purchaseSubscriptionWithPlan(principal, duration, referral, planId, autoRoll)
  */
 const usePurchaseSubscriptionWithPlan = () => {
-  const { data: hash, writeContract, isPending, isError, error, reset } = useWriteContract();
+  const {
+    data: hash,
+    writeContract,
+    isPending,
+    isError,
+    error,
+    reset,
+  } = useWriteContract();
 
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
-    hash,
-  });
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({
+      hash,
+    });
 
-  const purchase = (branchAddress, principal, duration, referral, planId, autoRoll) => {
+  const purchase = (
+    branchAddress,
+    principal,
+    duration,
+    referral,
+    planId,
+    autoRoll,
+  ) => {
+    const plainID = planId + 1;
     writeContract({
       address: branchAddress,
       abi: BranchABI,
       functionName: "purchaseSubscriptionWithPlan",
-      args: [principal, duration, referral, planId, autoRoll],
+      args: [principal, duration, referral, plainID, autoRoll],
     });
   };
 
-  return { purchase, hash, isPending, isConfirming, isConfirmed, isError, error, reset };
+  return {
+    purchase,
+    hash,
+    isPending,
+    isConfirming,
+    isConfirmed,
+    isError,
+    error,
+    reset,
+  };
 };
 
 export default usePurchaseSubscriptionWithPlan;

@@ -1,5 +1,5 @@
 import { useReadContracts } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchViewsABI } from "@/constants/abis";
 import { formatUnits } from "viem";
 
 const useReferralData = (branchAddress, userAddress) => {
@@ -7,13 +7,13 @@ const useReferralData = (branchAddress, userAddress) => {
     contracts: [
       {
         address: branchAddress,
-        abi: BranchExtensionABI,
+        abi: BranchViewsABI,
         functionName: "getReferralData",
         args: [userAddress],
       },
       {
         address: branchAddress,
-        abi: BranchExtensionABI,
+        abi: BranchViewsABI,
         functionName: "getReferralTreeCounts",
         args: [userAddress],
       },

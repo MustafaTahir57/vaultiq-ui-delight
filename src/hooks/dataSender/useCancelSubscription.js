@@ -1,5 +1,5 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { BranchABI } from "@/constants/abis";
+import { BranchExtensionABI } from "@/constants/abis";
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { useAccount } from "wagmi";
@@ -12,7 +12,7 @@ const useCancelSubscription = () => {
   const cancel = (branchAddress, subscriptionIndex) => {
     writeContract({
       address: branchAddress,
-      abi: BranchABI,
+      abi: BranchExtensionABI,
       functionName: "cancelSubscription",
       args: [address, BigInt(subscriptionIndex)],
     });

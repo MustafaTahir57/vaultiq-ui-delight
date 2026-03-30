@@ -56,7 +56,7 @@ const useDeployBranch = (userAddress) => {
       BigInt(coreConfig.pool2Percent),
       BigInt(coreConfig.pool3Percent),
       BigInt(coreConfig.pool4Percent),
-      BigInt(coreConfig.passiveIncomePercent),
+      // BigInt(coreConfig.passiveIncomePercent),
       BigInt(coreConfig.cancellationPercent),
     ];
 
