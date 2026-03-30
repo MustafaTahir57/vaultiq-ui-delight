@@ -13,6 +13,8 @@ import useSetLiquidityType from "@/hooks/dataSender/useSetLiquidityType";
 import useSetMiningRevenueDistributor from "@/hooks/dataSender/useSetMiningRevenueDistributor";
 import useSetBTCBToken from "@/hooks/dataSender/useSetBTCBToken";
 import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
+import useGrantRole from "@/hooks/dataSender/useGrantRole";
+import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 
 const truncateAddress = (addr) => {
@@ -32,6 +34,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [distributorAddress, setDistributorAddress] = useState("");
   const [btcbAddress, setBtcbAddress] = useState("");
   const [monthIndex, setMonthIndex] = useState("");
+  const [grantRoleAddress, setGrantRoleAddress] = useState("");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
@@ -40,7 +43,9 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const setMiningDist = useSetMiningRevenueDistributor();
   const setBtcb = useSetBTCBToken();
   const processMonth = useProcessPassiveMonth();
+  const grantRoleHook = useGrantRole();
 
+  const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
 
   const hookMap = {
@@ -50,6 +55,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     setMiningRevenueDistributor: setMiningDist,
     setBTCBToken: setBtcb,
     processPassiveMonth: processMonth,
+    grantRole: grantRoleHook,
   };
 
   const handleExecute = (fnName) => {
@@ -95,6 +101,13 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         if (isNaN(idx) || idx < 0) { toast.error("Enter a valid month index"); return; }
         processMonth.processPassiveMonth(selectedBranch, idx);
         toast.info(`Processing passive month ${idx}...`);
+        break;
+      }
+      case "grantRole": {
+        if (!grantRoleAddress || !grantRoleAddress.startsWith("0x")) { toast.error("Enter a valid address"); return; }
+        if (!branchManagerRole) { toast.error("Could not fetch BRANCH_MANAGER_ROLE"); return; }
+        grantRoleHook.grantRole(selectedBranch, branchManagerRole, grantRoleAddress);
+        toast.info("Granting BRANCH_MANAGER_ROLE...");
         break;
       }
     }
@@ -204,6 +217,19 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
               value={monthIndex}
               onChange={(e) => setMonthIndex(e.target.value)}
               className="bg-secondary/50 border-border font-mono"
+            />
+          </div>
+        );
+
+      case "grantRole":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Account Address</label>
+            <Input
+              placeholder="0x..."
+              value={grantRoleAddress}
+              onChange={(e) => setGrantRoleAddress(e.target.value)}
+              className="bg-secondary/50 border-border font-mono text-xs"
             />
           </div>
         );
