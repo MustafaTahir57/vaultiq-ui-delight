@@ -27,7 +27,10 @@ const ActivationFeeScreen = ({ onRegistered }) => {
   const { tokenAddress, isLoading: tokenLoading } = useRegistrationToken();
   const { branches, isLoading: branchesLoading } = useRegisteredBranches();
   const { balance, isLoading: balanceLoading } = useTokenBalance(tokenAddress, address);
-  const { approved: branchApproved, branchName, isLoading: branchInfoLoading } = useBranchInfo(referralAddress || selectedBranch || undefined);
+  const { approved: branchApproved, branchName, owner: branchOwner, isLoading: branchInfoLoading } = useBranchInfo(branchFromUrl || selectedBranch || undefined);
+
+  // Referral address: use URL param if provided, otherwise fall back to branch owner
+  const referralAddress = refFromUrl || branchOwner || "";
 
   // Data senders
   const {
