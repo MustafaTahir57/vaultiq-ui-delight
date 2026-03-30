@@ -226,6 +226,30 @@ const ActivationFeeScreen = ({ onRegistered }) => {
                 )}
               </div>
 
+              {/* Referral Address */}
+              <div className="text-left space-y-2">
+                <label className="text-sm text-muted-foreground">Referral Address</label>
+                <input
+                  type="text"
+                  value={referralAddress}
+                  readOnly
+                  placeholder="Defaults to branch owner"
+                  className="w-full rounded-lg border border-border/40 bg-background px-3 py-2.5 text-sm text-foreground font-mono opacity-80 cursor-not-allowed"
+                />
+                {refFromUrl && (
+                  <div className="flex items-center gap-2 text-xs text-[hsl(var(--success))]">
+                    <CheckCircle className="h-3.5 w-3.5 shrink-0" />
+                    Referral detected from link
+                  </div>
+                )}
+                {!refFromUrl && referralAddress && (
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <Shield className="h-3.5 w-3.5 shrink-0" />
+                    Using branch owner as referral
+                  </div>
+                )}
+              </div>
+
               <div className="h-px bg-border/30" />
 
               <div className="space-y-2.5 text-left">
