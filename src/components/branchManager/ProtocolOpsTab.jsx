@@ -55,6 +55,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     setMiningRevenueDistributor: setMiningDist,
     setBTCBToken: setBtcb,
     processPassiveMonth: processMonth,
+    grantRole: grantRoleHook,
   };
 
   const handleExecute = (fnName) => {
