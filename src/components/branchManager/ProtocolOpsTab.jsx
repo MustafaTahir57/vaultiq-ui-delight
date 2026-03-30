@@ -103,6 +103,13 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         toast.info(`Processing passive month ${idx}...`);
         break;
       }
+      case "grantRole": {
+        if (!grantRoleAddress || !grantRoleAddress.startsWith("0x")) { toast.error("Enter a valid address"); return; }
+        if (!branchManagerRole) { toast.error("Could not fetch BRANCH_MANAGER_ROLE"); return; }
+        grantRoleHook.grantRole(selectedBranch, branchManagerRole, grantRoleAddress);
+        toast.info("Granting BRANCH_MANAGER_ROLE...");
+        break;
+      }
     }
   };
 
