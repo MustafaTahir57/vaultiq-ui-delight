@@ -17,8 +17,9 @@ import { formatUnits } from "viem";
 const ActivationFeeScreen = ({ onRegistered }) => {
   const { shortAddress, address, disconnect } = useWallet();
   const [searchParams] = useSearchParams();
-  const referralAddress = searchParams.get("address") || "";
-  const [selectedBranch, setSelectedBranch] = useState(referralAddress);
+  const branchFromUrl = searchParams.get("address") || "";
+  const refFromUrl = searchParams.get("ref") || "";
+  const [selectedBranch, setSelectedBranch] = useState(branchFromUrl);
   const [step, setStep] = useState("form"); // form | approving | registering | success
 
   // Data fetchers
@@ -26,7 +27,10 @@ const ActivationFeeScreen = ({ onRegistered }) => {
   const { tokenAddress, isLoading: tokenLoading } = useRegistrationToken();
   const { branches, isLoading: branchesLoading } = useRegisteredBranches();
   const { balance, isLoading: balanceLoading } = useTokenBalance(tokenAddress, address);
-  const { approved: branchApproved, branchName, isLoading: branchInfoLoading } = useBranchInfo(referralAddress || selectedBranch || undefined);
+  const { approved: branchApproved, branchName, owner: branchOwner, isLoading: branchInfoLoading } = useBranchInfo(branchFromUrl || selectedBranch || undefined);
+
+  // Referral address: use URL param if provided, otherwise fall back to branch owner
+  const referralAddress = refFromUrl || branchOwner || "";
 
   // Data senders
   const {
@@ -58,7 +62,7 @@ const ActivationFeeScreen = ({ onRegistered }) => {
     if (approvalConfirmed && step === "approving") {
       setStep("registering");
       toast.success("USDT approved successfully! Registering...");
-      registerUser(selectedBranch);
+      registerUser(selectedBranch, referralAddress);
     }
   }, [approvalConfirmed, step, selectedBranch, registerUser]);
 
@@ -176,7 +180,7 @@ const ActivationFeeScreen = ({ onRegistered }) => {
               {/* Branch Selection */}
               <div className="text-left space-y-2">
                 <label className="text-sm text-muted-foreground">Select Branch</label>
-                {referralAddress ? (
+                {branchFromUrl ? (
                   <>
                     <input
                       type="text"
@@ -257,7 +261,7 @@ const ActivationFeeScreen = ({ onRegistered }) => {
             >
               <button
                 onClick={handleRegister}
-                disabled={!hasEnoughBalance || !selectedBranch || feeLoading || tokenLoading || (referralAddress && !branchApproved)}
+                disabled={!hasEnoughBalance || !selectedBranch || feeLoading || tokenLoading || (branchFromUrl && !branchApproved)}
                 className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Register & Activate
