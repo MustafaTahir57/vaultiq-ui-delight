@@ -31,6 +31,7 @@ import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useTokenBalance from "@/hooks/dataFetcher/useTokenBalance";
 import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
+import useBranchPlansData from "@/hooks/dataFetcher/useBranchPlansData";
 import useClaimRewards from "@/hooks/dataSender/useClaimRewards";
 import useClaimBTC from "@/hooks/dataSender/useClaimBTC";
 import useCancelSubscription from "@/hooks/dataSender/useCancelSubscription";
@@ -39,15 +40,6 @@ import { toast } from "sonner";
 import useUserReferrer from "@/hooks/dataFetcher/useUserReferrer";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-
-const PRESET_PLANS = [
-  { id: "premium",       label: "1x100th Premium",       days: 90,  price: "500" },
-  { id: "platinum",      label: "3x100th Platinum",      days: 90,  price: "1500" },
-  { id: "titanium",      label: "6x100th Titanium",      days: 90,  price: "3000" },
-  { id: "premiumPlus",   label: "1x100th PremiumPlus",   days: 180, price: "1000" },
-  { id: "platinumPlus",  label: "3x100th PlatinumPlus",  days: 180, price: "3000" },
-  { id: "titaniumPlus",  label: "6x100th TitaniumPlus",  days: 180, price: "6000" },
-];
 
 const SubscriptionsSection = () => {
   const { address, userBranchAddress } = useWallet();
@@ -62,6 +54,7 @@ const SubscriptionsSection = () => {
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
   const { referrerAddress } = useUserReferrer(address)
   const { plans, isLoading: plansLoading } = useBranchPlans(userBranchAddress);
+  const { plans: branchPlans, isLoading: branchPlansLoading } = useBranchPlansData(userBranchAddress);
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(
     USDT_Address,
     address,
@@ -83,9 +76,9 @@ const SubscriptionsSection = () => {
     { label: "18 Months", value: 18 * 30 * 24 * 60 * 60 },
   ];
 
-  const currentPreset = PRESET_PLANS.find((p) => p.id === selectedPlan);
+  const currentPreset = branchPlans.find((p) => String(p.id) === selectedPlan);
   const principal = model === "B" && currentPreset ? currentPreset.price : principalInput;
-  const duration = model === "B" && currentPreset ? String(currentPreset.days * 24 * 60 * 60) : durationInput;
+  const duration = model === "B" && currentPreset ? String(currentPreset.duration) : durationInput;
 
   // Hooks
   const approval = useUSDTApproval();
@@ -475,12 +468,12 @@ const SubscriptionsSection = () => {
                   <Label className="text-foreground text-sm">Select Plan</Label>
                   <Select value={selectedPlan} onValueChange={setSelectedPlan}>
                     <SelectTrigger className="bg-secondary/50 border-border">
-                      <SelectValue placeholder="Choose a plan" />
+                      <SelectValue placeholder={branchPlansLoading ? "Loading plans..." : "Choose a plan"} />
                     </SelectTrigger>
                     <SelectContent>
-                      {PRESET_PLANS.map((p) => (
-                        <SelectItem key={p.id} value={p.id}>
-                          {p.label} — ${Number(p.price).toLocaleString()} / {p.days} days
+                      {branchPlans.filter((p) => p.active).map((p) => (
+                        <SelectItem key={p.id} value={String(p.id)}>
+                          {p.name || `Plan ${p.id}`} — ${Number(p.price).toLocaleString()} / {p.durationDays} days
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -500,7 +493,7 @@ const SubscriptionsSection = () => {
                     <div className="space-y-1.5">
                       <Label className="text-foreground text-sm">Duration</Label>
                       <Input
-                        value={`${currentPreset.days} Days`}
+                        value={`${currentPreset.durationDays} Days`}
                         readOnly
                         disabled
                         className="bg-secondary/50 border-border opacity-70"
