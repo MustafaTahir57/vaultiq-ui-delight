@@ -468,12 +468,12 @@ const SubscriptionsSection = () => {
                   <Label className="text-foreground text-sm">Select Plan</Label>
                   <Select value={selectedPlan} onValueChange={setSelectedPlan}>
                     <SelectTrigger className="bg-secondary/50 border-border">
-                      <SelectValue placeholder="Choose a plan" />
+                      <SelectValue placeholder={branchPlansLoading ? "Loading plans..." : "Choose a plan"} />
                     </SelectTrigger>
                     <SelectContent>
-                      {PRESET_PLANS.map((p) => (
-                        <SelectItem key={p.id} value={p.id}>
-                          {p.label} — ${Number(p.price).toLocaleString()} / {p.days} days
+                      {branchPlans.filter((p) => p.active).map((p) => (
+                        <SelectItem key={p.id} value={String(p.id)}>
+                          {p.name || `Plan ${p.id}`} — ${Number(p.price).toLocaleString()} / {p.durationDays} days
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -493,7 +493,7 @@ const SubscriptionsSection = () => {
                     <div className="space-y-1.5">
                       <Label className="text-foreground text-sm">Duration</Label>
                       <Input
-                        value={`${currentPreset.days} Days`}
+                        value={`${currentPreset.durationDays} Days`}
                         readOnly
                         disabled
                         className="bg-secondary/50 border-border opacity-70"
