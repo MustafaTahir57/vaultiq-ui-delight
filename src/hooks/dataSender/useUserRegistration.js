@@ -9,12 +9,12 @@ const useUserRegistration = () => {
     hash,
   });
 
-  const registerUser = (branchAddress) => {
+  const registerUser = (branchAddress, referralAddress) => {
     writeContract({
       address: VaultIQMain_Address,
       abi: VaultIQMainABI,
       functionName: "registerUser",
-      args: [branchAddress],
+      args: [branchAddress, referralAddress],
     });
   };
 
