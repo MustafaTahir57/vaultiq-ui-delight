@@ -62,7 +62,7 @@ const ActivationFeeScreen = ({ onRegistered }) => {
     if (approvalConfirmed && step === "approving") {
       setStep("registering");
       toast.success("USDT approved successfully! Registering...");
-      registerUser(selectedBranch);
+      registerUser(selectedBranch, referralAddress);
     }
   }, [approvalConfirmed, step, selectedBranch, registerUser]);
 
