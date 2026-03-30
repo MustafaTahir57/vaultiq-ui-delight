@@ -17,8 +17,9 @@ import { formatUnits } from "viem";
 const ActivationFeeScreen = ({ onRegistered }) => {
   const { shortAddress, address, disconnect } = useWallet();
   const [searchParams] = useSearchParams();
-  const referralAddress = searchParams.get("address") || "";
-  const [selectedBranch, setSelectedBranch] = useState(referralAddress);
+  const branchFromUrl = searchParams.get("address") || "";
+  const refFromUrl = searchParams.get("ref") || "";
+  const [selectedBranch, setSelectedBranch] = useState(branchFromUrl);
   const [step, setStep] = useState("form"); // form | approving | registering | success
 
   // Data fetchers
