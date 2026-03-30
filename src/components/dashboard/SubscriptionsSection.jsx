@@ -76,9 +76,9 @@ const SubscriptionsSection = () => {
     { label: "18 Months", value: 18 * 30 * 24 * 60 * 60 },
   ];
 
-  const currentPreset = PRESET_PLANS.find((p) => p.id === selectedPlan);
+  const currentPreset = branchPlans.find((p) => String(p.id) === selectedPlan);
   const principal = model === "B" && currentPreset ? currentPreset.price : principalInput;
-  const duration = model === "B" && currentPreset ? String(currentPreset.days * 24 * 60 * 60) : durationInput;
+  const duration = model === "B" && currentPreset ? String(currentPreset.duration) : durationInput;
 
   // Hooks
   const approval = useUSDTApproval();
