@@ -15,6 +15,7 @@ import {
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
 import { useWallet } from "@/contexts/WalletContext";
+import useVaultIQOwner from "@/hooks/dataFetcher/useVaultIQOwner";
 
 const navItems = [
   { title: "Overview", url: "/app", icon: LayoutDashboard },
