@@ -54,6 +54,7 @@ const SubscriptionsSection = () => {
   const { balance: usdtBalance } = useTokenBalance(USDT_Address, address);
   const { referrerAddress } = useUserReferrer(address)
   const { plans, isLoading: plansLoading } = useBranchPlans(userBranchAddress);
+  const { plans: branchPlans, isLoading: branchPlansLoading } = useBranchPlansData(userBranchAddress);
   const { allowance, refetch: refetchAllowance } = useTokenAllowance(
     USDT_Address,
     address,
