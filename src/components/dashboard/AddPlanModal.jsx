@@ -28,7 +28,7 @@ import { toast } from "sonner";
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const defaultCore = {
-  liquidityAllocation: "7200",
+  liquidityAllocation: "7600",
   directBonusPercent: "500",
   branchCommissionPercent: "300",
   feePercent: "800",
@@ -37,7 +37,6 @@ const defaultCore = {
   pool2Percent: "150",
   pool3Percent: "150",
   pool4Percent: "150",
-  passiveIncomePercent: "200",
   cancellationPercent: "200",
 };
 
@@ -115,7 +114,6 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
         pool2Percent: BigInt(core.pool2Percent || 0),
         pool3Percent: BigInt(core.pool3Percent || 0),
         pool4Percent: BigInt(core.pool4Percent || 0),
-        passiveIncomePercent: BigInt(core.passiveIncomePercent || 0),
         cancellationPercent: BigInt(core.cancellationPercent || 0),
       },
       expiry: {
@@ -142,15 +140,21 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
     { key: "pool2Percent", label: "Pool 2 %" },
     { key: "pool3Percent", label: "Pool 3 %" },
     { key: "pool4Percent", label: "Pool 4 %" },
-    { key: "passiveIncomePercent", label: "Passive Income %" },
-    { key: "cancellationPercent", label: "Cancellation %" },
+    { key: "cancellationPercent", label: "Cancellation %", excluded: true },
   ];
+
+  // Sum core fields excluding cancellationPercent
+  const coreSum = coreFields
+    .filter((f) => !f.excluded)
+    .reduce((sum, f) => sum + Number(core[f.key] || 0), 0);
 
   const expiryFields = [
     { key: "feePercent", label: "Fee %" },
     { key: "branchPercent", label: "Branch %" },
     { key: "passiveIncomePercent", label: "Passive Income %" },
   ];
+
+  const expirySum = expiryFields.reduce((sum, f) => sum + Number(expiry[f.key] || 0), 0);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -193,11 +197,18 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
 
           {/* Core Config */}
           <div className="space-y-2">
-            <Label className="text-foreground text-sm font-medium">Core Config (BPS)</Label>
+            <div className="flex items-center justify-between">
+              <Label className="text-foreground text-sm font-medium">Core Config (BPS)</Label>
+              <span className={`text-xs font-mono font-semibold ${coreSum === 10000 ? "text-green-500" : "text-destructive"}`}>
+                {coreSum} / 10,000
+              </span>
+            </div>
             <div className="grid grid-cols-2 gap-2 rounded-lg border border-border p-3 bg-secondary/20">
-              {coreFields.map(({ key, label }) => (
+              {coreFields.map(({ key, label, excluded }) => (
                 <div key={key} className="space-y-1">
-                  <Label className="text-xs text-muted-foreground">{label}</Label>
+                  <Label className="text-xs text-muted-foreground">
+                    {label}{excluded ? " (not counted)" : ""}
+                  </Label>
                   <Input
                     type="number"
                     placeholder="0"
@@ -212,7 +223,12 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
 
           {/* Expiry Config */}
           <div className="space-y-2">
-            <Label className="text-foreground text-sm font-medium">Expiry Config (BPS)</Label>
+            <div className="flex items-center justify-between">
+              <Label className="text-foreground text-sm font-medium">Expiry Config (BPS)</Label>
+              <span className={`text-xs font-mono font-semibold ${expirySum === 10000 ? "text-green-500" : "text-destructive"}`}>
+                {expirySum} / 10,000
+              </span>
+            </div>
             <div className="grid grid-cols-3 gap-2 rounded-lg border border-border p-3 bg-secondary/20">
               {expiryFields.map(({ key, label }) => (
                 <div key={key} className="space-y-1">
