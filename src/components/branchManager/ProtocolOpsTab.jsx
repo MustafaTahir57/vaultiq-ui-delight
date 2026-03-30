@@ -34,6 +34,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [distributorAddress, setDistributorAddress] = useState("");
   const [btcbAddress, setBtcbAddress] = useState("");
   const [monthIndex, setMonthIndex] = useState("");
+  const [grantRoleAddress, setGrantRoleAddress] = useState("");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
