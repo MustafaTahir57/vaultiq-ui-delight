@@ -15,6 +15,7 @@ import {
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
 import { useWallet } from "@/contexts/WalletContext";
+import useVaultIQOwner from "@/hooks/dataFetcher/useVaultIQOwner";
 
 const navItems = [
   { title: "Overview", url: "/app", icon: LayoutDashboard },
@@ -30,7 +31,9 @@ const navItems = [
 
 const AppSidebar = ({ collapsed, onToggle, isMobile }) => {
   const location = useLocation();
-  const { shortAddress, disconnect, isBranchManager } = useWallet();
+  const { shortAddress, disconnect, isBranchManager, address } = useWallet();
+  const { owner } = useVaultIQOwner();
+  const isVaultIQOwner = address && owner && address.toLowerCase() === owner.toLowerCase();
 
   return (
     <aside
@@ -65,7 +68,7 @@ const AppSidebar = ({ collapsed, onToggle, isMobile }) => {
 
       {/* Nav */}
       <nav className="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
-        {navItems.map((item) => {
+        {navItems.filter((item) => item.url !== "/app/deploy" || isVaultIQOwner).map((item) => {
           const isActive =
             location.pathname === item.url ||
             (item.url !== "/app" && location.pathname.startsWith(item.url));
