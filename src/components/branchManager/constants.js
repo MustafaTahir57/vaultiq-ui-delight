@@ -46,6 +46,13 @@ export const protocolFunctions = [
     desc: "Process passive pool deposit for a completed month. Required before users can claim.",
     params: "monthIndex",
   },
+  {
+    icon: ShieldPlus,
+    name: "grantRole",
+    selector: "—",
+    desc: "Grant BRANCH_MANAGER_ROLE to an address, authorizing them to manage this branch.",
+    params: "account address",
+  },
 ];
 
 export const wallets = [
