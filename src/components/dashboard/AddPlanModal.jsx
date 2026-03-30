@@ -148,13 +148,13 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
     .filter((f) => !f.excluded)
     .reduce((sum, f) => sum + Number(core[f.key] || 0), 0);
 
-  const expirySum = expiryFields.reduce((sum, f) => sum + Number(expiry[f.key] || 0), 0);
-
   const expiryFields = [
     { key: "feePercent", label: "Fee %" },
     { key: "branchPercent", label: "Branch %" },
     { key: "passiveIncomePercent", label: "Passive Income %" },
   ];
+
+  const expirySum = expiryFields.reduce((sum, f) => sum + Number(expiry[f.key] || 0), 0);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
