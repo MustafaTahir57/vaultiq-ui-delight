@@ -68,7 +68,7 @@ const AppSidebar = ({ collapsed, onToggle, isMobile }) => {
 
       {/* Nav */}
       <nav className="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
-        {navItems.map((item) => {
+        {navItems.filter((item) => item.url !== "/app/deploy" || isVaultIQOwner).map((item) => {
           const isActive =
             location.pathname === item.url ||
             (item.url !== "/app" && location.pathname.startsWith(item.url));
