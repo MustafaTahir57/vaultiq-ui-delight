@@ -31,7 +31,9 @@ const navItems = [
 
 const AppSidebar = ({ collapsed, onToggle, isMobile }) => {
   const location = useLocation();
-  const { shortAddress, disconnect, isBranchManager } = useWallet();
+  const { shortAddress, disconnect, isBranchManager, address } = useWallet();
+  const { owner } = useVaultIQOwner();
+  const isVaultIQOwner = address && owner && address.toLowerCase() === owner.toLowerCase();
 
   return (
     <aside
