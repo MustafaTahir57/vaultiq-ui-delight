@@ -114,7 +114,7 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
         pool2Percent: BigInt(core.pool2Percent || 0),
         pool3Percent: BigInt(core.pool3Percent || 0),
         pool4Percent: BigInt(core.pool4Percent || 0),
-        passiveIncomePercent: BigInt(core.passiveIncomePercent || 0),
+        cancellationPercent: BigInt(core.cancellationPercent || 0),
         cancellationPercent: BigInt(core.cancellationPercent || 0),
       },
       expiry: {
