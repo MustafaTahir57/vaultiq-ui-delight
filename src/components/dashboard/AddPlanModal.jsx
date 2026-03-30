@@ -223,7 +223,12 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
 
           {/* Expiry Config */}
           <div className="space-y-2">
-            <Label className="text-foreground text-sm font-medium">Expiry Config (BPS)</Label>
+            <div className="flex items-center justify-between">
+              <Label className="text-foreground text-sm font-medium">Expiry Config (BPS)</Label>
+              <span className={`text-xs font-mono font-semibold ${expirySum === 10000 ? "text-green-500" : "text-destructive"}`}>
+                {expirySum} / 10,000
+              </span>
+            </div>
             <div className="grid grid-cols-3 gap-2 rounded-lg border border-border p-3 bg-secondary/20">
               {expiryFields.map(({ key, label }) => (
                 <div key={key} className="space-y-1">
