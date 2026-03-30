@@ -221,6 +221,19 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
           </div>
         );
 
+      case "grantRole":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Account Address</label>
+            <Input
+              placeholder="0x..."
+              value={grantRoleAddress}
+              onChange={(e) => setGrantRoleAddress(e.target.value)}
+              className="bg-secondary/50 border-border font-mono text-xs"
+            />
+          </div>
+        );
+
       default:
         return null;
     }
