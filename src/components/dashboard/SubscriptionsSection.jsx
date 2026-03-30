@@ -529,22 +529,12 @@ const SubscriptionsSection = () => {
               <div className="space-y-4 rounded-lg border border-border p-3 bg-secondary/20">
                 <div className="space-y-1.5">
                   <Label className="text-foreground text-sm">Mining Plan</Label>
-                  <Select value={planId} onValueChange={setPlanId}>
-                    <SelectTrigger className="bg-secondary/50 border-border">
-                      <SelectValue
-                        placeholder={
-                          plansLoading ? "Loading plans..." : "Select plan"
-                        }
-                      />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {plans.map((p) => (
-                        <SelectItem key={p.id} value={String(p.id)}>
-                          {p.name || `Plan ${p.id}`}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    value={currentPreset ? (currentPreset.name || `Plan ${currentPreset.id}`) : "Select a plan above"}
+                    readOnly
+                    disabled
+                    className="bg-secondary/50 border-border opacity-70"
+                  />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
