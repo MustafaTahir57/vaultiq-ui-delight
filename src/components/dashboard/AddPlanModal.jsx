@@ -142,9 +142,15 @@ const AddPlanModal = ({ open, onOpenChange, onSuccess }) => {
     { key: "pool2Percent", label: "Pool 2 %" },
     { key: "pool3Percent", label: "Pool 3 %" },
     { key: "pool4Percent", label: "Pool 4 %" },
-    { key: "passiveIncomePercent", label: "Passive Income %" },
-    { key: "cancellationPercent", label: "Cancellation %" },
+    { key: "cancellationPercent", label: "Cancellation %", excluded: true },
   ];
+
+  // Sum core fields excluding cancellationPercent
+  const coreSum = coreFields
+    .filter((f) => !f.excluded)
+    .reduce((sum, f) => sum + Number(core[f.key] || 0), 0);
+
+  const expirySum = expiryFields.reduce((sum, f) => sum + Number(expiry[f.key] || 0), 0);
 
   const expiryFields = [
     { key: "feePercent", label: "Fee %" },
