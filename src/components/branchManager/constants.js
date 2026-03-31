@@ -1,6 +1,6 @@
 import {
   Send, DollarSign, Pickaxe, RefreshCw,
-  ToggleLeft, Database, ShieldPlus
+  ToggleLeft, Database, ShieldPlus, ArrowRightLeft
 } from "lucide-react";
 
 export const protocolFunctions = [
@@ -52,6 +52,13 @@ export const protocolFunctions = [
     selector: "—",
     desc: "Grant BRANCH_MANAGER_ROLE to an address, authorizing them to manage this branch.",
     params: "account address",
+  },
+  {
+    icon: ArrowRightLeft,
+    name: "transferBranchOwnership",
+    selector: "—",
+    desc: "Transfer ownership of this branch to a new address via VaultIQMain.",
+    params: "newOwner address",
   },
 ];
 

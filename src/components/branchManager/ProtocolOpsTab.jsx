@@ -14,6 +14,7 @@ import useSetMiningRevenueDistributor from "@/hooks/dataSender/useSetMiningReven
 import useSetBTCBToken from "@/hooks/dataSender/useSetBTCBToken";
 import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
 import useGrantRole from "@/hooks/dataSender/useGrantRole";
+import useTransferBranchOwnership from "@/hooks/dataSender/useTransferBranchOwnership";
 import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 
@@ -35,6 +36,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [btcbAddress, setBtcbAddress] = useState("");
   const [monthIndex, setMonthIndex] = useState("");
   const [grantRoleAddress, setGrantRoleAddress] = useState("");
+  const [transferOwnerAddress, setTransferOwnerAddress] = useState("");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
@@ -44,6 +46,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const setBtcb = useSetBTCBToken();
   const processMonth = useProcessPassiveMonth();
   const grantRoleHook = useGrantRole();
+  const transferOwnerHook = useTransferBranchOwnership();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
@@ -56,6 +59,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     setBTCBToken: setBtcb,
     processPassiveMonth: processMonth,
     grantRole: grantRoleHook,
+    transferBranchOwnership: transferOwnerHook,
   };
 
   const handleExecute = (fnName) => {
@@ -108,6 +112,12 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         if (!branchManagerRole) { toast.error("Could not fetch BRANCH_MANAGER_ROLE"); return; }
         grantRoleHook.grantRole(selectedBranch, branchManagerRole, grantRoleAddress);
         toast.info("Granting BRANCH_MANAGER_ROLE...");
+        break;
+      }
+      case "transferBranchOwnership": {
+        if (!transferOwnerAddress || !transferOwnerAddress.startsWith("0x")) { toast.error("Enter a valid address"); return; }
+        transferOwnerHook.transferBranchOwnership(selectedBranch, transferOwnerAddress);
+        toast.info("Transferring branch ownership...");
         break;
       }
     }
@@ -229,6 +239,19 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
               placeholder="0x..."
               value={grantRoleAddress}
               onChange={(e) => setGrantRoleAddress(e.target.value)}
+              className="bg-secondary/50 border-border font-mono text-xs"
+            />
+          </div>
+        );
+
+      case "transferBranchOwnership":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">New Owner Address</label>
+            <Input
+              placeholder="0x..."
+              value={transferOwnerAddress}
+              onChange={(e) => setTransferOwnerAddress(e.target.value)}
               className="bg-secondary/50 border-border font-mono text-xs"
             />
           </div>
