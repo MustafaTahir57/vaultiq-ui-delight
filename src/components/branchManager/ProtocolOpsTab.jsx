@@ -244,6 +244,19 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
           </div>
         );
 
+      case "transferBranchOwnership":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">New Owner Address</label>
+            <Input
+              placeholder="0x..."
+              value={transferOwnerAddress}
+              onChange={(e) => setTransferOwnerAddress(e.target.value)}
+              className="bg-secondary/50 border-border font-mono text-xs"
+            />
+          </div>
+        );
+
       default:
         return null;
     }

@@ -53,6 +53,13 @@ export const protocolFunctions = [
     desc: "Grant BRANCH_MANAGER_ROLE to an address, authorizing them to manage this branch.",
     params: "account address",
   },
+  {
+    icon: ArrowRightLeft,
+    name: "transferBranchOwnership",
+    selector: "—",
+    desc: "Transfer ownership of this branch to a new address via VaultIQMain.",
+    params: "newOwner address",
+  },
 ];
 
 export const wallets = [
