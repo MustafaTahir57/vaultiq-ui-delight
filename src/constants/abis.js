@@ -75,6 +75,31 @@ export const VaultIQMainABI = [
       {
         indexed: true,
         internalType: "address",
+        name: "oldOwner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "BranchOwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "branch",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
         name: "owner",
         type: "address",
       },
@@ -789,6 +814,16 @@ export const VaultIQMainABI = [
     name: "supportsInterface",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "branch", type: "address" },
+      { internalType: "address", name: "newOwner", type: "address" },
+    ],
+    name: "transferBranchOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -2056,6 +2091,13 @@ export const BranchABI = [
   },
   {
     inputs: [],
+    name: "reinitializeV2",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "reinvestBranchWalletBps",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
@@ -2218,6 +2260,13 @@ export const BranchABI = [
       { internalType: "bool", name: "matured", type: "bool" },
       { internalType: "bool", name: "miningActive", type: "bool" },
     ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "vaultHashPlansInitialized",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
@@ -4757,6 +4806,13 @@ export const BranchExtensionABI = [
       { internalType: "bool", name: "matured", type: "bool" },
       { internalType: "bool", name: "miningActive", type: "bool" },
     ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "vaultHashPlansInitialized",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
@@ -8064,8 +8120,11 @@ export const BranchViewsABI = [
   { inputs: [], name: "EnforcedPause", type: "error" },
   { inputs: [], name: "ExpectedPause", type: "error" },
   { inputs: [], name: "FailedCall", type: "error" },
+  { inputs: [], name: "InvalidAddress", type: "error" },
+  { inputs: [], name: "InvalidBps", type: "error" },
   { inputs: [], name: "InvalidInitialization", type: "error" },
   { inputs: [], name: "InvalidInput", type: "error" },
+  { inputs: [], name: "InvalidPercentages", type: "error" },
   { inputs: [], name: "NotInitializing", type: "error" },
   { inputs: [], name: "ReentrancyGuardReentrantCall", type: "error" },
   { inputs: [], name: "UUPSUnauthorizedCallContext", type: "error" },
@@ -8074,6 +8133,7 @@ export const BranchViewsABI = [
     name: "UUPSUnsupportedProxiableUUID",
     type: "error",
   },
+  { inputs: [], name: "VaultHashPlansAlreadyInitialized", type: "error" },
   {
     anonymous: false,
     inputs: [
@@ -8184,6 +8244,19 @@ export const BranchViewsABI = [
       },
     ],
     name: "Upgraded",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint8",
+        name: "planCount",
+        type: "uint8",
+      },
+    ],
+    name: "VaultHashPlansInitialized",
     type: "event",
   },
   {
@@ -8740,6 +8813,65 @@ export const BranchViewsABI = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "liquidityAllocation",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "directBonusPercent",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "branchCommissionPercent",
+            type: "uint256",
+          },
+          { internalType: "uint256", name: "feePercent", type: "uint256" },
+          { internalType: "uint256", name: "foundersPercent", type: "uint256" },
+          { internalType: "uint256", name: "pool1Percent", type: "uint256" },
+          { internalType: "uint256", name: "pool2Percent", type: "uint256" },
+          { internalType: "uint256", name: "pool3Percent", type: "uint256" },
+          { internalType: "uint256", name: "pool4Percent", type: "uint256" },
+          {
+            internalType: "uint256",
+            name: "cancellationPercent",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct CoreConfig",
+        name: "core",
+        type: "tuple",
+      },
+      {
+        components: [
+          { internalType: "uint256", name: "feePercent", type: "uint256" },
+          { internalType: "uint256", name: "branchPercent", type: "uint256" },
+          {
+            internalType: "uint256",
+            name: "passiveIncomePercent",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct ExpiryConfig",
+        name: "expiry",
+        type: "tuple",
+      },
+      { internalType: "address", name: "hashTreasury", type: "address" },
+      { internalType: "address", name: "feeTreasury", type: "address" },
+      { internalType: "address", name: "leadershipPool", type: "address" },
+      { internalType: "uint256[6]", name: "prices", type: "uint256[6]" },
+    ],
+    name: "initializeVaultHashPlans",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "address", name: "", type: "address" }],
     name: "isMember",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
@@ -9250,6 +9382,13 @@ export const BranchViewsABI = [
       { internalType: "bool", name: "matured", type: "bool" },
       { internalType: "bool", name: "miningActive", type: "bool" },
     ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "vaultHashPlansInitialized",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
