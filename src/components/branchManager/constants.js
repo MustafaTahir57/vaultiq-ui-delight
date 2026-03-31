@@ -1,6 +1,6 @@
 import {
   Send, DollarSign, Pickaxe, RefreshCw,
-  ToggleLeft, Database, ShieldPlus
+  ToggleLeft, Database, ShieldPlus, ArrowRightLeft
 } from "lucide-react";
 
 export const protocolFunctions = [
