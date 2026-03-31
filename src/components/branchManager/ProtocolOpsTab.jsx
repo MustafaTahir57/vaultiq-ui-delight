@@ -59,6 +59,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     setBTCBToken: setBtcb,
     processPassiveMonth: processMonth,
     grantRole: grantRoleHook,
+    transferBranchOwnership: transferOwnerHook,
   };
 
   const handleExecute = (fnName) => {
