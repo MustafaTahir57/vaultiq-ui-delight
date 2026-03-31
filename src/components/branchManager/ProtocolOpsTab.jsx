@@ -114,6 +114,12 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         toast.info("Granting BRANCH_MANAGER_ROLE...");
         break;
       }
+      case "transferBranchOwnership": {
+        if (!transferOwnerAddress || !transferOwnerAddress.startsWith("0x")) { toast.error("Enter a valid address"); return; }
+        transferOwnerHook.transferBranchOwnership(selectedBranch, transferOwnerAddress);
+        toast.info("Transferring branch ownership...");
+        break;
+      }
     }
   };
 
