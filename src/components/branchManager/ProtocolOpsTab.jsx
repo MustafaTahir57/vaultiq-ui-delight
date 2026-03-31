@@ -46,6 +46,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const setBtcb = useSetBTCBToken();
   const processMonth = useProcessPassiveMonth();
   const grantRoleHook = useGrantRole();
+  const transferOwnerHook = useTransferBranchOwnership();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
