@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 import useSubmitWeeklyPerformance from "@/hooks/dataSender/useSubmitWeeklyPerformance";
 import useSetPlanActive from "@/hooks/dataSender/useSetPlanActive";
-import useSetLiquidityType from "@/hooks/dataSender/useSetLiquidityType";
+
 import useSetMiningRevenueDistributor from "@/hooks/dataSender/useSetMiningRevenueDistributor";
 import useSetBTCBToken from "@/hooks/dataSender/useSetBTCBToken";
 import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
@@ -31,7 +31,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [weeklyPercent, setWeeklyPercent] = useState("");
   const [planId, setPlanId] = useState("");
   const [planActive, setPlanActive] = useState("true");
-  const [liquidityType, setLiquidityType] = useState("0");
+  
   const [distributorAddress, setDistributorAddress] = useState("");
   const [btcbAddress, setBtcbAddress] = useState("");
   const [monthIndex, setMonthIndex] = useState("");
@@ -41,7 +41,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
   const setPlanActiveHook = useSetPlanActive();
-  const setLiqType = useSetLiquidityType();
+  
   const setMiningDist = useSetMiningRevenueDistributor();
   const setBtcb = useSetBTCBToken();
   const processMonth = useProcessPassiveMonth();
@@ -54,7 +54,6 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const hookMap = {
     submitWeeklyPerformance: weeklyPerf,
     setPlanActive: setPlanActiveHook,
-    setLiquidityType: setLiqType,
     setMiningRevenueDistributor: setMiningDist,
     setBTCBToken: setBtcb,
     processPassiveMonth: processMonth,
@@ -81,11 +80,6 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         if (!planId) { toast.error("Select a plan"); return; }
         setPlanActiveHook.setPlanActive(selectedBranch, Number(planId), planActive === "true");
         toast.info(`Setting Plan #${planId} to ${planActive === "true" ? "Active" : "Inactive"}...`);
-        break;
-      }
-      case "setLiquidityType": {
-        setLiqType.setLiquidityType(selectedBranch, Number(liquidityType));
-        toast.info(`Setting liquidity type to ${liquidityType === "0" ? "BRANCH" : "TREASURY"}...`);
         break;
       }
       case "setMiningRevenueDistributor": {
@@ -174,21 +168,6 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
           </div>
         );
 
-      case "setLiquidityType":
-        return (
-          <div className="space-y-2">
-            <label className="text-xs text-muted-foreground">Liquidity Type</label>
-            <Select value={liquidityType} onValueChange={setLiquidityType}>
-              <SelectTrigger className="bg-secondary/50 border-border">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="0">BRANCH (0)</SelectItem>
-                <SelectItem value="1">TREASURY (1)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        );
 
       case "setMiningRevenueDistributor":
         return (

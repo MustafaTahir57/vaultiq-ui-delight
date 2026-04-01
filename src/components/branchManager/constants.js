@@ -1,6 +1,6 @@
 import {
   Send, DollarSign, Pickaxe, RefreshCw,
-  ToggleLeft, Database, ShieldPlus, ArrowRightLeft
+  ToggleLeft, ShieldPlus, ArrowRightLeft
 } from "lucide-react";
 
 export const protocolFunctions = [
@@ -17,13 +17,6 @@ export const protocolFunctions = [
     selector: "—",
     desc: "Enable or disable a subscription plan by its planId.",
     params: "planId (1+), active (bool)",
-  },
-  {
-    icon: Database,
-    name: "setLiquidityType",
-    selector: "—",
-    desc: "Switch between branch-managed (0) and treasury-managed (1) liquidity modes.",
-    params: "type: 0 = BRANCH, 1 = TREASURY",
   },
   {
     icon: Pickaxe,

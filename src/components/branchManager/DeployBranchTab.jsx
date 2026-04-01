@@ -37,6 +37,7 @@ const DeployBranchTab = () => {
   const [branchWallet, setBranchWallet] = useState("");
   const [foundersWallet, setFoundersWallet] = useState("");
   const [nameError, setNameError] = useState("");
+  const [liquidityType, setLiquidityType] = useState("0");
   const [coreConfig, setCoreConfig] = useState(defaultCore);
   const [cancellationPercent, setCancellationPercent] = useState(200);
   const [expiryConfig, setExpiryConfig] = useState(defaultExpiry);
@@ -89,6 +90,7 @@ const DeployBranchTab = () => {
       branchName: branchName.trim(),
       branchWallet,
       foundersWallet,
+      liquidityType: Number(liquidityType),
       coreConfig: { ...coreConfig, cancellationPercent },
       expiryConfig,
     });
@@ -191,6 +193,19 @@ const DeployBranchTab = () => {
               disabled
               className="w-full bg-secondary/50 border border-border rounded-lg px-3 py-2.5 text-sm text-foreground/60 font-mono disabled:opacity-60"
             />
+          </div>
+
+          {/* Liquidity Type */}
+          <div>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Liquidity Type *</label>
+            <select
+              value={liquidityType}
+              onChange={(e) => setLiquidityType(e.target.value)}
+              className="w-full bg-secondary/50 border border-border rounded-lg px-3 py-2.5 text-sm text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              <option value="0">BRANCH (0)</option>
+              <option value="1">TREASURY (1)</option>
+            </select>
           </div>
 
           {/* Branch Wallet */}
