@@ -195,6 +195,19 @@ const DeployBranchTab = () => {
             />
           </div>
 
+          {/* Liquidity Type */}
+          <div>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Liquidity Type *</label>
+            <select
+              value={liquidityType}
+              onChange={(e) => setLiquidityType(e.target.value)}
+              className="w-full bg-secondary/50 border border-border rounded-lg px-3 py-2.5 text-sm text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              <option value="0">BRANCH (0)</option>
+              <option value="1">TREASURY (1)</option>
+            </select>
+          </div>
+
           {/* Branch Wallet */}
           <div>
             <label className="text-xs text-muted-foreground mb-1.5 block">Branch Wallet * <span className="text-muted-foreground/60">(3% commission)</span></label>

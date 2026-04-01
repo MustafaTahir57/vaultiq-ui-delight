@@ -19,13 +19,6 @@ export const protocolFunctions = [
     params: "planId (1+), active (bool)",
   },
   {
-    icon: Database,
-    name: "setLiquidityType",
-    selector: "—",
-    desc: "Switch between branch-managed (0) and treasury-managed (1) liquidity modes.",
-    params: "type: 0 = BRANCH, 1 = TREASURY",
-  },
-  {
     icon: Pickaxe,
     name: "setMiningRevenueDistributor",
     selector: "—",

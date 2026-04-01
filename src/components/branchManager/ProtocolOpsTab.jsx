@@ -168,21 +168,6 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
           </div>
         );
 
-      case "setLiquidityType":
-        return (
-          <div className="space-y-2">
-            <label className="text-xs text-muted-foreground">Liquidity Type</label>
-            <Select value={liquidityType} onValueChange={setLiquidityType}>
-              <SelectTrigger className="bg-secondary/50 border-border">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="0">BRANCH (0)</SelectItem>
-                <SelectItem value="1">TREASURY (1)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        );
 
       case "setMiningRevenueDistributor":
         return (

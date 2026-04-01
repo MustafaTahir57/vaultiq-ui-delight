@@ -71,7 +71,7 @@ const useDeployBranch = (userAddress) => {
         address: BranchFactory_Address,
         abi: BranchFactoryABI,
         functionName: "deployBranch",
-        args: [branchName, userAddress, USDT_Address, branchWallet, foundersWallet, core, expiry],
+        args: [branchName, userAddress, USDT_Address, branchWallet, foundersWallet, core, expiry, BigInt(liquidityType)],
       },
       {
         onSuccess: () => {
