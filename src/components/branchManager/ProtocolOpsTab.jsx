@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 import useSubmitWeeklyPerformance from "@/hooks/dataSender/useSubmitWeeklyPerformance";
 import useSetPlanActive from "@/hooks/dataSender/useSetPlanActive";
-import useSetLiquidityType from "@/hooks/dataSender/useSetLiquidityType";
+
 import useSetMiningRevenueDistributor from "@/hooks/dataSender/useSetMiningRevenueDistributor";
 import useSetBTCBToken from "@/hooks/dataSender/useSetBTCBToken";
 import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
