@@ -34,7 +34,7 @@ const useDeployBranch = (userAddress) => {
     }
   }, [isConfirmed, branchList, deployedBranchAddress]);
 
-  const deployBranch = async ({ branchName, branchWallet, foundersWallet, coreConfig, expiryConfig }) => {
+  const deployBranch = async ({ branchName, branchWallet, foundersWallet, liquidityType = 0, coreConfig, expiryConfig }) => {
     if (!userAddress) {
       toast.error("Wallet not connected");
       return;
