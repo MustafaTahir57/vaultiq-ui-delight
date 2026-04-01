@@ -41,7 +41,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
   const setPlanActiveHook = useSetPlanActive();
-  const setLiqType = useSetLiquidityType();
+  
   const setMiningDist = useSetMiningRevenueDistributor();
   const setBtcb = useSetBTCBToken();
   const processMonth = useProcessPassiveMonth();
