@@ -90,6 +90,7 @@ const DeployBranchTab = () => {
       branchName: branchName.trim(),
       branchWallet,
       foundersWallet,
+      liquidityType: Number(liquidityType),
       coreConfig: { ...coreConfig, cancellationPercent },
       expiryConfig,
     });
