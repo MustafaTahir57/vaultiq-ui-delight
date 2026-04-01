@@ -37,6 +37,7 @@ const DeployBranchTab = () => {
   const [branchWallet, setBranchWallet] = useState("");
   const [foundersWallet, setFoundersWallet] = useState("");
   const [nameError, setNameError] = useState("");
+  const [liquidityType, setLiquidityType] = useState("0");
   const [coreConfig, setCoreConfig] = useState(defaultCore);
   const [cancellationPercent, setCancellationPercent] = useState(200);
   const [expiryConfig, setExpiryConfig] = useState(defaultExpiry);
