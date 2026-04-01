@@ -2796,7 +2796,6 @@ export const BranchExtensionABI = [
     type: "error",
   },
   { inputs: [], name: "AlreadyFinalized", type: "error" },
-  { inputs: [], name: "CannotChangeLiquidityMode", type: "error" },
   {
     inputs: [
       { internalType: "address", name: "implementation", type: "address" },
@@ -2908,19 +2907,6 @@ export const BranchExtensionABI = [
       },
     ],
     name: "LiquidityAllocationUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "enum LiquidityType",
-        name: "newType",
-        type: "uint8",
-      },
-    ],
-    name: "LiquidityTypeUpdated",
     type: "event",
   },
   {
@@ -4501,15 +4487,6 @@ export const BranchExtensionABI = [
   {
     inputs: [{ internalType: "address[]", name: "wallets", type: "address[]" }],
     name: "setFoundersWallets",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "enum LiquidityType", name: "_type", type: "uint8" },
-    ],
-    name: "setLiquidityType",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
