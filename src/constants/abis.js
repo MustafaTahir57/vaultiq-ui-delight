@@ -1680,6 +1680,11 @@ export const BranchABI = [
         name: "expiry",
         type: "tuple",
       },
+      {
+        internalType: "enum LiquidityType",
+        name: "_liquidityType",
+        type: "uint8",
+      },
     ],
     name: "initialize",
     outputs: [],
@@ -2092,6 +2097,13 @@ export const BranchABI = [
   {
     inputs: [],
     name: "reinitializeV2",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "reinitializeV3",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -2601,6 +2613,11 @@ export const BranchFactoryABI = [
         internalType: "struct ExpiryConfig",
         name: "expiry",
         type: "tuple",
+      },
+      {
+        internalType: "enum LiquidityType",
+        name: "liquidityType_",
+        type: "uint8",
       },
     ],
     name: "deployBranch",
