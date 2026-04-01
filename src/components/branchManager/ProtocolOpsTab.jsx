@@ -31,7 +31,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [weeklyPercent, setWeeklyPercent] = useState("");
   const [planId, setPlanId] = useState("");
   const [planActive, setPlanActive] = useState("true");
-  const [liquidityType, setLiquidityType] = useState("0");
+  
   const [distributorAddress, setDistributorAddress] = useState("");
   const [btcbAddress, setBtcbAddress] = useState("");
   const [monthIndex, setMonthIndex] = useState("");
