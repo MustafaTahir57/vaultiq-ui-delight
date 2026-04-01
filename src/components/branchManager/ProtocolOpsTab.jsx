@@ -82,11 +82,6 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         toast.info(`Setting Plan #${planId} to ${planActive === "true" ? "Active" : "Inactive"}...`);
         break;
       }
-      case "setLiquidityType": {
-        setLiqType.setLiquidityType(selectedBranch, Number(liquidityType));
-        toast.info(`Setting liquidity type to ${liquidityType === "0" ? "BRANCH" : "TREASURY"}...`);
-        break;
-      }
       case "setMiningRevenueDistributor": {
         if (!distributorAddress || !distributorAddress.startsWith("0x")) { toast.error("Enter a valid address"); return; }
         setMiningDist.setMiningRevenueDistributor(selectedBranch, distributorAddress);
