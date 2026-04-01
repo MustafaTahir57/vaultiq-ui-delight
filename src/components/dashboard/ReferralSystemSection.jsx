@@ -42,9 +42,9 @@ const ReferralSystemSection = () => {
     : null;
 
   const handleCopy = () => {
-    if (address) {
-      navigator.clipboard.writeText(address);
-      toast.success("Address copied!");
+    if (referralLink) {
+      navigator.clipboard.writeText(referralLink);
+      toast.success("Referral link copied!");
     }
   };
 
