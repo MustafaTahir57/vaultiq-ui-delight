@@ -103,7 +103,7 @@ const DeployBranchTab = () => {
 
   // Success state
   if (deployedBranchAddress) {
-    const referralLink = `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${deployedBranchAddress}`;
+    const referralLink = `https://vaultiq-ui-delight.vercel.app/app?address=${deployedBranchAddress}`;
     return (
       <div className="space-y-6">
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="glass-card p-8 border-primary/30 text-center">

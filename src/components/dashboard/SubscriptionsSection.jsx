@@ -446,7 +446,7 @@ const SubscriptionsSection = () => {
                       Amount (USDC)
                     </Label>
                     <span className="text-xs text-muted-foreground">
-                      Balanceeeee: {Number(formattedBalance).toLocaleString()}
+                      Balance: {Number(formattedBalance).toLocaleString()}
                     </span>
                   </div>
                   <Input

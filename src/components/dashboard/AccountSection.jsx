@@ -12,7 +12,7 @@ const AccountSection = () => {
   const { directReferrals, isLoading: referralsLoading } = useReferralCounts(userBranchAddress, userAddress);
 
   const referralLink = userBranchAddress
-    ? `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${userBranchAddress}&ref=${address}`
+    ? `https://vaultiq-ui-delight.vercel.app/app?address=${userBranchAddress}&ref=${address}`
     : null;
 
   const copyToClipboard = (text, label = "Copied!") => {

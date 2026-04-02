@@ -38,7 +38,7 @@ const ReferralSystemSection = () => {
   const { referralData, treeCounts, isLoading, isError } = useReferralData(userBranchAddress, address);
 
     const referralLink = userBranchAddress
-    ? `https://vaultiq-ui-delight.vercel.app/app/deploy?address=${userBranchAddress}&ref=${address}`
+    ? `https://vaultiq-ui-delight.vercel.app/app?address=${userBranchAddress}&ref=${address}`
     : null;
 
   const handleCopy = () => {
