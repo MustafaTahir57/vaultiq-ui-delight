@@ -15,6 +15,7 @@ import useSetBTCBToken from "@/hooks/dataSender/useSetBTCBToken";
 import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
 import useGrantRole from "@/hooks/dataSender/useGrantRole";
 import useTransferBranchOwnership from "@/hooks/dataSender/useTransferBranchOwnership";
+import useSetPoolLocked from "@/hooks/dataSender/useSetPoolLocked";
 import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 
