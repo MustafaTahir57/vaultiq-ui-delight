@@ -28,6 +28,8 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     query: { enabled: !!userAddress && !!poolId },
   });
 
+  console.log("pendingBalance", pendingBalance)
+
   // Qualification status
   const { data: isQualified, isLoading: qualifiedLoading } = useReadContract({
     address: contractAddress,
@@ -37,6 +39,8 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     query: { enabled: !!userAddress && !!poolId },
   });
 
+  console.log("isQualified", isQualified)
+
   // Pool state (qualifiedCount)
   const { data: poolState, isLoading: stateLoading } = useReadContract({
     address: contractAddress,
@@ -45,6 +49,8 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     query: { enabled: !!poolId },
   });
 
+  console.log("poolState", poolState)
+
   // Pool rule (salesRequirement / threshold)
   const { data: poolRule, isLoading: ruleLoading } = useReadContract({
     address: contractAddress,
@@ -52,6 +58,8 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     functionName: POOL_RULE_NAMES[poolId],
     query: { enabled: !!poolId },
   });
+
+  console.log("poolRule", poolRule)
 
   return {
     pendingBalance: pendingBalance ?? 0n,
