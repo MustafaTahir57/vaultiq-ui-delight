@@ -50,6 +50,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const processMonth = useProcessPassiveMonth();
   const grantRoleHook = useGrantRole();
   const transferOwnerHook = useTransferBranchOwnership();
+  const setPoolLockedHook = useSetPoolLocked();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
