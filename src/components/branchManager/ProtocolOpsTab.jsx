@@ -248,6 +248,34 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
           </div>
         );
 
+      case "setPoolLocked":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Pool</label>
+            <Select value={lockPoolId} onValueChange={setLockPoolId}>
+              <SelectTrigger className="bg-secondary/50 border-border font-mono">
+                <SelectValue placeholder="Select pool" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">Pool #1 — Emerald</SelectItem>
+                <SelectItem value="2">Pool #2 — Diamond</SelectItem>
+                <SelectItem value="3">Pool #3 — Blue Diamond</SelectItem>
+                <SelectItem value="4">Pool #4 — Black Diamond</SelectItem>
+              </SelectContent>
+            </Select>
+            <label className="text-xs text-muted-foreground">Status</label>
+            <Select value={lockPoolLocked} onValueChange={setLockPoolLocked}>
+              <SelectTrigger className="bg-secondary/50 border-border">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="true">Locked</SelectItem>
+                <SelectItem value="false">Unlocked</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        );
+
       default:
         return null;
     }
