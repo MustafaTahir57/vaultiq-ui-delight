@@ -63,6 +63,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     processPassiveMonth: processMonth,
     grantRole: grantRoleHook,
     transferBranchOwnership: transferOwnerHook,
+    setPoolLocked: setPoolLockedHook,
   };
 
   const handleExecute = (fnName) => {
