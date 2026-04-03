@@ -42,6 +42,7 @@ export const VaultIQMain_Address = active.VaultIQMain;
 export const Branch_Address = active.Branch;
 export const BranchFactory_Address = active.BranchFactory;
 export const BranchExtension_Address = active.BranchExtension;
+export const BranchViews_Address = active.BranchViews;
 export const IncubatorPool_Address = active.IncubatorPool;
 export const FeeTreasury_Address = active.FeeTreasury;
 export const LeadershipPool_Address = active.LeadershipPool;
