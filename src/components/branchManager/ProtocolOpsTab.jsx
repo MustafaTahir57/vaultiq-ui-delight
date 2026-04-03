@@ -38,6 +38,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [monthIndex, setMonthIndex] = useState("");
   const [grantRoleAddress, setGrantRoleAddress] = useState("");
   const [transferOwnerAddress, setTransferOwnerAddress] = useState("");
+  const [lockPoolId, setLockPoolId] = useState("");
+  const [lockPoolLocked, setLockPoolLocked] = useState("true");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
