@@ -15,6 +15,7 @@ import useSetBTCBToken from "@/hooks/dataSender/useSetBTCBToken";
 import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
 import useGrantRole from "@/hooks/dataSender/useGrantRole";
 import useTransferBranchOwnership from "@/hooks/dataSender/useTransferBranchOwnership";
+import useSetPoolLocked from "@/hooks/dataSender/useSetPoolLocked";
 import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 
@@ -37,6 +38,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [monthIndex, setMonthIndex] = useState("");
   const [grantRoleAddress, setGrantRoleAddress] = useState("");
   const [transferOwnerAddress, setTransferOwnerAddress] = useState("");
+  const [lockPoolId, setLockPoolId] = useState("");
+  const [lockPoolLocked, setLockPoolLocked] = useState("true");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
@@ -47,6 +50,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const processMonth = useProcessPassiveMonth();
   const grantRoleHook = useGrantRole();
   const transferOwnerHook = useTransferBranchOwnership();
+  const setPoolLockedHook = useSetPoolLocked();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
@@ -59,6 +63,7 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     processPassiveMonth: processMonth,
     grantRole: grantRoleHook,
     transferBranchOwnership: transferOwnerHook,
+    setPoolLocked: setPoolLockedHook,
   };
 
   const handleExecute = (fnName) => {
@@ -112,6 +117,13 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         if (!transferOwnerAddress || !transferOwnerAddress.startsWith("0x")) { toast.error("Enter a valid address"); return; }
         transferOwnerHook.transferBranchOwnership(selectedBranch, transferOwnerAddress);
         toast.info("Transferring branch ownership...");
+        break;
+      }
+      case "setPoolLocked": {
+        const pid = parseInt(lockPoolId);
+        if (isNaN(pid) || pid < 1 || pid > 4) { toast.error("Select a pool (1-4)"); return; }
+        setPoolLockedHook.setPoolLocked(selectedBranch, pid, lockPoolLocked === "true");
+        toast.info(`Setting Pool ${pid} to ${lockPoolLocked === "true" ? "Locked" : "Unlocked"}...`);
         break;
       }
     }
@@ -233,6 +245,34 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
               onChange={(e) => setTransferOwnerAddress(e.target.value)}
               className="bg-secondary/50 border-border font-mono text-xs"
             />
+          </div>
+        );
+
+      case "setPoolLocked":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Pool</label>
+            <Select value={lockPoolId} onValueChange={setLockPoolId}>
+              <SelectTrigger className="bg-secondary/50 border-border font-mono">
+                <SelectValue placeholder="Select pool" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">Pool #1 — Emerald</SelectItem>
+                <SelectItem value="2">Pool #2 — Diamond</SelectItem>
+                <SelectItem value="3">Pool #3 — Blue Diamond</SelectItem>
+                <SelectItem value="4">Pool #4 — Black Diamond</SelectItem>
+              </SelectContent>
+            </Select>
+            <label className="text-xs text-muted-foreground">Status</label>
+            <Select value={lockPoolLocked} onValueChange={setLockPoolLocked}>
+              <SelectTrigger className="bg-secondary/50 border-border">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="true">Locked</SelectItem>
+                <SelectItem value="false">Unlocked</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         );
 

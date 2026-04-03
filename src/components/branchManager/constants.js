@@ -1,6 +1,6 @@
 import {
   Send, DollarSign, Pickaxe, RefreshCw,
-  ToggleLeft, ShieldPlus, ArrowRightLeft
+  ToggleLeft, ShieldPlus, ArrowRightLeft, LockKeyhole
 } from "lucide-react";
 
 export const protocolFunctions = [
@@ -52,6 +52,13 @@ export const protocolFunctions = [
     selector: "—",
     desc: "Transfer ownership of this branch to a new address via VaultIQMain.",
     params: "newOwner address",
+  },
+  {
+    icon: LockKeyhole,
+    name: "setPoolLocked",
+    selector: "—",
+    desc: "Lock or unlock a specific pool. Locked pools prevent users from claiming rewards.",
+    params: "poolId (1-4), locked (bool)",
   },
 ];
 
