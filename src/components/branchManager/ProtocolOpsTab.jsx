@@ -119,6 +119,13 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         toast.info("Transferring branch ownership...");
         break;
       }
+      case "setPoolLocked": {
+        const pid = parseInt(lockPoolId);
+        if (isNaN(pid) || pid < 1 || pid > 4) { toast.error("Select a pool (1-4)"); return; }
+        setPoolLockedHook.setPoolLocked(selectedBranch, pid, lockPoolLocked === "true");
+        toast.info(`Setting Pool ${pid} to ${lockPoolLocked === "true" ? "Locked" : "Unlocked"}...`);
+        break;
+      }
     }
   };
 
