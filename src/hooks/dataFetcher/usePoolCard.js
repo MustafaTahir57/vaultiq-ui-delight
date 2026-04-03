@@ -1,9 +1,10 @@
 import { useReadContracts } from "wagmi";
 import { BranchViewsABI } from "@/constants/abis";
-import { BranchViews_Address } from "@/constants/contracts";
 
 const usePoolCard = (poolId, userAddress, branchAddress) => {
-  const viewsAddress = BranchViews_Address;
+  const viewsAddress = branchAddress;
+
+  console.log("viewsAddress", viewsAddress)
 
   const { data, isLoading } = useReadContracts({
     contracts: [
@@ -25,6 +26,8 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
 
   const fullData = data?.[0]?.result;
   const progress = data?.[1]?.result;
+
+  console.log("full data", {fullData , progress})
 
   return {
     // Pool full data
