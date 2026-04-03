@@ -53,6 +53,13 @@ export const protocolFunctions = [
     desc: "Transfer ownership of this branch to a new address via VaultIQMain.",
     params: "newOwner address",
   },
+  {
+    icon: LockKeyhole,
+    name: "setPoolLocked",
+    selector: "—",
+    desc: "Lock or unlock a specific pool. Locked pools prevent users from claiming rewards.",
+    params: "poolId (1-4), locked (bool)",
+  },
 ];
 
 export const wallets = [
