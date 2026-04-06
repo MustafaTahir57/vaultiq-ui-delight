@@ -71,6 +71,23 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           </div>
         </div>
 
+        {/* Sync qualification button */}
+        {!isLoading && !isQualified && wouldQualifyNow && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full border-success/30 text-success hover:bg-success/10"
+            disabled={syncing}
+            onClick={() => sync(poolId, userAddress)}
+          >
+            {syncing ? (
+              <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1.5" /> Syncing...</>
+            ) : (
+              <><RefreshCw className="h-3.5 w-3.5 mr-1.5" /> Sync Qualification</>
+            )}
+          </Button>
+        )}
+
         {/* Pool volume stats */}
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-secondary/50 rounded-lg p-2.5">
