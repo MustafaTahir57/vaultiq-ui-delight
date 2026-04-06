@@ -1,5 +1,5 @@
 import { useReadContracts } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchExtensionABI , BranchViewsABI } from "@/constants/abis";
 import { formatUnits } from "viem";
 
 const poolStateNames = ["pool1State", "pool2State", "pool3State", "pool4State"];
@@ -8,7 +8,7 @@ const useTotalDistributed = (branchAddress) => {
   const { data, isLoading } = useReadContracts({
     contracts: poolStateNames.map((fn) => ({
       address: branchAddress,
-      abi: BranchExtensionABI,
+      abi: BranchViewsABI,
       functionName: fn,
     })),
     query: { enabled: !!branchAddress },

@@ -1,11 +1,13 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { BranchABI } from "@/constants/abis";
+import { BranchABI , BranchExtensionABI } from "@/constants/abis";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { useAccount } from "wagmi";
 
 const useClaimRewards = () => {
   const { writeContract, data: hash, isPending, isError, error, reset } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
+  const {address : userAddress} = useAccount();
 
   useEffect(() => {
     if (isConfirmed) toast.success("USDC rewards claimed successfully!");
@@ -15,9 +17,9 @@ const useClaimRewards = () => {
   const claim = (branchAddress, subscriptionIndex) => {
     writeContract({
       address: branchAddress,
-      abi: BranchABI,
-      functionName: "claimRewards",
-      args: [BigInt(subscriptionIndex)],
+      abi: BranchExtensionABI,
+      functionName: "expireSubscription",
+      args: [userAddress , BigInt(subscriptionIndex)],
     });
   };
 
