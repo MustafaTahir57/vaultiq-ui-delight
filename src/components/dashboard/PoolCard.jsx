@@ -133,7 +133,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground flex items-center gap-1">
-                <GitBranch className="h-3 w-3" /> Close Team (L1–L3)
+                <GitBranch className="h-3 w-3" /> Close Team (L1–L4)
               </span>
               <span className="text-foreground font-medium">
                 {isLoading ? "..." : `${closeProgress.toFixed(0)}%`}
@@ -147,7 +147,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground flex items-center gap-1">
-                <Network className="h-3 w-3" /> Deep Team (L4+)
+                <Network className="h-3 w-3" /> Deep Team (Any)
               </span>
               <span className="text-foreground font-medium">
                 {isLoading ? "..." : `${deepProgress.toFixed(0)}%`}
