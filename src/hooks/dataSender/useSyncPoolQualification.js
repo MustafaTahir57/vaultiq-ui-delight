@@ -1,5 +1,5 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { BranchABI } from "@/constants/abis";
+import { BranchABI , BranchExtensionABI } from "@/constants/abis";
 
 const useSyncPoolQualification = (branchAddress) => {
   const { writeContract, data: hash, isPending, isError, error } = useWriteContract();
@@ -8,7 +8,7 @@ const useSyncPoolQualification = (branchAddress) => {
   const sync = (poolId, userAddress) => {
     writeContract({
       address: branchAddress,
-      abi: BranchABI,
+      abi: BranchExtensionABI,
       functionName: "syncPoolQualification",
       args: [poolId, userAddress],
     });

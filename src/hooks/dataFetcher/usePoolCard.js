@@ -4,8 +4,6 @@ import { BranchViewsABI } from "@/constants/abis";
 const usePoolCard = (poolId, userAddress, branchAddress) => {
   const viewsAddress = branchAddress;
 
-  console.log("viewsAddress", viewsAddress)
-
   const { data, isLoading } = useReadContracts({
     contracts: [
       {
@@ -26,8 +24,6 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
 
   const fullData = data?.[0]?.result;
   const progress = data?.[1]?.result;
-
-  console.log("full data", {fullData , progress})
 
   return {
     // Pool full data
