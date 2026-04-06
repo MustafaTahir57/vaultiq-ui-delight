@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network, RefreshCw } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import usePoolCard from "@/hooks/dataFetcher/usePoolCard";
 import useClaimPool from "@/hooks/dataSender/useClaimPool";
@@ -27,13 +28,26 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
     isQualified, wouldQualifyNow, salesProgressBps, weeklyProgressBps,
     closeTeamSales, deepTeamSales, closeRequired, deepRequired,
     closeProgressBps, deepProgressBps,
-    isLoading,
+    isLoading, refetch,
   } = usePoolCard(poolId, userAddress, branchAddress);
 
   const { claim, isPending, isConfirming } = useClaimPool(branchAddress);
-  const { sync, isPending: isSyncPending, isConfirming: isSyncConfirming } = useSyncPoolQualification(branchAddress);
+  const { sync, isPending: isSyncPending, isConfirming: isSyncConfirming, isConfirmed: isSyncConfirmed, isError: isSyncError, error: syncError } = useSyncPoolQualification(branchAddress);
   const claiming = isPending || isConfirming;
   const syncing = isSyncPending || isSyncConfirming;
+
+  useEffect(() => {
+    if (isSyncConfirmed) {
+      toast.success("Pool qualification synced successfully!");
+      refetch();
+    }
+  }, [isSyncConfirmed, refetch]);
+
+  useEffect(() => {
+    if (isSyncError && syncError) {
+      toast.error(syncError?.shortMessage || "Sync failed");
+    }
+  }, [isSyncError, syncError]);
 
   const salesProgress = Math.min(salesProgressBps / 100, 100);
   const weeklyProgress = Math.min(weeklyProgressBps / 100, 100);
@@ -71,13 +85,13 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           </div>
         </div>
 
-        {/* Sync qualification button */}
-        {!isLoading && !isQualified && wouldQualifyNow && (
+        {/* Sync qualification button - shown when not qualified, enabled when thresholds met */}
+        {!isLoading && !isQualified && (
           <Button
             variant="outline"
             size="sm"
-            className="w-full border-success/30 text-success hover:bg-success/10"
-            disabled={syncing}
+            className={`w-full ${wouldQualifyNow ? "border-success/30 text-success hover:bg-success/10" : "border-muted text-muted-foreground"}`}
+            disabled={!wouldQualifyNow || syncing}
             onClick={() => sync(poolId, userAddress)}
           >
             {syncing ? (
