@@ -1,5 +1,5 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { BranchABI } from "@/constants/abis";
+import { BranchViewsABI } from "@/constants/abis";
 
 const useSetPoolLocked = () => {
   const { writeContract, data: hash, isPending, isError, error } = useWriteContract();
@@ -9,7 +9,7 @@ const useSetPoolLocked = () => {
   const setPoolLocked = (branchAddress, poolId, locked) => {
     writeContract({
       address: branchAddress,
-      abi: BranchABI,
+      abi: BranchViewsABI,
       functionName: "setPoolLocked",
       args: [poolId, locked],
     });
