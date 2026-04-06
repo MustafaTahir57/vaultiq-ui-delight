@@ -31,7 +31,9 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
   } = usePoolCard(poolId, userAddress, branchAddress);
 
   const { claim, isPending, isConfirming } = useClaimPool(branchAddress);
+  const { sync, isPending: isSyncPending, isConfirming: isSyncConfirming } = useSyncPoolQualification(branchAddress);
   const claiming = isPending || isConfirming;
+  const syncing = isSyncPending || isSyncConfirming;
 
   const salesProgress = Math.min(salesProgressBps / 100, 100);
   const weeklyProgress = Math.min(weeklyProgressBps / 100, 100);
