@@ -17,9 +17,8 @@ import useProjectedIncome from "@/hooks/dataFetcher/useProjectedIncome";
 import useNextDistribution from "@/hooks/dataFetcher/useNextDistribution";
 import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
 import useReferralData from "@/hooks/dataFetcher/useReferralData";
+import usePassiveSalesThreshold from "@/hooks/dataFetcher/usePassiveSalesThreshold";
 import useSyncPassivePoolQualification from "@/hooks/dataSender/useSyncPassivePoolQualification";
-import { useReadContract } from "wagmi";
-import { BranchABI } from "@/constants/abis";
 import { toast } from "sonner";
 import { formatUnits } from "viem";
 
