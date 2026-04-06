@@ -48,6 +48,14 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     salesProgressBps: progress?.salesProgressBps ? Number(progress.salesProgressBps) : 0,
     weeklyProgressBps: progress?.weeklyProgressBps ? Number(progress.weeklyProgressBps) : 0,
 
+    // Close/Deep team breakdown
+    closeTeamSales: progress?.closeTeamSales ?? 0n,
+    deepTeamSales: progress?.deepTeamSales ?? 0n,
+    closeRequired: progress?.closeRequired ?? 0n,
+    deepRequired: progress?.deepRequired ?? 0n,
+    closeProgressBps: progress?.closeProgressBps ? Number(progress.closeProgressBps) : 0,
+    deepProgressBps: progress?.deepProgressBps ? Number(progress.deepProgressBps) : 0,
+
     isLoading,
   };
 };

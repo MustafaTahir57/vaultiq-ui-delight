@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3 } from "lucide-react";
+import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import usePoolCard from "@/hooks/dataFetcher/usePoolCard";
@@ -24,6 +24,8 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
     qualifiedCount, isLocked,
     currentSales, requiredSales, currentWeeklySales, weeklyThreshold,
     isQualified, wouldQualifyNow, salesProgressBps, weeklyProgressBps,
+    closeTeamSales, deepTeamSales, closeRequired, deepRequired,
+    closeProgressBps, deepProgressBps,
     isLoading,
   } = usePoolCard(poolId, userAddress, branchAddress);
 
@@ -32,6 +34,8 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
 
   const salesProgress = Math.min(salesProgressBps / 100, 100);
   const weeklyProgress = Math.min(weeklyProgressBps / 100, 100);
+  const closeProgress = Math.min(closeProgressBps / 100, 100);
+  const deepProgress = Math.min(deepProgressBps / 100, 100);
   const salesRemaining = requiredSales > currentSales ? requiredSales - currentSales : 0n;
 
   return (
@@ -121,6 +125,38 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
             {!isLoading && wouldQualifyNow && !isQualified && (
               <span className="text-success text-[10px]">Would qualify now!</span>
             )}
+          </div>
+        </div>
+
+        {/* Close/Deep Team Breakdown */}
+        <div className="space-y-3 pl-3 border-l-2 border-primary/20">
+          <div className="space-y-1">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-muted-foreground flex items-center gap-1">
+                <GitBranch className="h-3 w-3" /> Close Team (L1–L3)
+              </span>
+              <span className="text-foreground font-medium">
+                {isLoading ? "..." : `${closeProgress.toFixed(0)}%`}
+              </span>
+            </div>
+            <Progress value={isLoading ? 0 : closeProgress} className="h-1.5" />
+            <div className="text-[10px] text-muted-foreground">
+              {isLoading ? "..." : formatUSDT(closeTeamSales)} / {isLoading ? "..." : formatUSDT(closeRequired)}
+            </div>
+          </div>
+          <div className="space-y-1">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-muted-foreground flex items-center gap-1">
+                <Network className="h-3 w-3" /> Deep Team (L4+)
+              </span>
+              <span className="text-foreground font-medium">
+                {isLoading ? "..." : `${deepProgress.toFixed(0)}%`}
+              </span>
+            </div>
+            <Progress value={isLoading ? 0 : deepProgress} className="h-1.5" />
+            <div className="text-[10px] text-muted-foreground">
+              {isLoading ? "..." : formatUSDT(deepTeamSales)} / {isLoading ? "..." : formatUSDT(deepRequired)}
+            </div>
           </div>
         </div>
 
