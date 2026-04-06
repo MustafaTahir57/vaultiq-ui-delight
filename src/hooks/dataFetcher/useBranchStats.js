@@ -13,6 +13,7 @@ const useBranchStats = (branchAddress) => {
       { address: branchAddress, abi: BranchExtensionABI, functionName: "getCurrentWeek" },
       { address: branchAddress, abi: BranchExtensionABI, functionName: "getCurrentMonth" },
       { address: branchAddress, abi: BranchExtensionABI, functionName: "branchWallet" },
+      { address: branchAddress, abi: BranchExtensionABI, functionName: "liquidityType" },
     ],
     query: { enabled: !!branchAddress },
   });
@@ -20,7 +21,10 @@ const useBranchStats = (branchAddress) => {
   const totalMembers = batchData?.[0]?.result;
   const currentWeek = batchData?.[1]?.result;
   const currentMonth = batchData?.[2]?.result;
-  const branchWallet = batchData?.[3]?.result;
+  const branchWallet = batchData?.[3]?.result;  
+  const liquidityType = batchData?.[4]?.result
+
+  console.log("liquidityType", liquidityType)
 
   // Second: weeklyLiquidityPercent(currentWeek)
   const { data: weeklyPerfData, isLoading: perfLoading } = useReadContract({
