@@ -47,12 +47,7 @@ const PassiveIncomeSection = () => {
 
   const { referralData, isLoading: referralLoading } = useReferralData(userBranchAddress, address);
 
-  const { data: passiveSalesThreshold } = useReadContract({
-    address: userBranchAddress,
-    abi: BranchABI,
-    functionName: "passiveSalesThreshold",
-    query: { enabled: !!userBranchAddress },
-  });
+  const { passiveSalesThreshold } = usePassiveSalesThreshold(userBranchAddress);
 
   const {
     sync,
