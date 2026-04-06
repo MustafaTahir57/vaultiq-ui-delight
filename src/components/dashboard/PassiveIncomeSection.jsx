@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   TrendingUp,
@@ -5,6 +6,7 @@ import {
   Users,
   ArrowDownToLine,
   Loader2,
+  RefreshCw,
 } from "lucide-react";
 import StatCard from "./StatCard";
 import { Button } from "@/components/ui/button";
@@ -16,7 +18,6 @@ import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
 import useSyncPassivePoolQualification from "@/hooks/dataSender/useSyncPassivePoolQualification";
 import { toast } from "sonner";
 import { formatUnits } from "viem";
-import { useEffect } from "react";
 
 const PassiveIncomeSection = () => {
   const { address, userBranchAddress } = useWallet();
@@ -40,13 +41,22 @@ const PassiveIncomeSection = () => {
     isLoading: passiveDataLoading,
   } = usePassiveData(userBranchAddress, address);
 
-  const { sync, isPending: syncing, isConfirming, isConfirmed, isError: syncError, error: syncErrorMsg } =
-    useSyncPassivePoolQualification(userBranchAddress);
+  const {
+    sync,
+    isPending: syncing,
+    isConfirming,
+    isConfirmed,
+    isError: syncError,
+    error: syncErrorMsg,
+  } = useSyncPassivePoolQualification(userBranchAddress);
 
   useEffect(() => {
     if (isConfirmed) toast.success("Passive pool qualification synced!");
+  }, [isConfirmed]);
+
+  useEffect(() => {
     if (syncError) toast.error(syncErrorMsg?.shortMessage || "Sync failed");
-  }, [isConfirmed, syncError, syncErrorMsg]);
+  }, [syncError, syncErrorMsg]);
 
   const isLoading =
     confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
@@ -106,11 +116,36 @@ const PassiveIncomeSection = () => {
           </div>
           <p className="text-xs text-muted-foreground mt-1">Countdown</p>
         </motion.div>
-        <StatCard
-          title="Qualification Status"
-          value={isQualified ? "Qualified" : "Not Qualified"}
-          icon={Users}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="glass-card p-5"
+        >
+          <div className="flex items-start justify-between mb-3">
+            <span className="text-sm text-muted-foreground">Qualification Status</span>
+            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Users className="h-4 w-4 text-primary" />
+            </div>
+          </div>
+          <p className={`text-2xl font-display font-bold ${isQualified ? "text-green-400" : "text-red-400"}`}>
+            {isQualified ? "Qualified" : "Not Qualified"}
+          </p>
+          {isQualified && (
+            <Button
+              size="sm"
+              className="mt-3 w-full gap-2"
+              onClick={() => sync(address)}
+              disabled={syncing || isConfirming}
+            >
+              {(syncing || isConfirming) ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <RefreshCw className="h-4 w-4" />
+              )}
+              Sync Qualification
+            </Button>
+          )}
+        </motion.div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
