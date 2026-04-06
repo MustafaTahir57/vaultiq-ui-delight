@@ -16,6 +16,8 @@ import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
 import useGrantRole from "@/hooks/dataSender/useGrantRole";
 import useTransferBranchOwnership from "@/hooks/dataSender/useTransferBranchOwnership";
 import useSetPoolLocked from "@/hooks/dataSender/useSetPoolLocked";
+import useSetPoolRule from "@/hooks/dataSender/useSetPoolRule";
+import useSetMaintenanceSplitPercent from "@/hooks/dataSender/useSetMaintenanceSplitPercent";
 import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 
@@ -40,6 +42,11 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [transferOwnerAddress, setTransferOwnerAddress] = useState("");
   const [lockPoolId, setLockPoolId] = useState("");
   const [lockPoolLocked, setLockPoolLocked] = useState("true");
+  const [rulePoolId, setRulePoolId] = useState("");
+  const [ruleSalesReq, setRuleSalesReq] = useState("");
+  const [ruleMaintenance, setRuleMaintenance] = useState("");
+  const [closePct, setClosePct] = useState("");
+  const [deepPct, setDeepPct] = useState("");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
@@ -51,6 +58,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const grantRoleHook = useGrantRole();
   const transferOwnerHook = useTransferBranchOwnership();
   const setPoolLockedHook = useSetPoolLocked();
+  const setPoolRuleHook = useSetPoolRule();
+  const setMaintSplitHook = useSetMaintenanceSplitPercent();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
@@ -64,6 +73,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     grantRole: grantRoleHook,
     transferBranchOwnership: transferOwnerHook,
     setPoolLocked: setPoolLockedHook,
+    setPoolRule: setPoolRuleHook,
+    setMaintenanceSplitPercent: setMaintSplitHook,
   };
 
   const handleExecute = (fnName) => {
