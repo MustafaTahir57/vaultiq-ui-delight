@@ -4,7 +4,7 @@ import { BranchViewsABI } from "@/constants/abis";
 const usePoolCard = (poolId, userAddress, branchAddress) => {
   const viewsAddress = branchAddress;
 
-  const { data, isLoading } = useReadContracts({
+  const { data, isLoading, refetch } = useReadContracts({
     contracts: [
       {
         address: viewsAddress,
@@ -53,6 +53,7 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     deepProgressBps: progress?.deepProgressBps ? Number(progress.deepProgressBps) : 0,
 
     isLoading,
+    refetch,
   };
 };
 
