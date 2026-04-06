@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3 } from "lucide-react";
+import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import usePoolCard from "@/hooks/dataFetcher/usePoolCard";
