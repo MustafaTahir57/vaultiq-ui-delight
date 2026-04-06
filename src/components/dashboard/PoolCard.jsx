@@ -34,6 +34,8 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
 
   const salesProgress = Math.min(salesProgressBps / 100, 100);
   const weeklyProgress = Math.min(weeklyProgressBps / 100, 100);
+  const closeProgress = Math.min(closeProgressBps / 100, 100);
+  const deepProgress = Math.min(deepProgressBps / 100, 100);
   const salesRemaining = requiredSales > currentSales ? requiredSales - currentSales : 0n;
 
   return (
