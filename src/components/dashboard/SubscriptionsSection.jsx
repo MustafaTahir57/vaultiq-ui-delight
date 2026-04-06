@@ -331,7 +331,7 @@ const SubscriptionsSection = () => {
                                 claimBTC.isPending ||
                                 claimBTC.isConfirming ||
                                 (Number(sub.planId) === 0
-                                  ? Number(sub.accumulatedRewards) === 0
+                                  ? Number(sub.accumulatedRewards) === 0 || (Number(sub.startTime) + Number(sub.duration)) > Math.floor(Date.now() / 1000)
                                   : Number(sub.withdrawableBTC) === 0)
                               }
                               onClick={() => {
