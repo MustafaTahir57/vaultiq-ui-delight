@@ -30,6 +30,7 @@ const useReferralData = (branchAddress, userAddress) => {
 
   const parsed = referralData
     ? {
+        totalTeamSalesRaw: referralData.totalTeamSales ?? BigInt(0),
         totalTeamSales: fmt(referralData.totalTeamSales),
         level1Sales: fmt(referralData.level1Sales),
         level2Sales: fmt(referralData.level2Sales),

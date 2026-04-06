@@ -3,7 +3,7 @@ import { BranchExtensionABI } from "@/constants/abis";
 import { formatUnits } from "viem";
 
 const usePassiveData = (branchAddress, userAddress) => {
-  const { data, isLoading, isError } = useReadContract({
+  const { data, isLoading, isError, refetch } = useReadContract({
     address: branchAddress,
     abi: BranchExtensionABI,
     functionName: "getPassiveData",
@@ -31,7 +31,7 @@ const usePassiveData = (branchAddress, userAddress) => {
 
   const isQualified = data?.isQualified ?? false;
 
-  return { lastWithdrawal, totalWithdrawn, isLoading, isError , isQualified };
+  return { lastWithdrawal, totalWithdrawn, isLoading, isError, isQualified, refetch };
 };
 
 export default usePassiveData;
