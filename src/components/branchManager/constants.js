@@ -1,6 +1,7 @@
 import {
   Send, DollarSign, Pickaxe, RefreshCw,
-  ToggleLeft, ShieldPlus, ArrowRightLeft, LockKeyhole
+  ToggleLeft, ShieldPlus, ArrowRightLeft, LockKeyhole,
+  Settings2, SplitSquareVertical
 } from "lucide-react";
 
 export const protocolFunctions = [
@@ -59,6 +60,20 @@ export const protocolFunctions = [
     selector: "—",
     desc: "Lock or unlock a specific pool. Locked pools prevent users from claiming rewards.",
     params: "poolId (1-4), locked (bool)",
+  },
+  {
+    icon: Settings2,
+    name: "setPoolRule",
+    selector: "—",
+    desc: "Set qualification & maintenance thresholds for a pool. Sales values use 18 decimals (USDC).",
+    params: "poolId (1-4), salesRequirement, maintenanceThreshold",
+  },
+  {
+    icon: SplitSquareVertical,
+    name: "setMaintenanceSplitPercent",
+    selector: "—",
+    desc: "Set close-team (L1-L3) vs deep-team (L4+) split for maintenance sales. Must total 10000 BPS.",
+    params: "closePct (BPS), deepPct (BPS)",
   },
 ];
 

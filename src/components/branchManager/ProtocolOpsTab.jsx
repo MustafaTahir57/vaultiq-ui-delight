@@ -16,6 +16,8 @@ import useProcessPassiveMonth from "@/hooks/dataSender/useProcessPassiveMonth";
 import useGrantRole from "@/hooks/dataSender/useGrantRole";
 import useTransferBranchOwnership from "@/hooks/dataSender/useTransferBranchOwnership";
 import useSetPoolLocked from "@/hooks/dataSender/useSetPoolLocked";
+import useSetPoolRule from "@/hooks/dataSender/useSetPoolRule";
+import useSetMaintenanceSplitPercent from "@/hooks/dataSender/useSetMaintenanceSplitPercent";
 import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 
@@ -40,6 +42,11 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [transferOwnerAddress, setTransferOwnerAddress] = useState("");
   const [lockPoolId, setLockPoolId] = useState("");
   const [lockPoolLocked, setLockPoolLocked] = useState("true");
+  const [rulePoolId, setRulePoolId] = useState("");
+  const [ruleSalesReq, setRuleSalesReq] = useState("");
+  const [ruleMaintenance, setRuleMaintenance] = useState("");
+  const [closePct, setClosePct] = useState("");
+  const [deepPct, setDeepPct] = useState("");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
@@ -51,6 +58,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const grantRoleHook = useGrantRole();
   const transferOwnerHook = useTransferBranchOwnership();
   const setPoolLockedHook = useSetPoolLocked();
+  const setPoolRuleHook = useSetPoolRule();
+  const setMaintSplitHook = useSetMaintenanceSplitPercent();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
@@ -64,6 +73,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     grantRole: grantRoleHook,
     transferBranchOwnership: transferOwnerHook,
     setPoolLocked: setPoolLockedHook,
+    setPoolRule: setPoolRuleHook,
+    setMaintenanceSplitPercent: setMaintSplitHook,
   };
 
   const handleExecute = (fnName) => {
@@ -124,6 +135,26 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         if (isNaN(pid) || pid < 1 || pid > 4) { toast.error("Select a pool (1-4)"); return; }
         setPoolLockedHook.setPoolLocked(selectedBranch, pid, lockPoolLocked === "true");
         toast.info(`Setting Pool ${pid} to ${lockPoolLocked === "true" ? "Locked" : "Unlocked"}...`);
+        break;
+      }
+      case "setPoolRule": {
+        const pid = parseInt(rulePoolId);
+        if (isNaN(pid) || pid < 1 || pid > 4) { toast.error("Select a pool (1-4)"); return; }
+        if (!ruleSalesReq || isNaN(Number(ruleSalesReq))) { toast.error("Enter a valid sales requirement"); return; }
+        if (!ruleMaintenance || isNaN(Number(ruleMaintenance))) { toast.error("Enter a valid maintenance threshold"); return; }
+        const salesBig = BigInt(Math.round(Number(ruleSalesReq) * 1e18));
+        const maintBig = BigInt(Math.round(Number(ruleMaintenance) * 1e18));
+        setPoolRuleHook.setPoolRule(selectedBranch, pid, salesBig, maintBig);
+        toast.info(`Setting Pool ${pid} rule: sales=${ruleSalesReq}, maintenance=${ruleMaintenance}...`);
+        break;
+      }
+      case "setMaintenanceSplitPercent": {
+        const c = parseInt(closePct);
+        const d = parseInt(deepPct);
+        if (isNaN(c) || isNaN(d)) { toast.error("Enter valid BPS values"); return; }
+        if (c + d !== 10000) { toast.error("closePct + deepPct must equal 10000"); return; }
+        setMaintSplitHook.setMaintenanceSplitPercent(selectedBranch, BigInt(c), BigInt(d));
+        toast.info(`Setting maintenance split: close=${c} BPS, deep=${d} BPS...`);
         break;
       }
     }
@@ -273,6 +304,77 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
                 <SelectItem value="false">Unlocked</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+        );
+
+      case "setPoolRule":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Pool</label>
+            <Select value={rulePoolId} onValueChange={setRulePoolId}>
+              <SelectTrigger className="bg-secondary/50 border-border font-mono">
+                <SelectValue placeholder="Select pool" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">Pool #1 — Emerald</SelectItem>
+                <SelectItem value="2">Pool #2 — Diamond</SelectItem>
+                <SelectItem value="3">Pool #3 — Blue Diamond</SelectItem>
+                <SelectItem value="4">Pool #4 — Black Diamond</SelectItem>
+              </SelectContent>
+            </Select>
+            <label className="text-xs text-muted-foreground">Sales Requirement (USDC)</label>
+            <Input
+              type="number"
+              step="0.01"
+              placeholder="e.g. 5000"
+              value={ruleSalesReq}
+              onChange={(e) => setRuleSalesReq(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+            <label className="text-xs text-muted-foreground">Maintenance Threshold (USDC/week)</label>
+            <Input
+              type="number"
+              step="0.01"
+              placeholder="e.g. 1000"
+              value={ruleMaintenance}
+              onChange={(e) => setRuleMaintenance(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+          </div>
+        );
+
+      case "setMaintenanceSplitPercent":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Close-Team BPS (L1-L3)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 2000"
+              value={closePct}
+              onChange={(e) => {
+                setClosePct(e.target.value);
+                const c = parseInt(e.target.value);
+                if (!isNaN(c)) setDeepPct(String(10000 - c));
+              }}
+              className="bg-secondary/50 border-border font-mono"
+            />
+            <label className="text-xs text-muted-foreground">Deep-Team BPS (L4+)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 8000"
+              value={deepPct}
+              onChange={(e) => {
+                setDeepPct(e.target.value);
+                const d = parseInt(e.target.value);
+                if (!isNaN(d)) setClosePct(String(10000 - d));
+              }}
+              className="bg-secondary/50 border-border font-mono"
+            />
+            {closePct && deepPct && (
+              <p className={`text-xs ${parseInt(closePct) + parseInt(deepPct) === 10000 ? "text-green-500" : "text-destructive"}`}>
+                Total: {(parseInt(closePct) || 0) + (parseInt(deepPct) || 0)} / 10000 BPS
+              </p>
+            )}
           </div>
         );
 
