@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
+import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import usePoolCard from "@/hooks/dataFetcher/usePoolCard";
 import useClaimPool from "@/hooks/dataSender/useClaimPool";
