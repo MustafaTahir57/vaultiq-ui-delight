@@ -11,6 +11,7 @@ import {
   Users,
   LogOut,
   Shield,
+  Trophy,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
@@ -26,6 +27,7 @@ const navItems = [
   { title: "Calculator", url: "/app/calculator", icon: Calculator },
   { title: "Incubator", url: "/app/incubator", icon: Rocket },
   { title: "Referral System", url: "/app/referrals", icon: Users },
+  { title: "BTC Elite Pool", url: "/app/leadership-pool", icon: Trophy },
   { title: "Account", url: "/app/account", icon: Settings },
 ];
 

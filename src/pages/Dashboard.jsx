@@ -10,6 +10,7 @@ import PassiveIncomeSection from "@/components/dashboard/PassiveIncomeSection";
 import CalculatorSection from "@/components/dashboard/CalculatorSection";
 import IncubatorSection from "@/components/dashboard/IncubatorSection";
 import ReferralSystemSection from "@/components/dashboard/ReferralSystemSection";
+import LeadershipPoolSection from "@/components/dashboard/LeadershipPoolSection";
 import AccountSection from "@/components/dashboard/AccountSection";
 import DeployBranchTab from "@/components/branchManager/DeployBranchTab";
 import { useWallet } from "@/contexts/WalletContext";
@@ -97,6 +98,7 @@ const Dashboard = () => {
           <Route path="calculator" element={<CalculatorSection />} />
           <Route path="incubator" element={<IncubatorSection />} />
           <Route path="referrals" element={<ReferralSystemSection />} />
+          <Route path="leadership-pool" element={<LeadershipPoolSection />} />
           <Route path="account" element={<AccountSection />} />
         </Routes>
       </main>
