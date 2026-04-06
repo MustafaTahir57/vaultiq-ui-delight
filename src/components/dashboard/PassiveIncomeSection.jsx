@@ -13,7 +13,10 @@ import useConfirmedPool from "@/hooks/dataFetcher/useConfirmedPool";
 import useProjectedIncome from "@/hooks/dataFetcher/useProjectedIncome";
 import useNextDistribution from "@/hooks/dataFetcher/useNextDistribution";
 import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
+import useSyncPassivePoolQualification from "@/hooks/dataSender/useSyncPassivePoolQualification";
+import { toast } from "sonner";
 import { formatUnits } from "viem";
+import { useEffect } from "react";
 
 const PassiveIncomeSection = () => {
   const { address, userBranchAddress } = useWallet();
@@ -36,6 +39,14 @@ const PassiveIncomeSection = () => {
     isQualified,
     isLoading: passiveDataLoading,
   } = usePassiveData(userBranchAddress, address);
+
+  const { sync, isPending: syncing, isConfirming, isConfirmed, isError: syncError, error: syncErrorMsg } =
+    useSyncPassivePoolQualification(userBranchAddress);
+
+  useEffect(() => {
+    if (isConfirmed) toast.success("Passive pool qualification synced!");
+    if (syncError) toast.error(syncErrorMsg?.shortMessage || "Sync failed");
+  }, [isConfirmed, syncError, syncErrorMsg]);
 
   const isLoading =
     confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
