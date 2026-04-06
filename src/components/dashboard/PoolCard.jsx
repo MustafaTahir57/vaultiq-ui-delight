@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network } from "lucide-react";
+import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network, RefreshCw } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import usePoolCard from "@/hooks/dataFetcher/usePoolCard";
 import useClaimPool from "@/hooks/dataSender/useClaimPool";
+import useSyncPoolQualification from "@/hooks/dataSender/useSyncPoolQualification";
 import { formatUnits } from "viem";
 
 const formatUSDT = (value, decimals = 18) => {
@@ -30,7 +31,9 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
   } = usePoolCard(poolId, userAddress, branchAddress);
 
   const { claim, isPending, isConfirming } = useClaimPool(branchAddress);
+  const { sync, isPending: isSyncPending, isConfirming: isSyncConfirming } = useSyncPoolQualification(branchAddress);
   const claiming = isPending || isConfirming;
+  const syncing = isSyncPending || isSyncConfirming;
 
   const salesProgress = Math.min(salesProgressBps / 100, 100);
   const weeklyProgress = Math.min(weeklyProgressBps / 100, 100);
@@ -67,6 +70,23 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
             <p className="text-[10px] text-muted-foreground">Undistributed</p>
           </div>
         </div>
+
+        {/* Sync qualification button */}
+        {!isLoading && !isQualified && wouldQualifyNow && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full border-success/30 text-success hover:bg-success/10"
+            disabled={syncing}
+            onClick={() => sync(poolId, userAddress)}
+          >
+            {syncing ? (
+              <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1.5" /> Syncing...</>
+            ) : (
+              <><RefreshCw className="h-3.5 w-3.5 mr-1.5" /> Sync Qualification</>
+            )}
+          </Button>
+        )}
 
         {/* Pool volume stats */}
         <div className="grid grid-cols-2 gap-3">
