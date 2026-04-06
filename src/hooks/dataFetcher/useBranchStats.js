@@ -22,9 +22,7 @@ const useBranchStats = (branchAddress) => {
   const currentWeek = batchData?.[1]?.result;
   const currentMonth = batchData?.[2]?.result;
   const branchWallet = batchData?.[3]?.result;  
-  const liquidityType = batchData?.[4]?.result
-
-  console.log("liquidityType", liquidityType)
+  const liquidityType = batchData?.[4]?.result;
 
   // Second: weeklyLiquidityPercent(currentWeek)
   const { data: weeklyPerfData, isLoading: perfLoading } = useReadContract({
@@ -35,22 +33,13 @@ const useBranchStats = (branchAddress) => {
     query: { enabled: !!branchAddress && currentWeek !== undefined },
   });
 
-  // USDT balance of branchAddress (Trading Wallet)
+  // USDT balance of branchAddress (used for both modes)
   const { data: tradingBalance, isLoading: tradingLoading } = useReadContract({
     address: USDT_Address,
     abi: ERC20ABI,
     functionName: "balanceOf",
     args: [branchAddress],
     query: { enabled: !!branchAddress },
-  });
-
-  // USDT balance of branchWallet (Branch Wallet)
-  const { data: branchWalletBalance, isLoading: walletLoading } = useReadContract({
-    address: USDT_Address,
-    abi: ERC20ABI,
-    functionName: "balanceOf",
-    args: [branchWallet],
-    query: { enabled: !!branchWallet },
   });
 
   // Passive pool: sum passiveQueuedByMonth(1..currentMonth)
@@ -89,13 +78,12 @@ const useBranchStats = (branchAddress) => {
     currentWeek: currentWeek?.toString() ?? "—",
     currentMonth: currentMonth?.toString() ?? "—",
     weeklyPerformance: weeklyPerfData !== undefined ? `${weeklyPerfData.toString()/100}%` : "—",
-    tradingWalletBalance: formatUSDT(tradingBalance),
-    branchWalletBalance: formatUSDT(branchWalletBalance),
+    liquidityType: liquidityType !== undefined ? Number(liquidityType) : undefined,
+    totalLiquidity: formatUSDT(tradingBalance),
+    totalLiquidityRaw: tradingBalance,
     passivePoolBalance: formatUSDT(passivePoolTotal),
-    tradingWalletRaw: tradingBalance,
-    branchWalletRaw: branchWalletBalance,
     passivePoolRaw: passivePoolTotal,
-    isLoading: batchLoading || perfLoading || tradingLoading || walletLoading || passiveLoading,
+    isLoading: batchLoading || perfLoading || tradingLoading || passiveLoading,
   };
 };
 

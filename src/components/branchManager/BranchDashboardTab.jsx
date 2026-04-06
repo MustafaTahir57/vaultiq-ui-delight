@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Wallet, BarChart3, Settings2, Users, Loader2, Plus, Calendar } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
+import { Wallet, BarChart3, Settings2, Users, Loader2, Plus, Calendar, Building2, Landmark } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import StatCard from "@/components/dashboard/StatCard";
@@ -34,11 +34,9 @@ const BranchDashboardTab = ({ selectedBranch, setSelectedBranch, userBranchAddre
   const stats = useBranchStats(selectedBranch || undefined);
   const { totalDistributed } = useTotalDistributed(selectedBranch || undefined);
 
-  const wallets = [
-    { label: "Trading Wallet", desc: "USDT held by branch contract", value: stats.tradingWalletBalance, pct: stats.tradingWalletRaw > 0n ? 100 : 0 },
-    { label: "Branch Wallet", desc: "USDT held by branch wallet", value: stats.branchWalletBalance, pct: stats.branchWalletRaw > 0n ? 100 : 0 },
-    { label: "Passive Income Pool", desc: "Passive income allocation", value: stats.passivePoolBalance, pct: stats.passivePoolRaw > 0n ? 100 : 0 },
-  ];
+  const isBranchMode = stats.liquidityType === 0;
+  const modeLabel = isBranchMode ? "Branch Mode" : stats.liquidityType === 1 ? "Treasury Mode" : "—";
+  const ModeIcon = isBranchMode ? Building2 : Landmark;
 
   return (
     <div className="space-y-6">
@@ -74,25 +72,19 @@ const BranchDashboardTab = ({ selectedBranch, setSelectedBranch, userBranchAddre
       </div>
 
       <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-card p-6">
-        <h3 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2">
-          <Wallet className="h-5 w-5 text-primary" />
-          Wallet Balances
-          {stats.isLoading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
-        </h3>
-        <div className="space-y-5">
-          {wallets.map((w) => (
-            <div key={w.label}>
-              <div className="flex items-center justify-between mb-1">
-                <div>
-                  <span className="text-sm text-foreground">{w.label}</span>
-                  <p className="text-xs text-muted-foreground">{w.desc}</p>
-                </div>
-                <span className="text-sm font-medium text-foreground font-mono">{w.value}</span>
-              </div>
-              <Progress value={w.pct} className="h-2 bg-secondary [&>div]:bg-primary" />
-            </div>
-          ))}
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
+            <Wallet className="h-5 w-5 text-primary" />
+            Total Liquidity
+            {stats.isLoading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
+          </h3>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-border bg-secondary/50 text-foreground">
+            <ModeIcon className="h-3.5 w-3.5 text-primary" />
+            {modeLabel}
+          </span>
         </div>
+        <p className="text-3xl font-bold font-mono text-foreground">{stats.totalLiquidity}</p>
+        <p className="text-xs text-muted-foreground mt-1">USDT held by branch contract</p>
       </motion.div>
 
       <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="glass-card p-6">
