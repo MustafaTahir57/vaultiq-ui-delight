@@ -9,13 +9,17 @@ import {
   RefreshCw,
 } from "lucide-react";
 import StatCard from "./StatCard";
+import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/contexts/WalletContext";
 import useConfirmedPool from "@/hooks/dataFetcher/useConfirmedPool";
 import useProjectedIncome from "@/hooks/dataFetcher/useProjectedIncome";
 import useNextDistribution from "@/hooks/dataFetcher/useNextDistribution";
 import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
+import useReferralData from "@/hooks/dataFetcher/useReferralData";
 import useSyncPassivePoolQualification from "@/hooks/dataSender/useSyncPassivePoolQualification";
+import { useReadContract } from "wagmi";
+import { BranchABI } from "@/constants/abis";
 import { toast } from "sonner";
 import { formatUnits } from "viem";
 
@@ -39,7 +43,17 @@ const PassiveIncomeSection = () => {
     totalWithdrawn,
     isQualified,
     isLoading: passiveDataLoading,
+    refetch: refetchPassiveData,
   } = usePassiveData(userBranchAddress, address);
+
+  const { referralData, isLoading: referralLoading } = useReferralData(userBranchAddress, address);
+
+  const { data: passiveSalesThreshold } = useReadContract({
+    address: userBranchAddress,
+    abi: BranchABI,
+    functionName: "passiveSalesThreshold",
+    query: { enabled: !!userBranchAddress },
+  });
 
   const {
     sync,
@@ -50,8 +64,19 @@ const PassiveIncomeSection = () => {
     error: syncErrorMsg,
   } = useSyncPassivePoolQualification(userBranchAddress);
 
+  // Determine if sync conditions are met
+  const pool3Depth3PlusCount = referralData?.pool3Depth3PlusCount ?? 0;
+  const totalTeamSalesRaw = referralData?.totalTeamSalesRaw ?? BigInt(0);
+  const threshold = passiveSalesThreshold ?? BigInt(0);
+  const meetsDepthRequirement = pool3Depth3PlusCount > 0;
+  const meetsSalesRequirement = threshold > BigInt(0) && totalTeamSalesRaw >= threshold;
+  const canSync = meetsDepthRequirement && meetsSalesRequirement && !isQualified;
+
   useEffect(() => {
-    if (isConfirmed) toast.success("Passive pool qualification synced!");
+    if (isConfirmed) {
+      toast.success("Passive pool qualification synced!");
+      refetchPassiveData?.();
+    }
   }, [isConfirmed]);
 
   useEffect(() => {
@@ -61,21 +86,80 @@ const PassiveIncomeSection = () => {
   const isLoading =
     confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
 
+  // Progress percentages for the requirements
+  const salesProgress = threshold > BigInt(0)
+    ? Math.min(100, Number((totalTeamSalesRaw * BigInt(100)) / threshold))
+    : 0;
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <h1 className="text-2xl font-display font-bold text-foreground">
-          Passive Income
-        </h1>
-        {isLoading && (
-          <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-display font-bold text-foreground">
+            Passive Income
+          </h1>
+          {isLoading && (
+            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+          )}
+        </div>
+
+        {/* Sync button at top-right */}
+        {!isQualified && (
+          <Button
+            size="sm"
+            className="gap-2"
+            onClick={() => sync(address)}
+            disabled={!canSync || syncing || isConfirming}
+          >
+            {(syncing || isConfirming) ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCw className="h-4 w-4" />
+            )}
+            Sync Qualification
+          </Button>
+        )}
+        {isQualified && (
+          <span className="text-sm font-semibold text-green-400 flex items-center gap-1.5">
+            <Users className="h-4 w-4" /> Qualified ✓
+          </span>
         )}
       </div>
       <p className="text-muted-foreground text-sm -mt-4">
         Your confirmed and projected passive earnings
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Qualification requirements progress (shown when not yet qualified) */}
+      {!isQualified && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="glass-card p-5 space-y-4"
+        >
+          <h3 className="text-sm font-semibold text-foreground">Qualification Requirements</h3>
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-muted-foreground">
+                  Total Team Sales ≥ Threshold ({threshold > BigInt(0) ? `$${parseFloat(formatUnits(threshold, 18)).toLocaleString()}` : "—"})
+                </span>
+                <span className={meetsSalesRequirement ? "text-green-400" : "text-warning"}>
+                  ${parseFloat(formatUnits(totalTeamSalesRaw, 18)).toLocaleString()}
+                </span>
+              </div>
+              <Progress value={salesProgress} className="h-2" />
+            </div>
+            <div className="flex justify-between text-xs">
+              <span className="text-muted-foreground">Pool 3 Depth 3+ Qualified Count</span>
+              <span className={meetsDepthRequirement ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                {pool3Depth3PlusCount} {meetsDepthRequirement ? "✓" : "(need ≥ 1)"}
+              </span>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard
           title="Confirmed Pool"
           value={confirmedPool}
@@ -116,36 +200,6 @@ const PassiveIncomeSection = () => {
           </div>
           <p className="text-xs text-muted-foreground mt-1">Countdown</p>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass-card p-5"
-        >
-          <div className="flex items-start justify-between mb-3">
-            <span className="text-sm text-muted-foreground">Qualification Status</span>
-            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Users className="h-4 w-4 text-primary" />
-            </div>
-          </div>
-          <p className={`text-2xl font-display font-bold ${isQualified ? "text-green-400" : "text-red-400"}`}>
-            {isQualified ? "Qualified" : "Not Qualified"}
-          </p>
-          {isQualified && (
-            <Button
-              size="sm"
-              className="mt-3 w-full gap-2"
-              onClick={() => sync(address)}
-              disabled={syncing || isConfirming}
-            >
-              {(syncing || isConfirming) ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <RefreshCw className="h-4 w-4" />
-              )}
-              Sync Qualification
-            </Button>
-          )}
-        </motion.div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -162,28 +216,16 @@ const PassiveIncomeSection = () => {
           </div>
           <div className="space-y-4">
             <div className="flex justify-between py-3 border-b border-border/30">
-              <span className="text-sm text-muted-foreground">
-                Available balance
-              </span>
-              <span className="text-sm font-medium text-foreground">
-                {confirmedPool}
-              </span>
+              <span className="text-sm text-muted-foreground">Available balance</span>
+              <span className="text-sm font-medium text-foreground">{confirmedPool}</span>
             </div>
             <div className="flex justify-between py-3 border-b border-border/30">
-              <span className="text-sm text-muted-foreground">
-                Last withdrawal
-              </span>
-              <span className="text-sm text-muted-foreground">
-                {lastWithdrawal}
-              </span>
+              <span className="text-sm text-muted-foreground">Last withdrawal</span>
+              <span className="text-sm text-muted-foreground">{lastWithdrawal}</span>
             </div>
             <div className="flex justify-between py-3">
-              <span className="text-sm text-muted-foreground">
-                Total withdrawn
-              </span>
-              <span className="text-sm font-medium text-foreground">
-                {totalWithdrawn}
-              </span>
+              <span className="text-sm text-muted-foreground">Total withdrawn</span>
+              <span className="text-sm font-medium text-foreground">{totalWithdrawn}</span>
             </div>
           </div>
         </motion.div>
@@ -209,14 +251,9 @@ const PassiveIncomeSection = () => {
                 className="flex items-center justify-between py-3 border-b border-border/30 last:border-0"
               >
                 <div>
-                  <p className="text-sm text-foreground">
-                    Subscription #{i + 1}
-                  </p>
+                  <p className="text-sm text-foreground">Subscription #{i + 1}</p>
                   <p className="text-xs text-muted-foreground">
-                    Principal: $
-                    {parseFloat(
-                      formatUnits(sub.principal, 18),
-                    ).toLocaleString()}
+                    Principal: ${parseFloat(formatUnits(sub.principal, 18)).toLocaleString()}
                   </p>
                 </div>
                 <span className="text-sm font-medium text-warning">
@@ -227,8 +264,7 @@ const PassiveIncomeSection = () => {
           </div>
           <p className="text-xs text-muted-foreground mt-4 italic">
             ⚠ Projected values are estimates based on current weekly rate (
-            {liquidityPercent ? `${(liquidityPercent / 100).toFixed(1)}%` : "—"}
-            )
+            {liquidityPercent ? `${(liquidityPercent / 100).toFixed(1)}%` : "—"})
           </p>
         </motion.div>
       </div>
