@@ -128,6 +128,38 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           </div>
         </div>
 
+        {/* Close/Deep Team Breakdown */}
+        <div className="space-y-3 pl-3 border-l-2 border-primary/20">
+          <div className="space-y-1">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-muted-foreground flex items-center gap-1">
+                <GitBranch className="h-3 w-3" /> Close Team (L1–L3)
+              </span>
+              <span className="text-foreground font-medium">
+                {isLoading ? "..." : `${closeProgress.toFixed(0)}%`}
+              </span>
+            </div>
+            <Progress value={isLoading ? 0 : closeProgress} className="h-1.5" />
+            <div className="text-[10px] text-muted-foreground">
+              {isLoading ? "..." : formatUSDT(closeTeamSales)} / {isLoading ? "..." : formatUSDT(closeRequired)}
+            </div>
+          </div>
+          <div className="space-y-1">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-muted-foreground flex items-center gap-1">
+                <Network className="h-3 w-3" /> Deep Team (L4+)
+              </span>
+              <span className="text-foreground font-medium">
+                {isLoading ? "..." : `${deepProgress.toFixed(0)}%`}
+              </span>
+            </div>
+            <Progress value={isLoading ? 0 : deepProgress} className="h-1.5" />
+            <div className="text-[10px] text-muted-foreground">
+              {isLoading ? "..." : formatUSDT(deepTeamSales)} / {isLoading ? "..." : formatUSDT(deepRequired)}
+            </div>
+          </div>
+        </div>
+
         {/* Claim button */}
         <Button
           className="w-full"
