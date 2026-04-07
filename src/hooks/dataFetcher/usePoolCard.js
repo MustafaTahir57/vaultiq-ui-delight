@@ -48,9 +48,9 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     closeTeamSales: progress?.closeTeamSales ?? 0n,
     deepTeamSales: progress?.deepTeamSales ?? 0n,
     closeRequired: progress?.closeRequired ?? 0n,
-    deepRequired: progress?.deepRequired ?? 0n,
+    totalRequired: progress?.totalRequired ?? 0n,
     closeProgressBps: progress?.closeProgressBps ? Number(progress.closeProgressBps) : 0,
-    deepProgressBps: progress?.deepProgressBps ? Number(progress.deepProgressBps) : 0,
+    totalProgressBps: progress?.totalProgressBps ? Number(progress.totalProgressBps) : 0,
 
     isLoading,
     refetch,

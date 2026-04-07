@@ -27,8 +27,8 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
     qualifiedCount, isLocked,
     currentSales, requiredSales, currentWeeklySales, weeklyThreshold,
     isQualified, wouldQualifyNow, salesProgressBps, weeklyProgressBps,
-    closeTeamSales, deepTeamSales, closeRequired, deepRequired,
-    closeProgressBps, deepProgressBps,
+    closeTeamSales, deepTeamSales, closeRequired, totalRequired,
+    closeProgressBps, totalProgressBps,
     isLoading, refetch,
   } = usePoolCard(poolId, userAddress, branchAddress);
 
