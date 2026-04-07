@@ -20,6 +20,7 @@ import useReferralData from "@/hooks/dataFetcher/useReferralData";
 import usePassiveSalesThreshold from "@/hooks/dataFetcher/usePassiveSalesThreshold";
 import useUserSubscriptions from "@/hooks/dataFetcher/useUserSubscriptions";
 import useSyncPassivePoolQualification from "@/hooks/dataSender/useSyncPassivePoolQualification";
+import useClaimPassivePool from "@/hooks/dataSender/useClaimPassivePool";
 import { toast } from "sonner";
 import { formatUnits } from "viem";
 
