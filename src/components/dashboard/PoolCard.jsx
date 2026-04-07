@@ -34,6 +34,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
 
   const { claim, isPending, isConfirming } = useClaimPool(branchAddress);
   const { sync, isPending: isSyncPending, isConfirming: isSyncConfirming, isConfirmed: isSyncConfirmed, isError: isSyncError, error: syncError } = useSyncPoolQualification(branchAddress);
+  const [balanceVisible, setBalanceVisible] = useState(true);
   const claiming = isPending || isConfirming;
   const syncing = isSyncPending || isSyncConfirming;
 
