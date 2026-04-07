@@ -9,7 +9,6 @@ import {
   RefreshCw,
 } from "lucide-react";
 import StatCard from "./StatCard";
-import StatusBadge from "./StatusBadge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/contexts/WalletContext";
@@ -238,13 +237,8 @@ const PassiveIncomeSection = () => {
         >
           <h3 className="font-display font-semibold text-foreground mb-6">
             Projected Income Breakdown
-            {activeSubCount > 0 && (
-              <span className="ml-2 text-sm font-normal text-muted-foreground">
-                ({activeSubCount} active)
-              </span>
-            )}
           </h3>
-          <div className="overflow-x-auto">
+          <div className="space-y-0">
             {subsLoading ? (
               <p className="text-sm text-muted-foreground text-center py-6">
                 Loading subscriptions...
@@ -254,52 +248,22 @@ const PassiveIncomeSection = () => {
                 No active subscriptions found
               </p>
             ) : (
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-border/50">
-                    {["#", "Model", "Principal", "Status", "Rewards", "Withdrawable BTC"].map((h) => (
-                      <th
-                        key={h}
-                        className="text-left text-xs font-medium text-muted-foreground px-3 py-2"
-                      >
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {activeSubscriptions.map((sub, i) => (
-                    <motion.tr
-                      key={`${sub.branch}-${sub.index}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: i * 0.05 }}
-                      className="border-b border-border/30 last:border-0 hover:bg-secondary/30 transition-colors"
-                    >
-                      <td className="px-3 py-3 text-sm text-foreground">
-                        {sub.index + 1}
-                      </td>
-                      <td className="px-3 py-3">
-                        <StatusBadge
-                          status={Number(sub.planId) === 0 ? "Model A" : "Model B"}
-                        />
-                      </td>
-                      <td className="px-3 py-3 text-sm text-foreground">
-                        ${parseFloat(formatUnits(sub.principal, 18)).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                      </td>
-                      <td className="px-3 py-3">
-                        <StatusBadge status="active" />
-                      </td>
-                      <td className="px-3 py-3 text-sm text-primary font-medium">
-                        ${parseFloat(formatUnits(sub.accumulatedRewards, 18)).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                      </td>
-                      <td className="px-3 py-3 text-sm text-foreground">
-                        {parseFloat(formatUnits(sub.withdrawableBTC, 18)).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                      </td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
+              activeSubscriptions.map((sub, i) => (
+                <div
+                  key={`${sub.branch}-${sub.index}`}
+                  className="flex items-center justify-between py-3 border-b border-border/30 last:border-0"
+                >
+                  <div>
+                    <p className="text-sm text-foreground">Subscription #{i + 1}</p>
+                    <p className="text-xs text-muted-foreground">
+                      Principal: ${parseFloat(formatUnits(sub.principal, 18)).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
+                    </p>
+                  </div>
+                  <span className="text-sm font-medium text-warning">
+                    ${parseFloat(formatUnits(sub.accumulatedRewards, 18)).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
+                  </span>
+                </div>
+              ))
             )}
           </div>
           <p className="text-xs text-muted-foreground mt-4 italic">
