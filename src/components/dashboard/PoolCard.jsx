@@ -117,11 +117,11 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           </div>
           <div className="bg-secondary/50 rounded-lg p-2.5">
             <p className="text-[10px] text-muted-foreground mb-0.5">Total Distributed</p>
-            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : formatUSDT(totalDistributed)}</p>
+            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : balanceVisible ? formatUSDT(totalDistributed) : "••••••"}</p>
           </div>
           <div className="bg-secondary/50 rounded-lg p-2.5">
             <p className="text-[10px] text-muted-foreground mb-0.5">This Week</p>
-            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : formatUSDT(currentWeekQueued)}</p>
+            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : balanceVisible ? formatUSDT(currentWeekQueued) : "••••••"}</p>
           </div>
           <div className="bg-secondary/50 rounded-lg p-2.5">
             <p className="text-[10px] text-muted-foreground mb-0.5">Members</p>
