@@ -9,8 +9,8 @@ const useNextDistribution = (userAddress) => {
   const { data, isLoading, isError } = useReadContracts({
     contracts: [
       { address: branchAddress, abi: BranchExtensionABI, functionName: "epochStart" },
-      { address: branchAddress, abi: BranchExtensionABI, functionName: "weekSeconds" },
-      { address: branchAddress, abi: BranchExtensionABI, functionName: "getCurrentWeek" },
+      { address: branchAddress, abi: BranchExtensionABI, functionName: "monthSeconds" },
+      { address: branchAddress, abi: BranchExtensionABI, functionName: "getCurrentMonth" },
     ],
     query: { enabled: !!branchAddress },
   });
