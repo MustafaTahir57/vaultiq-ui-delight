@@ -9,8 +9,8 @@ const useNextDistribution = (userAddress) => {
   const { data, isLoading, isError } = useReadContracts({
     contracts: [
       { address: branchAddress, abi: BranchExtensionABI, functionName: "epochStart" },
-      { address: branchAddress, abi: BranchExtensionABI, functionName: "weekSeconds" },
-      { address: branchAddress, abi: BranchExtensionABI, functionName: "getCurrentWeek" },
+      { address: branchAddress, abi: BranchExtensionABI, functionName: "monthSeconds" },
+      { address: branchAddress, abi: BranchExtensionABI, functionName: "getCurrentMonth" },
     ],
     query: { enabled: !!branchAddress },
   });
@@ -19,14 +19,14 @@ const useNextDistribution = (userAddress) => {
     if (!data) return { display: "—", secondsLeft: 0 };
 
     const epochStart = data[0]?.status === "success" ? Number(data[0].result) : 0;
-    const weekSecs = data[1]?.status === "success" ? Number(data[1].result) : 0;
-    const currentWeek = data[2]?.status === "success" ? Number(data[2].result) : 0;
+    const monthSecs = data[1]?.status === "success" ? Number(data[1].result) : 0;
+    const currentMonth = data[2]?.status === "success" ? Number(data[2].result) : 0;
 
-    if (!epochStart || !weekSecs) return { display: "—", secondsLeft: 0 };
+    if (!epochStart || !monthSecs) return { display: "—", secondsLeft: 0 };
 
-    const nextWeekStart = epochStart + currentWeek * weekSecs;
+    const nextMonthStart = epochStart + currentMonth * monthSecs;
     const now = Math.floor(Date.now() / 1000);
-    const secondsLeft = nextWeekStart - now;
+    const secondsLeft = nextMonthStart - now;
 
     if (secondsLeft <= 0) return { display: "Now", secondsLeft: 0 };
 
