@@ -27,8 +27,8 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
     qualifiedCount, isLocked,
     currentSales, requiredSales, currentWeeklySales, weeklyThreshold,
     isQualified, wouldQualifyNow, salesProgressBps, weeklyProgressBps,
-    closeTeamSales, deepTeamSales, closeRequired, deepRequired,
-    closeProgressBps, deepProgressBps,
+    closeTeamSales, deepTeamSales, closeRequired, totalRequired,
+    closeProgressBps, totalProgressBps,
     isLoading, refetch,
   } = usePoolCard(poolId, userAddress, branchAddress);
 
@@ -53,7 +53,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
   const salesProgress = Math.min(salesProgressBps / 100, 100);
   const weeklyProgress = Math.min(weeklyProgressBps / 100, 100);
   const closeProgress = Math.min(closeProgressBps / 100, 100);
-  const deepProgress = Math.min(deepProgressBps / 100, 100);
+  const totalProgress = Math.min(totalProgressBps / 100, 100);
   const salesRemaining = requiredSales > currentSales ? requiredSales - currentSales : 0n;
 
   return (
@@ -182,15 +182,15 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground flex items-center gap-1">
-                <Network className="h-3 w-3" /> Deep Team (Any)
+                <Network className="h-3 w-3" /> Total Team
               </span>
               <span className="text-foreground font-medium">
-                {isLoading ? "..." : `${deepProgress.toFixed(0)}%`}
+                {isLoading ? "..." : `${totalProgress.toFixed(0)}%`}
               </span>
             </div>
-            <Progress value={isLoading ? 0 : deepProgress} className="h-1.5" />
+            <Progress value={isLoading ? 0 : totalProgress} className="h-1.5" />
             <div className="text-[10px] text-muted-foreground">
-              {isLoading ? "..." : formatUSDT(deepTeamSales)} / {isLoading ? "..." : formatUSDT(deepRequired)}
+              {isLoading ? "..." : formatUSDT(deepTeamSales)} / {isLoading ? "..." : formatUSDT(totalRequired)}
             </div>
           </div>
         </div>
