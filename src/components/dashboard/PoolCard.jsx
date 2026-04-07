@@ -107,8 +107,13 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
         {/* Pool volume stats */}
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-secondary/50 rounded-lg p-2.5">
-            <p className="text-[10px] text-muted-foreground mb-0.5">Total Accumulated</p>
-            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : formatUSDT(totalQueued)}</p>
+            <div className="flex items-center justify-between mb-0.5">
+              <p className="text-[10px] text-muted-foreground">Total Accumulated</p>
+              <button onClick={() => setBalanceVisible(!balanceVisible)} className="text-muted-foreground hover:text-foreground transition-colors">
+                {balanceVisible ? <Eye className="h-3 w-3" /> : <EyeOff className="h-3 w-3" />}
+              </button>
+            </div>
+            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : balanceVisible ? formatUSDT(totalQueued) : "••••••"}</p>
           </div>
           <div className="bg-secondary/50 rounded-lg p-2.5">
             <p className="text-[10px] text-muted-foreground mb-0.5">Total Distributed</p>
