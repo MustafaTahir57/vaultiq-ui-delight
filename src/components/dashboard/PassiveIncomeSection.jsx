@@ -9,7 +9,6 @@ import {
   RefreshCw,
 } from "lucide-react";
 import StatCard from "./StatCard";
-import StatusBadge from "./StatusBadge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/contexts/WalletContext";
