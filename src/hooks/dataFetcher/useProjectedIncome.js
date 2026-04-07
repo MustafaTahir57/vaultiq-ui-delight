@@ -12,7 +12,7 @@ const useProjectedIncome = (userAddress) => {
     abi: BranchViewsABI,
     functionName: "getProjectedPassiveIncome",
     args: [userAddress],
-    query: { enabled: !!userAddress && !!branchAddress },
+    query: { enabled: !!userAddress },
   });
 
   const { projectedRaw, activeSubs } = useMemo(() => {
