@@ -229,7 +229,7 @@ const PassiveIncomeSection = () => {
           transition={{ delay: 0.2 }}
           className="glass-card p-6"
         >
-          <div className="flex items-center justify-between mb-6">
+           <div className="flex items-center justify-between mb-6">
             <h3 className="font-display font-semibold text-foreground">
               Confirmed Passive Pool
             </h3>
@@ -243,10 +243,22 @@ const PassiveIncomeSection = () => {
               <span className="text-sm text-muted-foreground">Last withdrawal</span>
               <span className="text-sm text-muted-foreground">{lastWithdrawal}</span>
             </div>
-            <div className="flex justify-between py-3">
+            <div className="flex justify-between py-3 border-b border-border/30">
               <span className="text-sm text-muted-foreground">Total withdrawn</span>
               <span className="text-sm font-medium text-foreground">{totalWithdrawn}</span>
             </div>
+            <Button
+              className="w-full gap-2"
+              onClick={claimPassive}
+              disabled={!confirmedPoolRaw || confirmedPoolRaw === BigInt(0) || claimPending || claimConfirming}
+            >
+              {(claimPending || claimConfirming) ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <ArrowDownToLine className="h-4 w-4" />
+              )}
+              {claimPending ? "Confirm in wallet..." : claimConfirming ? "Processing..." : "Withdraw"}
+            </Button>
           </div>
         </motion.div>
 
