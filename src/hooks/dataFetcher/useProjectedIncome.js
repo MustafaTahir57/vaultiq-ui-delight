@@ -1,73 +1,36 @@
 import { useMemo } from "react";
-import { useReadContract, useReadContracts } from "wagmi";
-import { BranchExtensionABI, BranchViewsABI } from "@/constants/abis";
+import { useReadContract } from "wagmi";
+import { BranchViewsABI } from "@/constants/abis";
 import useUserBranch from "./useUserBranch";
 import { formatUnits } from "viem";
 
 const useProjectedIncome = (userAddress) => {
   const { branchAddress, isLoading: branchLoading } = useUserBranch(userAddress);
 
-  // 1) Get all subscriptions
-  const { data: allSubs, isLoading: subsLoading } = useReadContract({
+  const { data, isLoading: queryLoading } = useReadContract({
     address: branchAddress,
     abi: BranchViewsABI,
-    functionName: "getAllSubscriptions",
+    functionName: "getProjectedPassiveIncome",
     args: [userAddress],
     query: { enabled: !!userAddress && !!branchAddress },
   });
 
-  // 2) Get current week
-  const { data: currentWeek, isLoading: weekLoading } = useReadContract({
-    address: branchAddress,
-    abi: BranchExtensionABI,
-    functionName: "getCurrentWeek",
-    query: { enabled: !!branchAddress },
-  });
+  const { projectedRaw, activeSubs } = useMemo(() => {
+    if (!data) return { projectedRaw: BigInt(0), activeSubs: [] };
+    const [projected, subs] = data;
+    return {
+      projectedRaw: projected ?? BigInt(0),
+      activeSubs: Array.isArray(subs) ? subs : [],
+    };
+  }, [data]);
 
-  // 3) Get weeklyLiquidityPercent for current week
-  const { data: liquidityPercent, isLoading: liqLoading } = useReadContract({
-    address: branchAddress,
-    abi: BranchExtensionABI,
-    functionName: "weeklyLiquidityPercent",
-    args: [currentWeek],
-    query: { enabled: !!branchAddress && currentWeek !== undefined },
-  });
-
-  // Filter active subs and calculate projected weekly income
-  const { projectedWeekly, activeSubs } = useMemo(() => {
-    if (!allSubs || !Array.isArray(allSubs) || liquidityPercent === undefined) {
-      return { projectedWeekly: BigInt(0), activeSubs: [] };
-    }
-
-    let total = BigInt(0);
-    const active = [];
-
-    for (const sub of allSubs) {
-      const principal = sub.principal ?? sub[0];
-      const cancelled = sub.cancelled ?? sub[6];
-      const expired = sub.expired ?? sub[7];
-      const matured = sub.matured ?? sub[14];
-      const accumulated = sub.accumulatedRewards ?? sub[4];
-
-      if (cancelled || expired || matured) continue;
-      if (principal === BigInt(0)) continue;
-
-      const projected = ((principal + accumulated) * BigInt(liquidityPercent)) / BigInt(10000);
-      total += projected;
-      active.push({ principal, accumulated, projected });
-    }
-
-    return { projectedWeekly: total, activeSubs: active };
-  }, [allSubs, liquidityPercent]);
-
-  const formatted = `$${parseFloat(formatUnits(projectedWeekly, 18)).toLocaleString()}`;
+  const formatted = `$${parseFloat(formatUnits(projectedRaw, 18)).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   return {
     projectedIncome: formatted,
-    projectedIncomeRaw: projectedWeekly,
+    projectedIncomeRaw: projectedRaw,
     activeSubs,
-    liquidityPercent: liquidityPercent !== undefined ? Number(liquidityPercent) : 0,
-    isLoading: branchLoading || subsLoading || weekLoading || liqLoading,
+    isLoading: branchLoading || queryLoading,
   };
 };
 

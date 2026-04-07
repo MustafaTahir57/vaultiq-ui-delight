@@ -32,7 +32,6 @@ const PassiveIncomeSection = () => {
   const {
     projectedIncome,
     activeSubs,
-    liquidityPercent,
     isLoading: projectedLoading,
   } = useProjectedIncome(address);
   const { days, hours, minutes, seconds, display: nextDist, isLoading: distLoading } =
@@ -257,8 +256,7 @@ const PassiveIncomeSection = () => {
             ))}
           </div>
           <p className="text-xs text-muted-foreground mt-4 italic">
-            ⚠ Projected values are estimates based on current weekly rate (
-            {liquidityPercent ? `${(liquidityPercent / 100).toFixed(1)}%` : "—"})
+            ⚠ Projected values are estimates based on current weekly rate
           </p>
         </motion.div>
       </div>
