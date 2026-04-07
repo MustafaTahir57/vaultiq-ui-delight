@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network, RefreshCw } from "lucide-react";
+import { Lock, Unlock, Users, Loader2, TrendingUp, BarChart3, GitBranch, Network, RefreshCw, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -34,6 +34,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
 
   const { claim, isPending, isConfirming } = useClaimPool(branchAddress);
   const { sync, isPending: isSyncPending, isConfirming: isSyncConfirming, isConfirmed: isSyncConfirmed, isError: isSyncError, error: syncError } = useSyncPoolQualification(branchAddress);
+  const [balanceVisible, setBalanceVisible] = useState(true);
   const claiming = isPending || isConfirming;
   const syncing = isSyncPending || isSyncConfirming;
 
@@ -80,7 +81,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           </div>
           <div className="text-right">
             <span className="text-lg font-display font-bold text-foreground">
-              {isLoading ? "..." : formatUSDT(undistributed)}
+              {isLoading ? "..." : balanceVisible ? formatUSDT(undistributed) : "••••••"}
             </span>
             <p className="text-[10px] text-muted-foreground">Undistributed</p>
           </div>
@@ -106,16 +107,21 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
         {/* Pool volume stats */}
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-secondary/50 rounded-lg p-2.5">
-            <p className="text-[10px] text-muted-foreground mb-0.5">Total Accumulated</p>
-            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : formatUSDT(totalQueued)}</p>
+            <div className="flex items-center justify-between mb-0.5">
+              <p className="text-[10px] text-muted-foreground">Total Accumulated</p>
+              <button onClick={() => setBalanceVisible(!balanceVisible)} className="text-muted-foreground hover:text-foreground transition-colors">
+                {balanceVisible ? <Eye className="h-3 w-3" /> : <EyeOff className="h-3 w-3" />}
+              </button>
+            </div>
+            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : balanceVisible ? formatUSDT(totalQueued) : "••••••"}</p>
           </div>
           <div className="bg-secondary/50 rounded-lg p-2.5">
             <p className="text-[10px] text-muted-foreground mb-0.5">Total Distributed</p>
-            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : formatUSDT(totalDistributed)}</p>
+            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : balanceVisible ? formatUSDT(totalDistributed) : "••••••"}</p>
           </div>
           <div className="bg-secondary/50 rounded-lg p-2.5">
             <p className="text-[10px] text-muted-foreground mb-0.5">This Week</p>
-            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : formatUSDT(currentWeekQueued)}</p>
+            <p className="text-sm font-semibold text-foreground">{isLoading ? "..." : balanceVisible ? formatUSDT(currentWeekQueued) : "••••••"}</p>
           </div>
           <div className="bg-secondary/50 rounded-lg p-2.5">
             <p className="text-[10px] text-muted-foreground mb-0.5">Members</p>
