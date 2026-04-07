@@ -1,6 +1,6 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { BranchExtensionABI } from "@/constants/abis";
-import { BranchExtension_Address } from "@/constants/contracts";
+import { Branch_Address } from "@/constants/contracts";
 
 /**
  * Calls BranchExtension.addSubscriptionPlan(SubscriptionPlan plan)
@@ -29,7 +29,7 @@ const useAddSubscriptionPlan = () => {
 
   const addPlan = (plan, branchAddress) => {
     writeContract({
-      address: branchAddress || BranchExtension_Address,
+      address: branchAddress || Branch_Address,
       abi: BranchExtensionABI,
       functionName: "addSubscriptionPlan",
       args: [plan],

@@ -1,10 +1,10 @@
 import { useReadContract, useReadContracts } from "wagmi";
 import { BranchExtensionABI } from "@/constants/abis";
-import { BranchExtension_Address } from "@/constants/contracts";
+import { Branch_Address } from "@/constants/contracts";
 
 const useBranchPlans = (branchAddress) => {
   const { data: planCount, isLoading: isCountLoading } = useReadContract({
-    address: branchAddress || BranchExtension_Address,
+    address: branchAddress || Branch_Address,
     abi: BranchExtensionABI,
     functionName: "getPlanCount",
     query: { enabled: !!branchAddress },
@@ -14,7 +14,7 @@ const useBranchPlans = (branchAddress) => {
 
   // Build contract calls for planId 1..count
   const planCalls = Array.from({ length: count }, (_, i) => ({
-    address: branchAddress || BranchExtension_Address,
+    address: branchAddress || Branch_Address,
     abi: BranchExtensionABI,
     functionName: "getPlan",
     args: [i + 1],
@@ -27,8 +27,8 @@ const useBranchPlans = (branchAddress) => {
 
   const plans = planResults
     ? planResults
-        .map((r, i) => (r.status === "success" ? { id: i + 1, ...r.result } : null))
-        .filter(Boolean)
+      .map((r, i) => (r.status === "success" ? { id: i + 1, ...r.result } : null))
+      .filter(Boolean)
     : [];
 
   return {
