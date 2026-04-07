@@ -64,6 +64,15 @@ const PassiveIncomeSection = () => {
     error: syncErrorMsg,
   } = useSyncPassivePoolQualification(userBranchAddress);
 
+  const {
+    claim: claimPassive,
+    isPending: claimPending,
+    isConfirming: claimConfirming,
+    isConfirmed: claimConfirmed,
+    isError: claimError,
+    error: claimErrorMsg,
+  } = useClaimPassivePool(userBranchAddress);
+
   // Determine if sync conditions are met
   const pool3Depth3PlusCount = referralData?.pool3Depth3PlusCount ?? 0;
   const totalTeamSalesRaw = referralData?.totalTeamSalesRaw ?? BigInt(0);
@@ -82,6 +91,17 @@ const PassiveIncomeSection = () => {
   useEffect(() => {
     if (syncError) toast.error(syncErrorMsg?.shortMessage || "Sync failed");
   }, [syncError, syncErrorMsg]);
+
+  useEffect(() => {
+    if (claimConfirmed) {
+      toast.success("Passive pool claimed successfully!");
+      refetchPassiveData?.();
+    }
+  }, [claimConfirmed]);
+
+  useEffect(() => {
+    if (claimError) toast.error(claimErrorMsg?.shortMessage || "Claim failed");
+  }, [claimError, claimErrorMsg]);
 
   const isLoading =
     confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
