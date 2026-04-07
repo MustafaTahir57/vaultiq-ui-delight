@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useReadContracts } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchExtensionABI, BranchViewsABI } from "@/constants/abis";
 import useUserBranch from "./useUserBranch";
 
 const useModelAProjection = (userAddress, subIndex) => {

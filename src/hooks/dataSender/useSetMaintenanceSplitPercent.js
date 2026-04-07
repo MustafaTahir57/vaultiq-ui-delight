@@ -1,5 +1,5 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchViewsABI } from "@/constants/abis";
 
 const useSetMaintenanceSplitPercent = () => {
   const { writeContract, data: hash, isPending, isError, error } = useWriteContract();

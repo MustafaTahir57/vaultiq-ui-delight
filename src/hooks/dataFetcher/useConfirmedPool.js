@@ -1,5 +1,5 @@
 import { useReadContract } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchViewsABI } from "@/constants/abis";
 import useUserBranch from "./useUserBranch";
 import { formatUnits } from "viem";
 

@@ -1,5 +1,5 @@
 import { useReadContract, useReadContracts } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchViewsABI } from "@/constants/abis";
 import { Branch_Address } from "@/constants/contracts";
 
 const useBranchPlans = (branchAddress) => {
