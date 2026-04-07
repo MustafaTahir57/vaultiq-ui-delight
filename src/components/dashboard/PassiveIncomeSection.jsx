@@ -33,9 +33,14 @@ const PassiveIncomeSection = () => {
   } = useConfirmedPool(address);
   const {
     projectedIncome,
-    activeSubs,
     isLoading: projectedLoading,
   } = useProjectedIncome(address);
+  const {
+    subscriptions,
+    activeCount: activeSubCount,
+    isLoading: subsLoading,
+  } = useUserSubscriptions(address);
+  const activeSubscriptions = subscriptions?.filter((s) => s.isActive) ?? [];
   const { days, hours, minutes, seconds, display: nextDist, isLoading: distLoading } =
     useNextDistribution(address);
   const {
