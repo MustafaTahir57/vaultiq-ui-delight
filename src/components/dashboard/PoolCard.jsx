@@ -81,7 +81,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           </div>
           <div className="text-right">
             <span className="text-lg font-display font-bold text-foreground">
-              {isLoading ? "..." : formatUSDT(undistributed)}
+              {isLoading ? "..." : balanceVisible ? formatUSDT(undistributed) : "••••••"}
             </span>
             <p className="text-[10px] text-muted-foreground">Undistributed</p>
           </div>
