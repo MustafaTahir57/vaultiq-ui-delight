@@ -12,7 +12,7 @@ const useModelAProjection = (userAddress, subIndex) => {
     contracts: [
       {
         address: branchAddress,
-        abi: BranchExtensionABI,
+        abi: BranchViewsABI,
         functionName: "previewSubscription",
         args: [userAddress, BigInt(subIndex)],
       },

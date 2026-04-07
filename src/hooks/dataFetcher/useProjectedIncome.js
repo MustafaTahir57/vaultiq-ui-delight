@@ -10,7 +10,7 @@ const useProjectedIncome = (userAddress) => {
   // 1) Get all subscriptions
   const { data: allSubs, isLoading: subsLoading } = useReadContract({
     address: branchAddress,
-    abi: BranchExtensionABI,
+    abi: BranchViewsABI,
     functionName: "getAllSubscriptions",
     args: [userAddress],
     query: { enabled: !!userAddress && !!branchAddress },

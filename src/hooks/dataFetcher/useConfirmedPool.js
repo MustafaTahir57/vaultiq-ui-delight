@@ -8,7 +8,7 @@ const useConfirmedPool = (userAddress) => {
 
   const { data, isLoading, isError, refetch } = useReadContract({
     address: branchAddress,
-    abi: BranchExtensionABI,
+    abi: BranchViewsABI,
     functionName: "previewPassivePending",
     args: [userAddress],
     query: {

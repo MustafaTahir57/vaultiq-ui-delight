@@ -9,7 +9,7 @@ const useSetMaintenanceSplitPercent = () => {
   const setMaintenanceSplitPercent = (branchAddress, closePct, deepPct) => {
     writeContract({
       address: branchAddress,
-      abi: BranchExtensionABI,
+      abi: BranchViewsABI,
       functionName: "setMaintenanceSplitPercent",
       args: [closePct, deepPct],
     });
