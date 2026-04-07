@@ -1,13 +1,13 @@
 import { useReadContract } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchViewsABI } from "@/constants/abis";
 import useUserBranch from "./useUserBranch";
 
 const useUserSubscriptionCount = (userAddress) => {
   const { branchAddress, isLoading: branchLoading } = useUserBranch(userAddress);
 
-  const { data: count, isLoading, isError , refetch } = useReadContract({
+  const { data: count, isLoading, isError, refetch } = useReadContract({
     address: branchAddress,
-    abi: BranchExtensionABI,
+    abi: BranchViewsABI,
     functionName: "getSubscriptionCount",
     args: [userAddress],
     query: {

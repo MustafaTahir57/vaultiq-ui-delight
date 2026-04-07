@@ -63,7 +63,7 @@ const CalculatorSection = () => {
                 <Loader2 className="h-6 w-6 animate-spin text-primary" />
                 <span className="text-sm">Loading your subscriptions...</span>
               </div>
-            ) : modelASubs.length === 0 ? (
+            ) : modelASubs?.length === 0 ? (
               <div className="glass-card p-12 text-center space-y-3">
                 <div className="w-14 h-14 rounded-2xl bg-muted/50 flex items-center justify-center mx-auto">
                   <TrendingUp className="h-7 w-7 text-muted-foreground" />
@@ -72,7 +72,7 @@ const CalculatorSection = () => {
                 <p className="text-xs text-muted-foreground/70">Purchase a Model A subscription to see projections here</p>
               </div>
             ) : (
-              modelASubs.map((sub, i) => <ModelACard key={sub.index} sub={sub} index={i} />)
+              modelASubs?.map((sub, i) => <ModelACard key={sub.index} sub={sub} index={i} />)
             )}
           </motion.div>
         ) : (

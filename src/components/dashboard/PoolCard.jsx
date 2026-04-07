@@ -138,7 +138,6 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           <Progress value={isLoading ? 0 : salesProgress} className="h-2" />
           <div className="flex justify-between text-[10px] text-muted-foreground">
             <span>{isLoading ? "..." : formatUSDT(currentSales)} / {isLoading ? "..." : formatUSDT(requiredSales)}</span>
-            {console.log("currentSales , requiredSales , salesProgress", currentSales , requiredSales , salesProgress)}
             {!isLoading && !isQualified && salesRemaining > 0n && (
               <span className="text-primary">{formatUSDT(salesRemaining)} more needed</span>
             )}
@@ -173,13 +172,11 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
               </span>
               <span className="text-foreground font-medium">
                 {isLoading ? "..." : `${closeProgress.toFixed(0)}%`}
-                {console.log("Progress bar", closeProgress)}
               </span>
             </div>
             <Progress value={isLoading ? 0 : closeProgress} className="h-1.5" />
             <div className="text-[10px] text-muted-foreground">
               {isLoading ? "..." : formatUSDT(closeTeamSales)} / {isLoading ? "..." : formatUSDT(closeRequired)}
-              {console.log("Total Sales", closeTeamSales)}
             </div>
           </div>
           <div className="space-y-1">

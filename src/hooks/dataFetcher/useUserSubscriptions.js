@@ -4,7 +4,7 @@ import { BranchABI } from "@/constants/abis";
 import useUserSubscriptionCount from "./useUserSubscriptionCount";
 
 const useUserSubscriptions = (userAddress) => {
-  const { count: subCount, branchAddress, isLoading: countLoading , refetch: refetchSubscriptionsCount } = useUserSubscriptionCount(userAddress);
+  const { count: subCount, branchAddress, isLoading: countLoading, refetch: refetchSubscriptionsCount } = useUserSubscriptionCount(userAddress);
 
   const contracts = useMemo(() => {
     if (!userAddress || !branchAddress || subCount === 0) return [];
