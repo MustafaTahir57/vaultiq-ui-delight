@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useReadContract, useReadContracts } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchExtensionABI, BranchViewsABI } from "@/constants/abis";
 import useUserBranch from "./useUserBranch";
 import { formatUnits } from "viem";
 
@@ -10,7 +10,7 @@ const useProjectedIncome = (userAddress) => {
   // 1) Get all subscriptions
   const { data: allSubs, isLoading: subsLoading } = useReadContract({
     address: branchAddress,
-    abi: BranchExtensionABI,
+    abi: BranchViewsABI,
     functionName: "getAllSubscriptions",
     args: [userAddress],
     query: { enabled: !!userAddress && !!branchAddress },
