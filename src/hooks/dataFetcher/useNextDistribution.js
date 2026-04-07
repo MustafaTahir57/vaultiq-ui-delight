@@ -26,7 +26,7 @@ const useNextDistribution = (userAddress) => {
 
     const nextMonthStart = epochStart + currentMonth * monthSecs;
     const now = Math.floor(Date.now() / 1000);
-    const secondsLeft = nextWeekStart - now;
+    const secondsLeft = nextMonthStart - now;
 
     if (secondsLeft <= 0) return { display: "Now", secondsLeft: 0 };
 
