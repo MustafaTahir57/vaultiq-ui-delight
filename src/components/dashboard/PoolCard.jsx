@@ -28,7 +28,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
     currentSales, requiredSales, currentWeeklySales, weeklyThreshold,
     isQualified, wouldQualifyNow, salesProgressBps, weeklyProgressBps,
     closeTeamSales, deepTeamSales, closeRequired, totalRequired,
-    closeProgressBps, totalProgressBps,
+    closeProgressBps, totalProgressBps, allLevelsContributed,
     isLoading, refetch,
   } = usePoolCard(poolId, userAddress, branchAddress);
 
@@ -174,8 +174,11 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground flex items-center gap-1">
-                <GitBranch className="h-3 w-3" /> Close Team (L1–L4)
-              </span>
+              <GitBranch className="h-3 w-3" /> Close Team (L1–L4)
+            </span>
+            {!isLoading && !allLevelsContributed && (
+              <span className="text-[10px] text-warning font-medium text-amber-400">L1 only</span>
+            )}
               <span className="text-foreground font-medium">
                 {isLoading ? "..." : `${closeProgress.toFixed(0)}%`}
               </span>
@@ -205,7 +208,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
         <Button
           className="w-full"
           size="sm"
-          disabled={!isQualified || claiming || isLoading || isLocked}
+          disabled={!isQualified || !allLevelsContributed || claiming || isLoading || isLocked}
           onClick={() => claim(poolId)}
         >
           {claiming ? (
