@@ -1,11 +1,11 @@
 import { useReadContract } from "wagmi";
-import { BranchExtensionABI } from "@/constants/abis";
+import { BranchExtensionABI, BranchViewsABI } from "@/constants/abis";
 import { formatUnits } from "viem";
 
 const usePassiveData = (branchAddress, userAddress) => {
   const { data, isLoading, isError, refetch } = useReadContract({
     address: branchAddress,
-    abi: BranchExtensionABI,
+    abi: BranchViewsABI,
     functionName: "getPassiveData",
     args: [userAddress],
     query: {
@@ -19,10 +19,10 @@ const usePassiveData = (branchAddress, userAddress) => {
 
   const lastWithdrawal = lastWithdrawalTimestamp
     ? new Date(lastWithdrawalTimestamp * 1000).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      })
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
     : "—";
 
   const totalWithdrawn = data?.totalWithdrawn
