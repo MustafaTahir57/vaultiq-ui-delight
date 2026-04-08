@@ -40,8 +40,7 @@ const PassiveIncomeSection = () => {
     isLoading: subsLoading,
   } = useUserSubscriptions(address);
   const activeSubscriptions = subscriptions?.filter((s) => s.isActive) ?? [];
-  const { days, hours, minutes, seconds, display: nextDist, isLoading: distLoading } =
-    useNextDistribution(address);
+  
   const {
     lastWithdrawal,
     totalWithdrawn,
@@ -103,7 +102,7 @@ const PassiveIncomeSection = () => {
   }, [claimError, claimErrorMsg]);
 
   const isLoading =
-    confirmedLoading || projectedLoading || distLoading || passiveDataLoading;
+    confirmedLoading || projectedLoading || passiveDataLoading;
 
   // Progress percentages for the requirements
   const salesProgress = threshold > BigInt(0)
@@ -191,34 +190,7 @@ const PassiveIncomeSection = () => {
           subtitle="From active subs"
           icon={TrendingUp}
         />
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass-card p-5"
-        >
-          <div className="flex items-start justify-between mb-3">
-            <span className="text-sm text-muted-foreground">Next Distribution</span>
-            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Clock className="h-4 w-4 text-primary" />
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {[
-              { val: days ?? 0, label: "d" },
-              { val: hours ?? 0, label: "h" },
-              { val: minutes ?? 0, label: "m" },
-              { val: seconds ?? 0, label: "s" },
-            ].map((unit) => (
-              <div key={unit.label} className="flex items-baseline gap-0.5">
-                <span className="text-2xl font-display font-bold text-foreground tabular-nums">
-                  {String(unit.val).padStart(2, "0")}
-                </span>
-                <span className="text-xs text-primary font-semibold">{unit.label}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-muted-foreground mt-1">Countdown</p>
-        </motion.div>
+        <CountdownTimer userAddress={address} mode="month" label="Next Distribution" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
