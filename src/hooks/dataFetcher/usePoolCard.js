@@ -51,6 +51,7 @@ const usePoolCard = (poolId, userAddress, branchAddress) => {
     totalRequired: progress?.totalRequired ?? 0n,
     closeProgressBps: progress?.closeProgressBps ? Number(progress.closeProgressBps) : 0,
     totalProgressBps: progress?.totalProgressBps ? Number(progress.totalProgressBps) : 0,
+    allLevelsContributed: progress?.allLevelsContributed ?? false,
 
     isLoading,
     refetch,
