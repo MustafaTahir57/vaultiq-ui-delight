@@ -184,7 +184,7 @@ const LeadershipPoolSection = () => {
       </Card>
 
       {/* Leaderboard */}
-      {leaders && leaders.length > 0 && (
+      {leaders && leaders?.length > 0 && (
         <Card className="glass-card">
           <CardHeader>
             <CardTitle className="text-base">Qualified Leaders</CardTitle>
@@ -200,7 +200,7 @@ const LeadershipPoolSection = () => {
                 </tr>
               </thead>
               <tbody>
-                {leaders.map((leader) => (
+                {leaders?.map((leader) => (
                   <LeaderRow key={leader} address={leader} totalQualifiedSales={totalQualifiedSales} />
                 ))}
               </tbody>

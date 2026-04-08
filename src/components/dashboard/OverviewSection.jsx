@@ -47,7 +47,7 @@ const OverviewSection = () => {
           className="glass-card p-5"
         >
           <div className="flex items-start justify-between mb-3">
-            <span className="text-sm text-muted-foreground">Next Distribution</span>
+            <span className="text-sm text-muted-foreground">Next Week In</span>
             <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
               <Clock className="h-4 w-4 text-primary" />
             </div>

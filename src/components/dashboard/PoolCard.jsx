@@ -205,7 +205,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
         <Button
           className="w-full"
           size="sm"
-          disabled={!isQualified || undistributed === 0n || claiming || isLoading || isLocked}
+          disabled={!isQualified || claiming || isLoading || isLocked}
           onClick={() => claim(poolId)}
         >
           {claiming ? (
