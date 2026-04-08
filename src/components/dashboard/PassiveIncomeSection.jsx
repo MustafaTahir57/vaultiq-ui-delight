@@ -2,19 +2,18 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   TrendingUp,
-  Clock,
   Users,
   ArrowDownToLine,
   Loader2,
   RefreshCw,
 } from "lucide-react";
 import StatCard from "./StatCard";
+import CountdownTimer from "./CountdownTimer";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/contexts/WalletContext";
 import useConfirmedPool from "@/hooks/dataFetcher/useConfirmedPool";
 import useProjectedIncome from "@/hooks/dataFetcher/useProjectedIncome";
-import useNextDistribution from "@/hooks/dataFetcher/useNextDistribution";
 import usePassiveData from "@/hooks/dataFetcher/usePassiveData";
 import useReferralData from "@/hooks/dataFetcher/useReferralData";
 import usePassiveSalesThreshold from "@/hooks/dataFetcher/usePassiveSalesThreshold";
