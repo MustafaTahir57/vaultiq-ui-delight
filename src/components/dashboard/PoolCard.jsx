@@ -177,7 +177,7 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
               <GitBranch className="h-3 w-3" /> Close Team (L1–L4)
             </span>
             {!isLoading && !allLevelsContributed && (
-              <span className="text-[10px] text-warning font-medium text-amber-400">L1 only</span>
+              <span className="text-[10px] text-warning font-medium text-amber-400">Not all Levels</span>
             )}
               <span className="text-foreground font-medium">
                 {isLoading ? "..." : `${closeProgress.toFixed(0)}%`}
