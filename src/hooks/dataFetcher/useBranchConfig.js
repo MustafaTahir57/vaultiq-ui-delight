@@ -6,7 +6,7 @@ const branchFunctions = [
   "branchName",
   "usdc",
   "branchWallet",
-  "foundersWallet",
+  "foundersWallets",
   "liquidityType",
   "epochStart",
   "getCurrentWeek",
@@ -36,7 +36,7 @@ const useBranchConfig = (branchAddress) => {
     branchName: get(0) ?? "—",
     usdc: get(1) ?? "—",
     branchWallet: get(2) ?? "—",
-    foundersWallet: get(3) ?? "—",
+    foundersWallets: get(3) ?? [],
     liquidityType:
       liquidityTypeRaw !== undefined
         ? liquidityTypeRaw === 0
