@@ -67,12 +67,13 @@ const SubscriptionsSection = () => {
   const [selectedPlan, setSelectedPlan] = useState("");
   const [principalInput, setPrincipalInput] = useState("");
   const [durationInput, setDurationInput] = useState(
-    String(16 * 30 * 24 * 60 * 60),
+    String(5 * 60),
   );
   const [planId, setPlanId] = useState("1");
-  const [autoRoll, setAutoRoll] = useState(false);
+  const [autoRoll, setAutoRoll] = useState(true);
 
   const durationOptions = [
+     { label: "5 Minutes", value: 5 * 60 },
     { label: "16 Months", value: 16 * 30 * 24 * 60 * 60 },
     { label: "18 Months", value: 18 * 30 * 24 * 60 * 60 },
   ];
@@ -132,7 +133,7 @@ const SubscriptionsSection = () => {
     setPrincipalInput("");
     setDurationInput(String(16 * 30 * 24 * 60 * 60));
     setPlanId("1");
-    setAutoRoll(false);
+    setAutoRoll(true);
     setModel("A");
     approval.reset();
     modelA.reset();
@@ -331,7 +332,7 @@ const SubscriptionsSection = () => {
                                 claimBTC.isPending ||
                                 claimBTC.isConfirming ||
                                 (Number(sub.planId) === 0
-                                  ? Number(sub.accumulatedRewards) === 0 || (Number(sub.startTime) + Number(sub.duration)) > Math.floor(Date.now() / 1000)
+                                  ? Number(Number(sub.startTime) + Number(sub.duration)) > Math.floor(Date.now() / 1000)
                                   : Number(sub.withdrawableBTC) === 0)
                               }
                               onClick={() => {
