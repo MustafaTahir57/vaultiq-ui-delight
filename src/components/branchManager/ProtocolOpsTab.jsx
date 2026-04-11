@@ -171,6 +171,33 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         toast.info(`Setting maintenance split: close=${c} BPS, deep=${d} BPS...`);
         break;
       }
+      case "depositLiquidity": {
+        const amt = parseFloat(depositAmount);
+        if (isNaN(amt) || amt <= 0) { toast.error("Enter a valid amount"); return; }
+        const amtBig = BigInt(Math.round(amt * 1e18));
+        depositLiqHook.depositLiquidity(selectedBranch, amtBig);
+        toast.info(`Depositing ${amt} USDC liquidity...`);
+        break;
+      }
+      case "withdrawLiquidity": {
+        const amt = parseFloat(withdrawAmount);
+        if (isNaN(amt) || amt <= 0) { toast.error("Enter a valid amount"); return; }
+        const amtBig = BigInt(Math.round(amt * 1e18));
+        withdrawLiqHook.withdrawLiquidity(selectedBranch, amtBig);
+        toast.info(`Withdrawing ${amt} USDC liquidity...`);
+        break;
+      }
+      case "setTestingTimeConfig": {
+        const w = parseInt(weekSeconds);
+        const m = parseInt(monthSeconds);
+        const a = parseInt(activationDelay);
+        if (isNaN(w) || w <= 0) { toast.error("Enter valid week seconds"); return; }
+        if (isNaN(m) || m <= 0) { toast.error("Enter valid month seconds"); return; }
+        if (isNaN(a) || a < 0) { toast.error("Enter valid activation delay"); return; }
+        setTestTimeHook.setTestingTimeConfig(selectedBranch, BigInt(w), BigInt(m), BigInt(a));
+        toast.info(`Setting time config: week=${w}s, month=${m}s, activation=${a}s...`);
+        break;
+      }
     }
   };
 
