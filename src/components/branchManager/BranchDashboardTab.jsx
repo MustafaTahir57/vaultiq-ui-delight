@@ -14,7 +14,6 @@ const configFieldMap = [
   { label: "Branch Name", key: "branchName" },
   { label: "USDC Token", key: "usdc", isAddress: true },
   { label: "Branch Wallet", key: "branchWallet", isAddress: true },
-  { label: "Founders Wallet", key: "foundersWallet", isAddress: true },
   { label: "Liquidity Type", key: "liquidityType" },
   { label: "Epoch Start", key: "epochStart" },
   { label: "Current Week", key: "currentWeek" },
@@ -111,6 +110,14 @@ const BranchDashboardTab = ({ selectedBranch, setSelectedBranch, userBranchAddre
               <p className="text-xs text-muted-foreground mb-1">{f.label}</p>
               <p className="text-sm font-mono text-foreground" title={f.isAddress ? config[f.key] : undefined}>
                 {f.isAddress ? truncateAddress(config[f.key]) : config[f.key]}
+              </p>
+            </div>
+          ))}
+          {(config.foundersWallets || []).map((fw, i) => (
+            <div key={`fw-${i}`} className="bg-secondary/50 border border-border rounded-lg p-3">
+              <p className="text-xs text-muted-foreground mb-1">Founders Wallet {i + 1}</p>
+              <p className="text-sm font-mono text-foreground" title={fw}>
+                {truncateAddress(fw)}
               </p>
             </div>
           ))}
