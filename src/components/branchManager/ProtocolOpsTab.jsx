@@ -537,6 +537,16 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   };
 
   const getStatus = (fnName) => {
+    // Special handling for depositLiquidity to show approval states
+    if (fnName === "depositLiquidity") {
+      if (approvePending) return "approving";
+      if (approveConfirming) return "approveConfirming";
+      if (depositLiqHook.isConfirmed) return "confirmed";
+      if (depositLiqHook.isConfirming) return "confirming";
+      if (depositLiqHook.isPending) return "pending";
+      if (depositLiqHook.isError) return "error";
+      return null;
+    }
     const hook = hookMap[fnName];
     if (!hook) return null;
     if (hook.isConfirmed) return "confirmed";
