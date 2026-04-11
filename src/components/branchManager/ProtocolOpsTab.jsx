@@ -86,6 +86,9 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     setPoolLocked: setPoolLockedHook,
     setPoolRule: setPoolRuleHook,
     setMaintenanceSplitPercent: setMaintSplitHook,
+    depositLiquidity: depositLiqHook,
+    withdrawLiquidity: withdrawLiqHook,
+    setTestingTimeConfig: setTestTimeHook,
   };
 
   const handleExecute = (fnName) => {
