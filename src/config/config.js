@@ -36,7 +36,12 @@ const transports = {
 export const config = createConfig({
   chains: [activeChain],
   connectors: [
-    metaMask(),
+    metaMask({
+      dappMetadata: {
+        name: "VaultIQ",
+        url: window.location.origin,
+      },
+    }),
     walletConnect({ projectId: "18e5dbfec5539cf4cd18f5ecdf94eb6a" })
   ],
   transports: transports[ACTIVE_CHAIN_ID],
