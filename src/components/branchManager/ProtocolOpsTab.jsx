@@ -419,6 +419,66 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
           </div>
         );
 
+      case "depositLiquidity":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Amount (USDC)</label>
+            <Input
+              type="number"
+              step="0.01"
+              placeholder="e.g. 1000"
+              value={depositAmount}
+              onChange={(e) => setDepositAmount(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+          </div>
+        );
+
+      case "withdrawLiquidity":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Amount (USDC)</label>
+            <Input
+              type="number"
+              step="0.01"
+              placeholder="e.g. 500"
+              value={withdrawAmount}
+              onChange={(e) => setWithdrawAmount(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+          </div>
+        );
+
+      case "setTestingTimeConfig":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Week Duration (seconds)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 604800"
+              value={weekSeconds}
+              onChange={(e) => setWeekSeconds(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+            <label className="text-xs text-muted-foreground">Month Duration (seconds)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 2592000"
+              value={monthSeconds}
+              onChange={(e) => setMonthSeconds(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+            <label className="text-xs text-muted-foreground">Activation Delay (seconds)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 86400"
+              value={activationDelay}
+              onChange={(e) => setActivationDelay(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+          </div>
+        );
+
       default:
         return null;
     }
