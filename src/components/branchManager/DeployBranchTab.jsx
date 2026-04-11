@@ -35,7 +35,7 @@ const DeployBranchTab = () => {
 
   const [branchName, setBranchName] = useState("");
   const [branchWallet, setBranchWallet] = useState("");
-  const [foundersWallet, setFoundersWallet] = useState("");
+  const [foundersWallets, setFoundersWallets] = useState(["", "", ""]);
   const [nameError, setNameError] = useState("");
   const [liquidityType, setLiquidityType] = useState("0");
   const [coreConfig, setCoreConfig] = useState(defaultCore);
