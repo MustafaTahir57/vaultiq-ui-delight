@@ -637,6 +637,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
                     {status === "pending" && "Waiting for signature..."}
                     {status === "confirming" && "Confirming on-chain..."}
                     {status === "confirmed" && "Transaction confirmed!"}
+                    {status === "approving" && "Waiting for approval signature..."}
+                    {status === "approveConfirming" && "Confirming approval on-chain..."}
                     {status === "error" && (hook?.error?.shortMessage || "Transaction failed")}
                   </span>
                 </div>
@@ -644,15 +646,20 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
 
               <Button
                 onClick={() => handleExecute(fn.name)}
-                disabled={!selectedBranch || hook?.isPending || hook?.isConfirming}
+                disabled={
+                  !selectedBranch || hook?.isPending || hook?.isConfirming ||
+                  (fn.name === "depositLiquidity" && (approvePending || approveConfirming || allowanceLoading))
+                }
                 className="w-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 disabled:opacity-50"
               >
-                {(hook?.isPending || hook?.isConfirming) ? (
+                {(hook?.isPending || hook?.isConfirming || (fn.name === "depositLiquidity" && (approvePending || approveConfirming))) ? (
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                 ) : (
                   <Lock className="h-4 w-4 mr-2" />
                 )}
-                Execute Function
+                {fn.name === "depositLiquidity" && needsDepositApproval && !approvePending && !approveConfirming
+                  ? "Approve & Deposit"
+                  : "Execute Function"}
               </Button>
             </motion.div>
           );
