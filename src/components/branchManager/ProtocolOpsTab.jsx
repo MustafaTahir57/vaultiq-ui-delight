@@ -50,6 +50,11 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [ruleMaintenance, setRuleMaintenance] = useState("");
   const [closePct, setClosePct] = useState("");
   const [deepPct, setDeepPct] = useState("");
+  const [depositAmount, setDepositAmount] = useState("");
+  const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [weekSeconds, setWeekSeconds] = useState("");
+  const [monthSeconds, setMonthSeconds] = useState("");
+  const [activationDelay, setActivationDelay] = useState("");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
