@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { Terminal, Lock, Loader2, CheckCircle, AlertCircle, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
