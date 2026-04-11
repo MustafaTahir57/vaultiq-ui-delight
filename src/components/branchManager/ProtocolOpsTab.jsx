@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { Terminal, Lock, Loader2, CheckCircle, AlertCircle, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,11 @@ import useWithdrawLiquidity from "@/hooks/dataSender/useWithdrawLiquidity";
 import useSetTestingTimeConfig from "@/hooks/dataSender/useSetTestingTimeConfig";
 import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
+import useBranchConfig from "@/hooks/dataFetcher/useBranchConfig";
+import useTokenAllowance from "@/hooks/dataFetcher/useTokenAllowance";
+import useUSDTApproval from "@/hooks/dataSender/useUSDTApproval";
+import { useAccount } from "wagmi";
+import { parseUnits } from "viem";
 
 const truncateAddress = (addr) => {
   if (!addr || addr.length < 10) return addr;
@@ -74,6 +79,48 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
+  const { usdc: branchUsdcToken } = useBranchConfig(selectedBranch);
+  const { address } = useAccount();
+
+  // Deposit amount parsed for allowance check
+  const parsedDepositAmount = useMemo(() => {
+    const amt = parseFloat(depositAmount);
+    if (isNaN(amt) || amt <= 0) return 0n;
+    try {
+      return parseUnits(depositAmount, 18);
+    } catch {
+      return 0n;
+    }
+  }, [depositAmount]);
+
+  const usdcAddress = branchUsdcToken && branchUsdcToken !== "—" ? branchUsdcToken : undefined;
+
+  const {
+    allowance: depositAllowance,
+    isLoading: allowanceLoading,
+    refetch: refetchAllowance,
+  } = useTokenAllowance(usdcAddress, address, selectedBranch);
+
+  const {
+    approve: approveUsdc,
+    isPending: approvePending,
+    isConfirming: approveConfirming,
+    isConfirmed: approveConfirmed,
+    reset: resetApproval,
+  } = useUSDTApproval();
+
+  const needsDepositApproval =
+    parsedDepositAmount > 0n && (depositAllowance === undefined || depositAllowance < parsedDepositAmount);
+
+  // After approval confirmed, deposit automatically
+  useEffect(() => {
+    if (approveConfirmed && parsedDepositAmount > 0n && selectedBranch) {
+      toast.success("Approval confirmed!");
+      refetchAllowance();
+      resetApproval();
+      depositLiqHook.depositLiquidity(selectedBranch, parsedDepositAmount);
+    }
+  }, [approveConfirmed]);
 
   const hookMap = {
     submitWeeklyPerformance: weeklyPerf,
@@ -174,9 +221,14 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
       case "depositLiquidity": {
         const amt = parseFloat(depositAmount);
         if (isNaN(amt) || amt <= 0) { toast.error("Enter a valid amount"); return; }
-        const amtBig = BigInt(Math.round(amt * 1e18));
-        depositLiqHook.depositLiquidity(selectedBranch, amtBig);
-        toast.info(`Depositing ${amt} USDC liquidity...`);
+        if (!usdcAddress) { toast.error("Could not fetch USDC token address for this branch"); return; }
+        if (needsDepositApproval) {
+          approveUsdc(usdcAddress, selectedBranch, parsedDepositAmount);
+          toast.info("Approving USDC, will auto-deposit after confirmation...");
+        } else {
+          depositLiqHook.depositLiquidity(selectedBranch, parsedDepositAmount);
+          toast.info(`Depositing ${amt} USDC liquidity...`);
+        }
         break;
       }
       case "withdrawLiquidity": {
@@ -485,6 +537,16 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   };
 
   const getStatus = (fnName) => {
+    // Special handling for depositLiquidity to show approval states
+    if (fnName === "depositLiquidity") {
+      if (approvePending) return "approving";
+      if (approveConfirming) return "approveConfirming";
+      if (depositLiqHook.isConfirmed) return "confirmed";
+      if (depositLiqHook.isConfirming) return "confirming";
+      if (depositLiqHook.isPending) return "pending";
+      if (depositLiqHook.isError) return "error";
+      return null;
+    }
     const hook = hookMap[fnName];
     if (!hook) return null;
     if (hook.isConfirmed) return "confirmed";
@@ -575,6 +637,8 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
                     {status === "pending" && "Waiting for signature..."}
                     {status === "confirming" && "Confirming on-chain..."}
                     {status === "confirmed" && "Transaction confirmed!"}
+                    {status === "approving" && "Waiting for approval signature..."}
+                    {status === "approveConfirming" && "Confirming approval on-chain..."}
                     {status === "error" && (hook?.error?.shortMessage || "Transaction failed")}
                   </span>
                 </div>
@@ -582,15 +646,20 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
 
               <Button
                 onClick={() => handleExecute(fn.name)}
-                disabled={!selectedBranch || hook?.isPending || hook?.isConfirming}
+                disabled={
+                  !selectedBranch || hook?.isPending || hook?.isConfirming ||
+                  (fn.name === "depositLiquidity" && (approvePending || approveConfirming || allowanceLoading))
+                }
                 className="w-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 disabled:opacity-50"
               >
-                {(hook?.isPending || hook?.isConfirming) ? (
+                {(hook?.isPending || hook?.isConfirming || (fn.name === "depositLiquidity" && (approvePending || approveConfirming))) ? (
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                 ) : (
                   <Lock className="h-4 w-4 mr-2" />
                 )}
-                Execute Function
+                {fn.name === "depositLiquidity" && needsDepositApproval && !approvePending && !approveConfirming
+                  ? "Approve & Deposit"
+                  : "Execute Function"}
               </Button>
             </motion.div>
           );
