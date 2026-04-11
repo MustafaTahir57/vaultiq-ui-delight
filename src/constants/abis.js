@@ -892,11 +892,4324 @@ export const VaultIQMainABI = [
   },
 ];
 
-export const BranchABI = [{ "inputs": [{ "internalType": "address", "name": "extension_", "type": "address" }], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "AccessControlBadConfirmation", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "bytes32", "name": "neededRole", "type": "bytes32" }], "name": "AccessControlUnauthorizedAccount", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "target", "type": "address" }], "name": "AddressEmptyCode", "type": "error" }, { "inputs": [], "name": "AlreadySubmitted", "type": "error" }, { "inputs": [], "name": "BranchNotApproved", "type": "error" }, { "inputs": [], "name": "DistributorNotSet", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "implementation", "type": "address" }], "name": "ERC1967InvalidImplementation", "type": "error" }, { "inputs": [], "name": "ERC1967NonPayable", "type": "error" }, { "inputs": [], "name": "EnforcedPause", "type": "error" }, { "inputs": [], "name": "ExpectedPause", "type": "error" }, { "inputs": [], "name": "FailedCall", "type": "error" }, { "inputs": [], "name": "InvalidAddress", "type": "error" }, { "inputs": [], "name": "InvalidBps", "type": "error" }, { "inputs": [], "name": "InvalidInitialization", "type": "error" }, { "inputs": [], "name": "InvalidInput", "type": "error" }, { "inputs": [], "name": "InvalidPercentages", "type": "error" }, { "inputs": [], "name": "InvalidPlanPrice", "type": "error" }, { "inputs": [], "name": "ModelNotEnabled", "type": "error" }, { "inputs": [], "name": "NotActive", "type": "error" }, { "inputs": [], "name": "NotHashTreasury", "type": "error" }, { "inputs": [], "name": "NotInitializing", "type": "error" }, { "inputs": [], "name": "NotModelB", "type": "error" }, { "inputs": [], "name": "PlanNotActive", "type": "error" }, { "inputs": [], "name": "PoolIsLocked", "type": "error" }, { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "token", "type": "address" }], "name": "SafeERC20FailedOperation", "type": "error" }, { "inputs": [], "name": "TreasuryLiquidityRestricted", "type": "error" }, { "inputs": [], "name": "UUPSUnauthorizedCallContext", "type": "error" }, { "inputs": [{ "internalType": "bytes32", "name": "slot", "type": "bytes32" }], "name": "UUPSUnsupportedProxiableUUID", "type": "error" }, { "inputs": [], "name": "UserNotRegistered", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint64", "name": "version", "type": "uint64" }], "name": "Initialized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "MiningSubscriptionActivated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "indexed": false, "internalType": "uint8", "name": "planId", "type": "uint8" }, { "indexed": false, "internalType": "address", "name": "hashTreasury", "type": "address" }], "name": "ModelBSubscriptionCreated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "PassivePoolClaimed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Paused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "PoolClaimed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "address", "name": "ref", "type": "address" }], "name": "ReferrerSet", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "previousAdminRole", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "newAdminRole", "type": "bytes32" }], "name": "RoleAdminChanged", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleGranted", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleRevoked", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "duration", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "activationTime", "type": "uint256" }], "name": "SubscriptionCreated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "liquidityAmount", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "poolsTotal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "directBonus", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "branchCommission", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "foundersCut", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "feeAmount", "type": "uint256" }], "name": "SubscriptionFundsDistributed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Unpaused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "implementation", "type": "address" }], "name": "Upgraded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint256", "name": "weekIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "liquidityPercent", "type": "uint256" }], "name": "WeeklyPerformanceSubmitted", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "indexed": true, "internalType": "uint256", "name": "weekIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "WeeklyPoolDistributed", "type": "event" }, { "stateMutability": "nonpayable", "type": "fallback" }, { "inputs": [], "name": "AUTO_PROCESS_MAX_WEEKS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BPS_DENOMINATOR", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BRANCH_MANAGER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ACTIVATION_DELAY", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ADMIN_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_MONTH_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_PASSIVE_SALES_THRESHOLD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_WEEK_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PAUSER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PERFORMANCE_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TRADING_DAYS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TREASURY_OPERATOR_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADE_INTERFACE_VERSION", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "activateMiningSubscription", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "activationDelay", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedDurationTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedPrincipalTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchName", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "btcb", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "claimPassivePool", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }], "name": "claimPool", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "claimedRewards", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "coreConfig", "outputs": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "epochStart", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "expiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "foundersWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "foundersWallets", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }], "name": "getRoleAdmin", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "grantRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "hasRole", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_branchName", "type": "string" }, { "internalType": "address", "name": "admin", "type": "address" }, { "internalType": "address", "name": "usdcToken", "type": "address" }, { "internalType": "address", "name": "vaultMainAddress", "type": "address" }, { "internalType": "address", "name": "_branchWallet", "type": "address" }, { "internalType": "address", "name": "_foundersWallet", "type": "address" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "enum LiquidityType", "name": "_liquidityType", "type": "uint8" }], "name": "initialize", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "isMember", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "lastProcessedPassiveMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "liquidityType", "outputs": [{ "internalType": "enum LiquidityType", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceClosePercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceDeepPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "miningRevenueDistributor", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelLPEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelVaultHashEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "monthSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveLastWithdrawTime", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveQualifiedMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "passiveQueuedByMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveSalesThreshold", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveWithdrawnTotal", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "paused", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "plans", "outputs": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "enum ModelType", "name": "modelType", "type": "uint8" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "address", "name": "hashTreasury", "type": "address" }, { "internalType": "address", "name": "feeTreasury", "type": "address" }, { "internalType": "address", "name": "leadershipPool", "type": "address" }, { "internalType": "bool", "name": "active", "type": "bool" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "hashRate", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool1QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool2QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool3QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool4QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "name": "poolLocked", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "proxiableUUID", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "address", "name": "referral", "type": "address" }], "name": "purchaseSubscription", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "address", "name": "referral", "type": "address" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }], "name": "purchaseSubscriptionWithPlan", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "qualifiedPool3Depth3PlusCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "referrer", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestBranchWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestFeeWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "callerConfirmation", "type": "address" }], "name": "renounceRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "revokeRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "rolloverFeeBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "rolloverLeadershipBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "liquidityPercent", "type": "uint256" }], "name": "submitWeeklyPerformance", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "weekIndex", "type": "uint256" }, { "internalType": "uint256", "name": "liquidityPercent", "type": "uint256" }], "name": "submitWeeklyPerformanceForWeek", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }], "name": "supportsInterface", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "tierValidationEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalLiquidityDeposited", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalLiquidityIn", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalLiquidityWithdrawn", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMembers", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMiningCapitalDeployed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalPoolsIn", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "totalTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "treasuryExpiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "unpause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newImplementation", "type": "address" }, { "internalType": "bytes", "name": "data", "type": "bytes" }], "name": "upgradeToAndCall", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "usdc", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "userSubscriptions", "outputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "activationTime", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "accumulatedRewards", "type": "uint256" }, { "internalType": "uint256", "name": "lastProcessedWeek", "type": "uint256" }, { "internalType": "bool", "name": "cancelled", "type": "bool" }, { "internalType": "bool", "name": "expired", "type": "bool" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" }, { "internalType": "uint256", "name": "withdrawableBTC", "type": "uint256" }, { "internalType": "uint256", "name": "reinvestReserveBTC", "type": "uint256" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }, { "internalType": "bool", "name": "matured", "type": "bool" }, { "internalType": "bool", "name": "miningActive", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultHashPlansInitialized", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultMain", "outputs": [{ "internalType": "contract IVaultIQMain", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "weekSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyCloseTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyDeepTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL4Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyLiquidityPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyPerformanceSubmitted", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }]
+export const BranchABI = [
+  { "inputs": [{ "internalType": "address", "name": "extension_", "type": "address" }], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "AccessControlBadConfirmation", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "bytes32", "name": "neededRole", "type": "bytes32" }], "name": "AccessControlUnauthorizedAccount", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "target", "type": "address" }], "name": "AddressEmptyCode", "type": "error" }, { "inputs": [], "name": "AlreadySubmitted", "type": "error" }, { "inputs": [], "name": "BranchNotApproved", "type": "error" }, { "inputs": [], "name": "DistributorNotSet", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "implementation", "type": "address" }], "name": "ERC1967InvalidImplementation", "type": "error" }, { "inputs": [], "name": "ERC1967NonPayable", "type": "error" }, { "inputs": [], "name": "EnforcedPause", "type": "error" }, { "inputs": [], "name": "ExpectedPause", "type": "error" }, { "inputs": [], "name": "FailedCall", "type": "error" }, { "inputs": [], "name": "InvalidAddress", "type": "error" }, { "inputs": [], "name": "InvalidBps", "type": "error" }, { "inputs": [], "name": "InvalidInitialization", "type": "error" }, { "inputs": [], "name": "InvalidInput", "type": "error" }, { "inputs": [], "name": "InvalidPercentages", "type": "error" }, { "inputs": [], "name": "InvalidPlanPrice", "type": "error" }, { "inputs": [], "name": "ModelNotEnabled", "type": "error" }, { "inputs": [], "name": "NotActive", "type": "error" }, { "inputs": [], "name": "NotHashTreasury", "type": "error" }, { "inputs": [], "name": "NotInitializing", "type": "error" }, { "inputs": [], "name": "NotModelB", "type": "error" }, { "inputs": [], "name": "PlanNotActive", "type": "error" }, { "inputs": [], "name": "PoolIsLocked", "type": "error" }, { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "token", "type": "address" }], "name": "SafeERC20FailedOperation", "type": "error" }, { "inputs": [], "name": "TreasuryLiquidityRestricted", "type": "error" }, { "inputs": [], "name": "UUPSUnauthorizedCallContext", "type": "error" }, { "inputs": [{ "internalType": "bytes32", "name": "slot", "type": "bytes32" }], "name": "UUPSUnsupportedProxiableUUID", "type": "error" }, { "inputs": [], "name": "UserNotRegistered", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint64", "name": "version", "type": "uint64" }], "name": "Initialized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "MiningSubscriptionActivated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "indexed": false, "internalType": "uint8", "name": "planId", "type": "uint8" }, { "indexed": false, "internalType": "address", "name": "hashTreasury", "type": "address" }], "name": "ModelBSubscriptionCreated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "PassivePoolClaimed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Paused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "PoolClaimed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "address", "name": "ref", "type": "address" }], "name": "ReferrerSet", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "previousAdminRole", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "newAdminRole", "type": "bytes32" }], "name": "RoleAdminChanged", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleGranted", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleRevoked", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "duration", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "activationTime", "type": "uint256" }], "name": "SubscriptionCreated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "liquidityAmount", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "poolsTotal", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "directBonus", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "branchCommission", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "foundersCut", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "feeAmount", "type": "uint256" }], "name": "SubscriptionFundsDistributed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Unpaused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "implementation", "type": "address" }], "name": "Upgraded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint256", "name": "weekIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "liquidityPercent", "type": "uint256" }], "name": "WeeklyPerformanceSubmitted", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "indexed": true, "internalType": "uint256", "name": "weekIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "WeeklyPoolDistributed", "type": "event" }, { "stateMutability": "nonpayable", "type": "fallback" }, { "inputs": [], "name": "AUTO_PROCESS_MAX_WEEKS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BPS_DENOMINATOR", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BRANCH_MANAGER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ACTIVATION_DELAY", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ADMIN_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_MONTH_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_PASSIVE_SALES_THRESHOLD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_WEEK_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PAUSER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PERFORMANCE_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TRADING_DAYS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TREASURY_OPERATOR_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADE_INTERFACE_VERSION", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "activateMiningSubscription", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "activationDelay", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedDurationTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedPrincipalTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchName", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "btcb", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "claimPassivePool", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }], "name": "claimPool", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "claimedRewards", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "coreConfig", "outputs": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "epochStart", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "expiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "foundersWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "foundersWallets", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }], "name": "getRoleAdmin", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "grantRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "hasRole", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_branchName", "type": "string" }, { "internalType": "address", "name": "admin", "type": "address" }, { "internalType": "address", "name": "usdcToken", "type": "address" }, { "internalType": "address", "name": "vaultMainAddress", "type": "address" }, { "internalType": "address", "name": "_branchWallet", "type": "address" }, { "internalType": "address", "name": "_foundersWallet", "type": "address" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "enum LiquidityType", "name": "_liquidityType", "type": "uint8" }], "name": "initialize", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "isMember", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "lastProcessedPassiveMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "liquidityType", "outputs": [{ "internalType": "enum LiquidityType", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceClosePercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceDeepPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "miningRevenueDistributor", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelLPEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelVaultHashEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "monthSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveLastWithdrawTime", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveQualifiedMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "passiveQueuedByMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveSalesThreshold", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveWithdrawnTotal", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "paused", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "plans", "outputs": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "enum ModelType", "name": "modelType", "type": "uint8" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "address", "name": "hashTreasury", "type": "address" }, { "internalType": "address", "name": "feeTreasury", "type": "address" }, { "internalType": "address", "name": "leadershipPool", "type": "address" }, { "internalType": "bool", "name": "active", "type": "bool" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "hashRate", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool1QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool2QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool3QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool4QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "name": "poolLocked", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "proxiableUUID", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "address", "name": "referral", "type": "address" }], "name": "purchaseSubscription", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "address", "name": "referral", "type": "address" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }], "name": "purchaseSubscriptionWithPlan", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "qualifiedPool3Depth3PlusCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "referrer", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestBranchWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestFeeWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "callerConfirmation", "type": "address" }], "name": "renounceRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "revokeRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "rolloverFeeBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "rolloverLeadershipBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "liquidityPercent", "type": "uint256" }], "name": "submitWeeklyPerformance", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "weekIndex", "type": "uint256" }, { "internalType": "uint256", "name": "liquidityPercent", "type": "uint256" }], "name": "submitWeeklyPerformanceForWeek", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }], "name": "supportsInterface", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "tierValidationEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalLiquidityDeposited", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalLiquidityIn", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalLiquidityWithdrawn", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMembers", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMiningCapitalDeployed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalPoolsIn", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "totalTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "treasuryExpiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "unpause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newImplementation", "type": "address" }, { "internalType": "bytes", "name": "data", "type": "bytes" }], "name": "upgradeToAndCall", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "usdc", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "userSubscriptions", "outputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "activationTime", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "accumulatedRewards", "type": "uint256" }, { "internalType": "uint256", "name": "lastProcessedWeek", "type": "uint256" }, { "internalType": "bool", "name": "cancelled", "type": "bool" }, { "internalType": "bool", "name": "expired", "type": "bool" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" }, { "internalType": "uint256", "name": "withdrawableBTC", "type": "uint256" }, { "internalType": "uint256", "name": "reinvestReserveBTC", "type": "uint256" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }, { "internalType": "bool", "name": "matured", "type": "bool" }, { "internalType": "bool", "name": "miningActive", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultHashPlansInitialized", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultMain", "outputs": [{ "internalType": "contract IVaultIQMain", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "weekSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyCloseTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyDeepTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL4Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyLiquidityPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyPerformanceSubmitted", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }
+]
 
-export const BranchFactoryABI = [{ "inputs": [], "name": "AccessControlBadConfirmation", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "bytes32", "name": "neededRole", "type": "bytes32" }], "name": "AccessControlUnauthorizedAccount", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "target", "type": "address" }], "name": "AddressEmptyCode", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "implementation", "type": "address" }], "name": "ERC1967InvalidImplementation", "type": "error" }, { "inputs": [], "name": "ERC1967NonPayable", "type": "error" }, { "inputs": [], "name": "EnforcedPause", "type": "error" }, { "inputs": [], "name": "ExpectedPause", "type": "error" }, { "inputs": [], "name": "FailedCall", "type": "error" }, { "inputs": [], "name": "InvalidAddress", "type": "error" }, { "inputs": [], "name": "InvalidInitialization", "type": "error" }, { "inputs": [], "name": "InvalidInput", "type": "error" }, { "inputs": [], "name": "NotAuthorized", "type": "error" }, { "inputs": [], "name": "NotInitializing", "type": "error" }, { "inputs": [], "name": "UUPSUnauthorizedCallContext", "type": "error" }, { "inputs": [{ "internalType": "bytes32", "name": "slot", "type": "bytes32" }], "name": "UUPSUnsupportedProxiableUUID", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "proxy", "type": "address" }, { "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": false, "internalType": "string", "name": "name", "type": "string" }, { "indexed": false, "internalType": "address", "name": "implementation", "type": "address" }], "name": "BranchDeployed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "oldImpl", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newImpl", "type": "address" }], "name": "ImplementationUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint64", "name": "version", "type": "uint64" }], "name": "Initialized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Paused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "previousAdminRole", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "newAdminRole", "type": "bytes32" }], "name": "RoleAdminChanged", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleGranted", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleRevoked", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Unpaused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "implementation", "type": "address" }], "name": "Upgraded", "type": "event" }, { "inputs": [], "name": "DEFAULT_ADMIN_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEPLOYER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PAUSER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADE_INTERFACE_VERSION", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchImplementation", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "branchName", "type": "string" }, { "internalType": "address", "name": "branchOwner", "type": "address" }, { "internalType": "address", "name": "usdcToken", "type": "address" }, { "internalType": "address", "name": "branchWallet", "type": "address" }, { "internalType": "address", "name": "foundersWallet", "type": "address" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "enum LiquidityType", "name": "liquidityType_", "type": "uint8" }], "name": "deployBranch", "outputs": [{ "internalType": "address", "name": "proxy", "type": "address" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "deployedBranchCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }], "name": "getBranchesOf", "outputs": [{ "internalType": "address[]", "name": "", "type": "address[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getDeployedBranches", "outputs": [{ "internalType": "address[]", "name": "", "type": "address[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }], "name": "getRoleAdmin", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "grantRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "hasRole", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "admin", "type": "address" }, { "internalType": "address", "name": "vaultMainAddress", "type": "address" }, { "internalType": "address", "name": "_branchImplementation", "type": "address" }], "name": "initialize", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "pause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "paused", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "proxiableUUID", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "callerConfirmation", "type": "address" }], "name": "renounceRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "revokeRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }], "name": "supportsInterface", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "unpause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newImpl", "type": "address" }], "name": "updateBranchImplementation", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newImplementation", "type": "address" }, { "internalType": "bytes", "name": "data", "type": "bytes" }], "name": "upgradeToAndCall", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "vaultMain", "outputs": [{ "internalType": "contract IVaultIQMainFactory", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }]
+export const BranchFactoryABI = [
+  {
+    "inputs": [],
+    "name": "AccessControlBadConfirmation",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "neededRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AccessControlUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      }
+    ],
+    "name": "AddressEmptyCode",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "ERC1967InvalidImplementation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ERC1967NonPayable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "EnforcedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ExpectedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FailedCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidAddress",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInitialization",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInput",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotAuthorized",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotInitializing",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "UUPSUnauthorizedCallContext",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "slot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UUPSUnsupportedProxiableUUID",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "proxy",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "BranchDeployed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "oldImpl",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newImpl",
+        "type": "address"
+      }
+    ],
+    "name": "ImplementationUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "version",
+        "type": "uint64"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "previousAdminRole",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "newAdminRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoleAdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleGranted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleRevoked",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Unpaused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "Upgraded",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ADMIN_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEPLOYER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PAUSER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "branchImplementation",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "branchName",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "branchOwner",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "usdcToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "branchWallet",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "foundersWallet",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "liquidityAllocation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "directBonusPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchCommissionPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "foundersPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool1Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool2Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool4Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cancellationPercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CoreConfig",
+        "name": "core",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "passiveIncomePercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ExpiryConfig",
+        "name": "expiry",
+        "type": "tuple"
+      },
+      {
+        "internalType": "enum LiquidityType",
+        "name": "liquidityType_",
+        "type": "uint8"
+      }
+    ],
+    "name": "deployBranch",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "proxy",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "deployedBranchCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "getBranchesOf",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getDeployedBranches",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getRoleAdmin",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "grantRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "hasRole",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "vaultMainAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_branchImplementation",
+        "type": "address"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "callerConfirmation",
+        "type": "address"
+      }
+    ],
+    "name": "renounceRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "revokeRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unpause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImpl",
+        "type": "address"
+      }
+    ],
+    "name": "updateBranchImplementation",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "vaultMain",
+    "outputs": [
+      {
+        "internalType": "contract IVaultIQMainFactory",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
 
-export const BranchExtensionABI = [{ "inputs": [{ "internalType": "address", "name": "views_", "type": "address" }], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "AccessControlBadConfirmation", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "bytes32", "name": "neededRole", "type": "bytes32" }], "name": "AccessControlUnauthorizedAccount", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "target", "type": "address" }], "name": "AddressEmptyCode", "type": "error" }, { "inputs": [], "name": "AlreadyFinalized", "type": "error" }, { "inputs": [], "name": "DistributorNotSet", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "implementation", "type": "address" }], "name": "ERC1967InvalidImplementation", "type": "error" }, { "inputs": [], "name": "ERC1967NonPayable", "type": "error" }, { "inputs": [], "name": "EnforcedPause", "type": "error" }, { "inputs": [], "name": "ExpectedPause", "type": "error" }, { "inputs": [], "name": "FailedCall", "type": "error" }, { "inputs": [], "name": "InvalidAddress", "type": "error" }, { "inputs": [], "name": "InvalidBps", "type": "error" }, { "inputs": [], "name": "InvalidInitialization", "type": "error" }, { "inputs": [], "name": "InvalidInput", "type": "error" }, { "inputs": [], "name": "InvalidLPDuration", "type": "error" }, { "inputs": [], "name": "InvalidMonth", "type": "error" }, { "inputs": [], "name": "InvalidPercentages", "type": "error" }, { "inputs": [], "name": "ModelBNotCancellable", "type": "error" }, { "inputs": [], "name": "NoBTCToClaim", "type": "error" }, { "inputs": [], "name": "NotExpired", "type": "error" }, { "inputs": [], "name": "NotInitializing", "type": "error" }, { "inputs": [], "name": "NotModelB", "type": "error" }, { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" }, { "inputs": [], "name": "RewardProcessingIncomplete", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "token", "type": "address" }], "name": "SafeERC20FailedOperation", "type": "error" }, { "inputs": [], "name": "TreasuryLiquidityRestricted", "type": "error" }, { "inputs": [], "name": "UUPSUnauthorizedCallContext", "type": "error" }, { "inputs": [{ "internalType": "bytes32", "name": "slot", "type": "bytes32" }], "name": "UUPSUnsupportedProxiableUUID", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "bool", "name": "autoRoll", "type": "bool" }], "name": "AutoRollSet", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "BTCClaimed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "bool", "name": "autoRolled", "type": "bool" }, { "indexed": false, "internalType": "uint256", "name": "totalBTC", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "leadershipCut", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "feeCut", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "remainingBTC", "type": "uint256" }], "name": "BTCMaturityTriggered", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "withdrawable", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "reinvestable", "type": "uint256" }], "name": "BTCSettled", "type": "event" }, { "anonymous": false, "inputs": [], "name": "CoreConfigUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "duration", "type": "uint256" }, { "indexed": false, "internalType": "bool", "name": "allowed", "type": "bool" }], "name": "DurationTierUpdated", "type": "event" }, { "anonymous": false, "inputs": [], "name": "ExpiryConfigUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address[]", "name": "wallets", "type": "address[]" }], "name": "FoundersWalletsUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint64", "name": "version", "type": "uint64" }], "name": "Initialized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "oldBps", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "newBps", "type": "uint256" }], "name": "LiquidityAllocationUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "distributor", "type": "address" }], "name": "MiningRevenueDistributorUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "enum ModelType", "name": "model", "type": "uint8" }, { "indexed": false, "internalType": "bool", "name": "enabled", "type": "bool" }], "name": "ModelEnabledUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint256", "name": "monthIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "PassiveMonthProcessed", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "bool", "name": "qualified", "type": "bool" }], "name": "PassivePoolQualificationUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Paused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "planId", "type": "uint8" }, { "indexed": false, "internalType": "uint256", "name": "oldPrice", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "newPrice", "type": "uint256" }], "name": "PlanPriceUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "bool", "name": "qualified", "type": "bool" }], "name": "PoolQualificationUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "indexed": false, "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "name": "PoolRuleUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" }, { "indexed": false, "internalType": "bool", "name": "allowed", "type": "bool" }], "name": "PrincipalTierUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "address", "name": "ref", "type": "address" }], "name": "ReferrerSet", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "feeWalletBps", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "branchWalletBps", "type": "uint256" }], "name": "ReinvestAllocationUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "previousAdminRole", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "newAdminRole", "type": "bytes32" }], "name": "RoleAdminChanged", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleGranted", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleRevoked", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "leadershipBps", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "feeBps", "type": "uint256" }], "name": "RolloverBpsUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "payout", "type": "uint256" }], "name": "SubscriptionCancelled", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "user", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "rewardsPaid", "type": "uint256" }], "name": "SubscriptionExpired", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "planId", "type": "uint8" }, { "indexed": false, "internalType": "string", "name": "name", "type": "string" }, { "indexed": false, "internalType": "enum ModelType", "name": "modelType", "type": "uint8" }], "name": "SubscriptionPlanAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "planId", "type": "uint8" }, { "indexed": false, "internalType": "bool", "name": "active", "type": "bool" }], "name": "SubscriptionPlanUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "bool", "name": "enabled", "type": "bool" }], "name": "TierValidationModeUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "feePct", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "branchPct", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "passivePct", "type": "uint256" }], "name": "TreasuryExpiryConfigUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Unpaused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "implementation", "type": "address" }], "name": "Upgraded", "type": "event" }, { "stateMutability": "nonpayable", "type": "fallback" }, { "inputs": [], "name": "AUTO_PROCESS_MAX_WEEKS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BPS_DENOMINATOR", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BRANCH_MANAGER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ACTIVATION_DELAY", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ADMIN_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_MONTH_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_PASSIVE_SALES_THRESHOLD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_WEEK_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PAUSER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PERFORMANCE_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TRADING_DAYS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TREASURY_OPERATOR_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADE_INTERFACE_VERSION", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "activationDelay", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "components": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "enum ModelType", "name": "modelType", "type": "uint8" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "address", "name": "hashTreasury", "type": "address" }, { "internalType": "address", "name": "feeTreasury", "type": "address" }, { "internalType": "address", "name": "leadershipPool", "type": "address" }, { "internalType": "bool", "name": "active", "type": "bool" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "hashRate", "type": "uint256" }], "internalType": "struct SubscriptionPlan", "name": "plan", "type": "tuple" }], "name": "addSubscriptionPlan", "outputs": [{ "internalType": "uint8", "name": "planId", "type": "uint8" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedDurationTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedPrincipalTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "applyApprovedLiquidityAllocation", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "branchName", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "btcb", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "cancelSubscription", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "claimBTC", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "claimedRewards", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "coreConfig", "outputs": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "epochStart", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "expireSubscription", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "expiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "foundersWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "foundersWallets", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }], "name": "getRoleAdmin", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "grantRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "hasRole", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "isMember", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "lastProcessedPassiveMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "liquidityType", "outputs": [{ "internalType": "enum LiquidityType", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceClosePercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceDeepPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "miningRevenueDistributor", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelLPEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelVaultHashEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "monthSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveLastWithdrawTime", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveQualifiedMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "passiveQueuedByMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveSalesThreshold", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveWithdrawnTotal", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "paused", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "plans", "outputs": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "enum ModelType", "name": "modelType", "type": "uint8" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "address", "name": "hashTreasury", "type": "address" }, { "internalType": "address", "name": "feeTreasury", "type": "address" }, { "internalType": "address", "name": "leadershipPool", "type": "address" }, { "internalType": "bool", "name": "active", "type": "bool" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "hashRate", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool1QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool2QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool3QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool4QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "name": "poolLocked", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "internalType": "uint256", "name": "maxWeeks", "type": "uint256" }], "name": "processMySubscriptionRewards", "outputs": [{ "internalType": "bool", "name": "completed", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "monthIndex", "type": "uint256" }], "name": "processPassiveMonth", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "proxiableUUID", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "qualifiedPool3Depth3PlusCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "referrer", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestBranchWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestFeeWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "callerConfirmation", "type": "address" }], "name": "renounceRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "newBps", "type": "uint256" }], "name": "requestLiquidityAllocationChange", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "revokeRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "rolloverFeeBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "rolloverLeadershipBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }, { "internalType": "bool", "name": "_autoRoll", "type": "bool" }], "name": "setAutoRoll", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "token", "type": "address" }], "name": "setBTCBToken", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "bool", "name": "allowed", "type": "bool" }], "name": "setDurationTier", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "wallets", "type": "address[]" }], "name": "setFoundersWallets", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "distributor", "type": "address" }], "name": "setMiningRevenueDistributor", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "enum ModelType", "name": "model", "type": "uint8" }, { "internalType": "bool", "name": "enabled", "type": "bool" }], "name": "setModelEnabled", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "ref", "type": "address" }], "name": "setMyReferrer", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "bool", "name": "active", "type": "bool" }], "name": "setPlanActive", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "name": "setPoolRule", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "bool", "name": "allowed", "type": "bool" }], "name": "setPrincipalTier", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "feeWalletBps", "type": "uint256" }, { "internalType": "uint256", "name": "branchWalletBps", "type": "uint256" }], "name": "setReinvestAllocation", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "leadershipBps", "type": "uint256" }, { "internalType": "uint256", "name": "feeBps", "type": "uint256" }], "name": "setRolloverBps", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bool", "name": "enabled", "type": "bool" }], "name": "setTierValidationMode", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "exp", "type": "tuple" }], "name": "setTreasuryExpiryConfig", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }], "name": "supportsInterface", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "syncPassivePoolQualification", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "internalType": "address", "name": "user", "type": "address" }], "name": "syncPoolQualification", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "tierValidationEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMembers", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMiningCapitalDeployed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "totalTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "treasuryExpiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "triggerMaturity", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }], "name": "updateCoreConfig", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "exp", "type": "tuple" }], "name": "updateExpiryConfig", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "cfg", "type": "tuple" }], "name": "updatePlanCoreConfig", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "newPrice", "type": "uint256" }], "name": "updatePlanPrice", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newImplementation", "type": "address" }, { "internalType": "bytes", "name": "data", "type": "bytes" }], "name": "upgradeToAndCall", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "usdc", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "userSubscriptions", "outputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "activationTime", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "accumulatedRewards", "type": "uint256" }, { "internalType": "uint256", "name": "lastProcessedWeek", "type": "uint256" }, { "internalType": "bool", "name": "cancelled", "type": "bool" }, { "internalType": "bool", "name": "expired", "type": "bool" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" }, { "internalType": "uint256", "name": "withdrawableBTC", "type": "uint256" }, { "internalType": "uint256", "name": "reinvestReserveBTC", "type": "uint256" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }, { "internalType": "bool", "name": "matured", "type": "bool" }, { "internalType": "bool", "name": "miningActive", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultHashPlansInitialized", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultMain", "outputs": [{ "internalType": "contract IVaultIQMain", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "weekSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyCloseTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyDeepTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL4Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyLiquidityPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyPerformanceSubmitted", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }]
+export const BranchExtensionABI = [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "views_",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "AccessControlBadConfirmation",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "neededRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AccessControlUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      }
+    ],
+    "name": "AddressEmptyCode",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "AlreadyFinalized",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "DistributorNotSet",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "ERC1967InvalidImplementation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ERC1967NonPayable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "EnforcedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ExpectedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FailedCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidAddress",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidBps",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInitialization",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInput",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidLPDuration",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidMonth",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidPercentages",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ModelBNotCancellable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NoBTCToClaim",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotExpired",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotInitializing",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotModelB",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "RewardProcessingIncomplete",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "SafeERC20FailedOperation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "TreasuryLiquidityRestricted",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "UUPSUnauthorizedCallContext",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "slot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UUPSUnsupportedProxiableUUID",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "autoRoll",
+        "type": "bool"
+      }
+    ],
+    "name": "AutoRollSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "BTCClaimed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "autoRolled",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "totalBTC",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "leadershipCut",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeCut",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "remainingBTC",
+        "type": "uint256"
+      }
+    ],
+    "name": "BTCMaturityTriggered",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "withdrawable",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "reinvestable",
+        "type": "uint256"
+      }
+    ],
+    "name": "BTCSettled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "CoreConfigUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "DurationTierUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "ExpiryConfigUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "wallets",
+        "type": "address[]"
+      }
+    ],
+    "name": "FoundersWalletsUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "version",
+        "type": "uint64"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldBps",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newBps",
+        "type": "uint256"
+      }
+    ],
+    "name": "LiquidityAllocationUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "distributor",
+        "type": "address"
+      }
+    ],
+    "name": "MiningRevenueDistributorUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "enum ModelType",
+        "name": "model",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "ModelEnabledUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "monthIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PassiveMonthProcessed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "qualified",
+        "type": "bool"
+      }
+    ],
+    "name": "PassivePoolQualificationUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "PlanPriceUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "qualified",
+        "type": "bool"
+      }
+    ],
+    "name": "PoolQualificationUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "name": "PoolRuleUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "principal",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "PrincipalTierUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "ref",
+        "type": "address"
+      }
+    ],
+    "name": "ReferrerSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeWalletBps",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "branchWalletBps",
+        "type": "uint256"
+      }
+    ],
+    "name": "ReinvestAllocationUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "previousAdminRole",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "newAdminRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoleAdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleGranted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleRevoked",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "leadershipBps",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeBps",
+        "type": "uint256"
+      }
+    ],
+    "name": "RolloverBpsUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "payout",
+        "type": "uint256"
+      }
+    ],
+    "name": "SubscriptionCancelled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "rewardsPaid",
+        "type": "uint256"
+      }
+    ],
+    "name": "SubscriptionExpired",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum ModelType",
+        "name": "modelType",
+        "type": "uint8"
+      }
+    ],
+    "name": "SubscriptionPlanAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "active",
+        "type": "bool"
+      }
+    ],
+    "name": "SubscriptionPlanUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "TierValidationModeUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feePct",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "branchPct",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "passivePct",
+        "type": "uint256"
+      }
+    ],
+    "name": "TreasuryExpiryConfigUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Unpaused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "Upgraded",
+    "type": "event"
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "fallback"
+  },
+  {
+    "inputs": [],
+    "name": "AUTO_PROCESS_MAX_WEEKS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "BPS_DENOMINATOR",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "BRANCH_MANAGER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ACTIVATION_DELAY",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ADMIN_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_MONTH_SECONDS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_PASSIVE_SALES_THRESHOLD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_WEEK_SECONDS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PAUSER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PERFORMANCE_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "TRADING_DAYS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "TREASURY_OPERATOR_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "activationDelay",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "enum ModelType",
+            "name": "modelType",
+            "type": "uint8"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "liquidityAllocation",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "directBonusPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "branchCommissionPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "feePercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "foundersPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool1Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool2Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool3Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool4Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "cancellationPercent",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct CoreConfig",
+            "name": "core",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "feePercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "branchPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "passiveIncomePercent",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ExpiryConfig",
+            "name": "expiry",
+            "type": "tuple"
+          },
+          {
+            "internalType": "address",
+            "name": "hashTreasury",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "feeTreasury",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "leadershipPool",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "hashRate",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SubscriptionPlan",
+        "name": "plan",
+        "type": "tuple"
+      }
+    ],
+    "name": "addSubscriptionPlan",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "allowedDurationTiers",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "allowedPrincipalTiers",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "applyApprovedLiquidityAllocation",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "branchName",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "branchWallet",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "btcb",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "cancelSubscription",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "claimBTC",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "claimedRewards",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "coreConfig",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "liquidityAllocation",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "directBonusPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "branchCommissionPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "feePercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "foundersPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool1Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool2Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool3Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool4Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "cancellationPercent",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "epochStart",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "expireSubscription",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "expiryConfig",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "feePercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "branchPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "passiveIncomePercent",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "foundersWallet",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "foundersWallets",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCurrentMonth",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCurrentWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getRoleAdmin",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "grantRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "hasRole",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isMember",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lastProcessedPassiveMonth",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level1ActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level1MemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level1Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level2ActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level2MemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level2Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level3ActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level3MemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level3Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level4PlusActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level4PlusMemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level4PlusSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "liquidityType",
+    "outputs": [
+      {
+        "internalType": "enum LiquidityType",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maintenanceClosePercent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maintenanceDeepPercent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "miningRevenueDistributor",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "modelLPEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "modelVaultHashEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "monthSeconds",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "passiveLastWithdrawTime",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "passiveQualifiedMemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "passiveQueuedByMonth",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "passiveSalesThreshold",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "passiveWithdrawnTotal",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "plans",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "enum ModelType",
+        "name": "modelType",
+        "type": "uint8"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "liquidityAllocation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "directBonusPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchCommissionPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "foundersPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool1Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool2Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool4Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cancellationPercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CoreConfig",
+        "name": "core",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "passiveIncomePercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ExpiryConfig",
+        "name": "expiry",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
+        "name": "hashTreasury",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "feeTreasury",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "leadershipPool",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "active",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "hashRate",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool1QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool1Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool1TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool1TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool2QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool2Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool2TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool2TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool3QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool3Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool3TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool3TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool4QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool4Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool4TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool4TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "name": "poolLocked",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxWeeks",
+        "type": "uint256"
+      }
+    ],
+    "name": "processMySubscriptionRewards",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "completed",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "monthIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "processPassiveMonth",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "qualifiedPool3Depth3PlusCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "referrer",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reinvestBranchWalletBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reinvestFeeWalletBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "callerConfirmation",
+        "type": "address"
+      }
+    ],
+    "name": "renounceRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "newBps",
+        "type": "uint256"
+      }
+    ],
+    "name": "requestLiquidityAllocationChange",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "revokeRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rolloverFeeBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rolloverLeadershipBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "_autoRoll",
+        "type": "bool"
+      }
+    ],
+    "name": "setAutoRoll",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "setBTCBToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "setDurationTier",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "wallets",
+        "type": "address[]"
+      }
+    ],
+    "name": "setFoundersWallets",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "distributor",
+        "type": "address"
+      }
+    ],
+    "name": "setMiningRevenueDistributor",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum ModelType",
+        "name": "model",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bool",
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "setModelEnabled",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "ref",
+        "type": "address"
+      }
+    ],
+    "name": "setMyReferrer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bool",
+        "name": "active",
+        "type": "bool"
+      }
+    ],
+    "name": "setPlanActive",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "name": "setPoolRule",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "principal",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "setPrincipalTier",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "feeWalletBps",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "branchWalletBps",
+        "type": "uint256"
+      }
+    ],
+    "name": "setReinvestAllocation",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "leadershipBps",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "feeBps",
+        "type": "uint256"
+      }
+    ],
+    "name": "setRolloverBps",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "setTierValidationMode",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "passiveIncomePercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ExpiryConfig",
+        "name": "exp",
+        "type": "tuple"
+      }
+    ],
+    "name": "setTreasuryExpiryConfig",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "syncPassivePoolQualification",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "syncPoolQualification",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tierValidationEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalMembers",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalMiningCapitalDeployed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "totalTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "treasuryExpiryConfig",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "feePercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "branchPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "passiveIncomePercent",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "triggerMaturity",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "liquidityAllocation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "directBonusPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchCommissionPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "foundersPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool1Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool2Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool4Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cancellationPercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CoreConfig",
+        "name": "core",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateCoreConfig",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "passiveIncomePercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ExpiryConfig",
+        "name": "exp",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateExpiryConfig",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "liquidityAllocation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "directBonusPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchCommissionPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "foundersPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool1Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool2Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool4Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cancellationPercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CoreConfig",
+        "name": "cfg",
+        "type": "tuple"
+      }
+    ],
+    "name": "updatePlanCoreConfig",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "updatePlanPrice",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "usdc",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "userSubscriptions",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "principal",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "activationTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "accumulatedRewards",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "lastProcessedWeek",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "cancelled",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "expired",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "miningCapital",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "rewardDebt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "withdrawableBTC",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "reinvestReserveBTC",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "autoRoll",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "matured",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "miningActive",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "vaultHashPlansInitialized",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "vaultMain",
+    "outputs": [
+      {
+        "internalType": "contract IVaultIQMain",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "weekSeconds",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyCloseTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyDeepTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL1Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL2Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL3Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL4Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyLiquidityPercent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyPerformanceSubmitted",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
 
 export const IncubatorPoolABI = [
   { inputs: [], name: "AccessControlBadConfirmation", type: "error" },
@@ -4133,7 +8446,3967 @@ export const MockBTCBABI = [
   },
 ];
 
-export const BranchViewsABI = [{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "AccessControlBadConfirmation", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "bytes32", "name": "neededRole", "type": "bytes32" }], "name": "AccessControlUnauthorizedAccount", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "target", "type": "address" }], "name": "AddressEmptyCode", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "implementation", "type": "address" }], "name": "ERC1967InvalidImplementation", "type": "error" }, { "inputs": [], "name": "ERC1967NonPayable", "type": "error" }, { "inputs": [], "name": "EnforcedPause", "type": "error" }, { "inputs": [], "name": "ExpectedPause", "type": "error" }, { "inputs": [], "name": "FailedCall", "type": "error" }, { "inputs": [], "name": "InvalidAddress", "type": "error" }, { "inputs": [], "name": "InvalidBps", "type": "error" }, { "inputs": [], "name": "InvalidInitialization", "type": "error" }, { "inputs": [], "name": "InvalidInput", "type": "error" }, { "inputs": [], "name": "InvalidPercentages", "type": "error" }, { "inputs": [], "name": "InvalidTimeConfig", "type": "error" }, { "inputs": [], "name": "NotInitializing", "type": "error" }, { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" }, { "inputs": [], "name": "UUPSUnauthorizedCallContext", "type": "error" }, { "inputs": [{ "internalType": "bytes32", "name": "slot", "type": "bytes32" }], "name": "UUPSUnsupportedProxiableUUID", "type": "error" }, { "inputs": [], "name": "VaultHashPlansAlreadyInitialized", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint64", "name": "version", "type": "uint64" }], "name": "Initialized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "closePercent", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "deepPercent", "type": "uint256" }], "name": "MaintenanceSplitUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "threshold", "type": "uint256" }], "name": "PassiveSalesThresholdUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Paused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "indexed": false, "internalType": "bool", "name": "locked", "type": "bool" }], "name": "PoolLockUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "previousAdminRole", "type": "bytes32" }, { "indexed": true, "internalType": "bytes32", "name": "newAdminRole", "type": "bytes32" }], "name": "RoleAdminChanged", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleGranted", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "indexed": true, "internalType": "address", "name": "account", "type": "address" }, { "indexed": true, "internalType": "address", "name": "sender", "type": "address" }], "name": "RoleRevoked", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "weekSeconds", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "monthSeconds", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "activationDelay", "type": "uint256" }], "name": "TimeConfigUpdated", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Unpaused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "implementation", "type": "address" }], "name": "Upgraded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint8", "name": "planCount", "type": "uint8" }], "name": "VaultHashPlansInitialized", "type": "event" }, { "inputs": [], "name": "AUTO_PROCESS_MAX_WEEKS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BPS_DENOMINATOR", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "BRANCH_MANAGER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ACTIVATION_DELAY", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_ADMIN_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_MONTH_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_PASSIVE_SALES_THRESHOLD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "DEFAULT_WEEK_SECONDS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PAUSER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "PERFORMANCE_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TRADING_DAYS", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "TREASURY_OPERATOR_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADER_ROLE", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "UPGRADE_INTERFACE_VERSION", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "activationDelay", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedDurationTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "allowedPrincipalTiers", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchName", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "branchWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "btcb", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "claimedRewards", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "coreConfig", "outputs": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "epochStart", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "expiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "foundersWallet", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "foundersWallets", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getAllSubscriptions", "outputs": [{ "components": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "activationTime", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "accumulatedRewards", "type": "uint256" }, { "internalType": "uint256", "name": "lastProcessedWeek", "type": "uint256" }, { "internalType": "bool", "name": "cancelled", "type": "bool" }, { "internalType": "bool", "name": "expired", "type": "bool" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" }, { "internalType": "uint256", "name": "withdrawableBTC", "type": "uint256" }, { "internalType": "uint256", "name": "reinvestReserveBTC", "type": "uint256" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }, { "internalType": "bool", "name": "matured", "type": "bool" }, { "internalType": "bool", "name": "miningActive", "type": "bool" }], "internalType": "struct Subscription[]", "name": "", "type": "tuple[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCurrentWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getDashboardData", "outputs": [{ "components": [{ "internalType": "uint256", "name": "activeSubscriptions", "type": "uint256" }, { "internalType": "uint256", "name": "totalPendingRewards", "type": "uint256" }, { "internalType": "uint256", "name": "passivePending", "type": "uint256" }, { "internalType": "bool", "name": "isPassiveQualified", "type": "bool" }, { "components": [{ "internalType": "uint256", "name": "pendingReward", "type": "uint256" }, { "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }, { "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyTeamSalesUser", "type": "uint256" }, { "internalType": "bool", "name": "isQualified", "type": "bool" }, { "internalType": "bool", "name": "isLocked", "type": "bool" }, { "internalType": "uint256", "name": "totalQueued", "type": "uint256" }, { "internalType": "uint256", "name": "undistributed", "type": "uint256" }, { "internalType": "uint256", "name": "currentWeekQueued", "type": "uint256" }], "internalType": "struct BranchViews.PoolCardData", "name": "pool1", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "pendingReward", "type": "uint256" }, { "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }, { "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyTeamSalesUser", "type": "uint256" }, { "internalType": "bool", "name": "isQualified", "type": "bool" }, { "internalType": "bool", "name": "isLocked", "type": "bool" }, { "internalType": "uint256", "name": "totalQueued", "type": "uint256" }, { "internalType": "uint256", "name": "undistributed", "type": "uint256" }, { "internalType": "uint256", "name": "currentWeekQueued", "type": "uint256" }], "internalType": "struct BranchViews.PoolCardData", "name": "pool2", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "pendingReward", "type": "uint256" }, { "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }, { "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyTeamSalesUser", "type": "uint256" }, { "internalType": "bool", "name": "isQualified", "type": "bool" }, { "internalType": "bool", "name": "isLocked", "type": "bool" }, { "internalType": "uint256", "name": "totalQueued", "type": "uint256" }, { "internalType": "uint256", "name": "undistributed", "type": "uint256" }, { "internalType": "uint256", "name": "currentWeekQueued", "type": "uint256" }], "internalType": "struct BranchViews.PoolCardData", "name": "pool3", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "pendingReward", "type": "uint256" }, { "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }, { "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyTeamSalesUser", "type": "uint256" }, { "internalType": "bool", "name": "isQualified", "type": "bool" }, { "internalType": "bool", "name": "isLocked", "type": "bool" }, { "internalType": "uint256", "name": "totalQueued", "type": "uint256" }, { "internalType": "uint256", "name": "undistributed", "type": "uint256" }, { "internalType": "uint256", "name": "currentWeekQueued", "type": "uint256" }], "internalType": "struct BranchViews.PoolCardData", "name": "pool4", "type": "tuple" }, { "internalType": "uint256", "name": "currentWeek", "type": "uint256" }, { "internalType": "uint256", "name": "totalMembersCount", "type": "uint256" }], "internalType": "struct BranchViews.DashboardData", "name": "d", "type": "tuple" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getPassiveData", "outputs": [{ "components": [{ "internalType": "uint256", "name": "pendingAmount", "type": "uint256" }, { "internalType": "bool", "name": "isQualified", "type": "bool" }, { "internalType": "uint256", "name": "nextDistributionInSeconds", "type": "uint256" }, { "internalType": "uint256", "name": "totalTeamSales", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Depth3PlusCount", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyLiquidityPercent", "type": "uint256" }, { "internalType": "bool", "name": "performanceSubmitted", "type": "bool" }, { "internalType": "uint256", "name": "lastWithdrawalTimestamp", "type": "uint256" }, { "internalType": "uint256", "name": "totalWithdrawn", "type": "uint256" }, { "internalType": "uint256", "name": "projectedPassiveIncome", "type": "uint256" }, { "internalType": "uint256", "name": "activeSubscriptionCount", "type": "uint256" }], "internalType": "struct BranchViews.PassiveData", "name": "d", "type": "tuple" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getPassiveWithdrawHistory", "outputs": [{ "internalType": "uint256", "name": "totalWithdrawn", "type": "uint256" }, { "internalType": "uint256", "name": "lastWithdrawTime", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "planId", "type": "uint8" }], "name": "getPlan", "outputs": [{ "components": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "enum ModelType", "name": "modelType", "type": "uint8" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "address", "name": "hashTreasury", "type": "address" }, { "internalType": "address", "name": "feeTreasury", "type": "address" }, { "internalType": "address", "name": "leadershipPool", "type": "address" }, { "internalType": "bool", "name": "active", "type": "bool" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "hashRate", "type": "uint256" }], "internalType": "struct SubscriptionPlan", "name": "", "type": "tuple" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getPlanCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }], "name": "getPoolFullData", "outputs": [{ "components": [{ "internalType": "uint256", "name": "totalQueued", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }, { "internalType": "uint256", "name": "undistributed", "type": "uint256" }, { "internalType": "uint256", "name": "currentWeekQueued", "type": "uint256" }, { "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "bool", "name": "isLocked", "type": "bool" }], "internalType": "struct BranchViews.PoolFullData", "name": "d", "type": "tuple" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "internalType": "address", "name": "user", "type": "address" }], "name": "getPoolProgress", "outputs": [{ "components": [{ "internalType": "uint256", "name": "currentSales", "type": "uint256" }, { "internalType": "uint256", "name": "requiredSales", "type": "uint256" }, { "internalType": "uint256", "name": "currentWeeklySales", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyThreshold", "type": "uint256" }, { "internalType": "bool", "name": "isQualified", "type": "bool" }, { "internalType": "bool", "name": "wouldQualifyNow", "type": "bool" }, { "internalType": "uint256", "name": "salesProgressBps", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyProgressBps", "type": "uint256" }, { "internalType": "uint256", "name": "closeTeamSales", "type": "uint256" }, { "internalType": "uint256", "name": "deepTeamSales", "type": "uint256" }, { "internalType": "uint256", "name": "closeRequired", "type": "uint256" }, { "internalType": "uint256", "name": "totalRequired", "type": "uint256" }, { "internalType": "uint256", "name": "closeProgressBps", "type": "uint256" }, { "internalType": "uint256", "name": "totalProgressBps", "type": "uint256" }, { "internalType": "uint256", "name": "l1Weekly", "type": "uint256" }, { "internalType": "uint256", "name": "l2Weekly", "type": "uint256" }, { "internalType": "uint256", "name": "l3Weekly", "type": "uint256" }, { "internalType": "uint256", "name": "l4Weekly", "type": "uint256" }, { "internalType": "bool", "name": "allLevelsContributed", "type": "bool" }], "internalType": "struct BranchViews.PoolProgress", "name": "p", "type": "tuple" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getProjectedPassiveIncome", "outputs": [{ "internalType": "uint256", "name": "projected", "type": "uint256" }, { "internalType": "uint256", "name": "activeSubs", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getReferralData", "outputs": [{ "components": [{ "internalType": "uint256", "name": "totalTeamSales", "type": "uint256" }, { "internalType": "uint256", "name": "level1Sales", "type": "uint256" }, { "internalType": "uint256", "name": "level2Sales", "type": "uint256" }, { "internalType": "uint256", "name": "level3Sales", "type": "uint256" }, { "internalType": "uint256", "name": "level4PlusSales", "type": "uint256" }, { "internalType": "uint256", "name": "weeklyTeamSalesThisWeek", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Depth3PlusCount", "type": "uint256" }, { "internalType": "bool", "name": "isPool1Qualified", "type": "bool" }, { "internalType": "bool", "name": "isPool2Qualified", "type": "bool" }, { "internalType": "bool", "name": "isPool3Qualified", "type": "bool" }, { "internalType": "bool", "name": "isPool4Qualified", "type": "bool" }, { "internalType": "bool", "name": "isPassiveQualified", "type": "bool" }, { "internalType": "address", "name": "myReferrer", "type": "address" }, { "internalType": "bool", "name": "isMemberOfBranch", "type": "bool" }, { "internalType": "uint256", "name": "branchTotalMembers", "type": "uint256" }, { "internalType": "uint256", "name": "currentWeek", "type": "uint256" }], "internalType": "struct BranchViews.ReferralData", "name": "d", "type": "tuple" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getReferralTreeCounts", "outputs": [{ "internalType": "uint256", "name": "l1Members", "type": "uint256" }, { "internalType": "uint256", "name": "l2Members", "type": "uint256" }, { "internalType": "uint256", "name": "l3Members", "type": "uint256" }, { "internalType": "uint256", "name": "l4Members", "type": "uint256" }, { "internalType": "uint256", "name": "l1Active", "type": "uint256" }, { "internalType": "uint256", "name": "l2Active", "type": "uint256" }, { "internalType": "uint256", "name": "l3Active", "type": "uint256" }, { "internalType": "uint256", "name": "l4Active", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }], "name": "getRoleAdmin", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "getSubscriptionCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "getSubscriptionStatus", "outputs": [{ "internalType": "uint8", "name": "status", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "grantRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "hasActiveSubscription", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "hasRole", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "address", "name": "hashTreasury", "type": "address" }, { "internalType": "address", "name": "feeTreasury", "type": "address" }, { "internalType": "address", "name": "leadershipPool", "type": "address" }, { "internalType": "uint256[6]", "name": "prices", "type": "uint256[6]" }], "name": "initializeVaultHashPlans", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "isMember", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "isPassiveQualified", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "internalType": "address", "name": "user", "type": "address" }], "name": "isPoolQualifiedMember", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "lastProcessedPassiveMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3ActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3MemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusActiveCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "level4PlusSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "liquidityType", "outputs": [{ "internalType": "enum LiquidityType", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceClosePercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maintenanceDeepPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "miningRevenueDistributor", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelLPEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "modelVaultHashEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "monthSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveLastWithdrawTime", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveQualifiedMemberCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "passiveQueuedByMonth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "passiveSalesThreshold", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "passiveWithdrawnTotal", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "paused", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "plans", "outputs": [{ "internalType": "string", "name": "name", "type": "string" }, { "internalType": "enum ModelType", "name": "modelType", "type": "uint8" }, { "components": [{ "internalType": "uint256", "name": "liquidityAllocation", "type": "uint256" }, { "internalType": "uint256", "name": "directBonusPercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchCommissionPercent", "type": "uint256" }, { "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "foundersPercent", "type": "uint256" }, { "internalType": "uint256", "name": "pool1Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool2Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool3Percent", "type": "uint256" }, { "internalType": "uint256", "name": "pool4Percent", "type": "uint256" }, { "internalType": "uint256", "name": "cancellationPercent", "type": "uint256" }], "internalType": "struct CoreConfig", "name": "core", "type": "tuple" }, { "components": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "internalType": "struct ExpiryConfig", "name": "expiry", "type": "tuple" }, { "internalType": "address", "name": "hashTreasury", "type": "address" }, { "internalType": "address", "name": "feeTreasury", "type": "address" }, { "internalType": "address", "name": "leadershipPool", "type": "address" }, { "internalType": "bool", "name": "active", "type": "bool" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "hashRate", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool1QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1State", "outputs": [{ "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool1TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool2QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2State", "outputs": [{ "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool2TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool3QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3State", "outputs": [{ "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool3TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "pool4QueuedByWeek", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4Rule", "outputs": [{ "internalType": "uint256", "name": "salesRequirement", "type": "uint256" }, { "internalType": "uint256", "name": "maintenanceThreshold", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4State", "outputs": [{ "internalType": "uint256", "name": "qualifiedCount", "type": "uint256" }, { "internalType": "uint256", "name": "totalDistributed", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalDistributed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pool4TotalQueued", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "name": "poolLocked", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "previewModelBPosition", "outputs": [{ "components": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "activationTime", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "accumulatedRewards", "type": "uint256" }, { "internalType": "uint256", "name": "lastProcessedWeek", "type": "uint256" }, { "internalType": "bool", "name": "cancelled", "type": "bool" }, { "internalType": "bool", "name": "expired", "type": "bool" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" }, { "internalType": "uint256", "name": "withdrawableBTC", "type": "uint256" }, { "internalType": "uint256", "name": "reinvestReserveBTC", "type": "uint256" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }, { "internalType": "bool", "name": "matured", "type": "bool" }, { "internalType": "bool", "name": "miningActive", "type": "bool" }], "internalType": "struct Subscription", "name": "sub", "type": "tuple" }, { "internalType": "uint256", "name": "pendingWithdraw", "type": "uint256" }, { "internalType": "uint256", "name": "pendingReinvest", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "previewPassivePending", "outputs": [{ "internalType": "uint256", "name": "pendingReward", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "internalType": "address", "name": "user", "type": "address" }], "name": "previewPoolPending", "outputs": [{ "internalType": "uint256", "name": "pendingReward", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }, { "internalType": "uint256", "name": "subscriptionIndex", "type": "uint256" }], "name": "previewSubscription", "outputs": [{ "components": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "activationTime", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "accumulatedRewards", "type": "uint256" }, { "internalType": "uint256", "name": "lastProcessedWeek", "type": "uint256" }, { "internalType": "bool", "name": "cancelled", "type": "bool" }, { "internalType": "bool", "name": "expired", "type": "bool" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" }, { "internalType": "uint256", "name": "withdrawableBTC", "type": "uint256" }, { "internalType": "uint256", "name": "reinvestReserveBTC", "type": "uint256" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }, { "internalType": "bool", "name": "matured", "type": "bool" }, { "internalType": "bool", "name": "miningActive", "type": "bool" }], "internalType": "struct Subscription", "name": "snapshot", "type": "tuple" }, { "internalType": "uint256", "name": "pendingReward", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "proxiableUUID", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "qualifiedPool3Depth3PlusCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "referrer", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestBranchWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "reinvestFeeWalletBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "callerConfirmation", "type": "address" }], "name": "renounceRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }, { "internalType": "address", "name": "account", "type": "address" }], "name": "revokeRole", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "rolloverFeeBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "rolloverLeadershipBps", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "closePct", "type": "uint256" }, { "internalType": "uint256", "name": "deepPct", "type": "uint256" }], "name": "setMaintenanceSplitPercent", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "newThreshold", "type": "uint256" }], "name": "setPassiveSalesThreshold", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint8", "name": "poolId", "type": "uint8" }, { "internalType": "bool", "name": "locked", "type": "bool" }], "name": "setPoolLocked", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "newWeekSeconds", "type": "uint256" }, { "internalType": "uint256", "name": "newMonthSeconds", "type": "uint256" }, { "internalType": "uint256", "name": "newActivationDelay", "type": "uint256" }], "name": "setTestingTimeConfig", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }], "name": "supportsInterface", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "tierValidationEnabled", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMembers", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalMiningCapitalDeployed", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "totalTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "treasuryExpiryConfig", "outputs": [{ "internalType": "uint256", "name": "feePercent", "type": "uint256" }, { "internalType": "uint256", "name": "branchPercent", "type": "uint256" }, { "internalType": "uint256", "name": "passiveIncomePercent", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newImplementation", "type": "address" }, { "internalType": "bytes", "name": "data", "type": "bytes" }], "name": "upgradeToAndCall", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "usdc", "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "userSubscriptions", "outputs": [{ "internalType": "uint256", "name": "principal", "type": "uint256" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "activationTime", "type": "uint256" }, { "internalType": "uint256", "name": "duration", "type": "uint256" }, { "internalType": "uint256", "name": "accumulatedRewards", "type": "uint256" }, { "internalType": "uint256", "name": "lastProcessedWeek", "type": "uint256" }, { "internalType": "bool", "name": "cancelled", "type": "bool" }, { "internalType": "bool", "name": "expired", "type": "bool" }, { "internalType": "uint8", "name": "planId", "type": "uint8" }, { "internalType": "uint256", "name": "miningCapital", "type": "uint256" }, { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" }, { "internalType": "uint256", "name": "withdrawableBTC", "type": "uint256" }, { "internalType": "uint256", "name": "reinvestReserveBTC", "type": "uint256" }, { "internalType": "bool", "name": "autoRoll", "type": "bool" }, { "internalType": "bool", "name": "matured", "type": "bool" }, { "internalType": "bool", "name": "miningActive", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultHashPlansInitialized", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "vaultMain", "outputs": [{ "internalType": "contract IVaultIQMain", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "weekSeconds", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyCloseTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyDeepTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL1Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL2Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL3Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyL4Sales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyLiquidityPercent", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyPerformanceSubmitted", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "weeklyTeamSales", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }]
+export const BranchViewsABI = [
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "AccessControlBadConfirmation",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "neededRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AccessControlUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      }
+    ],
+    "name": "AddressEmptyCode",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "ERC1967InvalidImplementation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ERC1967NonPayable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "EnforcedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ExpectedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FailedCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidAddress",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidBps",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInitialization",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInput",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidPercentages",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidTimeConfig",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotInitializing",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "UUPSUnauthorizedCallContext",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "slot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UUPSUnsupportedProxiableUUID",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "VaultHashPlansAlreadyInitialized",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "version",
+        "type": "uint64"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "closePercent",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "deepPercent",
+        "type": "uint256"
+      }
+    ],
+    "name": "MaintenanceSplitUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "threshold",
+        "type": "uint256"
+      }
+    ],
+    "name": "PassiveSalesThresholdUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "locked",
+        "type": "bool"
+      }
+    ],
+    "name": "PoolLockUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "previousAdminRole",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "newAdminRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoleAdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleGranted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleRevoked",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "weekSeconds",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "monthSeconds",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "activationDelay",
+        "type": "uint256"
+      }
+    ],
+    "name": "TimeConfigUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Unpaused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "Upgraded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "planCount",
+        "type": "uint8"
+      }
+    ],
+    "name": "VaultHashPlansInitialized",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "AUTO_PROCESS_MAX_WEEKS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "BPS_DENOMINATOR",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "BRANCH_MANAGER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ACTIVATION_DELAY",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ADMIN_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_MONTH_SECONDS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_PASSIVE_SALES_THRESHOLD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_WEEK_SECONDS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PAUSER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PERFORMANCE_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "TRADING_DAYS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "TREASURY_OPERATOR_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "activationDelay",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "allowedDurationTiers",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "allowedPrincipalTiers",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "branchName",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "branchWallet",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "btcb",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "claimedRewards",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "coreConfig",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "liquidityAllocation",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "directBonusPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "branchCommissionPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "feePercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "foundersPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool1Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool2Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool3Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pool4Percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "cancellationPercent",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "epochStart",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "expiryConfig",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "feePercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "branchPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "passiveIncomePercent",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "foundersWallet",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "foundersWallets",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getAllSubscriptions",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "principal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "activationTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "accumulatedRewards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastProcessedWeek",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "cancelled",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "expired",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint8",
+            "name": "planId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "miningCapital",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardDebt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "withdrawableBTC",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reinvestReserveBTC",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "autoRoll",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "matured",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "miningActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct Subscription[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCurrentMonth",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCurrentWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getDashboardData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "activeSubscriptions",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalPendingRewards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "passivePending",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPassiveQualified",
+            "type": "bool"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "pendingReward",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "qualifiedCount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalDistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "salesRequirement",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "maintenanceThreshold",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "weeklyTeamSalesUser",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "isQualified",
+                "type": "bool"
+              },
+              {
+                "internalType": "bool",
+                "name": "isLocked",
+                "type": "bool"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalQueued",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "undistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "currentWeekQueued",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct BranchViews.PoolCardData",
+            "name": "pool1",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "pendingReward",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "qualifiedCount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalDistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "salesRequirement",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "maintenanceThreshold",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "weeklyTeamSalesUser",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "isQualified",
+                "type": "bool"
+              },
+              {
+                "internalType": "bool",
+                "name": "isLocked",
+                "type": "bool"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalQueued",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "undistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "currentWeekQueued",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct BranchViews.PoolCardData",
+            "name": "pool2",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "pendingReward",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "qualifiedCount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalDistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "salesRequirement",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "maintenanceThreshold",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "weeklyTeamSalesUser",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "isQualified",
+                "type": "bool"
+              },
+              {
+                "internalType": "bool",
+                "name": "isLocked",
+                "type": "bool"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalQueued",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "undistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "currentWeekQueued",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct BranchViews.PoolCardData",
+            "name": "pool3",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "pendingReward",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "qualifiedCount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalDistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "salesRequirement",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "maintenanceThreshold",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "weeklyTeamSalesUser",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "isQualified",
+                "type": "bool"
+              },
+              {
+                "internalType": "bool",
+                "name": "isLocked",
+                "type": "bool"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalQueued",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "undistributed",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "currentWeekQueued",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct BranchViews.PoolCardData",
+            "name": "pool4",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint256",
+            "name": "currentWeek",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalMembersCount",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct BranchViews.DashboardData",
+        "name": "d",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getPassiveData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "pendingAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isQualified",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nextDistributionInSeconds",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalTeamSales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Depth3PlusCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "weeklyLiquidityPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "performanceSubmitted",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastWithdrawalTimestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalWithdrawn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "projectedPassiveIncome",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "activeSubscriptionCount",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct BranchViews.PassiveData",
+        "name": "d",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getPassiveWithdrawHistory",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "totalWithdrawn",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "lastWithdrawTime",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      }
+    ],
+    "name": "getPlan",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "enum ModelType",
+            "name": "modelType",
+            "type": "uint8"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "liquidityAllocation",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "directBonusPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "branchCommissionPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "feePercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "foundersPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool1Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool2Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool3Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pool4Percent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "cancellationPercent",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct CoreConfig",
+            "name": "core",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "feePercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "branchPercent",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "passiveIncomePercent",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ExpiryConfig",
+            "name": "expiry",
+            "type": "tuple"
+          },
+          {
+            "internalType": "address",
+            "name": "hashTreasury",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "feeTreasury",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "leadershipPool",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "hashRate",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SubscriptionPlan",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getPlanCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      }
+    ],
+    "name": "getPoolFullData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "totalQueued",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalDistributed",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "undistributed",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "currentWeekQueued",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "qualifiedCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isLocked",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct BranchViews.PoolFullData",
+        "name": "d",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getPoolProgress",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "currentSales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "requiredSales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "currentWeeklySales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "weeklyThreshold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isQualified",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "wouldQualifyNow",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "salesProgressBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "weeklyProgressBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeTeamSales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deepTeamSales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeRequired",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalRequired",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeProgressBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalProgressBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "l1Weekly",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "l2Weekly",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "l3Weekly",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "l4Weekly",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "allLevelsContributed",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct BranchViews.PoolProgress",
+        "name": "p",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getProjectedPassiveIncome",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "projected",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "activeSubs",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getReferralData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "totalTeamSales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "level1Sales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "level2Sales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "level3Sales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "level4PlusSales",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "weeklyTeamSalesThisWeek",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Depth3PlusCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPool1Qualified",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPool2Qualified",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPool3Qualified",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPool4Qualified",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPassiveQualified",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "myReferrer",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "isMemberOfBranch",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchTotalMembers",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "currentWeek",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct BranchViews.ReferralData",
+        "name": "d",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getReferralTreeCounts",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "l1Members",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "l2Members",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "l3Members",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "l4Members",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "l1Active",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "l2Active",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "l3Active",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "l4Active",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getRoleAdmin",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getSubscriptionCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "getSubscriptionStatus",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "status",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "grantRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "hasActiveSubscription",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "hasRole",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "liquidityAllocation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "directBonusPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchCommissionPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "foundersPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool1Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool2Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool4Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cancellationPercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CoreConfig",
+        "name": "core",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "passiveIncomePercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ExpiryConfig",
+        "name": "expiry",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
+        "name": "hashTreasury",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "feeTreasury",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "leadershipPool",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256[6]",
+        "name": "prices",
+        "type": "uint256[6]"
+      }
+    ],
+    "name": "initializeVaultHashPlans",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isMember",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "isPassiveQualified",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "isPoolQualifiedMember",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lastProcessedPassiveMonth",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level1ActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level1MemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level1Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level2ActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level2MemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level2Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level3ActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level3MemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level3Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level4PlusActiveCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level4PlusMemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "level4PlusSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "liquidityType",
+    "outputs": [
+      {
+        "internalType": "enum LiquidityType",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maintenanceClosePercent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maintenanceDeepPercent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "miningRevenueDistributor",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "modelLPEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "modelVaultHashEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "monthSeconds",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "passiveLastWithdrawTime",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "passiveQualifiedMemberCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "passiveQueuedByMonth",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "passiveSalesThreshold",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "passiveWithdrawnTotal",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "plans",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "enum ModelType",
+        "name": "modelType",
+        "type": "uint8"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "liquidityAllocation",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "directBonusPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchCommissionPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "foundersPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool1Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool2Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool3Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pool4Percent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cancellationPercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CoreConfig",
+        "name": "core",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "feePercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "branchPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "passiveIncomePercent",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ExpiryConfig",
+        "name": "expiry",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
+        "name": "hashTreasury",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "feeTreasury",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "leadershipPool",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "active",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "hashRate",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool1QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool1Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool1State",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "qualifiedCount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalDistributed",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool1TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool1TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool2QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool2Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool2State",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "qualifiedCount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalDistributed",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool2TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool2TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool3QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool3Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool3State",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "qualifiedCount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalDistributed",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool3TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool3TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "pool4QueuedByWeek",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool4Rule",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "salesRequirement",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maintenanceThreshold",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool4State",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "qualifiedCount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalDistributed",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool4TotalDistributed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pool4TotalQueued",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "name": "poolLocked",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "previewModelBPosition",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "principal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "activationTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "accumulatedRewards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastProcessedWeek",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "cancelled",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "expired",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint8",
+            "name": "planId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "miningCapital",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardDebt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "withdrawableBTC",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reinvestReserveBTC",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "autoRoll",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "matured",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "miningActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct Subscription",
+        "name": "sub",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pendingWithdraw",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pendingReinvest",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "previewPassivePending",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "pendingReward",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "previewPoolPending",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "pendingReward",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "subscriptionIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "previewSubscription",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "principal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "activationTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "accumulatedRewards",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastProcessedWeek",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "cancelled",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "expired",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint8",
+            "name": "planId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "miningCapital",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardDebt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "withdrawableBTC",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reinvestReserveBTC",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "autoRoll",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "matured",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "miningActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct Subscription",
+        "name": "snapshot",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pendingReward",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "qualifiedPool3Depth3PlusCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "referrer",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reinvestBranchWalletBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reinvestFeeWalletBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "callerConfirmation",
+        "type": "address"
+      }
+    ],
+    "name": "renounceRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "revokeRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rolloverFeeBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rolloverLeadershipBps",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "closePct",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "deepPct",
+        "type": "uint256"
+      }
+    ],
+    "name": "setMaintenanceSplitPercent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "newThreshold",
+        "type": "uint256"
+      }
+    ],
+    "name": "setPassiveSalesThreshold",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "poolId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bool",
+        "name": "locked",
+        "type": "bool"
+      }
+    ],
+    "name": "setPoolLocked",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "newWeekSeconds",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newMonthSeconds",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newActivationDelay",
+        "type": "uint256"
+      }
+    ],
+    "name": "setTestingTimeConfig",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tierValidationEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalMembers",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalMiningCapitalDeployed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "totalTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "treasuryExpiryConfig",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "feePercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "branchPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "passiveIncomePercent",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "usdc",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "userSubscriptions",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "principal",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "activationTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "accumulatedRewards",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "lastProcessedWeek",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "cancelled",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "expired",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint8",
+        "name": "planId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "miningCapital",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "rewardDebt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "withdrawableBTC",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "reinvestReserveBTC",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "autoRoll",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "matured",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "miningActive",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "vaultHashPlansInitialized",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "vaultMain",
+    "outputs": [
+      {
+        "internalType": "contract IVaultIQMain",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "weekSeconds",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyCloseTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyDeepTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL1Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL2Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL3Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyL4Sales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyLiquidityPercent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyPerformanceSubmitted",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "weeklyTeamSales",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
 
 export default {
   VaultIQMain: VaultIQMainABI,
