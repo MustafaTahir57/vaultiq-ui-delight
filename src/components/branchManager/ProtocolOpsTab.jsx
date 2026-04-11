@@ -221,9 +221,14 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
       case "depositLiquidity": {
         const amt = parseFloat(depositAmount);
         if (isNaN(amt) || amt <= 0) { toast.error("Enter a valid amount"); return; }
-        const amtBig = BigInt(Math.round(amt * 1e18));
-        depositLiqHook.depositLiquidity(selectedBranch, amtBig);
-        toast.info(`Depositing ${amt} USDC liquidity...`);
+        if (!usdcAddress) { toast.error("Could not fetch USDC token address for this branch"); return; }
+        if (needsDepositApproval) {
+          approveUsdc(usdcAddress, selectedBranch, parsedDepositAmount);
+          toast.info("Approving USDC, will auto-deposit after confirmation...");
+        } else {
+          depositLiqHook.depositLiquidity(selectedBranch, parsedDepositAmount);
+          toast.info(`Depositing ${amt} USDC liquidity...`);
+        }
         break;
       }
       case "withdrawLiquidity": {
