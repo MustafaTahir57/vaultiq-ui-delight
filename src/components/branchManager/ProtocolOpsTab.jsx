@@ -68,6 +68,9 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const setPoolLockedHook = useSetPoolLocked();
   const setPoolRuleHook = useSetPoolRule();
   const setMaintSplitHook = useSetMaintenanceSplitPercent();
+  const depositLiqHook = useDepositLiquidity();
+  const withdrawLiqHook = useWithdrawLiquidity();
+  const setTestTimeHook = useSetTestingTimeConfig();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
