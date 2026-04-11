@@ -1,7 +1,7 @@
 import {
   Send, DollarSign, Pickaxe, RefreshCw,
   ToggleLeft, ShieldPlus, ArrowRightLeft, LockKeyhole,
-  Settings2, SplitSquareVertical
+  Settings2, SplitSquareVertical, ArrowDownToLine, ArrowUpFromLine, Clock
 } from "lucide-react";
 
 export const protocolFunctions = [
