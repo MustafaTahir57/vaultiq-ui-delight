@@ -35,7 +35,7 @@ const DeployBranchTab = () => {
 
   const [branchName, setBranchName] = useState("");
   const [branchWallet, setBranchWallet] = useState("");
-  const [foundersWallet, setFoundersWallet] = useState("");
+  const [foundersWallets, setFoundersWallets] = useState(["", "", ""]);
   const [nameError, setNameError] = useState("");
   const [liquidityType, setLiquidityType] = useState("0");
   const [coreConfig, setCoreConfig] = useState(defaultCore);
@@ -80,7 +80,7 @@ const DeployBranchTab = () => {
     !nameError &&
     !nameCheckFetching &&
     isValidAddress(branchWallet) &&
-    isValidAddress(foundersWallet) &&
+    foundersWallets.every(isValidAddress) &&
     coreTotal === 10000 &&
     expiryTotal === 10000 &&
     !isDeploying;
@@ -89,7 +89,7 @@ const DeployBranchTab = () => {
     deployBranch({
       branchName: branchName.trim(),
       branchWallet,
-      foundersWallet,
+      foundersWallets,
       liquidityType: Number(liquidityType),
       coreConfig: { ...coreConfig, cancellationPercent },
       expiryConfig,
@@ -221,18 +221,24 @@ const DeployBranchTab = () => {
             {branchWallet && !isValidAddress(branchWallet) && <p className="text-xs text-destructive mt-1">Invalid address</p>}
           </div>
 
-          {/* Founders Wallet */}
-          <div>
-            <label className="text-xs text-muted-foreground mb-1.5 block">Founders Wallet * <span className="text-muted-foreground/60">(2% share)</span></label>
-            <input
-              type="text"
-              value={foundersWallet}
-              onChange={(e) => setFoundersWallet(e.target.value)}
-              placeholder="0x..."
-              className="w-full bg-secondary/50 border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 font-mono focus:outline-none focus:ring-2 focus:ring-ring"
-            />
-            {foundersWallet && !isValidAddress(foundersWallet) && <p className="text-xs text-destructive mt-1">Invalid address</p>}
-          </div>
+          {/* Founders Wallets */}
+          {foundersWallets.map((fw, i) => (
+            <div key={i}>
+              <label className="text-xs text-muted-foreground mb-1.5 block">Founders Wallet {i + 1} * <span className="text-muted-foreground/60">(share)</span></label>
+              <input
+                type="text"
+                value={fw}
+                onChange={(e) => {
+                  const updated = [...foundersWallets];
+                  updated[i] = e.target.value;
+                  setFoundersWallets(updated);
+                }}
+                placeholder="0x..."
+                className="w-full bg-secondary/50 border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 font-mono focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              {fw && !isValidAddress(fw) && <p className="text-xs text-destructive mt-1">Invalid address</p>}
+            </div>
+          ))}
         </div>
       </motion.div>
 
