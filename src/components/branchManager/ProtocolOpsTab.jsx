@@ -18,6 +18,9 @@ import useTransferBranchOwnership from "@/hooks/dataSender/useTransferBranchOwne
 import useSetPoolLocked from "@/hooks/dataSender/useSetPoolLocked";
 import useSetPoolRule from "@/hooks/dataSender/useSetPoolRule";
 import useSetMaintenanceSplitPercent from "@/hooks/dataSender/useSetMaintenanceSplitPercent";
+import useDepositLiquidity from "@/hooks/dataSender/useDepositLiquidity";
+import useWithdrawLiquidity from "@/hooks/dataSender/useWithdrawLiquidity";
+import useSetTestingTimeConfig from "@/hooks/dataSender/useSetTestingTimeConfig";
 import useBranchManagerRole from "@/hooks/dataFetcher/useBranchManagerRole";
 import useBranchPlans from "@/hooks/dataFetcher/useBranchPlans";
 
@@ -47,6 +50,11 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const [ruleMaintenance, setRuleMaintenance] = useState("");
   const [closePct, setClosePct] = useState("");
   const [deepPct, setDeepPct] = useState("");
+  const [depositAmount, setDepositAmount] = useState("");
+  const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [weekSeconds, setWeekSeconds] = useState("");
+  const [monthSeconds, setMonthSeconds] = useState("");
+  const [activationDelay, setActivationDelay] = useState("");
 
   // Hooks
   const weeklyPerf = useSubmitWeeklyPerformance();
@@ -60,6 +68,9 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
   const setPoolLockedHook = useSetPoolLocked();
   const setPoolRuleHook = useSetPoolRule();
   const setMaintSplitHook = useSetMaintenanceSplitPercent();
+  const depositLiqHook = useDepositLiquidity();
+  const withdrawLiqHook = useWithdrawLiquidity();
+  const setTestTimeHook = useSetTestingTimeConfig();
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
@@ -75,6 +86,9 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
     setPoolLocked: setPoolLockedHook,
     setPoolRule: setPoolRuleHook,
     setMaintenanceSplitPercent: setMaintSplitHook,
+    depositLiquidity: depositLiqHook,
+    withdrawLiquidity: withdrawLiqHook,
+    setTestingTimeConfig: setTestTimeHook,
   };
 
   const handleExecute = (fnName) => {
@@ -155,6 +169,33 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
         if (c + d !== 10000) { toast.error("closePct + deepPct must equal 10000"); return; }
         setMaintSplitHook.setMaintenanceSplitPercent(selectedBranch, BigInt(c), BigInt(d));
         toast.info(`Setting maintenance split: close=${c} BPS, deep=${d} BPS...`);
+        break;
+      }
+      case "depositLiquidity": {
+        const amt = parseFloat(depositAmount);
+        if (isNaN(amt) || amt <= 0) { toast.error("Enter a valid amount"); return; }
+        const amtBig = BigInt(Math.round(amt * 1e18));
+        depositLiqHook.depositLiquidity(selectedBranch, amtBig);
+        toast.info(`Depositing ${amt} USDC liquidity...`);
+        break;
+      }
+      case "withdrawLiquidity": {
+        const amt = parseFloat(withdrawAmount);
+        if (isNaN(amt) || amt <= 0) { toast.error("Enter a valid amount"); return; }
+        const amtBig = BigInt(Math.round(amt * 1e18));
+        withdrawLiqHook.withdrawLiquidity(selectedBranch, amtBig);
+        toast.info(`Withdrawing ${amt} USDC liquidity...`);
+        break;
+      }
+      case "setTestingTimeConfig": {
+        const w = parseInt(weekSeconds);
+        const m = parseInt(monthSeconds);
+        const a = parseInt(activationDelay);
+        if (isNaN(w) || w <= 0) { toast.error("Enter valid week seconds"); return; }
+        if (isNaN(m) || m <= 0) { toast.error("Enter valid month seconds"); return; }
+        if (isNaN(a) || a < 0) { toast.error("Enter valid activation delay"); return; }
+        setTestTimeHook.setTestingTimeConfig(selectedBranch, BigInt(w), BigInt(m), BigInt(a));
+        toast.info(`Setting time config: week=${w}s, month=${m}s, activation=${a}s...`);
         break;
       }
     }
@@ -375,6 +416,66 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
                 Total: {(parseInt(closePct) || 0) + (parseInt(deepPct) || 0)} / 10000 BPS
               </p>
             )}
+          </div>
+        );
+
+      case "depositLiquidity":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Amount (USDC)</label>
+            <Input
+              type="number"
+              step="0.01"
+              placeholder="e.g. 1000"
+              value={depositAmount}
+              onChange={(e) => setDepositAmount(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+          </div>
+        );
+
+      case "withdrawLiquidity":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Amount (USDC)</label>
+            <Input
+              type="number"
+              step="0.01"
+              placeholder="e.g. 500"
+              value={withdrawAmount}
+              onChange={(e) => setWithdrawAmount(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+          </div>
+        );
+
+      case "setTestingTimeConfig":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs text-muted-foreground">Week Duration (seconds)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 604800"
+              value={weekSeconds}
+              onChange={(e) => setWeekSeconds(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+            <label className="text-xs text-muted-foreground">Month Duration (seconds)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 2592000"
+              value={monthSeconds}
+              onChange={(e) => setMonthSeconds(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
+            <label className="text-xs text-muted-foreground">Activation Delay (seconds)</label>
+            <Input
+              type="number"
+              placeholder="e.g. 86400"
+              value={activationDelay}
+              onChange={(e) => setActivationDelay(e.target.value)}
+              className="bg-secondary/50 border-border font-mono"
+            />
           </div>
         );
 

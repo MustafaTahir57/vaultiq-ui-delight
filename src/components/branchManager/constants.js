@@ -1,7 +1,7 @@
 import {
   Send, DollarSign, Pickaxe, RefreshCw,
   ToggleLeft, ShieldPlus, ArrowRightLeft, LockKeyhole,
-  Settings2, SplitSquareVertical
+  Settings2, SplitSquareVertical, ArrowDownToLine, ArrowUpFromLine, Clock
 } from "lucide-react";
 
 export const protocolFunctions = [
@@ -74,6 +74,27 @@ export const protocolFunctions = [
     selector: "—",
     desc: "Set close-team (L1-L3) vs deep-team (L4+) split for maintenance sales. Must total 10000 BPS.",
     params: "closePct (BPS), deepPct (BPS)",
+  },
+  {
+    icon: ArrowDownToLine,
+    name: "depositLiquidity",
+    selector: "—",
+    desc: "Deposit USDC liquidity into the branch trading pool. Requires prior token approval.",
+    params: "amount (USDC)",
+  },
+  {
+    icon: ArrowUpFromLine,
+    name: "withdrawLiquidity",
+    selector: "—",
+    desc: "Withdraw USDC liquidity from the branch trading pool.",
+    params: "amount (USDC)",
+  },
+  {
+    icon: Clock,
+    name: "setTestingTimeConfig",
+    selector: "—",
+    desc: "Override week/month/activation durations for testing. Use with caution on mainnet.",
+    params: "weekSeconds, monthSeconds, activationDelay",
   },
 ];
 
