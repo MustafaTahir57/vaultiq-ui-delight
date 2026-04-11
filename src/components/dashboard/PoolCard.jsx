@@ -92,8 +92,8 @@ const PoolCard = ({ poolId, userAddress, branchAddress, index = 0 }) => {
           <Button
             variant="outline"
             size="sm"
-            className={`w-full ${wouldQualifyNow ? "border-success/30 text-success hover:bg-success/10" : "border-muted text-muted-foreground"}`}
-            disabled={!wouldQualifyNow || syncing}
+            className={`w-full ${ currentSales >= requiredSales ? "border-success/30 text-success hover:bg-success/10" : "border-muted text-muted-foreground"}`}
+            disabled={ currentSales < requiredSales || syncing}
             onClick={() => sync(poolId, userAddress)}
           >
             {syncing ? (
