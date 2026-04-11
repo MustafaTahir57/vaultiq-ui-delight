@@ -302,13 +302,13 @@ const SubscriptionsSection = () => {
                     <td className="px-5 py-4">
                       <StatusBadge
                         status={
-                          sub.isActive
-                            ? "active"
-                            : sub.cancelled
-                              ? "cancelled"
-                              : sub.expired
+                          sub.cancelled
+                            ? "cancelled"
+                            : sub.matured
+                              ? "matured"
+                              : (sub.expired || Number(Number(sub.startTime) + Number(sub.duration)) <= Math.floor(Date.now() / 1000))
                                 ? "expired"
-                                : "matured"
+                                : "active"
                         }
                       />
                     </td>
@@ -320,7 +320,7 @@ const SubscriptionsSection = () => {
                     </td>
                     <td className="px-5 py-4">
                       <div className="flex gap-2">
-                        {sub.isActive && (
+                        {(sub.isActive && !sub.cancelled && Number(Number(sub.startTime) + Number(sub.duration)) > Math.floor(Date.now() / 1000)) && (
                           <>
                             <Button
                               variant="outline"
