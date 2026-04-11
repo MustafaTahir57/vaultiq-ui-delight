@@ -79,6 +79,48 @@ const ProtocolOpsTab = ({ selectedBranch }) => {
 
   const { branchManagerRole } = useBranchManagerRole(selectedBranch);
   const { planCount } = useBranchPlans(selectedBranch);
+  const { usdc: branchUsdcToken } = useBranchConfig(selectedBranch);
+  const { address } = useAccount();
+
+  // Deposit amount parsed for allowance check
+  const parsedDepositAmount = useMemo(() => {
+    const amt = parseFloat(depositAmount);
+    if (isNaN(amt) || amt <= 0) return 0n;
+    try {
+      return parseUnits(depositAmount, 18);
+    } catch {
+      return 0n;
+    }
+  }, [depositAmount]);
+
+  const usdcAddress = branchUsdcToken && branchUsdcToken !== "—" ? branchUsdcToken : undefined;
+
+  const {
+    allowance: depositAllowance,
+    isLoading: allowanceLoading,
+    refetch: refetchAllowance,
+  } = useTokenAllowance(usdcAddress, address, selectedBranch);
+
+  const {
+    approve: approveUsdc,
+    isPending: approvePending,
+    isConfirming: approveConfirming,
+    isConfirmed: approveConfirmed,
+    reset: resetApproval,
+  } = useUSDTApproval();
+
+  const needsDepositApproval =
+    parsedDepositAmount > 0n && (depositAllowance === undefined || depositAllowance < parsedDepositAmount);
+
+  // After approval confirmed, deposit automatically
+  useEffect(() => {
+    if (approveConfirmed && parsedDepositAmount > 0n && selectedBranch) {
+      toast.success("Approval confirmed!");
+      refetchAllowance();
+      resetApproval();
+      depositLiqHook.depositLiquidity(selectedBranch, parsedDepositAmount);
+    }
+  }, [approveConfirmed]);
 
   const hookMap = {
     submitWeeklyPerformance: weeklyPerf,
