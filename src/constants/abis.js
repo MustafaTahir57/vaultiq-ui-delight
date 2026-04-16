@@ -1279,9 +1279,9 @@ export const BranchFactoryABI = [
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "foundersWallet",
-        "type": "address"
+        "internalType": "address[]",
+        "name": "foundersWallets",
+        "type": "address[]"
       },
       {
         "components": [
